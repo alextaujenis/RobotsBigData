@@ -19,18 +19,17 @@ html(lang='en')
         .col-sm-3
       .row.text-center
         a(href="#examples") see examples
-      .row.section-spacer
+      .row.hardware-spacer
       .row
         a(name="getting-started") &nbsp;
         h2.section-header.text-center Say hello to the hardware
-      .row
-        .col-sm-6.text-center
+      .row.text-center
+        .col-sm-6
           .hardware1 Program the real world
           .hardware2 instead of running in a datacenter
           .hardware-with with any
           .hardware-name Arduino
-          .hardware-img
-            img(src="../app/images/arduino-uno.png")
+          img(src="../app/images/arduino-uno.png")
           .row.text-left
             .col-xs-2
             .col-xs-10
@@ -44,13 +43,12 @@ html(lang='en')
                 li
                   b Do it fast
                   |  in microsecond response times
-        .col-sm-6.text-center
+        .col-sm-6
           .hardware3 Bring it to the internet
           .hardware4 while running in the real-world
           .hardware-with with the
           .hardware-name Raspberry Pi
-          .hardware-img
-            img(src="../app/images/raspberry-pi-2-model-b.png")
+          img(src="../app/images/raspberry-pi-2-model-b.png")
           .row.text-left
             .col-xs-2
             .col-xs-10
@@ -64,5 +62,21 @@ html(lang='en')
                 li
                   b Provide control
                   |  from a single-page web app
+      .row.software-spacer
+      .row
+        a(name="software-overview") &nbsp;
+        h2.section-header.text-center Take a peek at the software
+      .row
+        .col-sm-6.text-center
+          .software1 Simple libraries that help
+          .software2 to solve all the "simple" problems
+          img(src="../app/images/arduino-libraries.png")
+          .software-footer Control your sensors with C++
+        .col-sm-6.text-center
+          .software3 Standard big data patterns
+          .software4 let you stand on the shoulders of giants
+          img(src="../app/images/big-data-libraries.png")
+          .software-footer Write your app in JavaScript
+
     script(src='../bower_components/jquery/dist/jquery.min.js')
     script(src='../bower_components/bootstrap/dist/js/bootstrap.min.js')
