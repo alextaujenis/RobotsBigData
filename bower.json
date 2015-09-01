@@ -1,0 +1,13 @@
+{
+  "name": "Robots Big Data",
+  "version": "0.0.1",
+  "authors": [
+  ],
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "~3.3.5"
+  }
+}
