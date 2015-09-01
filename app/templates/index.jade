@@ -15,9 +15,54 @@ html(lang='en')
         .col-xs-6.col-sm-3
           a.btn.btn-lg.btn-splash.pull-right(href="#getting-started") Getting Started
         .col-xs-6.col-sm-3
-          a.btn.btn-lg.btn-splash(href="docs/") Documentation
+          a.btn.btn-lg.btn-splash(href="docs/index.html") Documentation
         .col-sm-3
       .row.text-center
         a(href="#examples") see examples
+      .row.section-spacer
+      .row
+        a(name="getting-started") &nbsp;
+        h2.section-header.text-center Say hello to the hardware
+      .row
+        .col-sm-6.text-center
+          .hardware1 Program the real world
+          .hardware2 instead of running in a datacenter
+          .hardware-with with any
+          .hardware-name Arduino
+          .hardware-img
+            img(src="../app/images/arduino-uno.png")
+          .row.text-left
+            .col-xs-2
+            .col-xs-10
+              ul.hardware-benefits
+                li
+                  b Connect
+                  |  really cheap and effective sensors
+                li
+                  b Run everything
+                  |  at the same time with no delay
+                li
+                  b Do it fast
+                  |  in microsecond response times
+        .col-sm-6.text-center
+          .hardware3 Bring it to the internet
+          .hardware4 while running in the real-world
+          .hardware-with with the
+          .hardware-name Raspberry Pi
+          .hardware-img
+            img(src="../app/images/raspberry-pi-2-model-b.png")
+          .row.text-left
+            .col-xs-2
+            .col-xs-10
+              ul.hardware-benefits
+                li
+                  b Stream live data
+                  |  to and from the Arduino
+                li
+                  b Store and process
+                  |  lots of data efficiently
+                li
+                  b Provide control
+                  |  from a single-page web app
     script(src='../bower_components/jquery/dist/jquery.min.js')
     script(src='../bower_components/bootstrap/dist/js/bootstrap.min.js')
