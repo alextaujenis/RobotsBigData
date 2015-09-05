@@ -1,11 +1,10 @@
 doctype html
 html(lang='en')
   head
-    title='Robots + Big Data: an open-source framework for connecting sensors to the internet'
-    link(href='../bower_components/bootstrap/dist/css/bootstrap.min.css' rel='stylesheet' type='text/css')
-    link(href='style/style.css' rel='stylesheet' type='text/css')
-    meta(content='width=device-width initial-scale=1' name='viewport')
+    title Robots + Big Data: an open-source framework for connecting sensors to the internet
+    include ./global/head_content.jade
   body
+    include ./global/top_nav.jade
     .container-fluid
       .row
         img.logo.img-responsive(src='../app/images/robots_big_data_logo.png')
@@ -15,13 +14,13 @@ html(lang='en')
         .col-xs-6.col-sm-3
           a.btn.btn-lg.btn-splash.pull-right(href="#getting-started") Getting Started
         .col-xs-6.col-sm-3
-          a.btn.btn-lg.btn-splash(href="docs/index.html") Documentation
+          a.btn.btn-lg.btn-splash(href="docs.html") Documentation
         .col-sm-3
       .row.text-center
-        a(href="#examples") see examples
+        a(href="examples.html") see examples
       .row.hardware-spacer
       .row
-        a(name="getting-started") &nbsp;
+        a(name="hardware-overview") &nbsp;
         h2.section-header.text-center Say hello to the hardware
       .row.text-center
         .col-sm-6
@@ -79,8 +78,8 @@ html(lang='en')
           .software-footer Write your web app in JavaScript
       .row.hello-world-spacer
       .row.text-center
-        a(name="hello-world") &nbsp;
-        h2.hello-world-header Hello (real) World
+        a(name="getting-started") &nbsp;
+        h2.hello-world-header Getting Started
         h3.hello-world-tagline
           | bootstrap yourself to get
           i  blinking
@@ -90,24 +89,22 @@ html(lang='en')
         .col-md-6
           .resource-link
             h4
-              a(href="getting-started/electronic-circuit-design.html") 1. Electronic Circuit Design
+              a(href="electronic-circuit-design.html") 1. Electronic Circuit Design
             p
               i Start with the basics.
               |  Learn how electricity works, then wire basic electronic parts to sensors.
           .resource-link
             h4
-              a(href="getting-started/real-time-arduino-programming.html") 2. Real-Time Arduino Programming
+              a(href="real-time-arduino-programming.html") 2. Real-Time Arduino Programming
             p
               i Take the next step.
               |  Build a state-machine, then control many sensors at the same time.
           .resource-link
             h4
-              a(href="getting-started/nodejs-and-backbone-marionette.html") 3. Real-Time Web Programming
+              a(href="nodejs-and-backbone-marionette.html") 3. Real-Time Web Programming
             p
               i Finish it.
               |  Store and process sensor data, then control everything from a website.
         .col-md-3
       .row.examples-spacer
-    script(src='../bower_components/jquery/dist/jquery.min.js')
-    script(src='../bower_components/bootstrap/dist/js/bootstrap.min.js')
-    script(src='code/script.js')
+    include ./global/foot_content.jade

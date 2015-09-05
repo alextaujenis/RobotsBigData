@@ -11,5 +11,5 @@ scrollToLink = (link, area, timeout)->
   link.click (e)->
     e.preventDefault()
     $("html, body").animate
-      scrollTop: area.offset().top
+      scrollTop: area.offset().top - 70 # topbar offset
     , timeout
