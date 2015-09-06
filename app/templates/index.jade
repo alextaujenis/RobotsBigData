@@ -2,9 +2,9 @@ doctype html
 html(lang='en')
   head
     title Robots + Big Data: an open-source framework for connecting sensors to the internet
-    include ./global/head_content.jade
+    include ./global/head-content.jade
   body
-    include ./global/top_nav.jade
+    include ./global/top-nav.jade
     .container-fluid
       .branding
         .row
@@ -15,7 +15,7 @@ html(lang='en')
           .col-xs-6.col-sm-3
             a.btn.btn-custom.pull-right(href="#getting-started") Getting Started
           .col-xs-6.col-sm-3
-            a.btn.btn-custom(href="docs.html") Documentation
+            a.btn.btn-custom(href="api-docs.html") Documentation
           .col-sm-3
         .row.text-center
           a(href="examples.html") see examples
@@ -108,6 +108,6 @@ html(lang='en')
               |  Store and process sensor data, then control everything from a website.
         .col-md-3
       .row.end-spacer
-    include ./global/foot_content.jade
+    include ./global/foot-content.jade
     script(src='code/script.js')
     script(src='libraries/branding.js')
