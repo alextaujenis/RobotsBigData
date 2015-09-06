@@ -11,9 +11,14 @@ html(lang='en')
         .content.documentation.col-sm-9.col-lg-10
           .jumbotron
             h2 Light Sensor
-            p.lead A simple library for reading photoresistors.
+            p A simple library for reading photoresistors.
+            a.btn.btn-success(href="#download") Download v1.0a
+            | &nbsp;&nbsp;
+            a.btn.btn-default(href="#public-methods") Public Methods
 
-          h3 Download
+          h3
+            a(name="download")
+            | Download
           p.lead
             | Un-zip and copy the light sensor folder to your Arduino libraries directory.
           p.lead
@@ -26,8 +31,9 @@ html(lang='en')
             a(href="#") view source on github
             |  with MIT license
 
-
-          h3 Example
+          h3
+            a(name="example")
+            | Example
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
               #include <LightSensor.h>
@@ -43,26 +49,28 @@ html(lang='en')
                 Serial.println(light_sensor.getPercentValue());
               }
 
-          h3 Public Methods
+          h3
+            a(name="public-methods")
+            | Public Methods
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 LightSensor
           ul
             li
-              a(href="#constructor-pin") constructor(pin)
+              a.click-flash(href="#constructor-pin") constructor(pin)
             li
-              a(href="#getvalue") .getValue()
+              a.click-flash(href="#getvalue") .getValue()
             li
-              a(href="#getinversevalue") .getInverseValue()
+              a.click-flash(href="#getinversevalue") .getInverseValue()
             li
-              a(href="#getpercentvalue") .getPercentValue()
+              a.click-flash(href="#getpercentvalue") .getPercentValue()
             li
-              a(href="#getinversepercentvalue") .getInversePercentValue()
+              a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
 
           .section
             a(name="constructor-pin")
-            h4 constructor(pin)
+            h4 LightSensor constructor(pin)
             p Create a new sensor and pass in the Arduino pin number.
             h5 EXAMPLE
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
@@ -119,5 +127,6 @@ html(lang='en')
 
           .section-bottom
     include ./global/foot_content.jade
+    include ./global/docs_foot_content.jade
 
 

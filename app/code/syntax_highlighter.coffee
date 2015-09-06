@@ -2,3 +2,5 @@
 $(document).ready ->
   SyntaxHighlighter.defaults.toolbar = false
   SyntaxHighlighter.all()
+
+  $(window).clickFlash()
