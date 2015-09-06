@@ -13,6 +13,20 @@ html(lang='en')
             h2 Light Sensor
             p.lead A simple library for reading photoresistors.
 
+          h3 Download
+          p.lead
+            | Un-zip and copy the light sensor folder to your Arduino libraries directory.
+          p.lead
+            b
+              | Latest Version:
+              | &nbsp;
+              a(href="#") RBDLightSensor.zip
+              |  v1.0 alpha
+          p.lead
+            a(href="#") view source on github
+            |  with MIT license
+
+
           h3 Example
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
@@ -30,17 +44,21 @@ html(lang='en')
               }
 
           h3 Public Methods
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                LightSensor
           ul
             li
               a(href="#constructor-pin") constructor(pin)
             li
-              a(href="#getvalue") getValue()
+              a(href="#getvalue") .getValue()
             li
-              a(href="#getinversevalue") getInverseValue()
+              a(href="#getinversevalue") .getInverseValue()
             li
-              a(href="#getpercentvalue") getPercentValue()
+              a(href="#getpercentvalue") .getPercentValue()
             li
-              a(href="#getinversepercentvalue") getInversePercentValue()
+              a(href="#getinversepercentvalue") .getInversePercentValue()
 
           .section
             a(name="constructor-pin")
@@ -99,6 +117,7 @@ html(lang='en')
                   light_sensor.getInversePercentValue();
                 }
 
+          .section-bottom
     include ./global/foot_content.jade
 
 
