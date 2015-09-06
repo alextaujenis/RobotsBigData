@@ -6,18 +6,19 @@ html(lang='en')
   body
     include ./global/top_nav.jade
     .container-fluid
-      .row
-        img.logo.img-responsive(src='../app/images/robots_big_data_logo.png')
-        h3.tagline an open-source framework for connecting sensors to the internet
-      .row
-        .col-sm-3
-        .col-xs-6.col-sm-3
-          a.btn.btn-lg.btn-splash.pull-right(href="#getting-started") Getting Started
-        .col-xs-6.col-sm-3
-          a.btn.btn-lg.btn-splash(href="docs.html") Documentation
-        .col-sm-3
-      .row.text-center
-        a(href="examples.html") see examples
+      .branding
+        .row
+          img.logo.img-responsive(src='../app/images/robots_big_data_logo.png')
+          h3.tagline an open-source framework for connecting sensors to the internet
+        .row
+          .col-sm-3
+          .col-xs-6.col-sm-3
+            a.btn.btn-custom.pull-right(href="#getting-started") Getting Started
+          .col-xs-6.col-sm-3
+            a.btn.btn-custom(href="docs.html") Documentation
+          .col-sm-3
+        .row.text-center
+          a(href="examples.html") see examples
       .row.hardware-spacer
       .row
         a(name="hardware-overview") &nbsp;
@@ -76,11 +77,11 @@ html(lang='en')
           .software4 let you stand on the shoulders of giants
           img(src="../app/images/big-data-libraries.png")
           .software-footer Write your web app in JavaScript
-      .row.hello-world-spacer
+      .row.getting-started-spacer
       .row.text-center
         a(name="getting-started") &nbsp;
-        h2.hello-world-header Getting Started
-        h3.hello-world-tagline
+        h2.getting-started-header Getting Started
+        h3.getting-started-tagline
           | bootstrap yourself to get
           i  blinking
           |  fast with these resources
@@ -106,5 +107,5 @@ html(lang='en')
               i Finish it.
               |  Store and process sensor data, then control everything from a website.
         .col-md-3
-      .row.examples-spacer
+      .row.end-spacer
     include ./global/foot_content.jade

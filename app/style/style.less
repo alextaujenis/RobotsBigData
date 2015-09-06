@@ -3,7 +3,7 @@ body {
 }
 
 .logo {
-  margin: 265px auto 0 auto;
+  margin: 100px auto 0 auto;
 }
 
 .tagline {
@@ -11,26 +11,30 @@ body {
   margin: 10px 0 50px 0;
 }
 
-.btn-splash {
-  background-color: #272639;
-  border-color: black;
-  margin-bottom: 20px;
-  padding: 12px 24px;
+.btn-custom {
   font-size: 18px;
+  font-weight: normal;
+  padding: 12px 24px;
+  margin-bottom: 20px;
   color: white;
-
-  &:hover {
-    color: #999;
-  }
-
+  background-color: #272639;
+  border-color: #272639;
+}
+.btn-custom:hover,
+.btn-custom:focus,
+.btn-custom:active,
+.btn-custom.active {
+  background-color: #1d1c2a;
+  border-color: #12121a;
+  color: white;
 }
 
 .hardware-spacer {
-  height: 400px;
+  height: 100px;
 }
 
 .software-spacer{
-  height: 50px;
+  height: 0px;
 }
 
 
@@ -112,15 +116,15 @@ body {
   margin: 15px 0 100px 0;
 }
 
-.hello-world-spacer {
-  height: 75px;
+.getting-started-spacer {
+  height: 25px;
 }
 
-.hello-world-header {
+.getting-started-header {
   font-size: 45px;
 }
 
-.hello-world-tagline {
+.getting-started-tagline {
   font-size: 30px;
   margin: -5px 0 50px 0;
   font-weight: 100;
@@ -145,6 +149,6 @@ body {
   }
 }
 
-.examples-spacer {
-  height: 100px;
+.end-spacer {
+  height: 350px;
 }

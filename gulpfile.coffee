@@ -14,6 +14,10 @@ style_dest = './compiled/style/'
 code_src  = './app/code/**/*.coffee'
 code_dest = './compiled/code/'
 
+libraries_src  = './app/libraries/**/*.coffee'
+libraries_dest = './compiled/libraries/'
+
+
 gulp.task 'compile-templates', ->
   gulp.src(template_src)
     .pipe(jade())
@@ -31,11 +35,18 @@ gulp.task 'compile-code', ->
     .pipe(uglify())
     .pipe(gulp.dest(code_dest))
 
+gulp.task 'compile-libraries', ->
+  gulp.src(libraries_src)
+    .pipe(coffee(bare: true))
+    .pipe(uglify())
+    .pipe(gulp.dest(libraries_dest))
+
 # this will compile everything
 gulp.task 'compile', [
   'compile-templates'
   'compile-style'
   'compile-code'
+  'compile-libraries'
 ]
 
 # only compile when source files change
@@ -43,6 +54,7 @@ gulp.task 'watch-files', ->
   gulp.watch(template_src, ['compile-templates'])
   gulp.watch(style_src, ['compile-style'])
   gulp.watch(code_src, ['compile-code'])
+  gulp.watch(libraries_src, ['compile-libraries'])
 
 # run this command to start developing
 gulp.task 'develop', ['watch-files', 'compile']

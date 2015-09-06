@@ -1,0 +1,1 @@
+var Branding;Branding=function(){function i(i){this.el=$(i.el),this.window=$(window),this.resize(),this.window.resize(function(i){return function(){return i.resize()}}(this))}return i.prototype.resize=function(){var i;i=(this.window.height()-this.el.height())/2,this.el.css({"padding-top":i-this.el.offset().top,"padding-bottom":i})},i}();
