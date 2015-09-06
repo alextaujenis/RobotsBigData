@@ -8,8 +8,96 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs_side_nav.jade
-        include ./global/docs_content.jade
-          h1 Light Sensor
+        .content.documentation.col-sm-9.col-lg-10
+          .jumbotron
+            h2 Light Sensor
+            p.lead A simple library for reading photoresistors.
+
+          h3 Example
+          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            :cdata
+              #include <LightSensor.h>
+              #define BAUD 115200
+
+              LightSensor light_sensor(A0);
+
+              void setup() {
+                Serial.begin(BAUD);
+              }
+
+              void loop() {
+                Serial.println(light_sensor.getPercentValue());
+              }
+
+          h3 Public Methods
+          ul
+            li
+              a(href="#constructor-pin") constructor(pin)
+            li
+              a(href="#getvalue") getValue()
+            li
+              a(href="#getinversevalue") getInverseValue()
+            li
+              a(href="#getpercentvalue") getPercentValue()
+            li
+              a(href="#getinversepercentvalue") getInversePercentValue()
+
+          .section
+            a(name="constructor-pin")
+            h4 constructor(pin)
+            p Create a new sensor and pass in the Arduino pin number.
+            h5 EXAMPLE
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                LightSensor light_sensor(A0);
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            a(name="getvalue")
+            h4 light_sensor.getValue()
+            p Returns an integer from 0 - 1023 for the current light level.
+            h5 EXAMPLE
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getValue();
+                }
+
+          .section
+            a(name="getinversevalue")
+            h4 light_sensor.getInverseValue()
+            p Returns an integer from 1023 - 0 for the opposite of the current light level.
+            h5 EXAMPLE
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getInverseValue();
+                }
+
+          .section
+            a(name="getpercentvalue")
+            h4 light_sensor.getPercentValue()
+            p Returns an integer from 0 - 100 for the current light percentage.
+            h5 EXAMPLE
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getPercentValue();
+                }
+
+          .section
+            a(name="getinversepercentvalue")
+            h4 light_sensor.getInversePercentValue()
+            p Returns an integer from 100 - 0 for the opposite of the current light percentage.
+            h5 EXAMPLE
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getInversePercentValue();
+                }
 
     include ./global/foot_content.jade
 

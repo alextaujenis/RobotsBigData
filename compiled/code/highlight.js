@@ -1,0 +1,1 @@
+$(document).ready(function(){return SyntaxHighlighter.defaults.toolbar=!1,SyntaxHighlighter.all()});
