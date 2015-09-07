@@ -12,9 +12,11 @@ html(lang='en')
           .jumbotron
             h2
               | Light Sensor
-              small  DOCUMENTATION
+              small  API DOCUMENTATION
             p A simple library for reading photoresistors.
-            a.btn.btn-success(href="#download") Download v1.0a
+            a.btn.btn-success(href="#download") Download
+            | &nbsp;&nbsp;
+            a.btn.btn-default(href="#example") See Example
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#public-methods") Public Methods
 
@@ -22,16 +24,19 @@ html(lang='en')
             a(name="download")
             | Download
           p.lead
-            | Un-zip and copy the light sensor folder to your Arduino libraries directory.
-          p.lead
-            b
-              | Latest Version:
-              | &nbsp;
-              a(href="#") RBDLightSensor.zip
-              |  v1.0 alpha
-          p.lead
-            a(href="#") view source on github
-            |  with MIT license
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors, or you can download this library by itself.
+          p
+            ul
+              li
+                a(href="#") Download Robots + Big Data Sensor Package
+                |  with this library included
+              li
+                a(href="#") Download Standalone Library
+              li
+                a(href="#") View Source on GitHub
+                |  with MIT license
 
           h3
             a(name="example")
