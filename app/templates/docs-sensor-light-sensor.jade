@@ -7,8 +7,17 @@ html(lang='en')
     include ./global/top-nav.jade
     .container-fluid
       .row
-        include ./global/api-docs-side-nav.jade
+        include ./global/docs-side-nav.jade
         .content.documentation.col-sm-9.col-lg-10
+          ol.breadcrumb
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs.html") Docs
+            li
+              a(href="docs-sensor.html") Arduino Sensor Libraries
+            li.active
+              | Light Sensor
           .jumbotron
             h2
               | Light Sensor
@@ -134,6 +143,6 @@ html(lang='en')
 
           .section-bottom
     include ./global/foot-content.jade
-    include ./global/api-docs-foot-content.jade
+    include ./global/docs-foot-content.jade
 
 
