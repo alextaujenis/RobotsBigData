@@ -14,15 +14,13 @@ html(lang='en')
               a(href="index.html") Home
             li
               a(href="docs.html") Docs
-            li
-              a(href="docs-sensor.html") Arduino Sensor Libraries
             li.active
               | Light Sensor
           .jumbotron
             h2
               | Light Sensor
               small  API DOCUMENTATION
-            p A simple library for reading photoresistors.
+            p A simple Arduino library for reading photoresistors.
             a.btn.btn-success(href="#download") Download
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#example") See Example
@@ -35,14 +33,15 @@ html(lang='en')
           p.lead
             | This library is part of a larger package that you can download to access
             i  all
-            |  of the documented sensors, or you can download this library by itself.
+            |  of the documented sensors, or you can use this library by itself.
           p
             ul
               li
-                a(href="#") Download Robots + Big Data Sensor Package
+                a(href="#") Download Full Sensor Package
                 |  with this library included
               li
-                a(href="#") Download Standalone Library
+                a(href="#") Download Light Sensor Library
+                |  (by itself)
               li
                 a(href="#") View Source on GitHub
                 |  with MIT license
@@ -50,6 +49,9 @@ html(lang='en')
           h3
             a(name="example")
             | Example
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
               #include <LightSensor.h>
@@ -88,7 +90,7 @@ html(lang='en')
             a(name="constructor-pin")
             h4 LightSensor constructor(pin)
             p Create a new sensor and pass in the Arduino pin number.
-            h5 EXAMPLE
+            h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 LightSensor light_sensor(A0);
@@ -101,7 +103,7 @@ html(lang='en')
             a(name="getvalue")
             h4 light_sensor.getValue()
             p Returns an integer from 0 - 1023 for the current light level.
-            h5 EXAMPLE
+            h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void loop() {
@@ -112,7 +114,7 @@ html(lang='en')
             a(name="getinversevalue")
             h4 light_sensor.getInverseValue()
             p Returns an integer from 1023 - 0 for the opposite of the current light level.
-            h5 EXAMPLE
+            h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void loop() {
@@ -123,7 +125,7 @@ html(lang='en')
             a(name="getpercentvalue")
             h4 light_sensor.getPercentValue()
             p Returns an integer from 0 - 100 for the current light percentage.
-            h5 EXAMPLE
+            h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void loop() {
@@ -134,7 +136,7 @@ html(lang='en')
             a(name="getinversepercentvalue")
             h4 light_sensor.getInversePercentValue()
             p Returns an integer from 100 - 0 for the opposite of the current light percentage.
-            h5 EXAMPLE
+            h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void loop() {
