@@ -34,7 +34,12 @@ html(lang='en')
             | Detect human presence and touch from behind several millimeters of material, or detect changes in water levels from the outside of a plastic container. This library is meant to help&nbsp;
             b determine relative capacitance
             |  for the reasons above, and not for calculating exact capacitance.
-
+          p
+            | Relative capacitance is found by measuring how long it takes for an Arduino send-pin to charge a receive-pin to HIGH (in microseconds). Changes in the electrical field around a sensor connected to the receive pin (such as a human passing by, or water filling up, or a motor turning on) have a measurable impact on the amount of time it takes to charge the receive pin.
+          p
+            |Many of these charge and discharge readings are taken, then averaged to reduce variability and give a more clear answer of what the sensor is reading. This is done in real-time without delay so it has a very small impact on the main loop() performance. See the&nbsp;
+            a(href="#setup") Setup Instructions
+            |  below for help wiring the Arduino with this library.
           h3
             a(name="download")
             | Download
@@ -103,11 +108,19 @@ html(lang='en')
           ul
             li
               b Increase Sensitivity
-              |  by either adding more resistors in series up to 20Meg or 30Meg or more... or increase the surface area (size) of the piece of aluminum used as the sensor
+              |  by&nbsp;
+              i either
+              |  adding more resistors in series with 20Meg, 30Meg+,&nbsp;
+              i or
+              |  increase the surface area (size) of the piece of aluminum used as the sensor.
 
             li
               b Decrease Sensitivity
-              |  by either lowering the amount of resitance (use only 1Meg or less)... or decrease the surface area (size) of the piece of aluminum used as the sensor
+              |  by&nbsp;
+              i either
+              |  lowering the amount of resitance (use only 1Meg or less),&nbsp;
+              i or
+              |  decrease the surface area (size) of the piece of aluminum used as the sensor.
 
           h3
             a(name="variability")
@@ -165,9 +178,9 @@ html(lang='en')
             a(name="setsamplesize")
             h4 cap_sensor.setSampleSize(size)
             p
-              | Pass in an integer to change the number of readings taken to calculate the moving average&nbsp;
+              | Pass in an integer to change the number of readings taken to calculate a moving average&nbsp;
               a.click-flash(href="#getvalue") getValue()
-              | . This can be called inside of setup() or also at runtime inside of loop().
+              | . This can be called inside of setup() or also safely at runtime inside of loop().
             ul
               li
                 b Decrease Variation
