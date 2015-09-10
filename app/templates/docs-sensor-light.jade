@@ -1,0 +1,268 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Light Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-9.col-lg-10
+          ol.breadcrumb
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs.html") Docs
+            li.active
+              | Light
+          .jumbotron
+            h2
+              | Light
+              small  API DOCUMENTATION
+            p A library for controlling many lights.
+            a.btn.btn-success(href="#download") Download
+            | &nbsp;&nbsp;
+            a.btn.btn-default(href="#example") See Example
+            | &nbsp;&nbsp;
+            a.btn.btn-default(href="#public-methods") Public Methods
+
+          h3
+            a(name="download")
+            | Download
+          p.lead
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors, or you can use this library outside of the package with only one dependency.
+          p
+            ul
+              li
+                a(href="#") Download Full Sensor Package
+                |  with this library included
+              li
+                a(href="#") Download Light Library
+                |  with Timer dependency
+              li
+                a(href="#") View Source on GitHub
+                |  with MIT license
+
+          h3
+            a(name="example")
+            | Example
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
+          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            :cdata
+              #include <Timer.h>
+              #include <Light.h>
+
+              Light light(13);
+
+              void setup() {
+                light.pulse(2500,250,2000,750,1000);
+              }
+
+              void loop() {
+                light.update();
+              }
+
+          h3
+            a(name="public-methods")
+            | Public Methods
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                Light
+
+          ul.public-methods
+            li
+              a.click-flash(href="#constructor") constructor(pin)
+            li
+              a.click-flash(href="#on") .on()
+            li
+              a.click-flash(href="#off") .off()
+            li
+              a.click-flash(href="#ison") .isOn()
+            li
+              a.click-flash(href="#isoff") .isOff()
+            li
+              a.click-flash(href="#update") update()
+            li
+              a.click-flash(href="#setpwm") .setPwm(value)
+            li
+              a.click-flash(href="#setpwmpercent") .setPwmPercent(value)
+            li
+              a.click-flash(href="#getpwm") .getPwm()
+            li
+              a.click-flash(href="#getpwmpercent") .getPwmPercent()
+            li
+              a.click-flash(href="#blink") .blink(on_time, off_time, times)
+            li
+              a.click-flash(href="#pulse") .pulse(up_time, on_time, down_time, off_time, times)
+
+          .section
+            a(name="constructor")
+            h4 Light constructor(pin)
+            p Create a new light and pass in the Arduino pin number.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                Light light(13);
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            a(name="on")
+            h4 light.on()
+            p Turn on the light.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light.on();
+                }
+
+          .section
+            a(name="off")
+            h4 light.off()
+            p Turn off the light.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light.off();
+                }
+
+          .section
+            a(name="ison")
+            h4 light.isOn()
+            p Returns true if the light is 100% on.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light.isOn();
+                }
+
+          .section
+            a(name="isoff")
+            h4 light.isOff()
+            p Returns true if the light is 0% on.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light.isOff();
+                }
+
+          .section
+            a(name="update")
+            h4 light.update()
+            p
+              | Keep the light moving in real-time. This must be called continuously from within loop() in order to&nbsp;
+              a.click-flash(href="#blink") blink()
+              |  or&nbsp;
+              a.click-flash(href="#pulse") pulse()
+              |  the light.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light.update();
+                }
+
+          .section
+            a(name="setpwm")
+            h4 light.setPwm(value)
+            p Pass in an integer between 0 - 255 to set the brightness of the light.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light.setPwm(200);
+                }
+
+          .section
+            a(name="setpwmpercent")
+            h4 light.setPwmPercent(value)
+            p Pass in an integer between 0 - 100 to set the brightness of the light.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light.setPwmPercent(75);
+                }
+
+          .section
+            a(name="getpwm")
+            h4 light.getPwm()
+            p Returns an integer of the current light brightness from 0 - 255.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light.getPwm();
+                }
+
+          .section
+            a(name="getpwmpercent")
+            h4 light.getPwmPercent()
+            p Returns an integer of the current light percentage brightness from 0 - 100.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light.getPwmPercent();
+                }
+
+          .section
+            a(name="blink")
+            h4 light.blink(on_time, off_time, times)
+            p Pass in integers for the time values in milliseconds.
+            ul
+              li the light will turn on for the on_time
+              li then turn off for the off_time
+              li and will repeat this cycle for the number of times you provided
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  // blink on for 1 second
+                  // off for 1/2 second
+                  // do this 25 times
+
+                  light.blink(1000,500,25);
+                }
+
+          .section
+            a(name="pulse")
+            h4 light.pulse(up_time, on_time, down_time, off_time, times)
+            p Pass in integers for the time values in milliseconds.
+            ul
+              li the light will fade up according to the up_time
+              li stay on for the on_time
+              li fade down for the down_time
+              li then stay off for the off_time
+              li and will repeat this cycle for the number of times your provided
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  // fade up for 2.5 seconds
+                  // stay on for 1/4 second
+                  // fade down for 2 seconds
+                  // stay off for 3/4 second
+                  // do this 1000 times
+
+                  light.pulse(2500,250,2000,750,1000);
+                }
+
+
+          .section-bottom
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
+
+
