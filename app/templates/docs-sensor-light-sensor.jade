@@ -8,7 +8,7 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs-side-nav.jade
-        .content.documentation.col-sm-9.col-lg-10
+        .documentation.col-sm-9.col-lg-10
           ol.breadcrumb
             li
               a(href="index.html") Home
@@ -20,7 +20,7 @@ html(lang='en')
             h2
               | Light Sensor
               small  API DOCUMENTATION
-            p A simple Arduino library for reading photoresistors.
+            p A simple library for reading photoresistors.
             a.btn.btn-success(href="#download") Download
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#example") See Example
@@ -74,7 +74,8 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 LightSensor
-          ul
+
+          ul.public-methods
             li
               a.click-flash(href="#constructor-pin") constructor(pin)
             li

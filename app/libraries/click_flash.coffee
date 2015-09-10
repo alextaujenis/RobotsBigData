@@ -14,6 +14,7 @@
             time = 1250
             target
               .css({color: "#00a2ff", backgroundColor: "#EEE"})
+              .stop(true)
               .animate({color: "#000", backgroundColor: "#FFF"}, time)
 
     new ClickFlash(@, opts)

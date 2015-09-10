@@ -1,0 +1,265 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Capacitance Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-9.col-lg-10
+          ol.breadcrumb
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs.html") Docs
+            li.active
+              | Capacitance
+          .jumbotron
+            h2
+              | Capacitance
+              small  API DOCUMENTATION
+            p A library for detecting change in relative capacitance.
+            a.btn.btn-success(href="#download") Download
+            | &nbsp;&nbsp;
+            a.btn.btn-default(href="#example") See Example
+            | &nbsp;&nbsp;
+            a.btn.btn-default(href="#public-methods") Public Methods
+
+          h3
+            a(name="overview")
+            | Overview
+          p
+            | Detect human presence and touch from behind several millimeters of material, or detect changes in water levels from the outside of a plastic container. This library is meant to help&nbsp;
+            b determine relative capacitance
+            |  for the reasons above, and not for calculating exact capacitance.
+
+          h3
+            a(name="download")
+            | Download
+          p.lead
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors, or you can use this library by itself.
+          p
+            ul
+              li
+                a(href="#") Download Full Sensor Package
+                |  with this library included
+              li
+                a(href="#") Download Capacitance Library
+                |  (by itself)
+              li
+                a(href="#") View Source on GitHub
+                |  with MIT license
+
+          h3
+            a(name="setup")
+            | Setup
+          ol
+            li Bridge a 10Meg Ohm resistor across the Arduino send (tx 1) and receive (rx 0) pins
+            li Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil
+            li Cover the foil with plastic, paper, wood, clay, or anything non-conductive
+            li Load up the example sketch and open a serial connection at 115200 baud
+            li Touch or move your hand by the sensor
+
+          h3
+            a(name="example")
+            | Example
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
+
+          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            :cdata
+              #include <Capacitance.h>
+
+              #define BAUD        115200
+              #define SEND_PIN    1 // tx
+              #define RECEIVE_PIN 0 // rx
+
+              Capacitance cap_sensor(SEND_PIN, RECEIVE_PIN);
+
+              void setup() {
+                Serial.begin(BAUD);
+                cap_sensor.setSampleSize(100); // default
+                cap_sensor.start();
+              }
+
+              void loop() {
+                cap_sensor.update();
+
+                if(cap_sensor.isFinished()) {
+                  Serial.println(cap_sensor.getValue());
+                  cap_sensor.start();
+                }
+              }
+
+          h3
+            a(name="sensitivity")
+            | Sensitivity
+          p Sensitivity is how far away the sensor can detect things.
+          ul
+            li
+              b Increase Sensitivity
+              |  by either adding more resistors in series up to 20Meg or 30Meg or more... or increase the surface area (size) of the piece of aluminum used as the sensor
+
+            li
+              b Decrease Sensitivity
+              |  by either lowering the amount of resitance (use only 1Meg or less)... or decrease the surface area (size) of the piece of aluminum used as the sensor
+
+          h3
+            a(name="variability")
+            | Variability
+          p Variability is how wildly the sensor readings fluctuate. This library helps adjust the variability by taking a moving average of many readings over time.
+          ul
+            li
+              b Less Variable
+              |  readings that don't fluctuate so quickly can be achieved by increasing the sample size:&nbsp;
+              a.click-flash(href="#setsamplesize") setSampleSize(1000)
+              | .
+
+            li
+              b More Variable
+              |  readings that fluctuate quickly can be achieved by decreasing the sample size:&nbsp;
+              a.click-flash(href="#setsamplesize") setSampleSize(10)
+              | .
+
+          h3
+            a(name="public-methods")
+            | Public Methods
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                Capacitance
+
+          ul.public-methods
+            li
+              a.click-flash(href="#constructor") constructor(send_pin, receive_pin)
+            li
+              a.click-flash(href="#setsamplesize") .setSampleSize(size)
+            li
+              a.click-flash(href="#start") .start()
+            li
+              a.click-flash(href="#update") .update()
+            li
+              a.click-flash(href="#isfinished") .isFinished()
+            li
+              a.click-flash(href="#getvalue") .getValue()
+
+          .section
+            a(name="constructor")
+            h4 Capacitance constructor(send_pin, receive_pin)
+            p Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                Capacitance cap_sensor(1,0);
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            a(name="setsamplesize")
+            h4 cap_sensor.setSampleSize(size)
+            p
+              | Pass in an integer to change the number of readings taken to calculate the moving average&nbsp;
+              a.click-flash(href="#getvalue") getValue()
+              | . This can be called inside of setup() or also at runtime inside of loop().
+            ul
+              li
+                b Decrease Variation
+                |  in readings by making this number larger: 1000
+              li
+                b Increase Variation
+                |  in readings by making this number smaller: 10
+              li
+                b Default Value
+                | : 100
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  cap_sensor.setSampleSize(1000);
+                }
+
+          .section
+            a(name="start")
+            h4 cap_sensor.start()
+            p
+              | Begin taking many readings and start adding up the moving average for&nbsp;
+              a.click-flash(href="#getvalue") getValue()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  cap_sensor.start();
+                }
+
+          .section
+            a(name="update")
+            h4 cap_sensor.update()
+            p This must be call continuously from within the loop() to move the library along in real-time.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  cap_sensor.update();
+                }
+
+          .section
+            a(name="isfinished")
+            h4 cap_sensor.isFinished()
+            p
+              | Returns true if all readings have been taken and a moving average&nbsp;
+              a.click-flash(href="#getvalue") getValue()
+              |  is ready. You must first call&nbsp;
+              a.click-flash(href="#start") start()
+              |   to begin the sampling process.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  cap_sensor.start();
+                }
+
+                void loop() {
+                  cap_sensor.update();
+
+                  if(cap_sensor.isFinished()) {
+                    ...
+                  }
+                }
+
+          .section
+            a(name="getvalue")
+            h4 cap_sensor.getValue()
+            p
+              | Returns an unsigned long of the moving average value for the capacitance reading (microseconds taken to charge the pin). This will only return a value after calling&nbsp;
+              a.click-flash(href="#start") start()
+              |  and waiting until&nbsp;
+              a.click-flash(href="#isfinished") isFinished()
+              |  has returned true.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  cap_sensor.start();
+                }
+
+                void loop() {
+                  cap_sensor.update();
+
+                  if(cap_sensor.isFinished()) {
+                    Serial.println(cap_sensor.getValue());
+                  }
+                }
+
+          .section-bottom
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
+
+
