@@ -37,7 +37,7 @@ html(lang='en')
           p
             | Relative capacitance is found by measuring how long it takes for an Arduino send-pin to charge a receive-pin to HIGH (in microseconds). Changes in the electrical field around a sensor connected to the receive pin (such as a human passing by, or water filling up, or a motor turning on) have a measurable impact on the amount of time it takes to charge the receive pin.
           p
-            |Many of these charge and discharge readings are taken, then averaged to reduce variability and give a more clear answer of what the sensor is reading. This is done in real-time without delay so it has a very small impact on the main loop() performance. See the&nbsp;
+            | Many of these charge and discharge readings are taken, then averaged within the library to reduce variability and give a more clear answer of what the sensor is reading. This is done in real-time without delay so it only has a small impact on the main loop() performance. See the&nbsp;
             a(href="#setup") Setup Instructions
             |  below for help wiring the Arduino with this library.
           h3
@@ -104,13 +104,13 @@ html(lang='en')
           h3
             a(name="sensitivity")
             | Sensitivity
-          p Sensitivity is how far away the sensor can detect things.
+          p Sensitivity is how far away the sensor can detect things, or how much resolution you have to recognize change in the sensor readings.
           ul
             li
               b Increase Sensitivity
               |  by&nbsp;
               i either
-              |  adding more resistors in series with 20Meg, 30Meg+,&nbsp;
+              |  adding more resistors in series (20Meg, 30Meg, or more),&nbsp;
               i or
               |  increase the surface area (size) of the piece of aluminum used as the sensor.
 
@@ -125,7 +125,7 @@ html(lang='en')
           h3
             a(name="variability")
             | Variability
-          p Variability is how wildly the sensor readings fluctuate. This library helps adjust the variability by taking a moving average of many readings over time.
+          p Variability is how wildly the sensor readings fluctuate. This library helps adjust the variability by taking a moving average of many readings over time. This is done without delay so it has little impact on the main loop() performance.
           ul
             li
               b Less Variable
