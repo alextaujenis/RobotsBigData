@@ -87,7 +87,7 @@ html(lang='en')
             li
               a.click-flash(href="#isoff") .isOff()
             li
-              a.click-flash(href="#update") update()
+              a.click-flash(href="#update") .update()
             li
               a.click-flash(href="#setpwm") .setPwm(value)
             li
@@ -121,7 +121,7 @@ html(lang='en')
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void setup() {
+                void loop() {
                   light.on();
                 }
 
@@ -132,7 +132,7 @@ html(lang='en')
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void setup() {
+                void loop() {
                   light.off();
                 }
 
@@ -229,7 +229,7 @@ html(lang='en')
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void loop() {
+                void setup() {
                   // blink on for 1 second
                   // off for 1/2 second
                   // do this 25 times
@@ -237,27 +237,35 @@ html(lang='en')
                   light.blink(1000,500,25);
                 }
 
+                void loop() {
+                  light.update();
+                }
+
           .section
             a(name="pulse")
             h4 light.pulse(up_time, on_time, down_time, off_time, times)
             p Pass in integers for the time values in milliseconds.
             ul
-              li the light will fade up according to the up_time
+              li the light will perform a linear fade up according to the up_time
               li stay on for the on_time
-              li fade down for the down_time
+              li linear fade down for the down_time
               li then stay off for the off_time
               li and will repeat this cycle for the number of times your provided
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void loop() {
-                  // fade up for 2.5 seconds
+                void setup() {
+                  // linear fade up for 2.5 seconds
                   // stay on for 1/4 second
-                  // fade down for 2 seconds
+                  // linear fade down for 2 seconds
                   // stay off for 3/4 second
                   // do this 1000 times
 
                   light.pulse(2500,250,2000,750,1000);
+                }
+
+                void loop() {
+                  light.update();
                 }
 
 
