@@ -8,6 +8,7 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs-side-nav.jade
+        a(name="description")
         .documentation.col-sm-9.col-lg-10
           ol.breadcrumb
             li
@@ -26,7 +27,7 @@ html(lang='en')
             p A high-level foundation for managing many timed events.
             a.btn.btn-success(href="#download") Download
             | &nbsp;&nbsp;
-            a.btn.btn-default(href="#example") See Example
+            a.btn.btn-default(href="#example-setup") See Example
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#public-methods") Public Methods
 
@@ -78,7 +79,7 @@ html(lang='en')
                 |  with MIT license
 
           h3
-            a(name="setup")
+            a(name="example-setup")
             | Example Setup
           p.lead
             ol
@@ -86,8 +87,8 @@ html(lang='en')
               li Open a serial connection at 115200 BAUD
               li Watch two independent timers report their status
           h3
-            a(name="example")
-            | Example
+            a(name="example-sketch")
+            | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
 
