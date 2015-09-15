@@ -1,0 +1,379 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Motor Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-9.col-lg-10
+          ol.breadcrumb
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs.html") Docs
+            li.active
+              | Motor
+          .jumbotron
+            h2
+              | Motor
+              small  API DOCUMENTATION
+            p A real-time library for controlling many motors.
+            a.btn.btn-success(href="#download") Download
+            | &nbsp;&nbsp;
+            a.btn.btn-default(href="#example") See Example
+            | &nbsp;&nbsp;
+            a.btn.btn-default(href="#public-methods") Public Methods
+
+          h3
+            a(name="overview")
+            | Overview
+          p
+            | A simple, non-blocking, real-time Arduino library for controlling many motors. It provides basic control along with more advanced features such as precision easing of speed over time.
+          h3
+            a(name="download")
+            | Download
+          p.lead
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors, or you can use this library outside of the package with only one dependency.
+          p
+            ul
+              li
+                a(href="#") Download Full Sensor Package
+                |  with this library included
+              li
+                a(href="#") Download Motor Library
+                |  with Timer dependency
+              li
+                a(href="#") View Source on GitHub
+                |  with MIT license
+
+          h3
+            a(name="example")
+            | Example
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
+
+          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            :cdata
+              #include <Timer.h>
+              #include <Motor.h>
+
+              Motor motor(3); // pwm pin 3
+
+              void loop() {
+                if(motor.isOff()) {
+                  motor.rampUp(5000);
+                }
+                if(motor.isFullOn()) {
+                  motor.rampDown(5000);
+                }
+                motor.update();
+              }
+          h3
+            a(name="public-methods")
+            | Public Methods
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                Motor
+
+          ul.public-methods
+            li
+              a.click-flash(href="#constructor") constructor(pin)
+            li
+              a.click-flash(href="#update") .update()
+            li
+              a.click-flash(href="#on") .on()
+            li
+              a.click-flash(href="#off") .off()
+            li
+              a.click-flash(href="#timedon") .timedOn(timeout)
+            li
+              a.click-flash(href="#ison") .isOn()
+            li
+              a.click-flash(href="#isfullon") .isFullOn()
+            li
+              a.click-flash(href="#isoff") .isOff()
+            li
+              a.click-flash(href="#getpwm") .getPwm()
+            li
+              a.click-flash(href="#getpwmpercent") .getPwmPercent()
+            li
+              a.click-flash(href="#setpwm") .setPwm(value)
+            li
+              a.click-flash(href="#setpwmpercent") .setPwmPercent(value)
+            li
+              a.click-flash(href="#rampup") .rampUp(timeout)
+            li
+              a.click-flash(href="#rampdown") .rampDown(timeout)
+            li
+              a.click-flash(href="#ramp") .ramp(value, timeout)
+            li
+              a.click-flash(href="#ramppercent") .rampPercent(value, timeout)
+
+
+          .section
+            a(name="constructor")
+            h4 Motor constructor(pin)
+            p Create a new motor and pass in the Arduino pin number.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                Motor motor(3); // pwm pin 3
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            a(name="update")
+            h4 motor.update()
+            p
+              | You can use this library without calling&nbsp;
+              a.click-flash(href="#update") update()
+              |  and most methods will function correctly.
+
+            p
+              b
+                | You must continuously call&nbsp;
+                a.click-flash(href="#update") .update()
+                |  inside of loop() in order to use these specific time-based methods:
+              ul
+                li
+                  a.click-flash(href="#timedon") .timedOn()
+                li
+                  a.click-flash(href="#rampup") .rampUp()
+                li
+                  a.click-flash(href="#rampdown") .rampDown()
+                li
+                  a.click-flash(href="#ramp") .ramp()
+                li
+                  a.click-flash(href="#ramppercent") .rampPercent()
+
+
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  motor.update();
+                }
+
+          .section
+            a(name="on")
+            h4 motor.on()
+            p
+              | Start the motor at full speed.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.on();
+                }
+
+          .section
+            a(name="off")
+            h4 motor.off()
+            p Stop the motor.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.off();
+                }
+
+          .section
+            a(name="timedon")
+            h4 motor.timedOn(timeout)
+            p
+              | Start the motor at full speed and turn it off after the specified time in milliseconds.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.timedOn(5000); // on for 5 seconds
+                }
+
+                void loop() {
+                  motor.update();
+                }
+
+          .section
+            a(name="ison")
+            h4 motor.isOn()
+            p
+              | Returns true if the motor is running at any speed greater than 0%.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.setPwm(1);
+                }
+
+                void loop() {
+                  Serial.println(motor.isOn());
+                }
+
+          .section
+            a(name="isfullon")
+            h4 motor.isFullOn()
+            p
+              | Returns true only if the motor is running at 100% speed.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.setPwm(255);
+                }
+
+                void loop() {
+                  Serial.println(motor.isOn());
+                }
+
+
+          .section
+            a(name="isoff")
+            h4 motor.isOff()
+            p
+              | Returns true only if the motor is at 0% speed.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.off();
+                }
+
+                void loop() {
+                  Serial.println(motor.isOff());
+                }
+
+          .section
+            a(name="getpwm")
+            h4 motor.getPwm()
+            p
+              | Returns an integer from 0 - 255 for the current motor speed.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.on();
+                }
+
+                void loop() {
+                  Serial.println(motor.getPwm()); // returns 255
+                }
+
+          .section
+            a(name="getpwmpercent")
+            h4 motor.getPwmPercent()
+            p
+              | Returns an integer from 0 - 100 for the current motor speed percentage.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.on();
+                }
+
+                void loop() {
+                  Serial.println(motor.getPwmPercent()); // returns 100
+                }
+
+          .section
+            a(name="setpwm")
+            h4 motor.setPwm(value)
+            p Pass in an integer from 0 - 255 to control the speed of the motor.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.setPwm(85); // one-third speed
+                }
+
+          .section
+            a(name="setpwmpercent")
+            h4 motor.setPwmPercent(value)
+            p
+              | Pass in an integer from 0 - 100 to control the speed percentage of the motor. This is essentially the same as&nbsp;
+              a.click-flash(href="#setpwm") setPwm()
+              |  but with a smaller input scale.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.setPwmPercent(50); // half speed
+                }
+
+          .section
+            a(name="rampup")
+            h4 motor.rampUp(timeout)
+            p Pass in a timeout in milliseconds for how long it will take to ramp from the current speed to full speed with a linear transition.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.rampUp(3000); // climb up to full speed in 3 seconds
+                }
+
+                void loop() {
+                  motor.update();
+                }
+
+          .section
+            a(name="rampdown")
+            h4 motor.rampDown(timeout)
+            p Pass in a timeout in milliseconds for how long it will take to ramp from the current speed to full stop with a linear transition.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.on();           // turn on the motor
+                  motor.rampDown(4000); // reduce speed to nothing over 4 seconds
+                }
+
+                void loop() {
+                  motor.update();
+                }
+
+          .section
+            a(name="ramp")
+            h4 motor.ramp(value, timeout)
+            p Pass in a value from 0 - 255 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.ramp(85, 2000); // transition to one-third speed in 2 seconds
+                }
+
+                void loop() {
+                  motor.update();
+                }
+
+          .section
+            a(name="ramppercent")
+            h4 motor.rampPercent(value, timeout)
+            p
+              | Pass in a value from 0 - 100 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition. This is essentially the same as&nbsp;
+              a.click-flash(href="#ramp") ramp()
+              |  but with a smaller input scale.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.rampPercent(50, 1000); // transition to half speed in 1 second
+                }
+
+                void loop() {
+                  motor.update();
+                }
+
+          .section-bottom
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
+
+
