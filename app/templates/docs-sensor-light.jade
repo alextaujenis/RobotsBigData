@@ -14,7 +14,7 @@ html(lang='en')
             li
               a(href="index.html") Home
             li
-              a(href="docs.html") Docs
+              a(href="docs.html#description") Docs
             li.active
               | Light
           .row.pull-right
@@ -78,6 +78,19 @@ html(lang='en')
           h3
             a(name="public-methods")
             | Public Methods
+
+          p
+            | You can use this library without calling&nbsp;
+            a.click-flash(href="#update") update()
+            |  and&nbsp;
+            i most
+            |  methods will function correctly. You must continuously call&nbsp;
+            a.click-flash(href="#update") update()
+            |  inside of loop() in order to use the&nbsp;
+            span.label.label-success REAL-TIME
+            |  methods tagged below.
+
+
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
@@ -87,6 +100,9 @@ html(lang='en')
             li
               a.click-flash(href="#constructor") constructor(pin)
             li
+              a.click-flash(href="#update") .update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            li
               a.click-flash(href="#on") .on()
             li
               a.click-flash(href="#off") .off()
@@ -94,8 +110,6 @@ html(lang='en')
               a.click-flash(href="#ison") .isOn()
             li
               a.click-flash(href="#isoff") .isOff()
-            li
-              a.click-flash(href="#update") .update()
             li
               a.click-flash(href="#setpwm") .setPwm(value)
             li
@@ -106,8 +120,10 @@ html(lang='en')
               a.click-flash(href="#getpwmpercent") .getPwmPercent()
             li
               a.click-flash(href="#blink") .blink(on_time, off_time, times)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
               a.click-flash(href="#pulse") .pulse(up_time, on_time, down_time, off_time, times)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
 
           .section
             a(name="constructor")
@@ -120,6 +136,24 @@ html(lang='en')
 
                 void setup() {
                   ...
+                }
+
+          .section
+            a(name="update")
+            h4
+              | light.update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            p
+              | Keep the light moving in real-time. This must be called continuously from within loop() in order to&nbsp;
+              a.click-flash(href="#blink") blink()
+              |  or&nbsp;
+              a.click-flash(href="#pulse") pulse()
+              |  the light.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light.update();
                 }
 
           .section
@@ -164,22 +198,6 @@ html(lang='en')
               :cdata
                 void loop() {
                   light.isOff();
-                }
-
-          .section
-            a(name="update")
-            h4 light.update()
-            p
-              | Keep the light moving in real-time. This must be called continuously from within loop() in order to&nbsp;
-              a.click-flash(href="#blink") blink()
-              |  or&nbsp;
-              a.click-flash(href="#pulse") pulse()
-              |  the light.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  light.update();
                 }
 
           .section
@@ -228,7 +246,9 @@ html(lang='en')
 
           .section
             a(name="blink")
-            h4 light.blink(on_time, off_time, times)
+            h4
+              | light.blink(on_time, off_time, times)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p Pass in integers for the time values in milliseconds.
             ul
               li the light will turn on for the on_time
@@ -251,7 +271,9 @@ html(lang='en')
 
           .section
             a(name="pulse")
-            h4 light.pulse(up_time, on_time, down_time, off_time, times)
+            h4
+              | light.pulse(up_time, on_time, down_time, off_time, times)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p Pass in integers for the time values in milliseconds.
             ul
               li the light will perform a linear fade up according to the up_time

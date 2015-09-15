@@ -14,7 +14,7 @@ html(lang='en')
             li
               a(href="index.html") Home
             li
-              a(href="docs.html") Docs
+              a(href="docs.html#description") Docs
             li.active
               | Timer
           .row.pull-right
@@ -182,7 +182,7 @@ html(lang='en')
             p
               | Provide an unsigned long value to change how long the timer will run (in milliseconds). This can be done inside of setup() or also inside of loop() to change the value at runtime.
               | This will override any value given to&nbsp;
-              a.click-flash(href="#sethertz") .setHertz()
+              a.click-flash(href="#sethertz") setHertz()
               | .
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
@@ -204,7 +204,7 @@ html(lang='en')
             p
               | Provide an integer greater than 0 and up to 1000 to set approximately how many times you can fire an event in one second. This can be done inside of setup() or also inside of loop() to change the value at runtime.
               | This will override any value given to&nbsp;
-              a.click-flash(href="#settimeout") .setTimeout()
+              a.click-flash(href="#settimeout") setTimeout()
               | .
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
@@ -292,7 +292,7 @@ html(lang='en')
           .section
             a(name="getinversepercentvalue")
             h4 timer.getInversePercentValue()
-            p Returns an unsigned long of how many milliseconds left until the end of the timer.
+            p Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata

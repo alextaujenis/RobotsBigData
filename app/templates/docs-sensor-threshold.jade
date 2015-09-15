@@ -14,7 +14,7 @@ html(lang='en')
             li
               a(href="index.html") Home
             li
-              a(href="docs.html") Docs
+              a(href="docs.html#description") Docs
             li.active
               | Threshold
           .row.pull-right
@@ -27,7 +27,7 @@ html(lang='en')
             p Quickly set and check quantile ranges.
             a.btn.btn-success(href="#download") Download
             | &nbsp;&nbsp;
-            a.btn.btn-default(href="#example") See Example
+            a.btn.btn-default(href="#example-setup") See Example
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#public-methods") Public Methods
 
@@ -53,7 +53,7 @@ html(lang='en')
                 |  with MIT license
 
           h3
-            a(name="setup")
+            a(name="example-setup")
             | Example Setup
           p.lead
             | This takes an input domain of [under 0, 0-9, 10-19, 20-29, over 29] and converts it to a quantile output range of [under, low, medium, high, over]
@@ -63,8 +63,8 @@ html(lang='en')
               li Watch as values are converted into the output range
 
           h3
-            a(name="example")
-            | Example
+            a(name="example-sketch")
+            | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
 
@@ -142,7 +142,7 @@ html(lang='en')
             h4 threshold.setLevel(index, value)
             p
               | Provide integers for the index and value to set an individual level. This is not zero based, the first level starts at 1. You must also call&nbsp;
-              a.click-flash(href="#setmaxlevel") .setMaxLevel()
+              a.click-flash(href="#setmaxlevel") setMaxLevel()
               |  at the end to set an upper bounds of your last level.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")

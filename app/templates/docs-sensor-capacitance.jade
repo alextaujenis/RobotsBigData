@@ -14,7 +14,7 @@ html(lang='en')
             li
               a(href="index.html") Home
             li
-              a(href="docs.html") Docs
+              a(href="docs.html#description") Docs
             li.active
               | Capacitance
           .row.pull-right
@@ -148,6 +148,18 @@ html(lang='en')
           h3
             a(name="public-methods")
             | Public Methods
+
+          p
+            | You can use this library without calling&nbsp;
+            a.click-flash(href="#update") update()
+            |  and&nbsp;
+            i most
+            |  methods will function correctly. You must continuously call&nbsp;
+            a.click-flash(href="#update") update()
+            |  inside of loop() in order to use the&nbsp;
+            span.label.label-success REAL-TIME
+            |  methods tagged below.
+
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
@@ -157,15 +169,19 @@ html(lang='en')
             li
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin)
             li
+              a.click-flash(href="#update") .update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            li
               a.click-flash(href="#setsamplesize") .setSampleSize(size)
             li
               a.click-flash(href="#start") .start()
-            li
-              a.click-flash(href="#update") .update()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
               a.click-flash(href="#isfinished") .isFinished()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
               a.click-flash(href="#getvalue") .getValue()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
 
           .section
             a(name="constructor")
@@ -178,6 +194,19 @@ html(lang='en')
 
                 void setup() {
                   ...
+                }
+
+          .section
+            a(name="update")
+            h4
+              | cap_sensor.update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            p This must be call continuously from within the loop() to move the library along in real-time.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  cap_sensor.update();
                 }
 
           .section
@@ -206,7 +235,9 @@ html(lang='en')
 
           .section
             a(name="start")
-            h4 cap_sensor.start()
+            h4
+              | cap_sensor.start()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Begin taking many readings and start adding up the moving average for&nbsp;
               a.click-flash(href="#getvalue") getValue()
@@ -219,19 +250,10 @@ html(lang='en')
                 }
 
           .section
-            a(name="update")
-            h4 cap_sensor.update()
-            p This must be call continuously from within the loop() to move the library along in real-time.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  cap_sensor.update();
-                }
-
-          .section
             a(name="isfinished")
-            h4 cap_sensor.isFinished()
+            h4
+              | cap_sensor.isFinished()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns true if all readings have been taken and a moving average&nbsp;
               a.click-flash(href="#getvalue") getValue()
@@ -255,7 +277,9 @@ html(lang='en')
 
           .section
             a(name="getvalue")
-            h4 cap_sensor.getValue()
+            h4
+              | cap_sensor.getValue()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns an unsigned long of the moving average value for the capacitance reading (microseconds taken to charge the pin). This will only return a value after calling&nbsp;
               a.click-flash(href="#start") start()

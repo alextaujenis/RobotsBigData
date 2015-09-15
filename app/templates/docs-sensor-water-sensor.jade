@@ -14,7 +14,7 @@ html(lang='en')
             li
               a(href="index.html") Home
             li
-              a(href="docs.html") Docs
+              a(href="docs.html#description") Docs
             li.active
               | Water Sensor
           .row.pull-right
@@ -117,6 +117,18 @@ html(lang='en')
           h3
             a(name="public-methods")
             | Public Methods
+
+          p
+            | You can use this library without calling&nbsp;
+            a.click-flash(href="#update") update()
+            |  and&nbsp;
+            i most
+            |  methods will function correctly. You must continuously call&nbsp;
+            a.click-flash(href="#update") update()
+            |  inside of loop() in order to use the&nbsp;
+            span.label.label-success REAL-TIME
+            |  methods tagged below.
+
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
@@ -127,6 +139,7 @@ html(lang='en')
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin, level_count)
             li
               a.click-flash(href="#update") .update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             li
               a.click-flash(href="#setaccuracy") .setAccuracy(value)
             li
@@ -134,13 +147,15 @@ html(lang='en')
             li
               a.click-flash(href="#startrealtime") .startRealTime()
             li
-              a.click-flash(href="#getrawvalue") .getRawValue()
-            li
               a.click-flash(href="#setlevel") .setLevel(index, raw_value)
             li
               a.click-flash(href="#setmaxlevel") .setMaxLevel(raw_value)
             li
+              a.click-flash(href="#getrawvalue") .getRawValue()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
               a.click-flash(href="#getactivelevel") .getActiveLevel()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
 
           .section
             a(name="constructor")
@@ -157,7 +172,9 @@ html(lang='en')
 
           .section
             a(name="update")
-            h4 water_sensor.update()
+            h4
+              | water_sensor.update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             p Keep processing the readings and move this library along in real-time.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
@@ -202,23 +219,8 @@ html(lang='en')
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void loop() {
-                  water_sensor.update();
-                }
-
-          .section
-            a(name="getrawvalue")
-            h4 water_sensor.getRawValue()
-            p
-              | Get the raw sensor value in order to calibrate each level with&nbsp;
-              a.click-flash(href="#setlevel") setLevel()
-              | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(water_sensor.getRawValue());
-                  water_sensor.update();
+                void setup() {
+                  water_sensor.startRealTime();
                 }
 
           .section
@@ -248,8 +250,27 @@ html(lang='en')
                 }
 
           .section
+            a(name="getrawvalue")
+            h4
+              | water_sensor.getRawValue()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Get the raw sensor value in order to calibrate each level with&nbsp;
+              a.click-flash(href="#setlevel") setLevel()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(water_sensor.getRawValue());
+                  water_sensor.update();
+                }
+
+          .section
             a(name="getactivelevel")
-            h4 water_sensor.getActiveLevel()
+            h4
+              | water_sensor.getActiveLevel()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns the current water level.
               ul
