@@ -156,11 +156,11 @@ html(lang='en')
           .section
             a(name="constructor")
             h4 WaterSensor constructor(send_pin, receive_pin, level_count)
-            p Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.
+            p Pass in integers for the send and receive pins to create a new instance of this class, along with an integer for the total number of levels your water sensor will detect. Example: if you want to detect low, medium, and high levels then the level\_count should be 3.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                WaterSensor water_sensor(1,0);
+                WaterSensor water_sensor(1,0,3);
 
                 void setup() {
                   ...
