@@ -16,6 +16,9 @@ html(lang='en')
               a(href="docs.html") Docs
             li.active
               | Capacitance
+          .row.pull-right
+            .col-xs-12
+              span.label.label-info.title-label Arduino
           .jumbotron
             h2
               | Capacitance
@@ -23,7 +26,7 @@ html(lang='en')
             p A real-time library for detecting change in capacitance.
             a.btn.btn-success(href="#download") Download
             | &nbsp;&nbsp;
-            a.btn.btn-default(href="#setup") See Example
+            a.btn.btn-default(href="#example-setup") See Example
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#public-methods") Public Methods
 
@@ -38,15 +41,17 @@ html(lang='en')
             | Relative capacitance is found by measuring how long it takes for an Arduino send-pin to charge a receive-pin to HIGH (in microseconds). Changes in the electrical field around a sensor connected to the receive pin (such as a human passing by, or water filling up, or a motor turning on) have a measurable impact on the amount of time it takes to charge the receive pin.
           p
             | Many of these charge and discharge readings are taken, then averaged within the library to reduce variability and give a more clear answer of what the sensor is reading. This is done in real-time without delay so it only has a small impact on the main loop() performance. See the&nbsp;
-            a(href="#setup") Setup Instructions
-            |  below for help wiring the Arduino with this library.
+            a(href="#example-setup") Example
+            |  below for help wiring and programming the Arduino with this library.
           h3
             a(name="download")
             | Download
           p.lead
             | This library is part of a larger package that you can download to access
             i  all
-            |  of the documented sensors, or you can use this library by itself.
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself.
           p
             ul
               li
@@ -54,7 +59,7 @@ html(lang='en')
                 |  with this library included
               li
                 a(href="#") Download Capacitance Library
-                |  (by itself)
+                |  by itself
               li
                 a(href="#") View Source on GitHub
                 |  with MIT license

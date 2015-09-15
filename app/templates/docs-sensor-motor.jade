@@ -16,6 +16,9 @@ html(lang='en')
               a(href="docs.html") Docs
             li.active
               | Motor
+          .row.pull-right
+            .col-xs-12
+              span.label.label-info.title-label Arduino
           .jumbotron
             h2
               | Motor
@@ -23,7 +26,7 @@ html(lang='en')
             p A real-time library for controlling many motors.
             a.btn.btn-success(href="#download") Download
             | &nbsp;&nbsp;
-            a.btn.btn-default(href="#example") See Example
+            a.btn.btn-default(href="#example-sketch") See Example
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#public-methods") Public Methods
 
@@ -38,7 +41,9 @@ html(lang='en')
           p.lead
             | This library is part of a larger package that you can download to access
             i  all
-            |  of the documented sensors, or you can use this library outside of the package with only one dependency.
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself with one dependency.
           p
             ul
               li
@@ -46,14 +51,16 @@ html(lang='en')
                 |  with this library included
               li
                 a(href="#") Download Motor Library
-                |  with Timer dependency
+                |  with&nbsp;
+                span.badge 1
+                |  Timer dependency
               li
                 a(href="#") View Source on GitHub
                 |  with MIT license
 
           h3
-            a(name="example")
-            | Example
+            a(name="example-sketch")
+            | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
 
@@ -77,6 +84,19 @@ html(lang='en')
           h3
             a(name="public-methods")
             | Public Methods
+
+          p
+            | You can use this library without calling&nbsp;
+            a.click-flash(href="#update") update()
+            |  and&nbsp;
+            i most
+            |  methods will function correctly. You must continuously call&nbsp;
+            a.click-flash(href="#update") update()
+            |  inside of loop() in order to use the&nbsp;
+            span.label.label-success REAL-TIME
+            |  methods tagged below.
+
+
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
@@ -87,12 +107,14 @@ html(lang='en')
               a.click-flash(href="#constructor") constructor(pin)
             li
               a.click-flash(href="#update") .update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             li
               a.click-flash(href="#on") .on()
             li
               a.click-flash(href="#off") .off()
             li
               a.click-flash(href="#timedon") .timedOn(timeout)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
               a.click-flash(href="#ison") .isOn()
             li
@@ -109,12 +131,16 @@ html(lang='en')
               a.click-flash(href="#setpwmpercent") .setPwmPercent(value)
             li
               a.click-flash(href="#rampup") .rampUp(timeout)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
               a.click-flash(href="#rampdown") .rampDown(timeout)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
               a.click-flash(href="#ramp") .ramp(value, timeout)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
               a.click-flash(href="#ramppercent") .rampPercent(value, timeout)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
 
 
           .section
@@ -133,29 +159,7 @@ html(lang='en')
           .section
             a(name="update")
             h4 motor.update()
-            p
-              | You can use this library without calling&nbsp;
-              a.click-flash(href="#update") update()
-              |  and most methods will function correctly.
-
-            p
-              b
-                | You must continuously call&nbsp;
-                a.click-flash(href="#update") .update()
-                |  inside of loop() in order to use these specific time-based methods:
-              ul
-                li
-                  a.click-flash(href="#timedon") .timedOn()
-                li
-                  a.click-flash(href="#rampup") .rampUp()
-                li
-                  a.click-flash(href="#rampdown") .rampDown()
-                li
-                  a.click-flash(href="#ramp") .ramp()
-                li
-                  a.click-flash(href="#ramppercent") .rampPercent()
-
-
+            p Keep the real-time functions processing with each loop().
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata

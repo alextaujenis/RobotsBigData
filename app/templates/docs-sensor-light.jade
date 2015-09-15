@@ -16,6 +16,9 @@ html(lang='en')
               a(href="docs.html") Docs
             li.active
               | Light
+          .row.pull-right
+            .col-xs-12
+              span.label.label-info.title-label Arduino
           .jumbotron
             h2
               | Light
@@ -23,7 +26,7 @@ html(lang='en')
             p A real-time library for controlling many lights.
             a.btn.btn-success(href="#download") Download
             | &nbsp;&nbsp;
-            a.btn.btn-default(href="#example") See Example
+            a.btn.btn-default(href="#example-sketch") See Example
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#public-methods") Public Methods
 
@@ -33,7 +36,9 @@ html(lang='en')
           p.lead
             | This library is part of a larger package that you can download to access
             i  all
-            |  of the documented sensors, or you can use this library outside of the package with only one dependency.
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself with one dependency.
           p
             ul
               li
@@ -41,14 +46,16 @@ html(lang='en')
                 |  with this library included
               li
                 a(href="#") Download Light Library
-                |  with Timer dependency
+                |  with&nbsp;
+                span.badge 1
+                |  Timer dependency
               li
                 a(href="#") View Source on GitHub
                 |  with MIT license
 
           h3
-            a(name="example")
-            | Example
+            a(name="example-sketch")
+            | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
 
