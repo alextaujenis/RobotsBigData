@@ -126,6 +126,8 @@ html(lang='en')
             li
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin, level_count)
             li
+              a.click-flash(href="#update") .update()
+            li
               a.click-flash(href="#setaccuracy") .setAccuracy(value)
             li
               a.click-flash(href="#setrefreshrate") .setRefreshRate(hertz)
@@ -142,112 +144,127 @@ html(lang='en')
 
           .section
             a(name="constructor")
-            h4 WaterSensor constructor(send_pin, receive_pin)
+            h4 WaterSensor constructor(send_pin, receive_pin, level_count)
             p Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                WaterSensor cap_sensor(1,0);
+                WaterSensor water_sensor(1,0);
 
                 void setup() {
                   ...
                 }
 
           .section
-            a(name="setsamplesize")
-            h4 cap_sensor.setSampleSize(size)
+            a(name="update")
+            h4 water_sensor.update()
+            p Keep processing the readings and move this library along in real-time.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+                }
+
+          .section
+            a(name="setaccuracy")
+            h4 water_sensor.setAccuracy(value)
             p
-              | Pass in an integer to change the number of readings taken to calculate a moving average&nbsp;
-              a.click-flash(href="#getvalue") getValue()
-              | . This can be called inside of setup() or also safely at runtime inside of loop().
-            ul
-              li
-                b Decrease Variation
-                |  in readings by making this number larger: 1000
-              li
-                b Increase Variation
-                |  in readings by making this number smaller: 10
-              li
-                b Default Value
-                | : 100
+              | Provide an integer of how many readings to average before reporting a value. Increasing the value will increase accuracy and take longer to compute. Decreasing the value will lower accuracy and take a shorter time to compute. This can possibly affect the actual refresh rate to make it take slower readings. Don't worry, you can be as accurate as you'd like because this is done in a non-blocking manner and it won't affect your main loop() performance.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  cap_sensor.setSampleSize(1000);
+                  water_sensor.setAccuracy(1000);
                 }
 
           .section
-            a(name="start")
-            h4 cap_sensor.start()
+            a(name="setrefreshrate")
+            h4 water_sensor.setRefreshRate(hertz)
             p
-              | Begin taking many readings and start adding up the moving average for&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              | Provide an integer from 0 to 1000 to set the maximum number of times the sensor should update per second. This is meant to be used to limit the number of readings taken per second. Calling this method will kick the sensor out of real-time readings if you have previously called&nbsp;
+              a.click-flash(href="#startrealtime") startRealTime()
+              |  . Set this value to 0 to completely stop the sensor from taking readings. If you make this faster than the sensor can read values (because of a high accuracy value): the library will naturally settle at taking readings in real-time.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  water_sensor.setRefreshRate();
+                }
+
+          .section
+            a(name="startrealtime")
+            h4 water_sensor.startRealTime()
+            p
+              | Start collecting readings as fast as possible and remove the&nbsp;
+              a.click-flash(href="#setrefreshrate") setRefreshRate()
+              |  limit.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+                }
+
+          .section
+            a(name="getrawvalue")
+            h4 water_sensor.getRawValue()
+            p
+              | Get the raw sensor value in order to calibrate each level with&nbsp;
+              a.click-flash(href="#setlevel") setLevel()
               | .
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void setup() {
-                  cap_sensor.start();
-                }
-
-          .section
-            a(name="update")
-            h4 cap_sensor.update()
-            p This must be call continuously from within the loop() to move the library along in real-time.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
                 void loop() {
-                  cap_sensor.update();
+                  Serial.println(water_sensor.getRawValue());
+                  water_sensor.update();
                 }
 
           .section
-            a(name="isfinished")
-            h4 cap_sensor.isFinished()
+            a(name="setlevel")
+            h4 water_sensor.setLevel(index, raw_value)
             p
-              | Returns true if all readings have been taken and a moving average&nbsp;
-              a.click-flash(href="#getvalue") getValue()
-              |  is ready. You must first call&nbsp;
-              a.click-flash(href="#start") start()
-              |   to begin the sampling process.
+              | Add a value for the lower bounds of each level.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  cap_sensor.start();
-                }
-
-                void loop() {
-                  cap_sensor.update();
-
-                  if(cap_sensor.isFinished()) {
-                    ...
-                  }
+                  water_sensor.setLevel(1, 0);  // 0 - 33
+                  water_sensor.setLevel(2, 34); // 34 - 66
+                  water_sensor.setLevel(3, 67); // 67 - max
                 }
 
           .section
-            a(name="getvalue")
-            h4 cap_sensor.getValue()
+            a(name="setmaxlevel")
+            h4 water_sensor.setMaxLevel(raw_value)
             p
-              | Returns an unsigned long of the moving average value for the capacitance reading (microseconds taken to charge the pin). This will only return a value after calling&nbsp;
-              a.click-flash(href="#start") start()
-              |  and waiting until&nbsp;
-              a.click-flash(href="#isfinished") isFinished()
-              |  has returned true.
+              | Add a value for the upper bounds of the last level.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  cap_sensor.start();
+                  water_sensor.setMaxLevel(100); // max = 100
                 }
 
+          .section
+            a(name="getactivelevel")
+            h4 water_sensor.getActiveLevel()
+            p
+              | Returns the current water level.
+              ul
+                li 0 means there is no water
+                li 1 means the water is touching the first level
+                li 2 means the water is touching the second level
+                li n means the water is touching the nth level
+                li sizeof(n) + 1 means the water is above the max level
+                li -1 if an error was found in the input levels (non-contiguous range)
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
                 void loop() {
-                  cap_sensor.update();
-
-                  if(cap_sensor.isFinished()) {
-                    Serial.println(cap_sensor.getValue());
-                  }
+                  Serial.println(water_sensor.getActiveLevel());
+                  water_sensor.update();
                 }
 
           .section-bottom

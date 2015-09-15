@@ -37,40 +37,37 @@ void printValues(int active_level, int raw_value) {
   Serial.print("  RAW VALUE: ");
   Serial.println(raw_value);
 }]]></script><h3><a name="public-methods"></a>Public Methods</h3><h4 class="class-name"><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[WaterSensor
-]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor(send_pin, receive_pin, level_count)</a></li><li><a href="#setaccuracy" class="click-flash">.setAccuracy(value)</a></li><li><a href="#setrefreshrate" class="click-flash">.setRefreshRate(hertz)</a></li><li><a href="#startrealtime" class="click-flash">.startRealTime()</a></li><li><a href="#getrawvalue" class="click-flash">.getRawValue()</a></li><li><a href="#setlevel" class="click-flash">.setLevel(index, raw_value)</a></li><li><a href="#setmaxlevel" class="click-flash">.setMaxLevel(raw_value)</a></li><li><a href="#getactivelevel" class="click-flash">.getActiveLevel()</a></li></ul><div class="section"><a name="constructor"></a><h4>WaterSensor constructor(send_pin, receive_pin)</h4><p>Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[WaterSensor cap_sensor(1,0);
+]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor(send_pin, receive_pin, level_count)</a></li><li><a href="#update" class="click-flash">.update()</a></li><li><a href="#setaccuracy" class="click-flash">.setAccuracy(value)</a></li><li><a href="#setrefreshrate" class="click-flash">.setRefreshRate(hertz)</a></li><li><a href="#startrealtime" class="click-flash">.startRealTime()</a></li><li><a href="#getrawvalue" class="click-flash">.getRawValue()</a></li><li><a href="#setlevel" class="click-flash">.setLevel(index, raw_value)</a></li><li><a href="#setmaxlevel" class="click-flash">.setMaxLevel(raw_value)</a></li><li><a href="#getactivelevel" class="click-flash">.getActiveLevel()</a></li></ul><div class="section"><a name="constructor"></a><h4>WaterSensor constructor(send_pin, receive_pin, level_count)</h4><p>Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[WaterSensor water_sensor(1,0);
 
 void setup() {
   ...
 }
-]]></script></div><div class="section"><a name="setsamplesize"></a><h4>cap_sensor.setSampleSize(size)</h4><p>Pass in an integer to change the number of readings taken to calculate a moving average&nbsp;<a href="#getvalue" class="click-flash">getValue()</a>. This can be called inside of setup() or also safely at runtime inside of loop().</p><ul><li><b>Decrease Variation</b> in readings by making this number larger: 1000</li><li><b>Increase Variation</b> in readings by making this number smaller: 10</li><li><b>Default Value</b>: 100</li></ul><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
-  cap_sensor.setSampleSize(1000);
+]]></script></div><div class="section"><a name="update"></a><h4>water_sensor.update()</h4><p>Keep processing the readings and move this library along in real-time.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  water_sensor.update();
 }
-]]></script></div><div class="section"><a name="start"></a><h4>cap_sensor.start()</h4><p>Begin taking many readings and start adding up the moving average for&nbsp;<a href="#getvalue" class="click-flash">getValue()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
-  cap_sensor.start();
+]]></script></div><div class="section"><a name="setaccuracy"></a><h4>water_sensor.setAccuracy(value)</h4><p>Provide an integer of how many readings to average before reporting a value. Increasing the value will increase accuracy and take longer to compute. Decreasing the value will lower accuracy and take a shorter time to compute. This can possibly affect the actual refresh rate to make it take slower readings. Don't worry, you can be as accurate as you'd like because this is done in a non-blocking manner and it won't affect your main loop() performance.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  water_sensor.setAccuracy(1000);
 }
-]]></script></div><div class="section"><a name="update"></a><h4>cap_sensor.update()</h4><p>This must be call continuously from within the loop() to move the library along in real-time.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
-  cap_sensor.update();
+]]></script></div><div class="section"><a name="setrefreshrate"></a><h4>water_sensor.setRefreshRate(hertz)</h4><p>Provide an integer from 0 to 1000 to set the maximum number of times the sensor should update per second. This is meant to be used to limit the number of readings taken per second. Calling this method will kick the sensor out of real-time readings if you have previously called&nbsp;<a href="#startrealtime" class="click-flash">startRealTime()</a> . Set this value to 0 to completely stop the sensor from taking readings. If you make this faster than the sensor can read values (because of a high accuracy value): the library will naturally settle at taking readings in real-time.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  water_sensor.setRefreshRate();
 }
-]]></script></div><div class="section"><a name="isfinished"></a><h4>cap_sensor.isFinished()</h4><p>Returns true if all readings have been taken and a moving average&nbsp;<a href="#getvalue" class="click-flash">getValue()</a> is ready. You must first call&nbsp;<a href="#start" class="click-flash">start()</a>  to begin the sampling process.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
-  cap_sensor.start();
+]]></script></div><div class="section"><a name="startrealtime"></a><h4>water_sensor.startRealTime()</h4><p>Start collecting readings as fast as possible and remove the&nbsp;<a href="#setrefreshrate" class="click-flash">setRefreshRate()</a> limit.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  water_sensor.update();
 }
-
-void loop() {
-  cap_sensor.update();
-
-  if(cap_sensor.isFinished()) {
-    ...
-  }
+]]></script></div><div class="section"><a name="getrawvalue"></a><h4>water_sensor.getRawValue()</h4><p>Get the raw sensor value in order to calibrate each level with&nbsp;<a href="#setlevel" class="click-flash">setLevel()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  Serial.println(water_sensor.getRawValue());
+  water_sensor.update();
 }
-]]></script></div><div class="section"><a name="getvalue"></a><h4>cap_sensor.getValue()</h4><p>Returns an unsigned long of the moving average value for the capacitance reading (microseconds taken to charge the pin). This will only return a value after calling&nbsp;<a href="#start" class="click-flash">start()</a> and waiting until&nbsp;<a href="#isfinished" class="click-flash">isFinished()</a> has returned true.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
-  cap_sensor.start();
+]]></script></div><div class="section"><a name="setlevel"></a><h4>water_sensor.setLevel(index, raw_value)</h4><p>Add a value for the lower bounds of each level.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  water_sensor.setLevel(1, 0);  // 0 - 33
+  water_sensor.setLevel(2, 34); // 34 - 66
+  water_sensor.setLevel(3, 67); // 67 - max
 }
-
-void loop() {
-  cap_sensor.update();
-
-  if(cap_sensor.isFinished()) {
-    Serial.println(cap_sensor.getValue());
-  }
+]]></script></div><div class="section"><a name="setmaxlevel"></a><h4>water_sensor.setMaxLevel(raw_value)</h4><p>Add a value for the upper bounds of the last level.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  water_sensor.setMaxLevel(100); // max = 100
+}
+]]></script></div><div class="section"><a name="getactivelevel"></a><h4>water_sensor.getActiveLevel()</h4><p>Returns the current water level.<ul><li>0 means there is no water</li><li>1 means the water is touching the first level</li><li>2 means the water is touching the second level</li><li>n means the water is touching the nth level</li><li>sizeof(n) + 1 means the water is above the max level</li><li>-1 if an error was found in the input levels (non-contiguous range)</li></ul></p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  Serial.println(water_sensor.getActiveLevel());
+  water_sensor.update();
 }
 ]]></script></div><div class="section-bottom"></div></div></div></div><script src="../bower_components/jquery/dist/jquery.min.js"></script><script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script><script src="code/init_bootstrap.js"></script><script src="code/back_to_top.js"></script><script src="libraries/shCore.js"></script><script src="libraries/shLegacy.js"></script><script src="libraries/shAutoloader.js"></script><script src="libraries/shBrushCpp.js"></script><script src="code/syntax_highlighter.js"></script><script src="libraries/click_flash.js"></script><script src="libraries/jquery.color.min.js"></script></body></html>
