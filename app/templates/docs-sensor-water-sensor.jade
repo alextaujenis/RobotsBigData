@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title Robots + Big Data: Capacitance Documentation
+    title Robots + Big Data: Water Sensor Documentation
     include ./global/head-content.jade
   body
     include ./global/top-nav.jade
@@ -15,46 +15,33 @@ html(lang='en')
             li
               a(href="docs.html") Docs
             li.active
-              | Capacitance
+              | Water Sensor
           .jumbotron
             h2
-              | Capacitance
+              | Water Sensor
               small  API DOCUMENTATION
-            p A real-time library for detecting change in capacitance.
+            p Measure and calibrate capacitance water sensors in real-time.
             a.btn.btn-success(href="#download") Download
             | &nbsp;&nbsp;
-            a.btn.btn-default(href="#setup") See Example
+            a.btn.btn-default(href="#example-setup") See Example
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#public-methods") Public Methods
 
-          h3
-            a(name="overview")
-            | Overview
-          p
-            | Detect human presence and touch from behind several millimeters of material, or detect changes in water levels from the outside of a plastic container. This library is meant to help&nbsp;
-            b determine change in relative capacitance
-            |  for the reasons above, and not for calculating exact capacitance.
-          p
-            | Relative capacitance is found by measuring how long it takes for an Arduino send-pin to charge a receive-pin to HIGH (in microseconds). Changes in the electrical field around a sensor connected to the receive pin (such as a human passing by, or water filling up, or a motor turning on) have a measurable impact on the amount of time it takes to charge the receive pin.
-          p
-            | Many of these charge and discharge readings are taken, then averaged within the library to reduce variability and give a more clear answer of what the sensor is reading. This is done in real-time without delay so it only has a small impact on the main loop() performance. See the&nbsp;
-            a(href="#setup") Setup Instructions
-            |  below for help wiring the Arduino with this library.
           h3
             a(name="download")
             | Download
           p.lead
             | This library is part of a larger package that you can download to access
             i  all
-            |  of the documented sensors, or you can use this library by itself.
+            |  of the documented sensors, or you can use this library outside of the package with three dependencies.
           p
             ul
               li
                 a(href="#") Download Full Sensor Package
                 |  with this library included
               li
-                a(href="#") Download Capacitance Library
-                |  (by itself)
+                a(href="#") Download Water Sensor Library
+                |  with Capacitance, Threshold, and Timer
               li
                 a(href="#") View Source on GitHub
                 |  with MIT license
@@ -62,13 +49,15 @@ html(lang='en')
           h3
             a(name="example-setup")
             | Example Setup
-          ol
-            li Bridge a 10Meg Ohm resistor across the Arduino send (tx 1) and receive (rx 0) pins
-            li Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil
-            li Cover the foil with plastic, paper, wood, clay, or anything non-conductive
-            li Load up the example sketch and open a serial connection at 115200 baud
-            li Touch or move your hand by the sensor
-
+          p.lead
+            ol
+              li Bridge a 10Meg Ohm resistor across the send (tx 1) and receive (rx 0) pins
+              li Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil
+              li Tape the foil to the side of a water-tight non-conductive (plastic) container
+              li Load up the example sketch and open a serial connection at 115200 baud
+              li Pour water into your container and change the raw threshold values in the sketch to match the levels
+              li Pour out the water, then compile and load the calibrated sketch back into the Arduino
+              li Your water level is calibrated and ready to use
           h3
             a(name="example-sketch")
             | Example Sketch
@@ -78,97 +67,79 @@ html(lang='en')
 
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
+              #include <WaterSensor.h>
               #include <Capacitance.h>
+              #include <Threshold.h>
+              #include <Timer.h>
 
               #define BAUD        115200
-              #define SEND_PIN    1 // tx
-              #define RECEIVE_PIN 0 // rx
+              #define SEND_PIN    1
+              #define RECEIVE_PIN 0
+              #define LEVEL_COUNT 3
 
-              Capacitance cap_sensor(SEND_PIN, RECEIVE_PIN);
+              int past_value  = 0;
+
+              WaterSensor water_sensor(SEND_PIN, RECEIVE_PIN, LEVEL_COUNT);
 
               void setup() {
                 Serial.begin(BAUD);
-                cap_sensor.setSampleSize(100); // default
-                cap_sensor.start();
+                water_sensor.setAccuracy(1000);
+                water_sensor.setRefreshRate(2);
+                water_sensor.setLevel(1, 120);
+                water_sensor.setLevel(2, 154);
+                water_sensor.setLevel(3, 187);
+                water_sensor.setMaxLevel(220);
               }
 
               void loop() {
-                cap_sensor.update();
+                water_sensor.update();
 
-                if(cap_sensor.isFinished()) {
-                  Serial.println(cap_sensor.getValue());
-                  cap_sensor.start();
+                if(water_sensor.getRawValue() != past_value) {
+                  printValues(water_sensor.getActiveLevel(), water_sensor.getRawValue());
+                  past_value = water_sensor.getRawValue();
                 }
               }
 
-          h3
-            a(name="sensitivity")
-            | Sensitivity
-          p Sensitivity is how far away the sensor can detect things, or how much resolution you have to recognize change in the sensor readings.
-          ul
-            li
-              b Increase Sensitivity
-              |  by&nbsp;
-              i either
-              |  adding more resistors in series (20Meg, 30Meg, or more),&nbsp;
-              i or
-              |  increase the surface area (size) of the piece of aluminum used as the sensor.
-
-            li
-              b Decrease Sensitivity
-              |  by&nbsp;
-              i either
-              |  lowering the amount of resitance (use only 1Meg or less),&nbsp;
-              i or
-              |  decrease the surface area (size) of the piece of aluminum used as the sensor.
-
-          h3
-            a(name="variability")
-            | Variability
-          p Variability is how wildly the sensor readings fluctuate. This library helps adjust the variability by taking a moving average of many readings over time. This is done without delay so it has little impact on the main loop() performance.
-          ul
-            li
-              b Less Variable
-              |  readings that don't fluctuate so quickly can be achieved by increasing the sample size:&nbsp;
-              a.click-flash(href="#setsamplesize") setSampleSize(1000)
-              | .
-
-            li
-              b More Variable
-              |  readings that fluctuate quickly can be achieved by decreasing the sample size:&nbsp;
-              a.click-flash(href="#setsamplesize") setSampleSize(10)
-              | .
-
+              void printValues(int active_level, int raw_value) {
+                Serial.print("ACTIVE LEVEL: ");
+                Serial.print(active_level);
+                Serial.print("  RAW VALUE: ");
+                Serial.println(raw_value);
+              }
           h3
             a(name="public-methods")
             | Public Methods
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Capacitance
+                WaterSensor
 
           ul.public-methods
             li
-              a.click-flash(href="#constructor") constructor(send_pin, receive_pin)
+              a.click-flash(href="#constructor") constructor(send_pin, receive_pin, level_count)
             li
-              a.click-flash(href="#setsamplesize") .setSampleSize(size)
+              a.click-flash(href="#setaccuracy") .setAccuracy(value)
             li
-              a.click-flash(href="#start") .start()
+              a.click-flash(href="#setrefreshrate") .setRefreshRate(hertz)
             li
-              a.click-flash(href="#update") .update()
+              a.click-flash(href="#startrealtime") .startRealTime()
             li
-              a.click-flash(href="#isfinished") .isFinished()
+              a.click-flash(href="#getrawvalue") .getRawValue()
             li
-              a.click-flash(href="#getvalue") .getValue()
+              a.click-flash(href="#setlevel") .setLevel(index, raw_value)
+            li
+              a.click-flash(href="#setmaxlevel") .setMaxLevel(raw_value)
+            li
+              a.click-flash(href="#getactivelevel") .getActiveLevel()
 
           .section
             a(name="constructor")
-            h4 Capacitance constructor(send_pin, receive_pin)
+            h4 WaterSensor constructor(send_pin, receive_pin)
             p Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Capacitance cap_sensor(1,0);
+                WaterSensor cap_sensor(1,0);
 
                 void setup() {
                   ...

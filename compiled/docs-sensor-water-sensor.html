@@ -1,0 +1,76 @@
+<!DOCTYPE html><html lang="en"><head><title>Robots + Big Data: Water Sensor Documentation</title><link href="../bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="style/shCore.css" rel="stylesheet" type="text/css"><link href="style/shCoreDefault.css" rel="stylesheet" type="text/css"><link href="style/shThemeDefault.css" rel="stylesheet" type="text/css"><link href="style/style.css" rel="stylesheet" type="text/css"><link href="style/docs.css" rel="stylesheet" type="text/css"><meta content="width=device-width initial-scale=1" name="viewport"></head><body><a name="top"></a><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button id="toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="index.html" class="navbar-brand">Robots + Big Data</a></div><!-- Collect the links for mobile toggling--><div id="navbar-collapse" class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="docs.html">Docs</a></li><li><a href="install.html">Install</a></li><li><a href="projects.html">Projects</a></li><li><a href="#">GitHub</a></li><li><a href="#top" class="back-to-top">BACK TO TOP</a></li></ul></div></div></div><div class="top-nav-spacer">&nbsp;</div><div class="container-fluid"><div class="row"><div class="col-sm-3 col-lg-2"><div class="panel panel-default side-panel"><div class="panel-heading"><div class="panel-title"><a href="docs.html">Docs</a></div></div><div class="panel-body"><h3><a href="docs-sensor.html">ARDUINO SENSOR LIBRARIES</a></h3><ul><li><a href="docs-sensor-capacitance.html">Capacitance</a></li><li><a href="docs-sensor-light.html">Light</a><span data-toggle="tooltip" data-placement="left" title="Timer Dependency" class="badge pull-right">1</span></li><li><a href="docs-sensor-light-sensor.html">LightSensor</a></li><li><a href="docs-sensor-motor.html">Motor</a><span data-toggle="tooltip" data-placement="left" title="Timer Dependency" class="badge pull-right">1</span></li><li><a href="docs-sensor-threshold.html">Threshold</a></li><li><a href="docs-sensor-timer.html">Timer</a></li><li><a href="docs-sensor-water-sensor.html">WaterSensor</a><span data-toggle="tooltip" data-placement="left" title="Capacitance, Threshold, and Timer Dependencies" class="badge pull-right">3</span></li></ul><h3><a href="docs-server.html">RASPBERRY PI SERVER MODULES</a></h3><ul><li><a href="docs-server-camera.html">Camera</a></li><li><a href="docs-server-conductor.html">Conductor</a></li><li><a href="docs-server-config.html">Config</a></li><li><a href="docs-server-database.html">Database</a></li><li><a href="docs-server-image.html">Image</a></li><li><a href="docs-server-timer.html">Timer</a></li><li><a href="docs-server-usb.html">USB</a></li><li><a href="docs-server-webserver.html">WebServer</a></li></ul><h3><a href="docs-client.html">WEB & MOBILE CLIENT PLUGINS</a></h3><ul><li><a href="docs-client-button.html">Button</a></li><li><a href="docs-client-camera.html">Camera</a></li><li><a href="docs-client-gps.html">GPS</a></li><li><a href="docs-client-joystick.html">Joystick</a></li><li><a href="docs-client-motion.html">Motion</a></li><li><a href="docs-client-slider.html">Slider</a></li><li><a href="docs-client-toggle.html">Toggle</a></li><li><a href="docs-client-xy-map.html">XYMap</a></li></ul><h3><a href="">OTHER INCLUDED PACKAGES</a></h3><ul><li><a href="#">Build Package</a></li><li><a href="#">Code Testing</a></li><li><a href="#">Database</a></li><li><a href="#">Front-End MVC</a></li><li><a href="#">Operating System</a></li><li><a href="#">Server Management</a></li><li><a href="#">Streaming I/O</a></li><li><a href="#">Audio/Video Server</a></li><li><a href="#">Web Server</a></li></ul></div></div></div><div class="documentation col-sm-9 col-lg-10"><ol class="breadcrumb"><li><a href="index.html">Home</a></li><li><a href="docs.html">Docs</a></li><li class="active">Water Sensor</li></ol><div class="jumbotron"><h2>Water Sensor<small> API DOCUMENTATION</small></h2><p>Measure and calibrate capacitance water sensors in real-time.</p><a href="#download" class="btn btn-success">Download</a>&nbsp;&nbsp;<a href="#example-setup" class="btn btn-default">See Example</a>&nbsp;&nbsp;<a href="#public-methods" class="btn btn-default">Public Methods</a></div><h3><a name="download"></a>Download</h3><p class="lead">This library is part of a larger package that you can download to access<i> all</i> of the documented sensors, or you can use this library outside of the package with three dependencies.</p><p><ul><li><a href="#">Download Full Sensor Package</a> with this library included</li><li><a href="#">Download Water Sensor Library</a> with Capacitance, Threshold, and Timer</li><li><a href="#">View Source on GitHub</a> with MIT license</li></ul></p><h3><a name="example-setup"></a>Example Setup</h3><p class="lead"><ol><li>Bridge a 10Meg Ohm resistor across the send (tx 1) and receive (rx 0) pins</li><li>Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil</li><li>Tape the foil to the side of a water-tight non-conductive (plastic) container</li><li>Load up the example sketch and open a serial connection at 115200 baud</li><li>Pour water into your container and change the raw threshold values in the sketch to match the levels</li><li>Pour out the water, then compile and load the calibrated sketch back into the Arduino</li><li>Your water level is calibrated and ready to use</li></ol></p><h3><a name="example-sketch"></a>Example Sketch<span class="label label-info">Arduino</span><span class="label label-primary">C++</span></h3><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[#include <WaterSensor.h>
+#include <Capacitance.h>
+#include <Threshold.h>
+#include <Timer.h>
+
+#define BAUD        115200
+#define SEND_PIN    1
+#define RECEIVE_PIN 0
+#define LEVEL_COUNT 3
+
+int past_value  = 0;
+
+WaterSensor water_sensor(SEND_PIN, RECEIVE_PIN, LEVEL_COUNT);
+
+void setup() {
+  Serial.begin(BAUD);
+  water_sensor.setAccuracy(1000);
+  water_sensor.setRefreshRate(2);
+  water_sensor.setLevel(1, 120);
+  water_sensor.setLevel(2, 154);
+  water_sensor.setLevel(3, 187);
+  water_sensor.setMaxLevel(220);
+}
+
+void loop() {
+  water_sensor.update();
+
+  if(water_sensor.getRawValue() != past_value) {
+    printValues(water_sensor.getActiveLevel(), water_sensor.getRawValue());
+    past_value = water_sensor.getRawValue();
+  }
+}
+
+void printValues(int active_level, int raw_value) {
+  Serial.print("ACTIVE LEVEL: ");
+  Serial.print(active_level);
+  Serial.print("  RAW VALUE: ");
+  Serial.println(raw_value);
+}]]></script><h3><a name="public-methods"></a>Public Methods</h3><h4 class="class-name"><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[WaterSensor
+]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor(send_pin, receive_pin, level_count)</a></li><li><a href="#setaccuracy" class="click-flash">.setAccuracy(value)</a></li><li><a href="#setrefreshrate" class="click-flash">.setRefreshRate(hertz)</a></li><li><a href="#startrealtime" class="click-flash">.startRealTime()</a></li><li><a href="#getrawvalue" class="click-flash">.getRawValue()</a></li><li><a href="#setlevel" class="click-flash">.setLevel(index, raw_value)</a></li><li><a href="#setmaxlevel" class="click-flash">.setMaxLevel(raw_value)</a></li><li><a href="#getactivelevel" class="click-flash">.getActiveLevel()</a></li></ul><div class="section"><a name="constructor"></a><h4>WaterSensor constructor(send_pin, receive_pin)</h4><p>Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[WaterSensor cap_sensor(1,0);
+
+void setup() {
+  ...
+}
+]]></script></div><div class="section"><a name="setsamplesize"></a><h4>cap_sensor.setSampleSize(size)</h4><p>Pass in an integer to change the number of readings taken to calculate a moving average&nbsp;<a href="#getvalue" class="click-flash">getValue()</a>. This can be called inside of setup() or also safely at runtime inside of loop().</p><ul><li><b>Decrease Variation</b> in readings by making this number larger: 1000</li><li><b>Increase Variation</b> in readings by making this number smaller: 10</li><li><b>Default Value</b>: 100</li></ul><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  cap_sensor.setSampleSize(1000);
+}
+]]></script></div><div class="section"><a name="start"></a><h4>cap_sensor.start()</h4><p>Begin taking many readings and start adding up the moving average for&nbsp;<a href="#getvalue" class="click-flash">getValue()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  cap_sensor.start();
+}
+]]></script></div><div class="section"><a name="update"></a><h4>cap_sensor.update()</h4><p>This must be call continuously from within the loop() to move the library along in real-time.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  cap_sensor.update();
+}
+]]></script></div><div class="section"><a name="isfinished"></a><h4>cap_sensor.isFinished()</h4><p>Returns true if all readings have been taken and a moving average&nbsp;<a href="#getvalue" class="click-flash">getValue()</a> is ready. You must first call&nbsp;<a href="#start" class="click-flash">start()</a>  to begin the sampling process.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  cap_sensor.start();
+}
+
+void loop() {
+  cap_sensor.update();
+
+  if(cap_sensor.isFinished()) {
+    ...
+  }
+}
+]]></script></div><div class="section"><a name="getvalue"></a><h4>cap_sensor.getValue()</h4><p>Returns an unsigned long of the moving average value for the capacitance reading (microseconds taken to charge the pin). This will only return a value after calling&nbsp;<a href="#start" class="click-flash">start()</a> and waiting until&nbsp;<a href="#isfinished" class="click-flash">isFinished()</a> has returned true.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  cap_sensor.start();
+}
+
+void loop() {
+  cap_sensor.update();
+
+  if(cap_sensor.isFinished()) {
+    Serial.println(cap_sensor.getValue());
+  }
+}
+]]></script></div><div class="section-bottom"></div></div></div></div><script src="../bower_components/jquery/dist/jquery.min.js"></script><script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script><script src="code/init_bootstrap.js"></script><script src="code/back_to_top.js"></script><script src="libraries/shCore.js"></script><script src="libraries/shLegacy.js"></script><script src="libraries/shAutoloader.js"></script><script src="libraries/shBrushCpp.js"></script><script src="code/syntax_highlighter.js"></script><script src="libraries/click_flash.js"></script><script src="libraries/jquery.color.min.js"></script></body></html>
