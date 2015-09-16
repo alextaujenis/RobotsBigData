@@ -24,7 +24,9 @@ html(lang='en')
             h2
               | Water Sensor
               small  API DOCUMENTATION
-            p Measure and calibrate capacitance water sensors in real-time.
+            p
+              | Measure and calibrate capacitance water sensors in real-time.
+              small v1.0.0
             a.btn.btn-success(href="#download") Download
             | &nbsp;&nbsp;
             a.btn.btn-default(href="#example-setup") See Example
@@ -46,12 +48,18 @@ html(lang='en')
                 a(href="#") Download Full Sensor Package
                 |  with this library included
               li
-                a(href="#") Download Water Sensor Library
+                a(href="#") Download Water Sensor Library v1.0.0
                 |  with&nbsp;
                 span.badge 3
-                |  Capacitance, Threshold, and Timer dependencies
+                | &nbsp;
+                a.dependency(href="docs-sensor-capacitance.html#description") Capacitance
+                | ,&nbsp;
+                a.dependency(href="docs-sensor-threshold.html#description") Threshold
+                | , and&nbsp;
+                a.dependency(href="docs-sensor-timer.html#description") Timer
+                |  dependencies
               li
-                a(href="#") View Source on GitHub
+                a(href="https://github.com/alextaujenis/RBD_WaterSensor") View Source on GitHub
                 |  with MIT license
 
           h3
@@ -156,7 +164,7 @@ html(lang='en')
           .section
             a(name="constructor")
             h4 WaterSensor constructor(send_pin, receive_pin, level_count)
-            p Pass in integers for the send and receive pins to create a new instance of this class, along with an integer for the total number of levels your water sensor will detect. Example: if you want to detect low, medium, and high levels then the level\_count should be 3.
+            p Pass in integers for the send and receive pins to create a new instance of this class, along with an integer for the total number of levels your water sensor will detect. Example: if you want to detect low, medium, and high levels then the level_count should be 3.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
