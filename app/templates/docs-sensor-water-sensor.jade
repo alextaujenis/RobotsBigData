@@ -8,33 +8,32 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs-side-nav.jade
-        a(name="description")
         .documentation.col-sm-9.col-lg-10
           ol.breadcrumb
             li
               a(href="index.html") Home
             li
-              a(href="docs.html#description") Docs
+              a(href="docs.html") Docs
             li
-              a(href="docs-sensor.html#description") Arduino
+              a(href="docs-sensor.html") Arduino
             li.active
               | Water Sensor
           .row.pull-right
             .col-xs-12
               span.label.label-info.title-label Arduino
           .jumbotron
-            h2
-              | Water Sensor
-              small  API DOCUMENTATION
-            p
-              | Measure and calibrate capacitance water sensors in real-time.
-              small v1.0.0
-            a.btn.btn-success(href="#download") Download
-            | &nbsp;&nbsp;
-            a.btn.btn-default(href="#example-setup") See Example
-            | &nbsp;&nbsp;
-            a.btn.btn-default(href="#public-methods") Public Methods
-
+            .jumbotron-container
+              h2
+                | Water Sensor
+                small  API DOCUMENTATION
+              p
+                | Measure and calibrate capacitance water sensors in real-time.
+                small v1.0.0
+              a.btn.btn-success(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-setup") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
           h3
             a(name="download")
             | Download
@@ -54,11 +53,11 @@ html(lang='en')
                 |  with&nbsp;
                 span.badge 3
                 | &nbsp;
-                a.dependency(href="docs-sensor-capacitance.html#description") Capacitance
+                a.dependency(href="docs-sensor-capacitance.html") Capacitance
                 | ,&nbsp;
-                a.dependency(href="docs-sensor-threshold.html#description") Threshold
+                a.dependency(href="docs-sensor-threshold.html") Threshold
                 | , and&nbsp;
-                a.dependency(href="docs-sensor-timer.html#description") Timer
+                a.dependency(href="docs-sensor-timer.html") Timer
                 |  dependencies
               li
                 a(href="https://github.com/alextaujenis/RBD_WaterSensor") View Source on GitHub

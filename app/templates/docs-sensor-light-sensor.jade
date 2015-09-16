@@ -8,33 +8,32 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs-side-nav.jade
-        a(name="description")
         .documentation.col-sm-9.col-lg-10
           ol.breadcrumb
             li
               a(href="index.html") Home
             li
-              a(href="docs.html#description") Docs
+              a(href="docs.html") Docs
             li
-              a(href="docs-sensor.html#description") Arduino
+              a(href="docs-sensor.html") Arduino
             li.active
               | Light Sensor
           .row.pull-right
             .col-xs-12
               span.label.label-info.title-label Arduino
           .jumbotron
-            h2
-              | Light Sensor
-              small  API DOCUMENTATION
-            p
-              | A simple library for reading photoresistors.
-              small v1.0.0
-            a.btn.btn-success(href="#download") Download
-            | &nbsp;&nbsp;
-            a.btn.btn-default(href="#example-sketch") See Example
-            | &nbsp;&nbsp;
-            a.btn.btn-default(href="#public-methods") Public Methods
-
+            .jumbotron-container
+              h2
+                | Light Sensor
+                small  API DOCUMENTATION
+              p
+                | A simple library for reading photoresistors.
+                small v1.0.0
+              a.btn.btn-success(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-sketch") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
           h3
             a(name="download")
             | Download

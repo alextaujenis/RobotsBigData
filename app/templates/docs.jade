@@ -8,7 +8,6 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs-side-nav.jade
-        a(name="description")
         .documentation.col-sm-9.col-lg-10
           ol.breadcrumb
             li
@@ -16,17 +15,18 @@ html(lang='en')
             li.active
               | Docs
           .jumbotron
-            h2
-              | Robots + Big Data
-              small API DOCUMENTATION
-            p An open-source framework for connecting sensors to the internet.
-            a.btn.btn-info(href="install.html") Install Guide
+            .jumbotron-container
+              h2
+                | Robots + Big Data
+                small API DOCUMENTATION
+              p An open-source framework for connecting sensors to the internet.
+              a.btn.btn-info(href="install.html") Install Guide
           .col-md-10.col-lg-8
             h3 API Docs Overview
             ul
               li
                 p.lead
-                  a(href="docs-sensor.html#description") Arduino Sensor Libraries
+                  a(href="docs-sensor.html") Arduino Sensor Libraries
                   |  are written in
                   b  C++
                   | , run in real-time with no delay on any Arduino, and interact with electronic components in the real world.
