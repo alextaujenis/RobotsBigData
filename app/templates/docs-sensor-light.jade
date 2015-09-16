@@ -67,10 +67,10 @@ html(lang='en')
 
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
-              #include <Timer.h>
-              #include <Light.h>
+              #include <RBD_Timer.h>
+              #include <RBD_Light.h>
 
-              Light light(13);
+              RBD::Light light(13);
 
               void setup() {
                 light.pulse(2500,250,2000,750,1000);
@@ -99,7 +99,7 @@ html(lang='en')
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Light
+                RBD::Light
 
           ul.public-methods
             li
@@ -132,12 +132,12 @@ html(lang='en')
 
           .section
             a(name="constructor")
-            h4 Light constructor(pin)
+            h4 RBD::Light constructor(pin)
             p Create a new light and pass in the Arduino pin number.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Light light(13);
+                RBD::Light light(13);
 
                 void setup() {
                   ...

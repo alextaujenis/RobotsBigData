@@ -73,10 +73,10 @@ html(lang='en')
 
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
-              #include <Timer.h>
-              #include <Motor.h>
+              #include <RBD_Timer.h>
+              #include <RBD_Motor.h>
 
-              Motor motor(3); // pwm pin 3
+              RBD::Motor motor(3); // pwm pin 3
 
               void loop() {
                 if(motor.isOff()) {
@@ -105,7 +105,7 @@ html(lang='en')
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Motor
+                RBD::Motor
 
           ul.public-methods
             li
@@ -150,12 +150,12 @@ html(lang='en')
 
           .section
             a(name="constructor")
-            h4 Motor constructor(pin)
+            h4 RBD::Motor constructor(pin)
             p Create a new motor and pass in the Arduino pin number.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Motor motor(3); // pwm pin 3
+                RBD::Motor motor(3); // pwm pin 3
 
                 void setup() {
                   ...

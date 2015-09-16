@@ -87,13 +87,13 @@ html(lang='en')
 
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
-              #include <Capacitance.h>
+              #include <RBD_Capacitance.h>
 
               #define BAUD        115200
               #define SEND_PIN    1 // tx
               #define RECEIVE_PIN 0 // rx
 
-              Capacitance cap_sensor(SEND_PIN, RECEIVE_PIN);
+              RBD::Capacitance cap_sensor(SEND_PIN, RECEIVE_PIN);
 
               void setup() {
                 Serial.begin(BAUD);
@@ -162,7 +162,7 @@ html(lang='en')
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Capacitance
+                RBD::Capacitance
 
           ul.public-methods
             li
@@ -184,12 +184,12 @@ html(lang='en')
 
           .section
             a(name="constructor")
-            h4 Capacitance constructor(send_pin, receive_pin)
+            h4 RBD::Capacitance constructor(send_pin, receive_pin)
             p Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Capacitance cap_sensor(1,0);
+                RBD::Capacitance cap_sensor(1,0);
 
                 void setup() {
                   ...

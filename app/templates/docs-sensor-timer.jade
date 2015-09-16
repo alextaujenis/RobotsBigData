@@ -97,13 +97,13 @@ html(lang='en')
 
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
-              #include <Timer.h>
+              #include <RBD_Timer.h>
 
               #define BAUD 115200
               bool rising = true;
 
-              Timer timer1;
-              Timer timer2;
+              RBD::Timer timer1;
+              RBD::Timer timer2;
 
               void setup() {
                 Serial.begin(BAUD);
@@ -142,7 +142,7 @@ html(lang='en')
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Timer
+                RBD::Timer
 
           ul.public-methods
             li
@@ -168,12 +168,12 @@ html(lang='en')
 
           .section
             a(name="constructor")
-            h4 Timer constructor()
+            h4 RBD::Timer constructor()
             p Create a new timer instance.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Timer timer;
+                RBD::Timer timer;
 
                 void setup() {
                   ...

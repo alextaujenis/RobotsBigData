@@ -73,9 +73,9 @@ html(lang='en')
 
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
-              #include <Threshold.h>
+              #include <RBD_Threshold.h>
 
-              Threshold threshold(3);
+              RBD::Threshold threshold(3);
 
               void setup() {
                 threshold.setLevel(1,0);   // [0 - 9]       low
@@ -111,7 +111,7 @@ html(lang='en')
           h4.class-name
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Threshold
+                RBD::Threshold
 
           ul.public-methods
             li
@@ -129,12 +129,12 @@ html(lang='en')
 
           .section
             a(name="constructor")
-            h4 Threshold constructor(level_count)
+            h4 RBD::Threshold constructor(level_count)
             p Create a new instance and provide an integer for the maximum number of levels of this threshold. For example; set the level_count to 3 if you have levels of low, medium, and high. If you need more than 3 levels, this library will dynamically allocate an array large enough to accommodate the size you provide the constructor.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                Threshold threshold(3) // 3 levels
+                RBD::Threshold threshold(3) // 3 levels
 
                 void setup() {
                   ...
