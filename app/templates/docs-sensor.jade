@@ -1,0 +1,70 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        a(name="description")
+        .documentation.col-sm-9.col-lg-10
+          ol.breadcrumb
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs.html#description") Docs
+            li.active
+              | Arduino Sensor Libraries
+          .row.pull-right
+            .col-xs-12
+              span.label.label-info.title-label Arduino
+
+          .jumbotron
+            h2
+              | Sensor Libraries
+              small API DOCUMENTATION
+            p Real-time C++ libraries written for the Arduino.
+            a.btn.btn-primary(href="docs.html#description") See Full Docs
+          .col-md-10.col-lg-8.librarie
+            h3 All Arduino Sensor Libraries
+            ul.libraries
+              li
+                a(href="docs-sensor-capacitance.html#description")
+                  h4
+                    | Capacitance
+                    small A real-time library for detecting changes in capacitance.
+              li
+                a(href="docs-sensor-light.html#description")
+                  h4
+                    | Light
+                    small A real-time library for controlling many lights.
+              li
+                a(href="docs-sensor-light-sensor.html#description")
+                  h4
+                    | Light Sensor
+                    small A simple library for reading photoresistors.
+              li
+                a(href="docs-sensor-motor.html#description")
+                  h4
+                    | Motor
+                    small A real-time library for controlling many motors.
+              li
+                a(href="docs-sensor-threshold.html#description")
+                  h4
+                    | Threshold
+                    small Quickly set and check quantile ranges.
+              li
+                a(href="docs-sensor-timer.html#description")
+                  h4
+                    | Timer
+                    small A high-level foundation for managing many timed events.
+              li
+                a(href="docs-sensor-water-sensor.html#description")
+                  h4
+                    | Water Sensor
+                    small Measure and calibrate capacitance water sensors in real-time.
+
+
+    include ./global/foot-content.jade
