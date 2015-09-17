@@ -1,0 +1,149 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Conductor Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8.col-md-9
+          ol.breadcrumb
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs.html") Docs
+            li
+              a(href="docs-raspberry-pi.html") Raspberry Pi
+            li.active
+              | Conductor
+          .jumbotron
+            .stuck
+              .row.jumbotron-header
+                .col-xs-12.text-right
+                  span.label.label-danger.title-label Raspberry Pi
+            .jumbotron-container
+              h2
+                | Conductor
+                small  API DOCUMENTATION
+              p
+                | Help load  config files into memory.
+                small v1.0.0
+              a.btn.btn-warning(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#initialize") Public Interface
+          h3
+            a(name="overview")
+            | Overview
+          p.lead
+            | This non-blocking module accepts a list of JSON config files, reads them from disk, and makes the config data available in memory. This is helpful for first starting an application and getting credentials or address information, then connecting to authenticated or external services such as a database or remote camera.
+          h3
+            a(name="download")
+            | Download
+          p.lead
+            | This module is part of a larger package that you can download to access all of the documented server modules, or you can use this module by itself.
+            ul
+              li
+                a(href="install.html") Install All Raspberry Pi Server Modules
+                |  with this module included
+              li
+                | OR, Download this module by itself from the&nbsp;
+                span.label.label-black Command Line
+                |  with&nbsp;
+                a(href="https://docs.npmjs.com", data-toggle="tooltip", data-placement="right", title="A package manager for JavaScript that makes it easy to share and reuse code.<div class='blue'>https://docs.npmjs.com</div>") npm
+                | .
+                script(type="syntaxhighlighter", class="brush: bash; gutter: false;")
+                  :cdata
+                    npm install rbd_conductor
+
+              li
+                a(href="#") View Source on GitHub
+                |  with MIT license
+
+          h3
+            a(name="example")
+            | Example
+            span.label.label-default.nodejs Node.js
+            span.label.label-default.coffeescript CoffeeScript
+
+          script(type="syntaxhighlighter", class="brush: javascript; gutter: false;")
+            :cdata
+              Conductor = require('rbd_conductor').module
+
+              config_files = ['arduino', 'camera', 'database']
+              conductor    = new Conductor({config_files: config_files})
+
+              conductor.start()
+
+              conductor.on "ready", ->
+                // conductor.config.database
+                // conductor.config.arduino
+                // conductor.config.camera
+
+          h3
+            a(name="initialize")
+            | Initialize
+          p.lead
+            | First, get access to the object by exporting it from the module:
+          h5 EXAMPLE CODE
+          script(type="syntaxhighlighter", class="brush: javascript; gutter: false;")
+            :cdata
+              Conductor = require('rbd_conductor').module
+
+          h3
+            a(name="constructor")
+            | Constructor
+          p.lead
+            | The constructor accepts an object with an array of config file names. It looks for JSON files in the default location of "app/server/config/", relative to your project folder.
+          h5 EXAMPLE CODE
+          script(type="syntaxhighlighter", class="brush: javascript; gutter: false;")
+            :cdata
+              conductor = new Conductor({
+                config_files: ['arduino', 'camera', 'database']
+              })
+          h5 EXAMPLE FOLDER STRUCTURE
+          img.image(src="../app/images/config-folder.png")
+
+          h3
+            a(name="public-methods")
+            | Public Methods
+          p.lead
+            | The object must be told to start() to begin reading the config files from disk.
+          h5 EXAMPLE CODE
+          script(type="syntaxhighlighter", class="brush: javascript; gutter: false;")
+            :cdata
+              conductor.start()
+
+          h3
+            a(name="events")
+            | Events
+          p.lead
+            | The conductor only has one event, "ready", which signals that all config files have been loaded from disk.
+          h5 EXAMPLE CODE
+          script(type="syntaxhighlighter", class="brush: javascript; gutter: false;")
+            :cdata
+              conductor.on "ready", ->
+                // all config files are loaded into memory
+
+          h3
+            a(name="attributes")
+            | Attributes
+          p.lead
+            | Once the config files are "ready", you can access all of the config data.
+          h5 EXAMPLE CODE
+          script(type="syntaxhighlighter", class="brush: javascript; gutter: false;")
+            :cdata
+              conductor.on "ready", ->
+                // conductor.config.arduino
+                // conductor.config.camera
+                // conductor.config.database
+                // conductor.config.whatever-file-name
+
+          .section-bottom
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
+
+
