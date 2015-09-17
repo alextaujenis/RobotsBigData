@@ -1,0 +1,83 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Raspberry Pi Server Module Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8.col-md-9
+          ol.breadcrumb
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs.html") Docs
+            li.active
+              | Raspberry Pi Server Modules
+          .row.pull-right
+            .col-xs-12
+              span.label.label-danger.title-label Raspberry Pi
+          .jumbotron
+            .jumbotron-container
+              h2
+                | Server Modules
+                small API DOCUMENTATION
+              p Node.js modules written in CoffeeScript for the Raspberry Pi.
+              a.btn.btn-warning(href="docs.html") See Full Docs
+          .col-md-10.col-lg-8.libraries
+            h3 All Raspberry Pi Server Modules
+            ul.libraries
+              li
+                a(href="docs-raspberry-pi-conductor.html")
+                  h4
+                    | Conductor
+                    small Helps load all config files into memory.
+              li
+                a(href="docs-raspberry-pi-config.html")
+                  h4
+                    | Config
+                    small Reads environment-specific config files from disk.
+              li
+                a(href="docs-raspberry-pi-database.html")
+                  h4
+                    | Database
+                    small An initializer to connect to and query the database.
+              li
+                a(href="docs-raspberry-pi-image.html")
+                  h4
+                    | Image
+                    small Write raw image data to disk.
+              li
+                a(href="docs-raspberry-pi-ip-camera.html")
+                  h4
+                    | IP Camera
+                    small Use network cameras to take photos and stream video.
+              li
+                a(href="docs-raspberry-pi-snapshot.html")
+                  h4
+                    | Snapshot
+                    small Same camera images at specific timed intervals.
+              li
+                a(href="docs-raspberry-pi-timer.html")
+                  h4
+                    | Timer
+                    small A high-level foundation for managing many timed events.
+              li
+                a(href="docs-raspberry-pi-usb-camera.html")
+                  h4
+                    | USB Camera
+                    small Plug in USB cameras to take photos and stream video.
+              li
+                a(href="docs-raspberry-pi-usb.html")
+                  h4
+                    | USB Serial
+                    small A module that seeks Arduinos and stays connected.
+              li
+                a(href="docs-raspberry-pi-usb-camera.html")
+                  h4
+                    | Web Server
+                    small The full power of express along with streaming data.
+
+    include ./global/foot-content.jade
