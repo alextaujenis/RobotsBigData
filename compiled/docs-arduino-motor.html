@@ -12,7 +12,7 @@ void loop() {
   }
   motor.update();
 }]]></script><h3><a name="public-methods"></a>Public Methods</h3><p>You can use this library without calling&nbsp;<a href="#update" class="click-flash">update()</a> and&nbsp;<i>most</i> methods will function correctly. You must continuously call&nbsp;<a href="#update" class="click-flash">update()</a> inside of loop() in order to use the&nbsp;<span class="label label-success">REAL-TIME</span> methods tagged below.</p><h4 class="class-name"><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::Motor
-]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor(pin)</a></li><li><a href="#update" class="click-flash">.update()</a><span data-toggle="tooltip" data-placement="right" title="This helps move real-time methods along." class="label label-primary">PROCESS REAL-TIME</span></li><li><a href="#on" class="click-flash">.on()</a></li><li><a href="#off" class="click-flash">.off()</a></li><li><a href="#timedon" class="click-flash">.timedOn(timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#ison" class="click-flash">.isOn()</a></li><li><a href="#isfullon" class="click-flash">.isFullOn()</a></li><li><a href="#isoff" class="click-flash">.isOff()</a></li><li><a href="#getpwm" class="click-flash">.getPwm()</a></li><li><a href="#getpwmpercent" class="click-flash">.getPwmPercent()</a></li><li><a href="#setpwm" class="click-flash">.setPwm(value)</a></li><li><a href="#setpwmpercent" class="click-flash">.setPwmPercent(value)</a></li><li><a href="#rampup" class="click-flash">.rampUp(timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#rampdown" class="click-flash">.rampDown(timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#ramp" class="click-flash">.ramp(value, timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#ramppercent" class="click-flash">.rampPercent(value, timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li></ul><div class="section"><a name="constructor"></a><h4>RBD::Motor constructor(pin)</h4><p>Create a new motor and pass in the Arduino pin number.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::Motor motor(3); // pwm pin 3
+]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor(pin)</a></li><li><a href="#update" class="click-flash">.update()</a><span data-toggle="tooltip" data-placement="right" title="This helps move real-time methods along." class="label label-primary">PROCESS REAL-TIME</span></li><li><a href="#on" class="click-flash">.on()</a></li><li><a href="#off" class="click-flash">.off()</a></li><li><a href="#timedon" class="click-flash">.timedOn(timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#ison" class="click-flash">.isOn()</a></li><li><a href="#isoff" class="click-flash">.isOff()</a></li><li><a href="#isfullon" class="click-flash">.isFullOn()</a></li><li><a href="#getpwm" class="click-flash">.getPwm()</a></li><li><a href="#getpwmpercent" class="click-flash">.getPwmPercent()</a></li><li><a href="#setpwm" class="click-flash">.setPwm(value)</a></li><li><a href="#setpwmpercent" class="click-flash">.setPwmPercent(value)</a></li><li><a href="#rampup" class="click-flash">.rampUp(timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#rampdown" class="click-flash">.rampDown(timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#ramp" class="click-flash">.ramp(value, timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#ramppercent" class="click-flash">.rampPercent(value, timeout)</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li></ul><div class="section"><a name="constructor"></a><h4>RBD::Motor constructor(pin)</h4><p>Create a new motor and pass in the Arduino pin number.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::Motor motor(3); // pwm pin 3
 
 void setup() {
   ...
@@ -40,20 +40,19 @@ void loop() {
 void loop() {
   Serial.println(motor.isOn());
 }
-]]></script></div><div class="section"><a name="isfullon"></a><h4>motor.isFullOn()</h4><p>Returns true only if the motor is running at 100% speed.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
-  motor.setPwm(255);
-}
-
-void loop() {
-  Serial.println(motor.isOn());
-}
-
 ]]></script></div><div class="section"><a name="isoff"></a><h4>motor.isOff()</h4><p>Returns true only if the motor is at 0% speed.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
   motor.off();
 }
 
 void loop() {
   Serial.println(motor.isOff());
+}
+]]></script></div><div class="section"><a name="isfullon"></a><h4>motor.isFullOn()</h4><p>Returns true only if the motor is running at 100% speed.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  motor.setPwm(255);
+}
+
+void loop() {
+  Serial.println(motor.isFullOn());
 }
 ]]></script></div><div class="section"><a name="getpwm"></a><h4>motor.getPwm()</h4><p>Returns an integer from 0 - 255 for the current motor speed.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
   motor.on();

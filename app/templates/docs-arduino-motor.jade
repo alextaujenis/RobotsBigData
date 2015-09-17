@@ -123,9 +123,9 @@ html(lang='en')
             li
               a.click-flash(href="#ison") .isOn()
             li
-              a.click-flash(href="#isfullon") .isFullOn()
-            li
               a.click-flash(href="#isoff") .isOff()
+            li
+              a.click-flash(href="#isfullon") .isFullOn()
             li
               a.click-flash(href="#getpwm") .getPwm()
             li
@@ -232,23 +232,6 @@ html(lang='en')
                 }
 
           .section
-            a(name="isfullon")
-            h4 motor.isFullOn()
-            p
-              | Returns true only if the motor is running at 100% speed.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.setPwm(255);
-                }
-
-                void loop() {
-                  Serial.println(motor.isOn());
-                }
-
-
-          .section
             a(name="isoff")
             h4 motor.isOff()
             p
@@ -262,6 +245,22 @@ html(lang='en')
 
                 void loop() {
                   Serial.println(motor.isOff());
+                }
+
+          .section
+            a(name="isfullon")
+            h4 motor.isFullOn()
+            p
+              | Returns true only if the motor is running at 100% speed.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.setPwm(255);
+                }
+
+                void loop() {
+                  Serial.println(motor.isFullOn());
                 }
 
           .section

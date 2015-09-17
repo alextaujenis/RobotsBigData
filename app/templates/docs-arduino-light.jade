@@ -116,6 +116,8 @@ html(lang='en')
             li
               a.click-flash(href="#isoff") .isOff()
             li
+              a.click-flash(href="#isfullon") .isFullOn()
+            li
               a.click-flash(href="#setpwm") .setPwm(value)
             li
               a.click-flash(href="#setpwmpercent") .setPwmPercent(value)
@@ -186,7 +188,7 @@ html(lang='en')
           .section
             a(name="ison")
             h4 light.isOn()
-            p Returns true if the light is 100% on.
+            p Returns true if the current light brightness is greater than 0%.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
@@ -197,12 +199,23 @@ html(lang='en')
           .section
             a(name="isoff")
             h4 light.isOff()
-            p Returns true if the light is 0% on.
+            p Returns true if the current light brightness is at 0%.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void loop() {
                   light.isOff();
+                }
+
+          .section
+            a(name="isfullon")
+            h4 light.isFullOn()
+            p Returns true if the current light brightness is at 100%.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light.isOn();
                 }
 
           .section
