@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title Robots + Big Data: Conductor Documentation
+    title Robots + Big Data: Config Documentation
     include ./global/head-content.jade
   body
     include ./global/top-nav.jade
@@ -17,7 +17,7 @@ html(lang='en')
             li
               a(href="docs-raspberry-pi.html") Raspberry Pi
             li.active
-              | Conductor
+              | Config
           .jumbotron
             .stuck
               .row.jumbotron-header
@@ -25,10 +25,10 @@ html(lang='en')
                   span.label.label-danger.title-label Raspberry Pi
             .jumbotron-container
               h2
-                | Conductor
+                | Config
                 small  API DOCUMENTATION
               p
-                | Load json config files into memory.
+                | Read environment-specific config files from disk.
                 small v1.0.0
               a.btn.btn-warning(href="#download") Download
               | &nbsp;&nbsp;
@@ -39,7 +39,7 @@ html(lang='en')
             a(name="overview")
             | Overview
           p.lead
-            | This non-blocking module accepts a list of JSON config files, reads them from disk, and makes the config data available in memory. This is helpful for first starting an application and getting credentials or address information, then connecting to authenticated or external services such as a database or remote camera.
+            | This module is a lightweight wrapper around reading files from disk into memory.
           h3
             a(name="download")
             | Download
@@ -56,7 +56,7 @@ html(lang='en')
                 a(href="https://docs.npmjs.com", data-toggle="tooltip", data-placement="right", title="A package manager for JavaScript that makes it easy to share and reuse code.<div class='blue'>https://docs.npmjs.com</div>") npm
                 script(type="syntaxhighlighter", class="brush: bash; gutter: false;")
                   :cdata
-                    npm install rbd_conductor
+                    npm install rbd_config
 
               li
                 a(href="#") View Source on GitHub
@@ -70,10 +70,10 @@ html(lang='en')
 
           script(type="syntaxhighlighter", class="brush: javascript; gutter: false;")
             :cdata
-              Conductor = require('rbd_conductor').module
+              Config = require('rbd_conductor').module
 
               config_files = ['arduino', 'camera', 'database']
-              conductor    = new Conductor({config_files: config_files})
+              conductor    = new Config({config_files: config_files})
 
               conductor.start()
 
@@ -90,21 +90,22 @@ html(lang='en')
           h5 EXAMPLE CODE
           script(type="syntaxhighlighter", class="brush: javascript; gutter: false;")
             :cdata
-              Conductor = require('rbd_conductor').module
+              Config = require('rbd_conductor').module
 
           h3
             a(name="constructor")
             | Constructor
           p.lead
             | The constructor accepts an object with an array of config file names. It looks for JSON files in the default location of "app/server/config/", relative to your project folder.
-          h5 EXAMPLE FOLDER STRUCTURE
-          img.image(src="../app/images/config-folder.png")
           h5 EXAMPLE CODE
           script(type="syntaxhighlighter", class="brush: javascript; gutter: false;")
             :cdata
-              conductor = new Conductor({
+              conductor = new Config({
                 config_files: ['arduino', 'camera', 'database']
               })
+          h5 EXAMPLE FOLDER STRUCTURE
+          img.image(src="../app/images/config-folder.png")
+
           h3
             a(name="public-methods")
             | Public Methods

@@ -131,7 +131,7 @@ html(lang='en')
           p
             | You must continuously call&nbsp;
             a.click-flash(href="#update") update()
-            |  inside of loop() in order to use the&nbsp;
+            |  inside of loop() in order to use the
             span.label.label-success REAL-TIME
             |  methods tagged below.
 
@@ -212,7 +212,7 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  water_sensor.setRefreshRate();
+                  water_sensor.setRefreshRate(10);
                 }
 
           .section

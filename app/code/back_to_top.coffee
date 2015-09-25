@@ -14,6 +14,6 @@ $(document).ready ->
   # show and hide the back to top button
   w.scroll ->
     if w.scrollTop() > 100
-      top_link.fadeIn(200)
+      top_link.stop().fadeIn(200)
     else
-      top_link.fadeOut(200)
+      top_link.stop().fadeOut(200)

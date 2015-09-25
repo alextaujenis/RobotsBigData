@@ -96,6 +96,14 @@ html(lang='en')
               a.click-flash(href="#getpercentvalue") .getPercentValue()
             li
               a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
+            li
+              a.click-flash(href="#setfloor") .setFloor(value)
+            li
+              a.click-flash(href="#setceiling") .setCeiling(value)
+            li
+              a.click-flash(href="#resetfloor") .resetFloor()
+            li
+              a.click-flash(href="#resetceiling") .resetCeiling()
 
           .section
             a(name="constructor")
@@ -152,6 +160,56 @@ html(lang='en')
               :cdata
                 void loop() {
                   light_sensor.getInversePercentValue();
+                }
+
+          .section
+            a(name="setfloor")
+            h4 light_sensor.setFloor(value)
+            p Provide an integer from 0 - 1023 to calibrate the sensor with a lower bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.setFloor(10);
+                }
+
+          .section
+            a(name="setceiling")
+            h4 light_sensor.setCeiling(value)
+            p Provide an integer from 0 - 1023 to calibrate the sensor with an upper bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.setCeiling(999);
+                }
+
+          .section
+            a(name="resetfloor")
+            h4 light_sensor.resetFloor()
+            p
+              | Change the&nbsp;
+              a.click-flash(href="#setfloor") setFloor()
+              |  value back to 0, which also resets the lower bounds of the scale for all methods that return a value in this library.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.resetFloor();
+                }
+
+          .section
+            a(name="resetceiling")
+            h4 light_sensor.resetCeiling()
+            p
+              | Change the&nbsp;
+              a.click-flash(href="#setceiling") setCeiling()
+              |  value back to 1023, which also resets the upper bounds of the scale for all methods that return a value in this library.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.resetCeiling();
                 }
 
           .section-bottom
