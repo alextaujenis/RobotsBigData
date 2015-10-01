@@ -304,7 +304,7 @@ html(lang='en')
             p
               | Changes the&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
-              |  back to 0, resetting the modifier on the human sensor threshold scale.
+              |  back to 0 and resets calibration of the human sensor threshold scale.
             p
               i For example
               | ; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.
@@ -458,11 +458,9 @@ html(lang='en')
               a.click-flash(href="#setmodifier") setModifier()
               | .
             p
-              | This will return the raw capacitance sensor reading if you have not called&nbsp;
+              | This will return the raw capacitance sensor reading if you have not used&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
-              | , or if you have called&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
-              |  and then called&nbsp;
+              |  yet, or if you have called&nbsp;
               a.click-flash(href="#resetmodifier") resetModifier()
               | .
             h5 EXAMPLE SKETCH

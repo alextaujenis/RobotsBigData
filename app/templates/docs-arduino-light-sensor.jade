@@ -91,6 +91,8 @@ html(lang='en')
             li
               a.click-flash(href="#getvalue") .getValue()
             li
+              a.click-flash(href="#getrawvalue") .getRawValue()
+            li
               a.click-flash(href="#getinversevalue") .getInverseValue()
             li
               a.click-flash(href="#getpercentvalue") .getPercentValue()
@@ -121,7 +123,30 @@ html(lang='en')
           .section
             a(name="getvalue")
             h4 light_sensor.getValue()
-            p Returns an integer from 0 - 1023 for the current light level.
+            p
+              | Returns an integer from 0 - 1023 for the current light level adjusted for the&nbsp;
+              a.click-flash(href="#setfloor") setFloor()
+              |  and&nbsp;
+              a.click-flash(href="#setceiling") setCeiling()
+              |  values. If the floor or ceiling are not set, this method will return&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getValue();
+                }
+
+          .section
+            a(name="getrawvalue")
+            h4 light_sensor.getRawValue()
+            p
+              | Returns an integer from 0 - 1023 for the current light level reading from the sensor. Use this method to calibrate&nbsp;
+              a.click-flash(href="#setfloor") setFloor()
+              |  and&nbsp;
+              a.click-flash(href="#setceiling") setCeiling()
+              | .
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
@@ -165,7 +190,10 @@ html(lang='en')
           .section
             a(name="setfloor")
             h4 light_sensor.setFloor(value)
-            p Provide an integer from 0 - 1023 to calibrate the sensor with a lower bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range.
+            p
+              | Provide an integer from 0 - 1023 to calibrate the sensor with a lower bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the floor with help from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | .
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
@@ -176,7 +204,9 @@ html(lang='en')
           .section
             a(name="setceiling")
             h4 light_sensor.setCeiling(value)
-            p Provide an integer from 0 - 1023 to calibrate the sensor with an upper bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range.
+            p Provide an integer from 0 - 1023 to calibrate the sensor with an upper bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the ceiling with help from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | .
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
