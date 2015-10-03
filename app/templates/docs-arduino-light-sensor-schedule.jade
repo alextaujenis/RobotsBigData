@@ -1,0 +1,439 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Light Sensor Schedule Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8.col-md-9
+          ol.breadcrumb
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs.html") Docs
+            li
+              a(href="docs-arduino.html") Arduino
+            li.active
+              | Light Sensor Schedule
+          .jumbotron
+            .stuck
+              .row.jumbotron-header
+                .col-xs-12.text-right
+                  span.label.label-info.title-label Arduino
+            .jumbotron-container
+              h2
+                | Light Sensor Schedule
+                small  API DOCUMENTATION
+              p
+                | Measure light intensity from photoresistors over time.
+                small v1.0.0
+              a.btn.btn-success(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-sketch") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
+          h3
+            a(name="download")
+            | Download
+          p.lead
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself with three dependencies.
+          p
+            ul
+              li
+                a(href="#") Download Full Sensor Package
+                |  with this library included
+              li
+                a(href="#") Download Light Sensor Schedule Library v1.0.0
+                |  with&nbsp;
+                span.badge 3
+                | &nbsp;
+                a.dependency(href="docs-arduino-light-sensor-schedule.html") Light Sensor
+                | ,&nbsp;
+                a.dependency(href="docs-arduino-threshold.html") Threshold
+                | , and&nbsp;
+                a.dependency(href="docs-arduino-timer.html") Timer
+                |  dependencies
+              li
+                a(href="https://github.com/alextaujenis/RBD_WaterSensor") View Source on GitHub
+                |  with MIT license
+
+          h3
+            a(name="example-sketch")
+            | Example Sketch
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
+
+          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            :cdata
+              #include <RBD_LightSensor.h>
+              #include <RBD_Threshold.h>
+              #include <RBD_Timer.h>
+              #include <RBD_LightSensorSchedule.h>
+
+              #define BAUD    115200
+
+              RBD::LightSensor         light_sensor(A0);
+              RBD::LightSensorSchedule light_schedule(light_sensor, 10, 24); // save every 10m for 24h
+
+              void setup() {
+                Serial.begin(BAUD);
+              }
+
+              void loop() {
+                light_schedule.update();
+
+                if(light_schedule.onSave()) {
+                  light_schedule.printStatus();
+                }
+              }
+          h3
+            a(name="public-methods")
+            | Public Methods
+
+          p
+            | You must continuously call&nbsp;
+            a.click-flash(href="#update") update()
+            |  inside of loop() in order to use the
+            span.label.label-success REAL-TIME
+            |  methods tagged below.
+
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::LightSensorSchedule
+
+          ul.public-methods
+            li
+              a.click-flash(href="#constructor") constructor(light_sensor, interval_minutes, interval_hours)
+            li
+              a.click-flash(href="#update") .update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            li
+              a.click-flash(href="#settargetlighthours") .setTargetLightHours(value)
+            li
+              a.click-flash(href="#settargetbrightness") .setTargetBrightness(value)
+            li
+              a.click-flash(href="#setminbrightness") .setMinBrightness(value)
+            li
+              a.click-flash(href="#settimesensitivity") .setTimeSensitivity(value)
+            li
+              a.click-flash(href="#setbrightnesssensitivity") .setBrightnessSensitivity(value)
+            li
+              a.click-flash(href="#onsave") .onSave()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#gettimelevel") .getTimeLevel()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
+              a.click-flash(href="#getbrightnesslevel") .getBrightnessLevel()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
+              a.click-flash(href="#getbrightnesshours") .getBrightnessHours()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
+              a.click-flash(href="#getbrightnessaverage") .getBrightnessAverage()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
+              a.click-flash(href="#printstatus") .printStatus()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+          .section
+            a(name="constructor")
+            h4 RBD::LightSensorSchedule constructor(light_sensor, interval_minutes, interval_hours)
+            p
+              | Pass in a new&nbsp;
+              a(href="docs-arduino-light-sensor.html") RBD::LightSensor
+              |  as the first parameter. Pass in an integer from 1 - 60 for the interval minutes, which is the length of delay between each sensor reading. Pass in an integer 24 or greater for the interval hours, which is the length of time the sensor readings will be saved and how long the library computations will be averaged across.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::LightSensor         light_sensor(A0);
+                RBD::LightSensorSchedule light_schedule(light_sensor, 10, 24); // save every 10m for 24h
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            a(name="update")
+            h4
+              | light_schedule.update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            p Keep processing the readings and move this library along in real-time.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_schedule.update();
+                }
+
+          .section
+            a(name="settargetlighthours")
+            h4 light_schedule.setTargetLightHours(value)
+            p
+              | Pass in an integer from 1 - 24 for the number of hours the sensor should see minimum brightness each day. The thresholds of&nbsp;
+              a.click-flash(href="#gettimelevel") getTimeLevel()
+              |  will be centered around this value.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light_schedule.setTargetLightHours(10); // default
+                }
+
+          .section
+            a(name="settargetbrightness")
+            h4 light_schedule.setTargetBrightness(value)
+            p
+              | Pass in an integer from 0 - 100 for the percentage of brightness the sensor should ideally see over the course of the day. The thresholds of&nbsp;
+              a.click-flash(href="#getbrightnesslevel") getBrightnessLevel()
+              |  will be centered around this value.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light_schedule.setTargetBrightness(90); // default percent
+                }
+
+          .section
+            a(name="setminbrightness")
+            h4 light_schedule.setMinBrightness(value)
+            p
+              | Pass in an integer from 0 - 100 for the minimum percentage of brightness the sensor should see to consider it light. This is used as a baseline to count time for&nbsp;
+              a.click-flash(href="#getbrightnesshours") getBrightnessHours()
+              | , and while computing&nbsp;
+              a.click-flash(href="#getbrightnessaverage") getBrightnessAverage()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light_schedule.setMinBrightness(50); // default percent
+                }
+
+          .section
+            a(name="settimesensitivity")
+            h4 light_schedule.setTimeSensitivity()
+            p
+              | Provide an integer between 0 - 100 that adjusts the thresholds for determining if the sensor has been under light for enough time today. For example; with 10 target light hours and 10% time sensitivity, the thresholds for&nbsp;
+              a.click-flash(href="#gettimelevel") getTimeLevel()
+              |  will be 1 hour apart centered on 10 hours.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light_schedule.setTimeSensitivity(10); // default percent
+                }
+
+          .section
+            a(name="setbrightnesssensitivity")
+            h4 light_schedule.setBrightnessSensitivity()
+            p
+              | Provide an integer between 0 - 100 that adjusts the thresholds for determining if the sensor has received enough light today. For example; with 90% target brightness and 5% light sensitivity, the thresholds for&nbsp;
+              a.click-flash(href="#getbrightnesslevel") getBrightnessLevel()
+              |  will be 4.5% apart centered on 90% brightness.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light_schedule.setBrightnessSensitivity(5); // default percent
+                }
+
+          .section
+            a(name="onsave")
+            h4
+              | light_schedule.onSave()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | Returns true if a sensor reading was just saved, and all computed sensor values have changed. This will return true only once, after it has been called, and then will reset itself to catch the next event.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_schedule.update();
+
+                  if(light_schedule.onSave()) {
+                    // code inside this block only runs once per event
+                    ...
+                  }
+                }
+
+          .section
+            a(name="gettimelevel")
+            h4
+              | light_schedule.getTimeLevel()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Returns an integer from 0 - 6 as a health indicator for how many hours the sensor has seen light today compared to the target hours. The
+              i perfect
+              |  threshold is centered on&nbsp;
+              a.click-flash(href="#settargetlighthours") setTargetLightHours()
+              |  with bands that are&nbsp;
+              a.click-flash(href="#settimesensitivity") setTimeSensitivity()
+              |  percent wide.
+              ul
+                li
+                  | &nbsp;
+                  b 0
+                  | &nbsp;&nbsp;too low
+                li
+                  | &nbsp;
+                  b 1
+                  | &nbsp;&nbsp;very low
+                li
+                  | &nbsp;
+                  b 2
+                  | &nbsp;&nbsp;low
+                li
+                  | &nbsp;
+                  b 3
+                  | &nbsp;&nbsp;perfect
+                li
+                  | &nbsp;
+                  b 4
+                  | &nbsp;&nbsp;high
+                li
+                  | &nbsp;
+                  b 5
+                  | &nbsp;&nbsp;very high
+                li
+                  | &nbsp;
+                  b 6
+                  | &nbsp;&nbsp;way too high
+
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_schedule.update();
+
+                  if(light_schedule.onSave()) {
+                    Serial.println(light_schedule.getTimeLevel());
+                  }
+                }
+
+
+          .section
+            a(name="getbrightnesslevel")
+            h4
+              | light_schedule.getBrightnessLevel()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Returns an integer from 0 - 6 as a health indicator for how bright the light has been today. The&nbsp;
+              i perfect
+              |  threshold is centered on&nbsp;
+              a.click-flash(href="#settargetbrightness") setTargetBrightness()
+              |  with bands that are&nbsp;
+              a.click-flash(href="#setbrightnesssensitivity") setBrightnessSensitivity()
+              |  percent wide.
+              ul
+                li
+                  | &nbsp;
+                  b 0
+                  | &nbsp;&nbsp;too low
+                li
+                  | &nbsp;
+                  b 1
+                  | &nbsp;&nbsp;very low
+                li
+                  | &nbsp;
+                  b 2
+                  | &nbsp;&nbsp;low
+                li
+                  | &nbsp;
+                  b 3
+                  | &nbsp;&nbsp;perfect
+                li
+                  | &nbsp;
+                  b 4
+                  | &nbsp;&nbsp;high
+                li
+                  | &nbsp;
+                  b 5
+                  | &nbsp;&nbsp;very high
+                li
+                  | &nbsp;
+                  b 6
+                  | &nbsp;&nbsp;way too high
+
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_schedule.update();
+
+                  if(light_schedule.onSave()) {
+                    Serial.println(light_schedule.getBrightnessLevel());
+                  }
+                }
+
+          .section
+            a(name="getbrightnesshours")
+            h4
+              | light_schedule.getBrightnessHours()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Returns the number of hours the sensor has seen light at&nbsp;
+              a.click-flash(href="#setminbrightness") setMinBrightness()
+              |  or above, over the course of the day.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_schedule.update();
+
+                  if(light_schedule.onSave()) {
+                    Serial.println(light_schedule.getBrightnessHours());
+                  }
+                }
+
+          .section
+            a(name="getbrightnessaverage")
+            h4
+              | light_schedule.getBrightnessAverage()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Returns the average percent of brightness the sensor has seen above&nbsp;
+              a.click-flash(href="#setminbrightness") setMinBrightness()
+              | , over the course of the day.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_schedule.update();
+
+                  if(light_schedule.onSave()) {
+                    Serial.println(light_schedule.getBrightnessAverage());
+                  }
+                }
+
+          .section
+            a(name="printstatus")
+            h4
+              | light_schedule.printStatus()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Prints diagnostic information about the state of the library to serial output.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_schedule.update();
+
+                  if(light_schedule.onSave()) {
+                    Serial.println(light_schedule.printStatus());
+                  }
+                }
+
+          .section-bottom
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
