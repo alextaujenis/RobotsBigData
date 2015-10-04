@@ -131,6 +131,9 @@ html(lang='en')
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             li
+              a.click-flash(href="#printstatus") .printStatus()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
               a.click-flash(href="#gettimelevel") .getTimeLevel()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
@@ -141,9 +144,6 @@ html(lang='en')
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
               a.click-flash(href="#getbrightnessaverage") .getBrightnessAverage()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-            li
-              a.click-flash(href="#printstatus") .printStatus()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
           .section
             a(name="constructor")
@@ -268,12 +268,30 @@ html(lang='en')
                 }
 
           .section
+            a(name="printstatus")
+            h4
+              | light_schedule.printStatus()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Prints diagnostic information about the state of the library to serial output.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_schedule.update();
+
+                  if(light_schedule.onSave()) {
+                    Serial.println(light_schedule.printStatus());
+                  }
+                }
+
+          .section
             a(name="gettimelevel")
             h4
               | light_schedule.getTimeLevel()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
-              | Returns an integer from 0 - 6 as a health indicator for how many hours the sensor has seen light today compared to the target hours. The
+              | Returns an integer from 0 - 6 as a health indicator for how many hours the sensor has seen light today compared to the target hours. The&nbsp;
               i perfect
               |  threshold is centered on&nbsp;
               a.click-flash(href="#settargetlighthours") setTargetLightHours()
@@ -320,7 +338,6 @@ html(lang='en')
                     Serial.println(light_schedule.getTimeLevel());
                   }
                 }
-
 
           .section
             a(name="getbrightnesslevel")
@@ -416,23 +433,6 @@ html(lang='en')
                   }
                 }
 
-          .section
-            a(name="printstatus")
-            h4
-              | light_schedule.printStatus()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-            p
-              | Prints diagnostic information about the state of the library to serial output.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  light_schedule.update();
-
-                  if(light_schedule.onSave()) {
-                    Serial.println(light_schedule.printStatus());
-                  }
-                }
 
           .section-bottom
     include ./global/foot-content.jade
