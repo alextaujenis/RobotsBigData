@@ -61,7 +61,7 @@ html(lang='en')
                 a.dependency(href="docs-arduino-timer.html") Timer
                 |  dependencies
               li
-                a(href="https://github.com/alextaujenis/RBD_WaterSensor") View Source on GitHub
+                a(href="https://github.com/alextaujenis/RBD_LightSensorSchedule") View Source on GitHub
                 |  with MIT license
 
           h3
@@ -345,7 +345,7 @@ html(lang='en')
               | light_schedule.getBrightnessLevel()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
-              | Returns an integer from 0 - 6 as a health indicator for how bright the light has been today. The&nbsp;
+              | Returns an integer from 0 - 6 as a health indicator for how bright the light has been today compared to the target brightness. The&nbsp;
               i perfect
               |  threshold is centered on&nbsp;
               a.click-flash(href="#settargetbrightness") setTargetBrightness()

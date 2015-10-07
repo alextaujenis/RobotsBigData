@@ -35,7 +35,7 @@ void updateTimer2() {
     rising = !rising;
   }
 }]]></script><h3><a name="public-methods"></a>Public Methods</h3><h4 class="class-name"><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::Timer
-]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor()</a></li><li><a href="#settimeout" class="click-flash">.setTimeout(value)</a></li><li><a href="#sethertz" class="click-flash">.setHertz(value)</a></li><li><a href="#restart" class="click-flash">.restart()</a></li><li><a href="#onrestart" class="click-flash">.onRestart()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#isactive" class="click-flash">.isActive()</a></li><li><a href="#isexpired" class="click-flash">.isExpired()</a></li><li><a href="#getvalue" class="click-flash">.getValue()</a></li><li><a href="#getinversevalue" class="click-flash">.getInverseValue()</a></li><li><a href="#getpercentvalue" class="click-flash">.getPercentValue()</a></li><li><a href="#getinversepercentvalue" class="click-flash">.getInversePercentValue()</a></li></ul><div class="section"><a name="constructor"></a><h4>RBD::Timer constructor()</h4><p>Create a new timer instance.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::Timer timer;
+]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor()</a></li><li><a href="#settimeout" class="click-flash">.setTimeout(value)</a></li><li><a href="#sethertz" class="click-flash">.setHertz(value)</a></li><li><a href="#restart" class="click-flash">.restart()</a></li><li><a href="#isactive" class="click-flash">.isActive()</a></li><li><a href="#isexpired" class="click-flash">.isExpired()</a></li><li><a href="#onrestart" class="click-flash">.onRestart()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onactive" class="click-flash">.onActive()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onexpired" class="click-flash">.onExpired()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#getvalue" class="click-flash">.getValue()</a></li><li><a href="#getinversevalue" class="click-flash">.getInverseValue()</a></li><li><a href="#getpercentvalue" class="click-flash">.getPercentValue()</a></li><li><a href="#getinversepercentvalue" class="click-flash">.getInversePercentValue()</a></li></ul><div class="section"><a name="constructor"></a><h4>RBD::Timer constructor()</h4><p>Create a new timer instance.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::Timer timer;
 
 void setup() {
   ...
@@ -50,7 +50,7 @@ void loop() {
     // returns true after 200ms
   }
 }
-]]></script></div><div class="section"><a name="sethertz"></a><h4>timer.setHertz(value)</h4><p>Provide an integer greater than 0 and up to 1000 to set approximately how many times you can fire an event in one second. This can be done inside of setup() or also inside of loop() to change the value at runtime.
+]]></script></div><div class="section"><a name="sethertz"></a><h4>timer.setHertz(value)</h4><p>Provide an integer from 1 - 1000 to set approximately how many times the timer will restart in one second. This can be done inside of setup() or also inside of loop() to change the value at runtime.
 This will override any value given to&nbsp;<a href="#settimeout" class="click-flash">setTimeout()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
   timer.setHertz(5);  // expire after 200ms
 }
@@ -60,26 +60,38 @@ void loop() {
     // events fired here are close to 5Hz
   }
 }
-]]></script></div><div class="section"><a name="restart"></a><h4>timer.restart()</h4><p>There are no start or stop methods. All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. Can be used with&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a> to create a continuous loop.  If you would like a tighter delay loop that doesn't wait for your code to run in order to restart the timer, then use&nbsp;<a href="#onrestart" class="click-false">onRestart()</a> instead.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+]]></script></div><div class="section"><a name="restart"></a><h4>timer.restart()</h4><p>There are no start or stop methods. All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a> to create a continuous loop. If you would like a tighter time loop that doesn't wait for your code to run in order to restart the timer, then use&nbsp;<a href="#onrestart" class="click-false">onRestart()</a> instead.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
   if(timer.isExpired()) {
     timer.restart();
   }
 }
-]]></script></div><div class="section"><a name="onrestart"></a><h4>timer.onRestart()<span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a>  and&nbsp;<a href="#restart" class="click-flash">restart()</a> together, but with a simpler syntax and a tighter time loop.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
-  if(timer.onRestart()) {
-    // code block runs once per event
-    Serial.println("Timer Restarted");
-  }
-}
-]]></script></div><div class="section"><a name="isactive"></a><h4>timer.isActive()</h4><p>Returns true if time is available. Use this method with&nbsp;<a href="#getpercentvalue" class="click-flash">getPercentValue()</a> or&nbsp;<a href="#getinversepercentvalue" class="click-flash">getInversePercentValue()</a> to perform real-time events tweened over time.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+]]></script></div><div class="section"><a name="isactive"></a><h4>timer.isActive()</h4><p>Returns true if time is available. Use this method with&nbsp;<a href="#getpercentvalue" class="click-flash">getPercentValue()</a> or&nbsp;<a href="#getinversepercentvalue" class="click-flash">getInversePercentValue()</a> to perform real-time actions tweened over time.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
   if(timer.isActive()) {
     Serial.println(timer.getPercentValue());
   }
 }
-]]></script></div><div class="section"><a name="isexpired"></a><h4>timer.isExpired()</h4><p>Returns true if time has run out. This can be used for a single non-blocking delay, or it can be used with&nbsp;<a href="#restart" class="click-flash">restart()</a> to create a continuous loop that you restart when an action has completed. If you would like a tighter delay loop that doesn't wait for your code to run in order to restart the timer, then use&nbsp;<a href="#onrestart" class="click-false">onRestart()</a> instead.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+]]></script></div><div class="section"><a name="isexpired"></a><h4>timer.isExpired()</h4><p>Returns true if time has run out. This can be used for a single non-blocking delay, or it can be used with&nbsp;<a href="#restart" class="click-flash">restart()</a> to create a continuous loop that you restart when an action has completed. If you would like a tighter time loop that doesn't wait for your code to run in order to restart the timer, then use&nbsp;<a href="#onrestart" class="click-false">onRestart()</a> instead.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
   if(timer.isExpired()) {
     // run code here and restart when finished
     timer.restart();
+  }
+}
+]]></script></div><div class="section"><a name="onrestart"></a><h4>timer.onRestart()<span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a>  and&nbsp;<a href="#restart" class="click-flash">restart()</a> together, but with a simple syntax and a tighter time loop.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  if(timer.onRestart()) {
+    // code block runs once per restart
+    Serial.println("Timer Restarted");
+  }
+}
+]]></script></div><div class="section"><a name="onactive"></a><h4>timer.onActive()<span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will fire a single event when the timer goes active. The timer must expire and then be restarted for this event to fire again.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  if(timer.onActive()) {
+    // code block runs once per active event
+    Serial.println("Timer Active");
+  }
+}
+]]></script></div><div class="section"><a name="onexpired"></a><h4>timer.onExpired()<span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will fire a single event when the timer expires. The timer must be restarted and then allowed to expire for this event to fire again.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  if(timer.onExpired()) {
+    // code block runs once per event
+    Serial.println("Timer Expired");
   }
 }
 ]]></script></div><div class="section"><a name="getvalue"></a><h4>timer.getValue()</h4><p>Returns an unsigned long of how many milliseconds that have passed since the start of the timer.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
@@ -94,6 +106,4 @@ void loop() {
 ]]></script></div><div class="section"><a name="getinversepercentvalue"></a><h4>timer.getInversePercentValue()</h4><p>Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
   Serial.println(timer.getInversePercentValue());
 }
-
-
 ]]></script></div><div class="section-bottom"></div></div></div></div><script src="../bower_components/jquery/dist/jquery.min.js"></script><script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script><script src="code/init_bootstrap.js"></script><script src="code/back_to_top.js"></script><script src="libraries/jquery.stuck.js"></script><script src="code/init_jquery_stuck.js"></script><script src="libraries/shCore.js"></script><script src="libraries/shLegacy.js"></script><script src="libraries/shAutoloader.js"></script><script src="libraries/shBrushCpp.js"></script><script src="libraries/shBrushBash.js"></script><script src="libraries/shBrushJScript.js"></script><script src="code/syntax_highlighter.js"></script><script src="libraries/click_flash.js"></script><script src="libraries/jquery.color.min.js"></script></body></html>
