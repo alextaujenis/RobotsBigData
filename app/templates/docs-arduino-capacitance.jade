@@ -16,7 +16,7 @@ html(lang='en')
               a(href="docs-arduino.html") Arduino
             li.active
               | Capacitance
-            a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/") edit
+            a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
           .jumbotron
             .stuck
               .row.jumbotron-header
@@ -59,7 +59,7 @@ html(lang='en')
           p
             ul
               li
-                a(href="#") Download Full Sensor Package
+                a(href="install.html") Download Full Sensor Package
                 |  with this library included
               li
                 a(href="#") Download Capacitance Library v1.0.0
@@ -89,24 +89,17 @@ html(lang='en')
             :cdata
               #include <RBD_Capacitance.h>
 
-              #define BAUD        115200
-              #define SEND_PIN    1 // tx
-              #define RECEIVE_PIN 0 // rx
-
-              RBD::Capacitance cap_sensor(SEND_PIN, RECEIVE_PIN);
+              RBD::Capacitance cap_sensor(1, 0); // send, receive
 
               void setup() {
-                Serial.begin(BAUD);
-                cap_sensor.setSampleSize(100); // default
-                cap_sensor.start();
+                Serial.begin(115200);
               }
 
               void loop() {
                 cap_sensor.update();
 
-                if(cap_sensor.isFinished()) {
+                if(cap_sensor.onChange()) {
                   Serial.println(cap_sensor.getValue());
-                  cap_sensor.start();
                 }
               }
 
@@ -181,6 +174,10 @@ html(lang='en')
             li
               a.click-flash(href="#getvalue") .getValue()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
+              a.click-flash(href="#onchange") .onChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
 
           .section
             a(name="constructor")
@@ -300,6 +297,32 @@ html(lang='en')
                   cap_sensor.update();
 
                   if(cap_sensor.isFinished()) {
+                    Serial.println(cap_sensor.getValue());
+                  }
+                }
+
+          .section
+            a(name="onchange")
+            h4
+              | cap_sensor.onChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will fire a single event and start taking another sensor reading each time the&nbsp;
+              a.click-flash(href="#getvalue") getValue()
+              |  changes, mimicking the same process of creating a loop by calling&nbsp;
+              a.click-flash(href="#start") start()
+              |  and&nbsp;
+              a.click-flash(href="#isfinished") isFinished()
+              |  together, but with a simple syntax and a tighter time loop.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  cap_sensor.update();
+
+                  if(cap_sensor.onChange()) {
+                    // code block runs once per change event
                     Serial.println(cap_sensor.getValue());
                   }
                 }

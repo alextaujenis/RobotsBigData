@@ -11,7 +11,7 @@ html(lang='en')
           a(href="index.html") Home
         li.active
           | Install Guide
-        a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/") edit
+        a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
       .jumbotron
         .jumbotron-container
           h2
@@ -19,6 +19,8 @@ html(lang='en')
             small INSTALL GUIDE
           p
             | Download and install the Arduino Sensor Libraries
+          a.btn.btn-danger(href="#step-1") Begin
+          | &nbsp;&nbsp;
           a.btn.btn-primary(href="docs-arduino.html") Also Read the Docs
       .row
         .col-xs-12
