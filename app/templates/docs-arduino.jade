@@ -1,7 +1,7 @@
 doctype html
 html(lang='en')
   head
-    title Robots + Big Data: Documentation
+    title Robots + Big Data: Arduino Sensor Libraries Documentation
     include ./global/head-content.jade
   body
     include ./global/top-nav.jade
@@ -12,10 +12,9 @@ html(lang='en')
           ol.breadcrumb
             li
               a(href="index.html") Home
-            li
-              a(href="docs.html") Docs
             li.active
               | Arduino Sensor Libraries
+            a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/") edit
           .jumbotron
             .stuck
               .row.jumbotron-header
@@ -23,10 +22,10 @@ html(lang='en')
                   span.label.label-info.title-label Arduino
             .jumbotron-container
               h2
-                | Sensor Libraries
+                | Arduino Sensor Libraries
                 small API DOCUMENTATION
-              p Real-time C++ libraries written for the Arduino.
-              a.btn.btn-primary(href="docs.html") See Full Docs
+              p Real-time event based C++ libraries written for the Arduino.
+              a.btn.btn-primary(href="install.html") Install Guide
           .col-md-10.col-lg-8.libraries
             h3 All Arduino Sensor Libraries
             ul.libraries
@@ -34,47 +33,41 @@ html(lang='en')
                 a(href="docs-arduino-capacitance.html")
                   h4
                     | Capacitance
-                    small A real-time library for detecting changes in capacitance.
+                    small Detect changes in capacitance.
               li
                 a(href="docs-arduino-human-sensor.html")
                   h4
                     | Human Sensor
-                    small Detect human proximity, touch, and pickup events in real-time.
+                    small Detect human proximity, touch, and pickup events.
               li
                 a(href="docs-arduino-light.html")
                   h4
                     | Light
-                    small A real-time library for controlling many lights.
+                    small Controll many lights.
               li
                 a(href="docs-arduino-light-sensor.html")
                   h4
                     | Light Sensor
-                    small A simple library for reading photoresistors.
-              li
-                a(href="docs-arduino-light-sensor-schedule.html")
-                  h4
-                    | Light Sensor Schedule
-                    small Measure light intensity from photoresistors over time.
+                    small Calibrate and read photoresistors.
               li
                 a(href="docs-arduino-motor.html")
                   h4
                     | Motor
-                    small A real-time library for controlling many motors.
+                    small Control many motors.
               li
                 a(href="docs-arduino-threshold.html")
                   h4
                     | Threshold
-                    small Quickly set and check quantile scales.
+                    small Set and check quantile scales.
               li
                 a(href="docs-arduino-timer.html")
                   h4
                     | Timer
-                    small A high-level foundation for managing many timed events.
+                    small Manage many timed events.
               li
                 a(href="docs-arduino-water-sensor.html")
                   h4
                     | Water Sensor
-                    small Measure and calibrate capacitance water sensors in real-time.
-
+                    small Measure and calibrate capacitance water sensors.
 
     include ./global/foot-content.jade

@@ -15,25 +15,22 @@ html(lang='en')
           .col-xs-6.col-sm-3
             a.btn.btn-custom.pull-right(href="#hardware-overview") Learn More
           .col-xs-6.col-sm-3
-            a.btn.btn-custom(href="docs.html") Read Docs
+            a.btn.btn-custom(href="docs-arduino.html") Read Docs
           .col-sm-3
-        .row.text-center
-          a(href="projects.html") view examples
       .row.hardware-spacer
       .row
         h2.section-header.text-center
           | Say hello to the hardware
           a(name="hardware-overview")
       .row.text-center
-        .col-sm-6
+        .col-sm-12
           .hardware1 Program the real world
-          .hardware2 instead of running in a datacenter
           .hardware-with with any
           .hardware-name Arduino
           img(src="../app/images/arduino-uno.png")
           .row.text-left
-            .col-xs-2
-            .col-xs-10
+            .col-xs-2.col-sm-3.col-md-4
+            .col-xs-10.col-sm-9.col-md-8
               ul.hardware-benefits
                 li
                   b Connect
@@ -44,70 +41,28 @@ html(lang='en')
                 li
                   b Do it fast
                   |  in microsecond response times
-        .col-sm-6
-          .hardware3 Bring it to the internet
-          .hardware4 while running in the real-world
-          .hardware-with with the
-          .hardware-name Raspberry Pi
-          img(src="../app/images/raspberry-pi-2-model-b.png")
-          .row.text-left
-            .col-xs-2
-            .col-xs-10
-              ul.hardware-benefits
-                li
-                  b Stream live data
-                  |  to and from the Arduino
-                li
-                  b Store and process
-                  |  lots of data efficiently
-                li
-                  b Provide control
-                  |  from a single-page web app
       .row.software-spacer
       .row
         a(name="software-overview") &nbsp;
         h2.section-header.text-center Take a peek at the software
       .row
-        .col-sm-6.text-center
+        .col-sm-12.text-center
           .software1 Simple libraries that help
           .software2 to solve all the "simple" problems
           img(src="../app/images/arduino-libraries.png")
           .software-footer Control your sensors with C++
-        .col-sm-6.text-center
-          .software3 Standard big data patterns
-          .software4 let you stand on the shoulders of giants
-          img(src="../app/images/big-data-libraries.png")
-          .software-footer Write your web app in JavaScript
       .row.getting-started-spacer
       .row.text-center
         a(name="getting-started") &nbsp;
         h2.getting-started-header Getting Started
-        h3.getting-started-tagline
-          | bootstrap yourself to get
-          i  blinking
-          |  fast with these resources
+        h3.tagline Install the Arduino sensor libraries and read the docs
       .row
-        .col-md-3
-        .col-md-6
-          .resource-link
-            h4
-              a(href="electronic-circuit-design.html") 1. Electronic Circuit Design
-            p
-              i Start with the basics.
-              |  Learn how electricity works, then wire basic electronic parts to sensors.
-          .resource-link
-            h4
-              a(href="real-time-arduino-programming.html") 2. Real-Time Arduino Programming
-            p
-              i Take the next step.
-              |  Build a state-machine, then control many sensors at the same time.
-          .resource-link
-            h4
-              a(href="nodejs-and-backbone-marionette.html") 3. Real-Time Web Programming
-            p
-              i Finish the project.
-              |  Store and process sensor data, then control everything from a website.
-        .col-md-3
+        .col-sm-3
+        .col-xs-6.col-sm-3
+          a.btn.btn-custom.pull-right(href="install.html") Install Guide
+        .col-xs-6.col-sm-3
+          a.btn.btn-custom(href="docs-arduino.html") Read Docs
+        .col-sm-3
       .row.end-spacer
     include ./global/foot-content.jade
     script(src='code/script.js')

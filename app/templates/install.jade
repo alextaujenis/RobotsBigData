@@ -5,8 +5,64 @@ html(lang='en')
     include ./global/head-content.jade
   body
     include ./global/top-nav.jade
-    .container-fluid
+    .container-fluid.install-guide
+      ol.breadcrumb
+        li
+          a(href="index.html") Home
+        li.active
+          | Install Guide
+        a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/") edit
+      .jumbotron
+        .jumbotron-container
+          h2
+            | Robots + Big Data
+            small INSTALL GUIDE
+          p
+            | Download and install the Arduino Sensor Libraries
+          a.btn.btn-primary(href="docs-arduino.html") See Docs
       .row
         .col-xs-12
-          h1 Installation Guide
+          a(name="step-1")
+          h1 Step 1
+          p.lead
+            | Download all Arduino Sensor Libraries in a&nbsp;
+            b .zip
+            |  file:
+          a.btn.btn-success(href="") Download RBD_Libraries.zip v1.0.0
+        .spacer &nbsp;
+        .col-xs-12
+          a(name="step-2")
+          h1 Step 2
+          p.lead
+            | Unzip and copy the contents to your Arduino&nbsp;
+            b libraries
+            |  folder:
+          h5 INSTALL PATH
+          script(type="syntaxhighlighter", class="brush: shell; gutter: false;")
+            :cdata
+              Mac & Linux:   Documents/Arduino/libraries
+              Windows:       My Documents\Arduino\libraries
+
+          h5 FOLDER STRUCTURE
+          img(src="../app/images/install-folder-structure.png")
+        .spacer &nbsp;
+        .col-xs-12
+          a(name="step-3")
+          h1 Step 3
+          p.lead
+            | Close and re-open the Arduino IDE to start using the&nbsp;
+            b libraries
+            | :
+          img(src="../app/images/arduino-ide.png")
+        .spacer &nbsp;
+        .col-xs-12
+          a(name="next-step")
+          h1 Next Step
+          p.lead
+            | Read&nbsp;
+            a(href="docs-arduino.html") the docs
+            |  to learn how to use the libraries.
+        .spacer &nbsp;
+        .spacer &nbsp;
     include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
