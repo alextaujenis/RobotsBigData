@@ -6,7 +6,7 @@ html(lang='en')
   body
     include ./global/top-nav.jade
     .container-fluid.install-guide
-      ol.breadcrumb
+      ol.breadcrumb.stuck
         li
           a(href="index.html") Home
         li.active
@@ -19,24 +19,20 @@ html(lang='en')
             small INSTALL GUIDE
           p
             | Download and install the Arduino Sensor Libraries
-          a.btn.btn-primary(href="docs-arduino.html") See Docs
+          a.btn.btn-primary(href="docs-arduino.html") Also Read the Docs
       .row
         .col-xs-12
           a(name="step-1")
           h1 Step 1
           p.lead
-            | Download all Arduino Sensor Libraries in a&nbsp;
-            b .zip
-            |  file:
+            | Download all Arduino Sensor Libraries in a .zip file:
           a.btn.btn-success(href="") Download RBD_Libraries.zip v1.0.0
         .spacer &nbsp;
         .col-xs-12
           a(name="step-2")
           h1 Step 2
           p.lead
-            | Unzip and copy the contents to your Arduino&nbsp;
-            b libraries
-            |  folder:
+            | Unzip and move the contents to your Arduino libraries folder:
           h5 INSTALL PATH
           script(type="syntaxhighlighter", class="brush: shell; gutter: false;")
             :cdata
@@ -50,9 +46,7 @@ html(lang='en')
           a(name="step-3")
           h1 Step 3
           p.lead
-            | Close and re-open the Arduino IDE to start using the&nbsp;
-            b libraries
-            | :
+            | Close and re-open the Arduino IDE to start using the libraries:
           img(src="../app/images/arduino-ide.png")
         .spacer &nbsp;
         .col-xs-12
