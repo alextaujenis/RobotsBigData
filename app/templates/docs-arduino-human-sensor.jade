@@ -35,6 +35,25 @@ html(lang='en')
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           h3
+            a(name="overview")
+            | Overview
+          p.lead
+            | Detect and interact with humans through change in capacitance. You can calibrate this library for your sensor very quickly to detect&nbsp;
+            a.click-flash(href="#onnear") onNear()
+            | ,&nbsp;
+            a.click-flash(href="#ontouch") onTouch()
+            | , and&nbsp;
+            a.click-flash(href="#onpickup") onPickup()
+            |  events. The example below uses a piece of aluminum foil, but you can attach the wire to anything conductive and calibrate the sensor accordingly.
+          p.lead
+            |This library measures relative capacitance so it is prone to interference. You can temporarily adjust the entire scale and then reset it when the capacitance disruption has stopped by using&nbsp;
+            a.click-flash(href="#setmodifier") setModifier()
+            |  and&nbsp;
+            a.click-flash(href="#resetmodifier") resetModifier()
+            | . Look at the&nbsp;
+            a(href="docs-arduino-capacitance.html") Capacitance Library
+            |  if you would like to know more about how capacitance is calculated.
+          h3
             a(name="download")
             | Download
           p.lead
@@ -51,13 +70,11 @@ html(lang='en')
               li
                 a(href="#") Download Human Sensor Library v1.0.0
                 |  with&nbsp;
-                span.badge 3
+                span.badge 2
                 |  dependencies -&nbsp;
                 a.dependency(href="docs-arduino-capacitance.html") Capacitance
-                | ,&nbsp;
+                |  and&nbsp;
                 a.dependency(href="docs-arduino-threshold.html") Threshold
-                | , and&nbsp;
-                a.dependency(href="docs-arduino-timer.html") Timer
               li
                 a(href="https://github.com/alextaujenis/RBD_HumanSensor") View Source on GitHub
                 |  with MIT license
@@ -85,44 +102,34 @@ html(lang='en')
             :cdata
               #include <RBD_Capacitance.h>
               #include <RBD_Threshold.h>
-              #include <RBD_Timer.h>
               #include <RBD_HumanSensor.h>
 
-              #define BAUD 115200
-
-              RBD::Timer timer;
-              RBD::HumanSensor human_sensor(1,0);
+              RBD::HumanSensor human_sensor(1, 0); // send, receive
 
               void setup() {
-                timer.setHertz(50);
+                Serial.begin(115200);
                 human_sensor.setNearValue(100);
-                human_sensor.setTouchValue(150);
-                human_sensor.setPickupValue(200);
-                Serial.begin(BAUD);
+                human_sensor.setTouchValue(200);
+                human_sensor.setPickupValue(300);
               }
 
               void loop() {
                 human_sensor.update();
 
-                if(timer.isExpired()) {
-                  timer.restart();
+                if(human_sensor.onGone()) {
+                  Serial.print("0. GONE   ");
+                }
+                else if(human_sensor.onNear()) {
+                  Serial.print("1. NEAR   ");
+                }
+                else if(human_sensor.onTouch()) {
+                  Serial.print("2. TOUCH  ");
+                }
+                else if(human_sensor.onPickup()) {
+                  Serial.print("3. PICKUP ");
+                }
 
-                  if(human_sensor.isGone()) {
-                    Serial.print("0. ---    ");
-                  }
-                  else if(human_sensor.isNear()) {
-                    Serial.print("1. near   ");
-                  }
-                  else if(human_sensor.isTouch()) {
-                    Serial.print("2. touch  ");
-                  }
-                  else if (human_sensor.isPickup()) {
-                    Serial.print("3. pickup ");
-                  }
-                  else {
-                    Serial.print("-1. error ");
-                  }
-
+                if(human_sensor.onRawValueChange()) {
                   Serial.println(human_sensor.getRawValue());
                 }
               }
@@ -179,6 +186,35 @@ html(lang='en')
             li
               a.click-flash(href="#getactivelevel") .getActiveLevel()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
+              a.click-flash(href="#ongone") .onGone()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onnear") .onNear()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#ontouch") .onTouch()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onpickup") .onPickup()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onvaluechange") .onValueChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onrawvaluechange") .onRawValueChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onactivelevelchange") .onActiveLevelChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+
           .section
             a(name="constructor")
             h4 RBD::HumanSensor constructor(send_pin, receive_pin)
@@ -467,7 +503,9 @@ html(lang='en')
                 void loop() {
                   human_sensor.update();
 
-                  Serial.println(human_sensor.getValue());
+                  if(human_sensor.onValueChange()) {
+                    Serial.println(human_sensor.getValue());
+                  }
                 }
 
           .section
@@ -525,6 +563,172 @@ html(lang='en')
 
                   Serial.println(human_sensor.getActiveLevel());
                 }
+
+          .section
+            a(name="ongone")
+            h4
+              | human_sensor.onGone()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the sensor registers a value below the&nbsp;
+              a.click-flash(href="#setnearvalue") setNearValue()
+              | . The active level must change away from and then come back to&nbsp;
+              a.click-flash(href="#isgone") isGone()
+              |  in order for this method to return true again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  human_sensor.update();
+
+                  if(human_sensor.onGone()) {
+                    // code only runs once per event
+                    Serial.println("Gone");
+                  }
+                }
+          .section
+            a(name="onnear")
+            h4
+              | human_sensor.onNear()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the sensor registers a value at or above the&nbsp;
+              a.click-flash(href="#setnearvalue") setNearValue()
+              |  and below the&nbsp;
+              a.click-flash(href="#settouchvalue") setTouchValue()
+              | . The active level must change away from and then come back to&nbsp;
+              a.click-flash(href="#isnear") isNear()
+              |  in order for this method to return true again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  human_sensor.update();
+
+                  if(human_sensor.onNear()) {
+                    // code only runs once per event
+                    Serial.println("Near");
+                  }
+                }
+
+          .section
+            a(name="ontouch")
+            h4
+              | human_sensor.onTouch()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the sensor registers a value at or above the&nbsp;
+              a.click-flash(href="#settouchvalue") setTouchValue()
+              |  and below the&nbsp;
+              a.click-flash(href="#setpickupvalue") setPickupValue()
+              | . The active level must change away from and then come back to&nbsp;
+              a.click-flash(href="#isnear") isTouch()
+              |  in order for this method to return true again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  human_sensor.update();
+
+                  if(human_sensor.onTouch()) {
+                    // code only runs once per event
+                    Serial.println("Touch");
+                  }
+                }
+
+          .section
+            a(name="onpickup")
+            h4
+              | human_sensor.onPickup()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the sensor registers a value at or above the&nbsp;
+              a.click-flash(href="#setpickupvalue") setPickupValue()
+              | . The active level must change away from and then come back to&nbsp;
+              a.click-flash(href="#ispickup") isPickup()
+              |  in order for this method to return true again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  human_sensor.update();
+
+                  if(human_sensor.onPickup()) {
+                    // code only runs once per event
+                    Serial.println("Pickup");
+                  }
+                }
+
+          .section
+            a(name="onvaluechange")
+            h4
+              | human_sensor.onValueChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the&nbsp;
+              a.click-flash(href="#getvalue") getValue()
+              |  changes.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  human_sensor.update();
+
+                  if(human_sensor.onValueChange()) {
+                    // code only runs once per event
+                    Serial.println(human_sensor.getValue());
+                  }
+                }
+
+          .section
+            a(name="onrawvaluechange")
+            h4
+              | human_sensor.onRawValueChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              |  changes.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  human_sensor.update();
+
+                  if(human_sensor.onRawValueChange()) {
+                    // code only runs once per event
+                    Serial.println(human_sensor.getRawValue());
+                  }
+                }
+
+          .section
+            a(name="onactivelevelchange")
+            h4
+              | human_sensor.onActiveLevelChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the&nbsp;
+              a.click-flash(href="#getactivelevel") getActiveLevel()
+              |  changes.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  human_sensor.update();
+
+                  if(human_sensor.onActiveLevelChange()) {
+                    // code only runs once per event
+                    Serial.println(human_sensor.getActiveLevel());
+                  }
+                }
+
 
           .section-bottom
     include ./global/foot-content.jade
