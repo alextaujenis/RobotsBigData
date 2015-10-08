@@ -129,10 +129,20 @@ ul.libraries {
     line-height: 2em;
     padding: 5px 9px;
     opacity: 0.8;
+    pointer-events: none;
+  }
+
+  .click-through {
+    pointer-events: none;
   }
 
   a.dependency {
     color: #333;
+    text-decoration: underline;
+
+    &:hover {
+      color: #1f4871;
+    }
   }
 
   @media(max-width:767px){
@@ -166,10 +176,6 @@ ul.libraries {
 
   img.image {
     margin-left: 15px;
-  }
-
-  .stuck.title.label {
-    pointer-events: none;
   }
 }
 

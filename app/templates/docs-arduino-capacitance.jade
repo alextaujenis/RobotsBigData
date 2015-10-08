@@ -18,9 +18,9 @@ html(lang='en')
               | Capacitance
             a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
           .jumbotron
-            .stuck
-              .row.jumbotron-header
-                .col-xs-12.text-right
+            .stuck.click-through
+              .row.jumbotron-header.click-through
+                .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
               h2
@@ -62,7 +62,7 @@ html(lang='en')
                 a(href="install.html") Download Full Sensor Package
                 |  with this library included
               li
-                a(href="#") Download Capacitance Library v1.0.0
+                a(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Download Capacitance Library v1.0.0
                 |  by itself
               li
                 a(href="https://github.com/alextaujenis/RBD_Capacitance") View Source on GitHub
@@ -164,7 +164,7 @@ html(lang='en')
               a.click-flash(href="#update") .update()
               span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             li
-              a.click-flash(href="#setsamplesize") .setSampleSize(size)
+              a.click-flash(href="#setsamplesize") .setSampleSize(value)
             li
               a.click-flash(href="#start") .start()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -207,7 +207,7 @@ html(lang='en')
 
           .section
             a(name="setsamplesize")
-            h4 cap_sensor.setSampleSize(size)
+            h4 cap_sensor.setSampleSize(value)
             p
               | Pass in an integer to change the number of readings taken to calculate a moving average&nbsp;
               a.click-flash(href="#getvalue") getValue()

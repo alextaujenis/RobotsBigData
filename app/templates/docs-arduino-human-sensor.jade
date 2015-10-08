@@ -18,9 +18,9 @@ html(lang='en')
               | Human Sensor
             a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
           .jumbotron
-            .stuck
-              .row.jumbotron-header
-                .col-xs-12.text-right
+            .stuck.click-through
+              .row.jumbotron-header.click-through
+                .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
               h2
@@ -61,20 +61,21 @@ html(lang='en')
             i  all
             |  of the documented sensors,&nbsp;
             i or
-            |  you can use this library by itself with three dependencies.
+            |  you can use this library by itself with two dependencies.
           p
             ul
               li
-                a(href="#") Download Full Sensor Package
-                |  with this library included
+                a(href="install.html") Download Full Sensor Package
+                |  with this library included, or
               li
-                a(href="#") Download Human Sensor Library v1.0.0
-                |  with&nbsp;
-                span.badge 2
-                |  dependencies -&nbsp;
-                a.dependency(href="docs-arduino-capacitance.html") Capacitance
+                a(href="https://github.com/alextaujenis/RBD_HumanSensor/raw/master/extras/RBD_HumanSensor.zip")
+                  | Download Human Sensor Library v1.0.0&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  then grab the&nbsp;
+                a.dependency(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
                 |  and&nbsp;
                 a.dependency(href="docs-arduino-threshold.html") Threshold
+                |  dependencies, or
               li
                 a(href="https://github.com/alextaujenis/RBD_HumanSensor") View Source on GitHub
                 |  with MIT license
@@ -156,6 +157,8 @@ html(lang='en')
               a.click-flash(href="#update") .update()
               span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             li
+              a.click-flash(href="#setsamplesize") .setSampleSize(value)
+            li
               a.click-flash(href="#setnearvalue") .setNearValue(value)
             li
               a.click-flash(href="#settouchvalue") .setTouchValue(value)
@@ -165,6 +168,7 @@ html(lang='en')
               a.click-flash(href="#setmodifier") .setModifier(value)
             li
               a.click-flash(href="#resetmodifier") .resetModifier()
+            hr.list-divider
             li
               a.click-flash(href="#isgone") .isGone()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -186,6 +190,7 @@ html(lang='en')
             li
               a.click-flash(href="#getactivelevel") .getActiveLevel()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            hr.list-divider
             li
               a.click-flash(href="#ongone") .onGone()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -239,6 +244,30 @@ html(lang='en')
               :cdata
                 void loop() {
                   human_sensor.update();
+                }
+
+          .section
+            a(name="setsamplesize")
+            h4 human_sensor.setSampleSize(value)
+            p
+              | Pass in an integer to change the number of readings taken to calculate the moving average&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | . This can be called inside of setup() or also safely at runtime inside of loop().
+            ul
+              li
+                b Decrease Variation
+                |  in readings by making this number larger: 1000
+              li
+                b Increase Variation
+                |  in readings by making this number smaller: 10
+              li
+                b Default Value
+                | : 250
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  human_sensor.setSampleSize(1000);
                 }
 
           .section
