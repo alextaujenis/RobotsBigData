@@ -82,7 +82,7 @@ html(lang='en')
                 if(motor.isOff()) {
                   motor.rampUp(5000);
                 }
-                if(motor.isFullOn()) {
+                if(motor.isOn()) {
                   motor.rampDown(5000);
                 }
                 motor.update();
@@ -214,7 +214,7 @@ html(lang='en')
             a(name="ison")
             h4 motor.isOn()
             p
-              | Returns true if the motor is running at any speed greater than 0%.
+              | Returns true if the motor is running at 100% speed.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata

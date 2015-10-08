@@ -7,7 +7,7 @@ void loop() {
   if(motor.isOff()) {
     motor.rampUp(5000);
   }
-  if(motor.isFullOn()) {
+  if(motor.isOn()) {
     motor.rampDown(5000);
   }
   motor.update();
@@ -29,7 +29,7 @@ void setup() {
 ]]></script></div><div class="section"><a name="setpwmpercent"></a><h4>motor.setPwmPercent(value)</h4><p>Pass in an integer from 0 - 100 to control the speed percentage of the motor. This is essentially the same as&nbsp;<a href="#setpwm" class="click-flash">setPwm()</a> but with a smaller input scale.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
   motor.setPwmPercent(50); // half speed
 }
-]]></script></div><div class="section"><a name="ison"></a><h4>motor.isOn()</h4><p>Returns true if the motor is running at any speed greater than 0%.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+]]></script></div><div class="section"><a name="ison"></a><h4>motor.isOn()</h4><p>Returns true if the motor is running at 100% speed.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
   motor.setPwm(1);
 }
 
