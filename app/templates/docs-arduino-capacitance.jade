@@ -60,10 +60,12 @@ html(lang='en')
             ul
               li
                 a(href="install.html") Download Full Sensor Package
-                |  with this library included
+                |  with this library included, or
               li
-                a(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Download Capacitance Library v1.0.0
-                |  by itself
+                a(href="https://github.com/alextaujenis/RBD_HumanSensor/raw/master/extras/RBD_Capacitance.zip")
+                  | Download Capacitance Library v1.0.0&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  by itself, or
               li
                 a(href="https://github.com/alextaujenis/RBD_Capacitance") View Source on GitHub
                 |  with MIT license
@@ -160,11 +162,13 @@ html(lang='en')
           ul.public-methods
             li
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin)
+            hr.divider
             li
               a.click-flash(href="#update") .update()
               span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             li
               a.click-flash(href="#setsamplesize") .setSampleSize(value)
+            hr.divider
             li
               a.click-flash(href="#start") .start()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -174,6 +178,7 @@ html(lang='en')
             li
               a.click-flash(href="#getvalue") .getValue()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            hr.divider
             li
               a.click-flash(href="#onchange") .onChange()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME

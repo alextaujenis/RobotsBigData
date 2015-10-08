@@ -71,7 +71,7 @@ html(lang='en')
                 a(href="https://github.com/alextaujenis/RBD_HumanSensor/raw/master/extras/RBD_HumanSensor.zip")
                   | Download Human Sensor Library v1.0.0&nbsp;
                   label.label.label-warning.zip-label .zip
-                |  then grab the&nbsp;
+                |  by itself with the&nbsp;
                 a.dependency(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
                 |  and&nbsp;
                 a.dependency(href="docs-arduino-threshold.html") Threshold
@@ -153,6 +153,7 @@ html(lang='en')
           ul.public-methods
             li
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin)
+            hr.divider
             li
               a.click-flash(href="#update") .update()
               span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
@@ -168,7 +169,7 @@ html(lang='en')
               a.click-flash(href="#setmodifier") .setModifier(value)
             li
               a.click-flash(href="#resetmodifier") .resetModifier()
-            hr.list-divider
+            hr.divider
             li
               a.click-flash(href="#isgone") .isGone()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -190,7 +191,7 @@ html(lang='en')
             li
               a.click-flash(href="#getactivelevel") .getActiveLevel()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-            hr.list-divider
+            hr.divider
             li
               a.click-flash(href="#ongone") .onGone()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
