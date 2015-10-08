@@ -46,14 +46,17 @@ html(lang='en')
           p
             ul
               li
-                a(href="#") Download Full Sensor Package
-                |  with this library included
+                a(href="https://github.com/alextaujenis/RBD_HumanSensor/raw/master/extras/RBD_LightSensor.zip")
+                  | Download Light Sensor Library v1.0.0&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  by itself, or
               li
-                a(href="#") Download Light Sensor Library v1.0.0
-                |  by itself
+                a(href="install.html") Download Full Sensor Package
+                |  with this library included, or
               li
                 a(href="https://github.com/alextaujenis/RBD_LightSensor") View Source on GitHub
-                |  with MIT license
+                |  with&nbsp;
+                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           h3
             a(name="example-sketch")
@@ -87,6 +90,16 @@ html(lang='en')
           ul.public-methods
             li
               a.click-flash(href="#constructor") constructor(pin)
+            hr.divider
+            li
+              a.click-flash(href="#setfloor") .setFloor(value)
+            li
+              a.click-flash(href="#setceiling") .setCeiling(value)
+            li
+              a.click-flash(href="#resetfloor") .resetFloor()
+            li
+              a.click-flash(href="#resetceiling") .resetCeiling()
+            hr.divider
             li
               a.click-flash(href="#getvalue") .getValue()
             li
@@ -97,14 +110,6 @@ html(lang='en')
               a.click-flash(href="#getpercentvalue") .getPercentValue()
             li
               a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
-            li
-              a.click-flash(href="#setfloor") .setFloor(value)
-            li
-              a.click-flash(href="#setceiling") .setCeiling(value)
-            li
-              a.click-flash(href="#resetfloor") .resetFloor()
-            li
-              a.click-flash(href="#resetceiling") .resetCeiling()
 
           .section
             a(name="constructor")
@@ -117,6 +122,61 @@ html(lang='en')
 
                 void setup() {
                   ...
+                }
+
+          .section
+            a(name="setfloor")
+            h4 light_sensor.setFloor(value)
+            p
+              | Provide an integer from 0 - 1023 to calibrate the sensor with a lower bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the floor with help from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.setFloor(10);
+                }
+
+          .section
+            a(name="setceiling")
+            h4 light_sensor.setCeiling(value)
+            p Provide an integer from 0 - 1023 to calibrate the sensor with an upper bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the ceiling with help from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.setCeiling(999);
+                }
+
+          .section
+            a(name="resetfloor")
+            h4 light_sensor.resetFloor()
+            p
+              | Change the&nbsp;
+              a.click-flash(href="#setfloor") setFloor()
+              |  value back to 0, which also resets the lower bounds of the scale for all methods that return a value in this library.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.resetFloor();
+                }
+
+          .section
+            a(name="resetceiling")
+            h4 light_sensor.resetCeiling()
+            p
+              | Change the&nbsp;
+              a.click-flash(href="#setceiling") setCeiling()
+              |  value back to 1023, which also resets the upper bounds of the scale for all methods that return a value in this library.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.resetCeiling();
                 }
 
           .section
@@ -184,61 +244,6 @@ html(lang='en')
               :cdata
                 void loop() {
                   light_sensor.getInversePercentValue();
-                }
-
-          .section
-            a(name="setfloor")
-            h4 light_sensor.setFloor(value)
-            p
-              | Provide an integer from 0 - 1023 to calibrate the sensor with a lower bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the floor with help from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
-              | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  light_sensor.setFloor(10);
-                }
-
-          .section
-            a(name="setceiling")
-            h4 light_sensor.setCeiling(value)
-            p Provide an integer from 0 - 1023 to calibrate the sensor with an upper bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the ceiling with help from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
-              | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  light_sensor.setCeiling(999);
-                }
-
-          .section
-            a(name="resetfloor")
-            h4 light_sensor.resetFloor()
-            p
-              | Change the&nbsp;
-              a.click-flash(href="#setfloor") setFloor()
-              |  value back to 0, which also resets the lower bounds of the scale for all methods that return a value in this library.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  light_sensor.resetFloor();
-                }
-
-          .section
-            a(name="resetceiling")
-            h4 light_sensor.resetCeiling()
-            p
-              | Change the&nbsp;
-              a.click-flash(href="#setceiling") setCeiling()
-              |  value back to 1023, which also resets the upper bounds of the scale for all methods that return a value in this library.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  light_sensor.resetCeiling();
                 }
 
           .section-bottom

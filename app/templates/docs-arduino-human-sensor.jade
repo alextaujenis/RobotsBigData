@@ -65,20 +65,21 @@ html(lang='en')
           p
             ul
               li
-                a(href="install.html") Download Full Sensor Package
-                |  with this library included, or
-              li
                 a(href="https://github.com/alextaujenis/RBD_HumanSensor/raw/master/extras/RBD_HumanSensor.zip")
                   | Download Human Sensor Library v1.0.0&nbsp;
                   label.label.label-warning.zip-label .zip
                 |  by itself with the&nbsp;
-                a.dependency(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
+                a.dark-link(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
                 |  and&nbsp;
-                a.dependency(href="docs-arduino-threshold.html") Threshold
+                a.dark-link(href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip") Threshold
                 |  dependencies, or
               li
+                a(href="install.html") Download Full Sensor Package
+                |  with this library and dependencies included, or
+              li
                 a(href="https://github.com/alextaujenis/RBD_HumanSensor") View Source on GitHub
-                |  with MIT license
+                |  with&nbsp;
+                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           h3
             a(name="example-setup")
@@ -155,9 +156,6 @@ html(lang='en')
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin)
             hr.divider
             li
-              a.click-flash(href="#update") .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
-            li
               a.click-flash(href="#setsamplesize") .setSampleSize(value)
             li
               a.click-flash(href="#setnearvalue") .setNearValue(value)
@@ -170,6 +168,9 @@ html(lang='en')
             li
               a.click-flash(href="#resetmodifier") .resetModifier()
             hr.divider
+            li
+              a.click-flash(href="#update") .update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             li
               a.click-flash(href="#isgone") .isGone()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -232,19 +233,6 @@ html(lang='en')
 
                 void setup() {
                   ...
-                }
-
-          .section
-            a(name="update")
-            h4
-              | human_sensor.update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
-            p Keep processing the readings and move this library along in real-time.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
                 }
 
           .section
@@ -361,7 +349,6 @@ html(lang='en')
                   }
                 }
 
-
           .section
             a(name="resetmodifier")
             h4 human_sensor.resetModifier()
@@ -410,6 +397,18 @@ html(lang='en')
                   else if(...) {
                     ...
                   }
+                }
+          .section
+            a(name="update")
+            h4
+              | human_sensor.update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            p Keep processing the readings and move this library along in real-time.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  human_sensor.update();
                 }
 
           .section

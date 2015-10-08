@@ -72,14 +72,17 @@ html(lang='en')
           p
             ul
               li
-                a(href="#") Download Full Sensor Package
-                |  with this library included
+                a(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip")
+                  | Download Timer Library v1.0.0&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  by itself, or
               li
-                a(href="#") Download Timer Library v1.0.0
-                |  by itself
+                a(href="install.html") Download Full Sensor Package
+                |  with this library included, or
               li
                 a(href="https://github.com/alextaujenis/RBD_Timer") View Source on GitHub
-                |  with MIT license
+                |  with&nbsp;
+                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           h3
             a(name="example-setup")
@@ -145,16 +148,19 @@ html(lang='en')
           ul.public-methods
             li
               a.click-flash(href="#constructor") constructor()
+            hr.divider
             li
               a.click-flash(href="#settimeout") .setTimeout(value)
             li
               a.click-flash(href="#sethertz") .setHertz(value)
+            hr.divider
             li
               a.click-flash(href="#restart") .restart()
             li
               a.click-flash(href="#isactive") .isActive()
             li
               a.click-flash(href="#isexpired") .isExpired()
+            hr.divider
             li
               a.click-flash(href="#onrestart") .onRestart()
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
@@ -164,6 +170,7 @@ html(lang='en')
             li
               a.click-flash(href="#onexpired") .onExpired()
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            hr.divider
             li
               a.click-flash(href="#getvalue") .getValue()
             li

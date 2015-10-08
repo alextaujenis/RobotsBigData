@@ -42,25 +42,25 @@ html(lang='en')
             i  all
             |  of the documented sensors,&nbsp;
             i or
-            |  you can use this library by itself with three dependencies.
+            |  you can use this library by itself with two dependencies.
           p
             ul
               li
-                a(href="#") Download Full Sensor Package
-                |  with this library included
+                a(href="https://github.com/alextaujenis/RBD_WaterSensor/raw/master/extras/RBD_WaterSensor.zip")
+                  | Download Water Sensor Library v1.0.0&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  by itself with the&nbsp;
+                a.dark-link(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
+                |  and&nbsp;
+                a.dark-link(href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip") Threshold
+                |  dependencies, or
               li
-                a(href="#") Download Water Sensor Library v1.0.0
-                |  with&nbsp;
-                span.badge 3
-                |  dependencies -&nbsp;
-                a.dependency(href="docs-arduino-capacitance.html") Capacitance
-                | ,&nbsp;
-                a.dependency(href="docs-arduino-threshold.html") Threshold
-                | , and&nbsp;
-                a.dependency(href="docs-arduino-timer.html") Timer
+                a(href="install.html") Download Full Sensor Package
+                |  with this library and dependencies included, or
               li
                 a(href="https://github.com/alextaujenis/RBD_WaterSensor") View Source on GitHub
-                |  with MIT license
+                |  with&nbsp;
+                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           h3
             a(name="example-setup")
@@ -141,19 +141,21 @@ html(lang='en')
           ul.public-methods
             li
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin, level_count)
-            li
-              a.click-flash(href="#update") .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            hr.divider
             li
               a.click-flash(href="#setaccuracy") .setAccuracy(value)
             li
               a.click-flash(href="#setrefreshrate") .setRefreshRate(hertz)
             li
-              a.click-flash(href="#startrealtime") .startRealTime()
-            li
               a.click-flash(href="#setlevel") .setLevel(index, raw_value)
             li
               a.click-flash(href="#setmaxlevel") .setMaxLevel(raw_value)
+            li
+              a.click-flash(href="#startrealtime") .startRealTime()
+            hr.divider
+            li
+              a.click-flash(href="#update") .update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             li
               a.click-flash(href="#getrawvalue") .getRawValue()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -172,19 +174,6 @@ html(lang='en')
 
                 void setup() {
                   ...
-                }
-
-          .section
-            a(name="update")
-            h4
-              | water_sensor.update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
-            p Keep processing the readings and move this library along in real-time.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  water_sensor.update();
                 }
 
           .section
@@ -214,20 +203,6 @@ html(lang='en')
                 }
 
           .section
-            a(name="startrealtime")
-            h4 water_sensor.startRealTime()
-            p
-              | Start collecting readings as fast as possible and remove the&nbsp;
-              a.click-flash(href="#setrefreshrate") setRefreshRate()
-              |  limit.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void setup() {
-                  water_sensor.startRealTime();
-                }
-
-          .section
             a(name="setlevel")
             h4 water_sensor.setLevel(index, raw_value)
             p
@@ -251,6 +226,33 @@ html(lang='en')
               :cdata
                 void setup() {
                   water_sensor.setMaxLevel(100); // max = 100
+                }
+
+          .section
+            a(name="startrealtime")
+            h4 water_sensor.startRealTime()
+            p
+              | Start collecting readings as fast as possible and remove the&nbsp;
+              a.click-flash(href="#setrefreshrate") setRefreshRate()
+              |  limit.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  water_sensor.startRealTime();
+                }
+
+          .section
+            a(name="update")
+            h4
+              | water_sensor.update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            p Keep processing the readings and move this library along in real-time.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
                 }
 
           .section

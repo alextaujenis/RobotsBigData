@@ -51,18 +51,19 @@ html(lang='en')
           p
             ul
               li
-                a(href="#") Download Full Sensor Package
-                |  with this library included
+                a(href="https://github.com/alextaujenis/RBD_Motor/raw/master/extras/RBD_Motor.zip")
+                  | Download Motor Library v1.0.0&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  by itself with the&nbsp;
+                a.dark-link(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip") Timer
+                |  dependency, or
               li
-                a(href="#") Download Motor Library v1.0.0
-                |  with&nbsp;
-                span.badge 1
-                |  dependency -&nbsp;
-                a.dependency(href="docs-arduino-timer.html") Timer
+                a(href="install.html") Download Full Sensor Package
+                |  with this library and dependency included, or
               li
                 a(href="https://github.com/alextaujenis/RBD_Motor") View Source on GitHub
-                |  with MIT license
-
+                |  with&nbsp;
+                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
           h3
             a(name="example-sketch")
             | Example Sketch
@@ -109,30 +110,31 @@ html(lang='en')
           ul.public-methods
             li
               a.click-flash(href="#constructor") constructor(pin)
-            li
-              a.click-flash(href="#update") .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            hr.divider
             li
               a.click-flash(href="#on") .on()
             li
               a.click-flash(href="#off") .off()
             li
-              a.click-flash(href="#timedon") .timedOn(timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              a.click-flash(href="#setpwm") .setPwm(value)
+            li
+              a.click-flash(href="#setpwmpercent") .setPwmPercent(value)
+            hr.divider
             li
               a.click-flash(href="#ison") .isOn()
             li
               a.click-flash(href="#isoff") .isOff()
             li
-              a.click-flash(href="#isfullon") .isFullOn()
-            li
               a.click-flash(href="#getpwm") .getPwm()
             li
               a.click-flash(href="#getpwmpercent") .getPwmPercent()
+            hr.divider
             li
-              a.click-flash(href="#setpwm") .setPwm(value)
+              a.click-flash(href="#update") .update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             li
-              a.click-flash(href="#setpwmpercent") .setPwmPercent(value)
+              a.click-flash(href="#timedon") .timedOn(timeout)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
               a.click-flash(href="#rampup") .rampUp(timeout)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -161,19 +163,6 @@ html(lang='en')
                 }
 
           .section
-            a(name="update")
-            h4
-              | motor.update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
-            p Keep the real-time functions processing with each loop().
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  motor.update();
-                }
-
-          .section
             a(name="on")
             h4 motor.on()
             p
@@ -197,21 +186,28 @@ html(lang='en')
                 }
 
           .section
-            a(name="timedon")
-            h4
-              | motor.timedOn(timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-            p
-              | Start the motor at full speed and turn it off after the specified time in milliseconds.
+            a(name="setpwm")
+            h4 motor.setPwm(value)
+            p Pass in an integer from 0 - 255 to control the speed of the motor.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.timedOn(5000); // on for 5 seconds
+                  motor.setPwm(85); // one-third speed
                 }
 
-                void loop() {
-                  motor.update();
+          .section
+            a(name="setpwmpercent")
+            h4 motor.setPwmPercent(value)
+            p
+              | Pass in an integer from 0 - 100 to control the speed percentage of the motor. This is essentially the same as&nbsp;
+              a.click-flash(href="#setpwm") setPwm()
+              |  but with a smaller input scale.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.setPwmPercent(50); // half speed
                 }
 
           .section
@@ -247,22 +243,6 @@ html(lang='en')
                 }
 
           .section
-            a(name="isfullon")
-            h4 motor.isFullOn()
-            p
-              | Returns true only if the motor is running at 100% speed.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.setPwm(255);
-                }
-
-                void loop() {
-                  Serial.println(motor.isFullOn());
-                }
-
-          .section
             a(name="getpwm")
             h4 motor.getPwm()
             p
@@ -295,28 +275,34 @@ html(lang='en')
                 }
 
           .section
-            a(name="setpwm")
-            h4 motor.setPwm(value)
-            p Pass in an integer from 0 - 255 to control the speed of the motor.
+            a(name="update")
+            h4
+              | motor.update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            p Keep the real-time functions processing with each loop().
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void setup() {
-                  motor.setPwm(85); // one-third speed
+                void loop() {
+                  motor.update();
                 }
 
           .section
-            a(name="setpwmpercent")
-            h4 motor.setPwmPercent(value)
+            a(name="timedon")
+            h4
+              | motor.timedOn(timeout)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
-              | Pass in an integer from 0 - 100 to control the speed percentage of the motor. This is essentially the same as&nbsp;
-              a.click-flash(href="#setpwm") setPwm()
-              |  but with a smaller input scale.
+              | Start the motor at full speed and turn it off after the specified time in milliseconds.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.setPwmPercent(50); // half speed
+                  motor.timedOn(5000); // on for 5 seconds
+                }
+
+                void loop() {
+                  motor.update();
                 }
 
           .section
