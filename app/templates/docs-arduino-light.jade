@@ -35,6 +35,20 @@ html(lang='en')
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           h3
+            a(name="overview")
+            | Overview
+          p.lead
+            | Control many lights in real-time and blink without delay using commands such as&nbsp
+            a.click-flash(href="#on") on()
+            | ,&nbsp;
+            a.click-flash(href="#off") off()
+            | ,&nbsp;
+            a.click-flash(href="#blink") blink()
+            | , and&nbsp;
+            a.click-flash(href="#fade") fade()
+            | . Lights must be connected to PWM enabled Arduino pins to work with this library.
+
+          h3
             a(name="download")
             | Download
           p.lead
@@ -53,7 +67,7 @@ html(lang='en')
                 a.dark-link(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip") Timer
                 |  dependency, or
               li
-                a(href="install.html") Download Full Sensor Package
+                a(href="install.html") Download All Sensor Libraries
                 |  with this library and dependency included, or
               li
                 a(href="https://github.com/alextaujenis/RBD_Light") View Source on GitHub
@@ -74,7 +88,7 @@ html(lang='en')
               RBD::Light light(13);
 
               void setup() {
-                light.pulse(2500,250,2000,750,1000);
+                light.blink(250,250);
               }
 
               void loop() {
@@ -131,7 +145,7 @@ html(lang='en')
               a.click-flash(href="#blink") .blink(on_time, off_time, times)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             li
-              a.click-flash(href="#pulse") .pulse(up_time, on_time, down_time, off_time, times)
+              a.click-flash(href="#fade") .fade(up_time, on_time, down_time, off_time, times)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
 
           .section
@@ -199,7 +213,9 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void loop() {
-                  light.isOn();
+                  if(light.isOn()) {
+                    ...
+                  }
                 }
 
           .section
@@ -210,7 +226,9 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void loop() {
-                  light.isOff();
+                  if(light.isOff()) {
+                    ...
+                  }
                 }
 
 
@@ -245,7 +263,7 @@ html(lang='en')
               | Keep the light moving in real-time. This must be called continuously from within loop() in order to&nbsp;
               a.click-flash(href="#blink") blink()
               |  or&nbsp;
-              a.click-flash(href="#pulse") pulse()
+              a.click-flash(href="#fade") fade()
               |  the light.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
@@ -257,21 +275,24 @@ html(lang='en')
           .section
             a(name="blink")
             h4
-              | light.blink(on_time, off_time, times)
+              | light.blink(on_time, off_time, times
+              sup.superscript 1
+              | )
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-            p Pass in integers for the time values in milliseconds.
+            p
+              | Pass in unsigned longs for the time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should blink. The last parameter is optional
+              sup.superscript 1
+              |  and can be left out to make the light repeat the blink cycle forever.
             ul
               li the light will turn on for the on_time
               li then turn off for the off_time
-              li and will repeat this cycle for the number of times you provided
+              li
+                | and will repeat this cycle for the number of times you provided
+                sup.superscript 1
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  // blink on for 1 second
-                  // off for 1/2 second
-                  // do this 25 times
-
                   light.blink(1000,500,25);
                 }
 
@@ -280,28 +301,30 @@ html(lang='en')
                 }
 
           .section
-            a(name="pulse")
+            a(name="fade")
             h4
-              | light.pulse(up_time, on_time, down_time, off_time, times)
+              | light.fade(up_time, on_time, down_time, off_time, times
+              sup.superscript 1
+              | )
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-            p Pass in integers for the time values in milliseconds.
+            p
+              | Pass in unsigned longs for the time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should fade. The last parameter is optional
+              sup.superscript 1
+              |  and can be left out to make the light repeat the fade cycle forever.
+
             ul
               li the light will perform a linear fade up according to the up_time
               li stay on for the on_time
               li linear fade down for the down_time
               li then stay off for the off_time
-              li and will repeat this cycle for the number of times your provided
+              li
+                | and will repeat this cycle for the number of times your provided
+                sup.superscript 1
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  // linear fade up for 2.5 seconds
-                  // stay on for 1/4 second
-                  // linear fade down for 2 seconds
-                  // stay off for 3/4 second
-                  // do this 1000 times
-
-                  light.pulse(2500,250,2000,750,1000);
+                  light.fade(2500,250,2000,750,1000);
                 }
 
                 void loop() {

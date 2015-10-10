@@ -38,7 +38,7 @@ html(lang='en')
             a(name="overview")
             | Overview
           p.lead
-            | The Arduino real-time loop stops advancing when you write delay() in your sketch. You can keep the real-time loop moving by using millis() to track time and create delay, but it's more complicated and soon becomes messy to manage. The Timer class is a very simple replacement for all your millis() math.
+            | The Arduino real-time loop stops advancing when you write delay() in your sketch. You can keep the real-time loop moving by using millis() to track time and create delay, but it's more complicated and soon becomes messy to manage. This timer implements time = millis(); elapsed = millis() - time; and is a simple replacement to manage timed events with english instead of math.
 
           h3
             a(name="relativevsabsolute")
@@ -77,7 +77,7 @@ html(lang='en')
                   label.label.label-warning.zip-label .zip
                 |  by itself, or
               li
-                a(href="install.html") Download Full Sensor Package
+                a(href="install.html") Download All Sensor Libraries
                 |  with this library included, or
               li
                 a(href="https://github.com/alextaujenis/RBD_Timer") View Source on GitHub
