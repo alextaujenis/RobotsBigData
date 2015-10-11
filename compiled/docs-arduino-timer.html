@@ -35,7 +35,7 @@ void updateTimer2() {
     rising = !rising;
   }
 }]]></script><h3><a name="public-methods"></a>Public Methods</h3><h4 class="class-name"><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::Timer
-]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor()</a></li><hr class="divider"><li><a href="#settimeout" class="click-flash">.setTimeout(value)</a></li><li><a href="#sethertz" class="click-flash">.setHertz(value)</a></li><hr class="divider"><li><a href="#restart" class="click-flash">.restart()</a></li><li><a href="#isactive" class="click-flash">.isActive()</a></li><li><a href="#isexpired" class="click-flash">.isExpired()</a></li><hr class="divider"><li><a href="#onrestart" class="click-flash">.onRestart()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onactive" class="click-flash">.onActive()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onexpired" class="click-flash">.onExpired()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><hr class="divider"><li><a href="#getvalue" class="click-flash">.getValue()</a></li><li><a href="#getinversevalue" class="click-flash">.getInverseValue()</a></li><li><a href="#getpercentvalue" class="click-flash">.getPercentValue()</a></li><li><a href="#getinversepercentvalue" class="click-flash">.getInversePercentValue()</a></li></ul><div class="section"><a name="constructor"></a><h4>RBD::Timer constructor()</h4><p>Create a new timer instance.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::Timer timer;
+]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor()</a></li><hr class="divider"><li><a href="#settimeout" class="click-flash">.setTimeout(value)</a></li><li><a href="#sethertz" class="click-flash">.setHertz(value)</a></li><hr class="divider"><li><a href="#getvalue" class="click-flash">.getValue()</a></li><li><a href="#getinversevalue" class="click-flash">.getInverseValue()</a></li><li><a href="#getpercentvalue" class="click-flash">.getPercentValue()</a></li><li><a href="#getinversepercentvalue" class="click-flash">.getInversePercentValue()</a></li><hr class="divider"><li><a href="#restart" class="click-flash">.restart()</a></li><li><a href="#isactive" class="click-flash">.isActive()</a></li><li><a href="#isexpired" class="click-flash">.isExpired()</a></li><hr class="divider"><li><a href="#onrestart" class="click-flash">.onRestart()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onactive" class="click-flash">.onActive()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onexpired" class="click-flash">.onExpired()</a><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li></ul><div class="section"><a name="constructor"></a><h4>RBD::Timer constructor()</h4><p>Create a new timer instance.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::Timer timer;
 
 void setup() {
   ...
@@ -78,19 +78,19 @@ void loop() {
 }
 ]]></script></div><div class="section"><a name="onrestart"></a><h4>timer.onRestart()<span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a>  and&nbsp;<a href="#restart" class="click-flash">restart()</a> together, but with a simple syntax and a tighter time loop.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
   if(timer.onRestart()) {
-    // code block runs once per restart
+    // code only runs once per event
     Serial.println("Timer Restarted");
   }
 }
 ]]></script></div><div class="section"><a name="onactive"></a><h4>timer.onActive()<span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will fire a single event when the timer goes active. The timer must expire and then be restarted for this event to fire again.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
   if(timer.onActive()) {
-    // code block runs once per active event
+    // code only runs once per event
     Serial.println("Timer Active");
   }
 }
 ]]></script></div><div class="section"><a name="onexpired"></a><h4>timer.onExpired()<span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will fire a single event when the timer expires. The timer must be restarted and then allowed to expire for this event to fire again.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
   if(timer.onExpired()) {
-    // code block runs once per event
+    // code only runs once per event
     Serial.println("Timer Expired");
   }
 }

@@ -38,7 +38,15 @@ html(lang='en')
             a(name="overview")
             | Overview
           p
-            | A simple, non-blocking, real-time Arduino library for controlling many motors. It provides basic control along with more advanced features such as precision easing of speed over time.
+            | Control many motors without delay. Use simple commands such as&nbsp;
+            a.click-flash(href="#on") on()
+            | ,&nbsp;
+            a.click-flash(href="#off") off()
+            | ,&nbsp;
+            a.click-flash(href="#timedon") timedOn()
+            | , and&nbsp;
+            a.click-flash(href="#ramp") ramp()
+            | . Motors must be correctly wired to PWM enabled Arduino pins to work with this library.
           h3
             a(name="download")
             | Download
@@ -76,16 +84,23 @@ html(lang='en')
               #include <RBD_Timer.h>
               #include <RBD_Motor.h>
 
-              RBD::Motor motor(3); // pwm pin 3
+              RBD::Motor motor(3); // PWM pin 3
+
+              void setup() {
+                motor.rampUp(1000);
+              }
 
               void loop() {
-                if(motor.isOff()) {
-                  motor.rampUp(5000);
-                }
-                if(motor.isOn()) {
-                  motor.rampDown(5000);
-                }
                 motor.update();
+
+                if(motor.onTargetSpeed()) {
+                  if(motor.isOn()) {
+                    motor.rampDown(1000);
+                  }
+                  if(motor.isOff()) {
+                    motor.rampUp(1000);
+                  }
+                }
               }
           h3
             a(name="public-methods")
@@ -128,6 +143,10 @@ html(lang='en')
               a.click-flash(href="#getpwm") .getPwm()
             li
               a.click-flash(href="#getpwmpercent") .getPwmPercent()
+            li
+              a.click-flash(href="#ispwm") .isPwm(value)
+            li
+              a.click-flash(href="#ispwmpercent") .isPwmPercent(value)
             hr.divider
             li
               a.click-flash(href="#update") .update()
@@ -147,7 +166,11 @@ html(lang='en')
             li
               a.click-flash(href="#ramppercent") .rampPercent(value, timeout)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-
+            hr.divider
+            li
+              a.click-flash(href="#ontargetspeed") .onTargetSpeed()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
 
           .section
             a(name="constructor")
@@ -219,7 +242,7 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.setPwm(1);
+                  motor.on();
                 }
 
                 void loop() {
@@ -251,11 +274,11 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.on();
+                  motor.setPwm(123);
                 }
 
                 void loop() {
-                  Serial.println(motor.getPwm()); // returns 255
+                  Serial.println(motor.getPwm());
                 }
 
           .section
@@ -267,11 +290,59 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.on();
+                  motor.setPwmPercent(45);
                 }
 
                 void loop() {
-                  Serial.println(motor.getPwmPercent()); // returns 100
+                  Serial.println(motor.getPwmPercent());
+                }
+
+          .section
+            a(name="ispwm")
+            h4 motor.isPwm(value)
+            p
+              | Provide an integer from 0 to 255 and this will return true if is equal to the current&nbsp;
+              a.click-flash(href="#getpwm") getPwm()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.ramp(99, 1000);
+                }
+
+                void loop() {
+                  motor.update()
+
+                  if(motor.onTargetSpeed()) {
+                    if(motor.isPwm(99)) {
+                      ...
+                    }
+                  }
+                }
+
+          .section
+            a(name="ispwmpercent")
+            h4 motor.isPwmPercent(value)
+            p
+              | Provide an integer from 0 to 100 and this will return true if is equal to the current&nbsp;
+              a.click-flash(href="#getpwmpercent") getPwmPercent()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.rampPercent(45, 1000);
+                }
+
+                void loop() {
+                  motor.update()
+
+                  if(motor.onTargetSpeed()) {
+                    if(motor.isPwmPercent(45)) {
+                      ...
+                    }
+                  }
                 }
 
           .section
@@ -298,7 +369,7 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.timedOn(5000); // on for 5 seconds
+                  motor.timedOn(5000);
                 }
 
                 void loop() {
@@ -315,7 +386,7 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.rampUp(3000); // climb up to full speed in 3 seconds
+                  motor.rampUp(3000);
                 }
 
                 void loop() {
@@ -332,8 +403,8 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.on();           // turn on the motor
-                  motor.rampDown(4000); // reduce speed to nothing over 4 seconds
+                  motor.on();
+                  motor.rampDown(4000);
                 }
 
                 void loop() {
@@ -350,7 +421,7 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.ramp(85, 2000); // transition to one-third speed in 2 seconds
+                  motor.ramp(85, 2000); // one-third speed in 2 seconds
                 }
 
                 void loop() {
@@ -370,11 +441,36 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void setup() {
-                  motor.rampPercent(50, 1000); // transition to half speed in 1 second
+                  motor.rampPercent(50, 1000); // half speed in 1 second
                 }
 
                 void loop() {
                   motor.update();
+                }
+
+          .section
+            a(name="ontargetspeed")
+            h4
+              | motor.onTargetSpeed()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the motor hits the target speed set in any of the real-time methods. This method will return false until a new target speed is set (with a real-time method) and then achieved by the motor.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.off();
+                  motor.rampPercent(50, 5000);
+                }
+
+                void loop() {
+                  motor.update();
+
+                  if(motor.onTargetSpeed()) {
+                    // code only runs once per event
+                    Serial.println("Target Speed");
+                  }
                 }
 
           .section-bottom

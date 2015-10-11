@@ -327,7 +327,7 @@ html(lang='en')
                   cap_sensor.update();
 
                   if(cap_sensor.onChange()) {
-                    // code block runs once per change event
+                    // code only runs once per event
                     Serial.println(cap_sensor.getValue());
                   }
                 }

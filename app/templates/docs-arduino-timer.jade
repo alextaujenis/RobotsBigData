@@ -155,6 +155,15 @@ html(lang='en')
               a.click-flash(href="#sethertz") .setHertz(value)
             hr.divider
             li
+              a.click-flash(href="#getvalue") .getValue()
+            li
+              a.click-flash(href="#getinversevalue") .getInverseValue()
+            li
+              a.click-flash(href="#getpercentvalue") .getPercentValue()
+            li
+              a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
+            hr.divider
+            li
               a.click-flash(href="#restart") .restart()
             li
               a.click-flash(href="#isactive") .isActive()
@@ -170,15 +179,6 @@ html(lang='en')
             li
               a.click-flash(href="#onexpired") .onExpired()
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
-            hr.divider
-            li
-              a.click-flash(href="#getvalue") .getValue()
-            li
-              a.click-flash(href="#getinversevalue") .getInverseValue()
-            li
-              a.click-flash(href="#getpercentvalue") .getPercentValue()
-            li
-              a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
 
           .section
             a(name="constructor")
@@ -307,7 +307,7 @@ html(lang='en')
               :cdata
                 void loop() {
                   if(timer.onRestart()) {
-                    // code block runs once per restart
+                    // code only runs once per event
                     Serial.println("Timer Restarted");
                   }
                 }
@@ -324,7 +324,7 @@ html(lang='en')
               :cdata
                 void loop() {
                   if(timer.onActive()) {
-                    // code block runs once per active event
+                    // code only runs once per event
                     Serial.println("Timer Active");
                   }
                 }
@@ -341,7 +341,7 @@ html(lang='en')
               :cdata
                 void loop() {
                   if(timer.onExpired()) {
-                    // code block runs once per event
+                    // code only runs once per event
                     Serial.println("Timer Expired");
                   }
                 }
