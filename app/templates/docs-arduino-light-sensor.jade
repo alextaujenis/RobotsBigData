@@ -31,9 +31,14 @@ html(lang='en')
                 small v1.0.0
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-sketch") See Example
+              a.btn.btn-default(href="#example-setup") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
+          h3
+            a(name="overview")
+            | Overview
+          p.lead
+            | Read and calibrate photoresistors.
           h3
             a(name="download")
             | Download
@@ -46,7 +51,7 @@ html(lang='en')
           p
             ul
               li
-                a(href="https://github.com/alextaujenis/RBD_HumanSensor/raw/master/extras/RBD_LightSensor.zip")
+                a(href="https://github.com/alextaujenis/RBD_LightSensor/raw/master/extras/RBD_LightSensor.zip")
                   | Download Light Sensor Library v1.0.0&nbsp;
                   label.label.label-warning.zip-label .zip
                 |  by itself, or
@@ -57,7 +62,16 @@ html(lang='en')
                 a(href="https://github.com/alextaujenis/RBD_LightSensor") View Source on GitHub
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
-
+          h3
+            a(name="example-setup")
+            | Example Setup
+          p.lead
+            ol
+              li
+                | Wire up a photoresistor to Arduino pin A0
+              li Install this library and load the example sketch on to the Arduino
+              li Open a serial connection at 115200 BAUD
+              li Watch a stream of the current light percentage
           h3
             a(name="example-sketch")
             | Example Sketch
@@ -134,7 +148,7 @@ html(lang='en')
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void loop() {
+                void setup() {
                   light_sensor.setFloor(10);
                 }
 
@@ -147,7 +161,7 @@ html(lang='en')
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void loop() {
+                void setup() {
                   light_sensor.setCeiling(999);
                 }
 
@@ -161,7 +175,7 @@ html(lang='en')
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void loop() {
+                void setup() {
                   light_sensor.resetFloor();
                 }
 
@@ -175,7 +189,7 @@ html(lang='en')
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
-                void loop() {
+                void setup() {
                   light_sensor.resetCeiling();
                 }
 
@@ -210,7 +224,7 @@ html(lang='en')
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
                 void loop() {
-                  light_sensor.getValue();
+                  light_sensor.getRawValue();
                 }
 
           .section
