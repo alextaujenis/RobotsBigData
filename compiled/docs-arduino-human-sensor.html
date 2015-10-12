@@ -85,7 +85,8 @@ void setup() {
   else if(...) {
     ...
   }
-}]]></script></div><div class="section"><a name="update"></a><h4>human_sensor.update()<span data-toggle="tooltip" data-placement="right" title="This helps move real-time methods along." class="label label-primary">PROCESS REAL-TIME</span></h4><p>Keep processing the readings and move this library along in real-time.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+}
+]]></script></div><div class="section"><a name="update"></a><h4>human_sensor.update()<span data-toggle="tooltip" data-placement="right" title="This helps move real-time methods along." class="label label-primary">PROCESS REAL-TIME</span></h4><p>Keep processing the readings and move this library along in real-time.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
   human_sensor.update();
 }
 ]]></script></div><div class="section"><a name="isgone"></a><h4>human_sensor.isGone()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></h4><p>Returns true if no human is present and the sensor is reading a value below the&nbsp;<a href="#setnearvalue" class="click-flash">setNearValue()</a>. This will always return true if no thresholds (near, touch, pickup) are set.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
