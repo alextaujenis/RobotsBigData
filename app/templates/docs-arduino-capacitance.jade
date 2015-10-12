@@ -8,7 +8,7 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs-side-nav.jade
-        .documentation.col-sm-8.col-md-9
+        .documentation.col-sm-8
           ol.breadcrumb.stuck
             li
               a(href="index.html") Home
@@ -37,20 +37,20 @@ html(lang='en')
           h3
             a(name="overview")
             | Overview
-          p
+          p.lead
             | Detect human presence and touch from behind several millimeters of material, or detect changes in water levels from the outside of a plastic container. This library is meant to help&nbsp;
             b determine change in relative capacitance
             |  for the reasons above, and not for calculating exact capacitance.
-          p
+          p.lead
             | Relative capacitance is found by measuring how long it takes for an Arduino send-pin to charge a receive-pin to HIGH (in microseconds). Changes in the electrical field around a sensor connected to the receive pin (such as a human passing by, or water filling up, or a motor turning on) have a measurable impact on the amount of time it takes to charge the receive pin.
-          p
+          p.lead
             | Many of these charge and discharge readings are taken, then averaged within the library to reduce variability and give a more clear answer of what the sensor is reading. This is done in real-time without delay so it only has a small impact on the main loop() performance. See the&nbsp;
             a(href="#example-setup") Example
             |  below for help wiring and programming the Arduino with this library.
           h3
             a(name="download")
             | Download
-          p.lead
+          p
             | This library is part of a larger package that you can download to access
             i  all
             |  of the documented sensors,&nbsp;

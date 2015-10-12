@@ -8,7 +8,7 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs-side-nav.jade
-        .documentation.col-sm-8.col-md-9
+        .documentation.col-sm-8
           ol.breadcrumb.stuck
             li
               a(href="index.html") Home
@@ -43,7 +43,7 @@ html(lang='en')
           h3
             a(name="relativevsabsolute")
             | Relative vs. Absolute Time
-          p.lead
+          p
             | This library works well with relative time instead of absolute. Absolute timing (for example) of running on an&nbsp;
             b interval of precisely 5 minutes
             |  would incure&nbsp;
@@ -63,7 +63,7 @@ html(lang='en')
           h3
             a(name="download")
             | Download
-          p.lead
+          p
             | This library is part of a larger package that you can download to access
             i  all
             |  of the documented sensors,&nbsp;
@@ -87,7 +87,7 @@ html(lang='en')
           h3
             a(name="example-setup")
             | Example Setup
-          p.lead
+          p
             ol
               li Install this library and load the example sketch on to an Arduino
               li Open a serial connection at 115200 BAUD

@@ -8,7 +8,7 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs-side-nav.jade
-        .documentation.col-sm-8.col-md-9
+        .documentation.col-sm-8
           ol.breadcrumb.stuck
             li
               a(href="index.html") Home
@@ -37,7 +37,7 @@ html(lang='en')
           h3
             a(name="download")
             | Download
-          p.lead
+          p
             | This library is part of a larger package that you can download to access
             i  all
             |  of the documented sensors,&nbsp;
@@ -61,7 +61,7 @@ html(lang='en')
           h3
             a(name="example-setup")
             | Example Setup
-          p.lead
+          p
             | This takes an input domain of [under 0, 0-9, 10-19, 20-29, over 29] and converts it to a quantile scale output range of [under, low, medium, high, over]
             ul
               li Install this library and load the example sketch on to an Arduino

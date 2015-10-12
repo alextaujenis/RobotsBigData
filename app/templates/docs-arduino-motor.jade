@@ -8,7 +8,7 @@ html(lang='en')
     .container-fluid
       .row
         include ./global/docs-side-nav.jade
-        .documentation.col-sm-8.col-md-9
+        .documentation.col-sm-8
           ol.breadcrumb.stuck
             li
               a(href="index.html") Home
@@ -37,8 +37,8 @@ html(lang='en')
           h3
             a(name="overview")
             | Overview
-          p
-            | Control many motors without delay. Use simple commands such as&nbsp;
+          p.lead
+            | Control many motors without delay using commands like&nbsp;
             a.click-flash(href="#on") on()
             | ,&nbsp;
             a.click-flash(href="#off") off()
@@ -46,11 +46,13 @@ html(lang='en')
             a.click-flash(href="#timedon") timedOn()
             | , and&nbsp;
             a.click-flash(href="#ramp") ramp()
+            | . Fire custom events when the motor has reached the target speed with&nbsp;
+            a.click-flash(href="#ontargetspeed") onTargetSpeed()
             | . Motors must be correctly wired to PWM enabled Arduino pins to work with this library.
           h3
             a(name="download")
             | Download
-          p.lead
+          p
             | This library is part of a larger package that you can download to access
             i  all
             |  of the documented sensors,&nbsp;
