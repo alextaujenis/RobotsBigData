@@ -43,7 +43,7 @@ void setup() {
 void loop() {
   Serial.println(motor.isOn());
 }
-]]></script></div><div class="section"><a name="isoff"></a><h4>motor.isOff()</h4><p>Returns true only if the motor is at 0% speed.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+]]></script></div><div class="section"><a name="isoff"></a><h4>motor.isOff()</h4><p>Returns true if the motor is running at 0% speed.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
   motor.off();
 }
 
@@ -64,7 +64,7 @@ void loop() {
 void loop() {
   Serial.println(motor.getPwmPercent());
 }
-]]></script></div><div class="section"><a name="ispwm"></a><h4>motor.isPwm(value)</h4><p>Provide an integer from 0 to 255 and this will return true if is equal to the current&nbsp;<a href="#getpwm" class="click-flash">getPwm()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+]]></script></div><div class="section"><a name="ispwm"></a><h4>motor.isPwm(value)</h4><p>Provide an integer from 0 to 255 and this will return true if it's equal to the current&nbsp;<a href="#getpwm" class="click-flash">getPwm()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
   motor.ramp(99, 1000);
 }
 
@@ -77,7 +77,7 @@ void loop() {
     }
   }
 }
-]]></script></div><div class="section"><a name="ispwmpercent"></a><h4>motor.isPwmPercent(value)</h4><p>Provide an integer from 0 to 100 and this will return true if is equal to the current&nbsp;<a href="#getpwmpercent" class="click-flash">getPwmPercent()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+]]></script></div><div class="section"><a name="ispwmpercent"></a><h4>motor.isPwmPercent(value)</h4><p>Provide an integer from 0 to 100 and this will return true if it's equal to the current&nbsp;<a href="#getpwmpercent" class="click-flash">getPwmPercent()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
   motor.rampPercent(45, 1000);
 }
 
