@@ -38,28 +38,17 @@ html(lang='en')
             a(name="overview")
             | Overview
           p.lead
-            | The Arduino real-time loop stops advancing when you write delay() in your sketch. You can keep the real-time loop moving by using millis() to track time and create delay, but it's more complicated and soon becomes messy to manage. This timer implements time = millis(); elapsed = millis() - time; and is a simple replacement to manage timed events with english instead of math.
+            | The Arduino real-time loop stops advancing when you write delay() or use interrupts in your sketch. You can keep the real-time loop moving by using millis() to track time and create delay, but it's more complicated and soon becomes messy to manage.
+          p.lead
+            | This lightweight library manages time the same way you would by setting a waypoint and calculating elapsed millis(). It is a simple replacement to manage your timed events with english instead of math.
 
           h3
             a(name="relativevsabsolute")
-            | Relative vs. Absolute Time
+            | Soft Real-Time
           p
-            | This library works well with relative time instead of absolute. Absolute timing (for example) of running on an&nbsp;
-            b interval of precisely 5 minutes
-            |  would incure&nbsp;
-            b a few microseconds of time loss
-            |  each cycle. You can get a&nbsp;
-            i pretty close
-            |  interval by restarting the timer immediately if you don't mind losing one second every few hundred-thousand timeout cycles.
-
-            p
-              | This library is&nbsp;
-              b better suited for managing immediate program flow
-              |  over relative time, (for example) like starting a timer and using the reported percentage to dim an LED&nbsp;
-              b over the course of 1 second
-              | . It will not lose any time during the active cycle. You should use this timer really hard while it's active, then consider it dead and restart it to use it again.
-
-
+            | This library performs in Soft Real-Time, which means that it will mostly stay on time but is allowed to slip if performance is an issue. This could look like a microsecond of time loss when the timer expires but before it is restarted. Or this could look like a busy Arduino loop() where the timer resolution degrades to only fire an event within 25 microseconds of an actual event. (A microsecond is a small fraction of a millisecond).
+          p
+            | There are other solutions for Hard Real-Time problems that require exact timing, which cannot slip for any reason. These are consideration when using this timer within a project, but for the most part; performance is awesome and you should use this library.
           h3
             a(name="download")
             | Download
@@ -91,7 +80,7 @@ html(lang='en')
             ol
               li Install this library and load the example sketch on to an Arduino
               li Open a serial connection at 115200 BAUD
-              li Watch two independent timers report their status
+              li Watch an interval timer print to serial every three seconds
           h3
             a(name="example-sketch")
             | Example Sketch
@@ -102,39 +91,17 @@ html(lang='en')
             :cdata
               #include <RBD_Timer.h>
 
-              #define BAUD 115200
-              bool rising = true;
-
-              RBD::Timer timer1;
-              RBD::Timer timer2;
+              RBD::Timer timer;
 
               void setup() {
-                Serial.begin(BAUD);
-                timer1.setTimeout(3000);
-                timer2.setHertz(1);
-                timer1.restart();
-                timer2.restart();
+                Serial.begin(115200);
+                timer.setTimeout(3000);
+                timer.restart();
               }
 
               void loop() {
-                updateTimer1();
-                updateTimer2();
-              }
-
-              void updateTimer1() {
-                if(timer1.onRestart()) {
-                  Serial.println("THREE SECONDS PASSED");
-                }
-              }
-
-              void updateTimer2() {
-                if(timer2.isActive()) {
-                  if(rising) { Serial.println(timer2.getPercentValue()); }
-                  else { Serial.println(timer2.getInversePercentValue()); }
-                }
-                else {
-                  timer2.restart();
-                  rising = !rising;
+                if(timer.onRestart()) {
+                  Serial.println("Three seconds passed");
                 }
               }
           h3
@@ -241,7 +208,9 @@ html(lang='en')
             p
               | There are no start or stop methods. All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;
               a.click-flash(href="#isexpired") isExpired()
-              |  to create a continuous loop. If you would like a tighter time loop that doesn't wait for your code to run in order to restart the timer, then use&nbsp;
+              |  to create a continuous loop.
+            p
+              | If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;
               a.click-false(href="#onrestart") onRestart()
               |  instead.
             h5 EXAMPLE SKETCH
@@ -249,6 +218,7 @@ html(lang='en')
               :cdata
                 void loop() {
                   if(timer.isExpired()) {
+                    // run code here, then restart the timer
                     timer.restart();
                   }
                 }
@@ -262,6 +232,11 @@ html(lang='en')
               |  or&nbsp;
               a.click-flash(href="#getinversepercentvalue") getInversePercentValue()
               |  to perform real-time actions tweened over time.
+            p
+              | Use&nbsp;
+              a.click-flash(href="#onactive") onActive()
+              |  to only fire a single event when the timer goes active.
+
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
               :cdata
@@ -277,9 +252,11 @@ html(lang='en')
             p
               | Returns true if time has run out. This can be used for a single non-blocking delay, or it can be used with&nbsp;
               a.click-flash(href="#restart") restart()
-              |  to create a continuous loop that you restart when an action has completed. If you would like a tighter time loop that doesn't wait for your code to run in order to restart the timer, then use&nbsp;
-              a.click-false(href="#onrestart") onRestart()
-              |  instead.
+              |  to create a continuous loop that you restart when an action has completed.
+            p
+              | Use&nbsp;
+              a.click-flash(href="#onexpired") onExpired()
+              |  to fire a single event and not restart the timer right away.
 
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
