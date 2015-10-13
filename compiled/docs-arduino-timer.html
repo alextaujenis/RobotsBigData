@@ -38,7 +38,7 @@ void loop() {
     // events fired here are close to 5Hz
   }
 }
-]]></script></div><div class="section"><a name="restart"></a><h4>timer.restart()</h4><p>There are no start or stop methods. All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a> to create a continuous loop.</p><p>If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;<a href="#onrestart" class="click-false">onRestart()</a> instead.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+]]></script></div><div class="section"><a name="restart"></a><h4>timer.restart()</h4><p>There are no start or stop methods. All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a> to create a continuous loop.</p><p>If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;<a href="#onrestart" class="click-flash">onRestart()</a> instead.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
   if(timer.isExpired()) {
     // run code here, then restart the timer
     timer.restart();
