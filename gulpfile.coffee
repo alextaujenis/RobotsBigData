@@ -18,6 +18,18 @@ libraries_src  = './app/libraries/**/*.coffee'
 libraries_dest = './compiled/libraries/'
 
 
+# bower libraries
+jquery_js     = './bower_components/jquery/dist/jquery.min.js'
+bootstrap_js  = './bower_components/bootstrap/dist/js/bootstrap.min.js'
+bootstrap_css = './bower_components/bootstrap/dist/css/bootstrap.min.css'
+
+# index file
+index_html = './compiled/index.html'
+
+# images
+images_src = './app/images/**/*.png'
+images_dest = './compiled/images/'
+
 gulp.task 'compile-templates', ->
   gulp.src(template_src)
     .pipe(jade())
@@ -41,12 +53,32 @@ gulp.task 'compile-libraries', ->
     .pipe(uglify())
     .pipe(gulp.dest(libraries_dest))
 
+gulp.task 'copy-bower-js-files', ->
+  gulp.src([jquery_js, bootstrap_js])
+    .pipe(gulp.dest(libraries_dest))
+
+gulp.task 'copy-bower-css-files', ->
+  gulp.src(bootstrap_css)
+    .pipe(gulp.dest(style_dest))
+
+gulp.task 'copy-index-to-root', ->
+  gulp.src(index_html)
+    .pipe(gulp.dest('./'))
+
+gulp.task 'copy-images', ->
+  gulp.src(images_src)
+    .pipe(gulp.dest(images_dest))
+
 # this will compile everything
 gulp.task 'compile', [
   'compile-templates'
   'compile-style'
   'compile-code'
   'compile-libraries'
+  'copy-bower-js-files'
+  'copy-bower-css-files'
+  'copy-index-to-root'
+  'copy-images'
 ]
 
 # only compile when source files change
