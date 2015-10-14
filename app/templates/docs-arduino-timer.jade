@@ -201,6 +201,49 @@ html(lang='en')
                     // events fired here are close to 5Hz
                   }
                 }
+          .section
+            a(name="getvalue")
+            h4 timer.getValue()
+            p Returns an unsigned long of how many milliseconds that have passed since the start of the timer.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(timer.getValue());
+                }
+
+          .section
+            a(name="getinversevalue")
+            h4 timer.getInverseValue()
+            p Returns an unsigned long of how many milliseconds left until the end of the timer.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(timer.getInverseValue());
+                }
+
+          .section
+            a(name="getpercentvalue")
+            h4 timer.getPercentValue()
+            p Returns an integer from 0 - 100 of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 25.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(timer.getPercentValue());
+                }
+
+          .section
+            a(name="getinversepercentvalue")
+            h4 timer.getInversePercentValue()
+            p Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(timer.getInversePercentValue());
+                }
 
           .section
             a(name="restart")
@@ -321,50 +364,6 @@ html(lang='en')
                     // code only runs once per event
                     Serial.println("Timer Expired");
                   }
-                }
-
-          .section
-            a(name="getvalue")
-            h4 timer.getValue()
-            p Returns an unsigned long of how many milliseconds that have passed since the start of the timer.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(timer.getValue());
-                }
-
-          .section
-            a(name="getinversevalue")
-            h4 timer.getInverseValue()
-            p Returns an unsigned long of how many milliseconds left until the end of the timer.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(timer.getInverseValue());
-                }
-
-          .section
-            a(name="getpercentvalue")
-            h4 timer.getPercentValue()
-            p Returns an integer from 0 - 100 of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 25.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(timer.getPercentValue());
-                }
-
-          .section
-            a(name="getinversepercentvalue")
-            h4 timer.getInversePercentValue()
-            p Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(timer.getInversePercentValue());
                 }
 
           .section-bottom
