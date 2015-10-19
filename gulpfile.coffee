@@ -84,6 +84,7 @@ gulp.task 'compile', [
 # only compile when source files change
 gulp.task 'watch-files', ->
   gulp.watch(template_src, ['compile-templates'])
+  gulp.watch('compiled/index.html', ['copy-index-to-root'])
   gulp.watch(style_src, ['compile-style'])
   gulp.watch(code_src, ['compile-code'])
   gulp.watch(libraries_src, ['compile-libraries'])
