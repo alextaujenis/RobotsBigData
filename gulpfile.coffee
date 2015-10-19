@@ -17,14 +17,13 @@ code_dest = './compiled/code/'
 libraries_src  = './app/libraries/**/*.coffee'
 libraries_dest = './compiled/libraries/'
 
+# index file
+index_html = './compiled/index.html'
 
 # bower libraries
 jquery_js     = './bower_components/jquery/dist/jquery.min.js'
 bootstrap_js  = './bower_components/bootstrap/dist/js/bootstrap.min.js'
 bootstrap_css = './bower_components/bootstrap/dist/css/bootstrap.min.css'
-
-# index file
-index_html = './compiled/index.html'
 
 # images
 images_src = './app/images/**/*.png'
@@ -69,6 +68,7 @@ gulp.task 'copy-images', ->
   gulp.src(images_src)
     .pipe(gulp.dest(images_dest))
 
+
 # this will compile everything
 gulp.task 'compile', [
   'compile-templates'
@@ -89,4 +89,4 @@ gulp.task 'watch-files', ->
   gulp.watch(libraries_src, ['compile-libraries'])
 
 # run this command to start developing
-gulp.task 'develop', ['watch-files', 'compile']
+gulp.task 'develop', ['compile', 'watch-files']

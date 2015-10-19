@@ -27,7 +27,7 @@ html(lang='en')
                 | Human Sensor
                 small  API DOCUMENTATION
               p
-                | Detect human proximity, touch, and pickup.
+                | Detect human presence, touch, and pickup events.
                 small v1.0.0
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
@@ -316,10 +316,10 @@ html(lang='en')
                   |  of +200
                 li
                   | Call&nbsp;
-                  a.click-flash(href="#setmodifier") setModifier(200)
+                  a.click-flash(href="#setmodifier") setModifier(-200)
                   |  on the human sensor when the motor turns on
                 li
-                  | All of the calibrated human sensor thresholds will adjust +200
+                  | All of the calibrated human sensor thresholds will adjust -200
                 li
                   | The human sensor readings will account for motor interference
                 li
@@ -333,7 +333,7 @@ html(lang='en')
                   human_sensor.update();
 
                   if(...) { // motor is on
-                    human_sensor.setModifier(200);
+                    human_sensor.setModifier(-200);
                   }
                   else {
                     human_sensor.resetModifier();
@@ -366,10 +366,10 @@ html(lang='en')
                   |  of +200
                 li
                   | Call&nbsp;
-                  a.click-flash(href="#setmodifier") setModifier(200)
+                  a.click-flash(href="#setmodifier") setModifier(-200)
                   |  on the human sensor when the motor turns on
                 li
-                  | All of the calibrated human sensor thresholds will adjust +200
+                  | All of the calibrated human sensor thresholds will adjust -200
                 li
                   | The human sensor readings will account for motor interference
                 li
@@ -383,7 +383,7 @@ html(lang='en')
                   human_sensor.update();
 
                   if(...) {
-                    human_sensor.setModifier(200);
+                    human_sensor.setModifier(-200);
                   }
                   else {  // motor is off
                     human_sensor.resetModifier();
