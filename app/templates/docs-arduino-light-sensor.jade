@@ -81,12 +81,11 @@ html(lang='en')
           script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
             :cdata
               #include <RBD_LightSensor.h>
-              #define BAUD 115200
 
               RBD::LightSensor light_sensor(A0);
 
               void setup() {
-                Serial.begin(BAUD);
+                Serial.begin(115200);
               }
 
               void loop() {
