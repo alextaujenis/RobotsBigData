@@ -1,0 +1,527 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Water Sensor Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8
+          ol.breadcrumb.stuck
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs-arduino.html") Arduino
+            li.active
+              | Water Sensor
+            a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/app/templates/docs-arduino-water-sensor.jade", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
+          .jumbotron
+            .stuck.click-through
+              .row.jumbotron-header.click-through
+                .col-xs-12.text-right.click-through
+                  span.label.label-info.title-label Arduino
+            .jumbotron-container
+              h2
+                | Water Sensor
+                small  API DOCUMENTATION
+              p
+                | Measure and calibrate water level sensors.
+                small v1.0.2
+              a.btn.btn-success(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-setup") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
+          h3
+            a(name="overview")
+            | Overview
+          p.lead
+            | Measure and calibrate capacitance sensors to detect change in water levels from the outside of a plastic container. The example below uses a piece of aluminum foil, but you can attach the wire to anything conductive and calibrate the sensor accordingly.
+          p.lead
+            |This library measures relative capacitance so it is prone to interference. You can temporarily adjust the entire scale and then reset it when the capacitance disruption has stopped by using&nbsp;
+            a.click-flash(href="#setmodifier") setModifier()
+            |  and&nbsp;
+            a.click-flash(href="#resetmodifier") resetModifier()
+            | . Look at the&nbsp;
+            a(href="docs-arduino-capacitance.html") Capacitance Library
+            |  if you would like to know more about how capacitance is calculated.
+          h3
+            a(name="download")
+            | Download
+          p
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself with two dependencies.
+          p
+            ul
+              li
+                a(href="https://github.com/alextaujenis/RBD_WaterSensor/raw/master/extras/RBD_WaterSensor.zip")
+                  | Download Water Sensor Library v1.0.2&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  by itself with the&nbsp;
+                a.dark-link(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
+                |  and&nbsp;
+                a.dark-link(href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip") Threshold
+                |  dependencies, or
+              li
+                a(href="install.html") Download All Sensor Libraries
+                |  with this library and dependencies included, or
+              li
+                a(href="https://github.com/alextaujenis/RBD_WaterSensor") View Source on GitHub
+                |  with&nbsp;
+                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+
+          h3
+            a(name="example-setup")
+            | Example Setup
+          p
+            ol
+              li Bridge a 10Meg Ohm resistor across the send (tx 1) and receive (rx 0) pins
+              li Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil
+              li Tape the foil to the side of a water-tight non-conductive (plastic) container
+              li Load up the example sketch and open a serial connection at 115200 baud
+              li Pour water into the container and change the raw threshold values in the sketch to match the levels
+              li Pour out the water, then compile and load the calibrated sketch back into the Arduino
+              li Your water level is calibrated and ready to use
+          h3
+            a(name="example-sketch")
+            | Example Sketch
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
+
+          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            :cdata
+              #include <RBD_Capacitance.h>
+              #include <RBD_Threshold.h>
+              #include <RBD_WaterSensor.h>
+
+              RBD::WaterSensor water_sensor(1, 0, 3); // send, receive, level count
+
+              void setup() {
+                Serial.begin(115200);
+                water_sensor.setLevel(1, 120);
+                water_sensor.setLevel(2, 154);
+                water_sensor.setLevel(3, 187);
+                water_sensor.setMaxLevel(220);
+              }
+
+              void loop() {
+                water_sensor.update();
+
+                if(water_sensor.onRawValueChange()) {
+                  Serial.print("Active Level: ");
+                  Serial.print(water_sensor.getActiveLevel());
+                  Serial.print("  ---  ");
+                  Serial.print("Raw Value: ");
+                  Serial.println(water_sensor.getRawValue());
+                }
+              }
+          h3
+            a(name="public-methods")
+            | Public Methods
+
+          p
+            | You must continuously call&nbsp;
+            a.click-flash(href="#update") update()
+            |  inside of loop() in order to use the
+            span.label.label-success REAL-TIME
+            |  methods tagged below.
+
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::WaterSensor
+
+          ul.public-methods
+            li
+              a.click-flash(href="#constructor") constructor(send_pin, receive_pin, level_count)
+            hr.divider
+            li
+              a.click-flash(href="#setsamplesize") .setSampleSize(value)
+            li
+              a.click-flash(href="#setlevel") .setLevel(index, raw_value)
+            li
+              a.click-flash(href="#setmaxlevel") .setMaxLevel(raw_value)
+            li
+              a.click-flash(href="#setmodifier") .setModifier(value)
+            li
+              a.click-flash(href="#resetmodifier") .resetModifier()
+            hr.divider
+            li
+              a.click-flash(href="#update") .update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            li
+              a.click-flash(href="#getvalue") .getValue()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
+              a.click-flash(href="#getrawvalue") .getRawValue()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
+              a.click-flash(href="#getactivelevel") .getActiveLevel()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            li
+              a.click-flash(href="#isactivelevel") .isActiveLevel(value)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            hr.divider
+            li
+              a.click-flash(href="#onvaluechange") .onValueChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onrawvaluechange") .onRawValueChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onactivelevelchange") .onActiveLevelChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+
+          .section
+            a(name="constructor")
+            h4 RBD::WaterSensor constructor(send_pin, receive_pin, level_count)
+            p Pass in integers for the send and receive pins to create a new instance of this class, along with an integer for the total number of levels the water sensor will detect. Example: if you want to detect low, medium, and high levels then level_count should equal 3.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::WaterSensor water_sensor(1, 0, 3); // send, receive, level count
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            a(name="setsamplesize")
+            h4 water_sensor.setSampleSize(value)
+            p
+              | Pass in an integer to change the number of readings taken to calculate the moving average&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | . This can be called inside of setup() or also safely at runtime inside of loop().
+            ul
+              li
+                b Decrease Variation
+                |  in readings by making this number larger: 5000
+              li
+                b Increase Variation
+                |  in readings by making this number smaller: 100
+              li
+                b Default Value
+                | : 1000
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  water_sensor.setSampleSize(250);
+                }
+
+          .section
+            a(name="setlevel")
+            h4 water_sensor.setLevel(index, raw_value)
+            p
+              | Provide an integer for the level index and a raw value from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | . The level index starts at one (it is not zero-based). You must also call&nbsp;
+              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              |  at the end to set an upper bounds of the last level.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  water_sensor.setLevel(1, 120);
+                  water_sensor.setLevel(2, 154);
+                  water_sensor.setLevel(3, 187);
+                }
+
+          .section
+            a(name="setmaxlevel")
+            h4 water_sensor.setMaxLevel(raw_value)
+            p
+              | Provide an integer from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              |  to set the upper-bounds threshold of the last level.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  water_sensor.setMaxLevel(220);
+                }
+
+          .section
+            a(name="setmodifier")
+            h4 water_sensor.setModifier(value)
+            p
+              | Provide a positive or negative integer to temporarily adjust the water sensor threshold scale. The default value is 0.
+            p
+              i For example
+              | ; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.
+              ul
+                li
+                  | If a running motor increases the difference in water sensor readings by a&nbsp;
+                  a.click-flash(href="#getrawvalue") getRawValue()
+                  |  of +200
+                li
+                  | Call&nbsp;
+                  a.click-flash(href="#setmodifier") setModifier(-200)
+                  |  on the water sensor when the motor turns on
+                li
+                  | All of the calibrated water sensor thresholds will adjust -200
+                li
+                  | The water sensor&nbsp;
+                  a.click-flash(href="#getactivelevel") getActiveLevel()
+                  |  and&nbsp;
+                  a.click-flash(href="#getvalue") getValue()
+                  |  will account for motor interference
+                li
+                  | Call&nbsp;
+                  a.click-flash(href="#resetmodifier") resetModifier()
+                  |  on the water sensor when the motor shuts off
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  if(...) { // adjust when motor is on
+                    water_sensor.setModifier(-200);
+                  }
+                  else {
+                    water_sensor.resetModifier();
+                  }
+
+                  water_sensor.update();
+
+                  // still works as expected with interference
+                  if(water_sensor.onActiveLevelChange()) {
+                    ...
+                  }
+                }
+
+          .section
+            a(name="resetmodifier")
+            h4 water_sensor.resetModifier()
+            p
+              | Changes the&nbsp;
+              a.click-flash(href="#setmodifier") setModifier()
+              |  back to 0 and resets calibration of the water sensor threshold scale.
+            p
+              i For example
+              | ; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.
+              ul
+                li
+                  | If a running motor increases the difference in water sensor readings by a&nbsp;
+                  a.click-flash(href="#getrawvalue") getRawValue()
+                  |  of +200
+                li
+                  | Call&nbsp;
+                  a.click-flash(href="#setmodifier") setModifier(-200)
+                  |  on the water sensor when the motor turns on
+                li
+                  | All of the calibrated water sensor thresholds will adjust -200
+                li
+                  | The water sensor&nbsp;
+                  a.click-flash(href="#getactivelevel") getActiveLevel()
+                  |  and&nbsp;
+                  a.click-flash(href="#getvalue") getValue()
+                  |  will account for motor interference
+                li
+                  | Call&nbsp;
+                  a.click-flash(href="#resetmodifier") resetModifier()
+                  |  on the water sensor when the motor shuts off
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  if(...) {
+                    water_sensor.setModifier(-200);
+                  }
+                  else { // reset when motor is off
+                    water_sensor.resetModifier();
+                  }
+
+                  water_sensor.update();
+
+                  // still works as expected with interference
+                  if(water_sensor.onActiveLevelChange()) {
+                    ...
+                  }
+                }
+
+          .section
+            a(name="update")
+            h4
+              | water_sensor.update()
+              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+            p Keep processing the readings and move this library along in real-time.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+                }
+
+          .section
+            a(name="getvalue")
+            h4
+              | water_sensor.getValue()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;
+              a.click-flash(href="#setmodifier") setModifier()
+              | .
+            p
+              | This will return&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              |  if you have not used&nbsp;
+              a.click-flash(href="#setmodifier") setModifier()
+              |  yet, or if you have called&nbsp;
+              a.click-flash(href="#resetmodifier") resetModifier()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+
+                  if(water_sensor.onValueChange()) {
+                    Serial.println(water_sensor.getValue());
+                  }
+                }
+
+          .section
+            a(name="getrawvalue")
+            h4
+              | water_sensor.getRawValue()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
+              a.click-flash(href="#setmodifier") setModifier()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+
+                  if(water_sensor.onRawValueChange()) {
+                    Serial.println(water_sensor.getRawValue());
+                  }
+                }
+
+          .section
+            a(name="getactivelevel")
+            h4
+              | water_sensor.getActiveLevel()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Returns the current water level.
+              ul
+                li 0 means there is no water
+                li 1 means the water is touching the first level
+                li 2 means the water is touching the second level
+                li n means the water is touching the nth level
+                li sizeof(n) + 1 means the water is above the max level
+                li -1 if the value was not found
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+
+                  if(water_sensor.onActiveLevelChange()) {
+                    Serial.println(water_sensor.getActiveLevel());
+                  }
+                }
+
+          .section
+            a(name="isactivelevel")
+            h4
+              | water_sensor.isActiveLevel(value)
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+            p
+              | Provide an integer from 0 to 255 and this will return true if it's equal to the current&nbsp;
+              a.click-flash(href="#getactivelevel") getActiveLevel()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+
+                  if(water_sensor.onActiveLevelChange()) {
+                    if(water_sensor.isActiveLevel(1)) {
+                      Serial.println("First level active");
+                    }
+                  }
+                }
+
+          .section
+            a(name="onvaluechange")
+            h4
+              | water_sensor.onValueChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the sensor&nbsp;
+              a.click-flash(href="#getvalue") getValue()
+              |  changes. It will then return false until the reading changes to a different value again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+
+                  if(water_sensor.onValueChange()) {
+                    // code only runs once per event
+                    Serial.println(water_sensor.getValue());
+                  }
+                }
+
+          .section
+            a(name="onrawvaluechange")
+            h4
+              | water_sensor.onRawValueChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the sensor&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              |  changes. It will then return false until the reading changes to a different value again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+
+                  if(water_sensor.onRawValueChange()) {
+                    // code only runs once per event
+                    Serial.println(water_sensor.getRawValue());
+                  }
+                }
+
+          .section
+            a(name="onactivelevelchange")
+            h4
+              | water_sensor.onActiveLevelChange()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the sensor&nbsp;
+              a.click-flash(href="#getactivelevel") getActiveLevel()
+              |  changes. It will then return false until the level changes to a different value again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  water_sensor.update();
+
+                  if(water_sensor.onActiveLevelChange()) {
+                    // code only runs once per event
+                    Serial.println(water_sensor.getActiveLevel());
+                  }
+                }
+
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
+    include ./global/footer.jade

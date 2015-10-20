@@ -1,93 +1,158 @@
 gulp       = require('gulp')
-jade       = require('gulp-jade')
-less       = require('gulp-less')
-minify_css = require('gulp-minify-css')
+sequence   = require('run-sequence')
+clean      = require('gulp-clean')
 coffee     = require('gulp-coffee')
 uglify     = require('gulp-uglify')
+less       = require('gulp-less')
+minify_css = require('gulp-minify-css')
+jade       = require('gulp-jade')
 
-template_src  = './app/templates/**/*.jade'
-template_dest = './compiled/'
+# top level assets folder
+assets_src = './assets'
 
-style_src  = './app/style/**/*.less'
-style_dest = './compiled/style/'
+# html files in root directory
+html_src = './*.html'
 
-code_src  = './app/code/**/*.coffee'
-code_dest = './compiled/code/'
+# coffeescript code files
+code_src  = './src/code/*.coffee'
 
-libraries_src  = './app/libraries/**/*.coffee'
-libraries_dest = './compiled/libraries/'
+# library files
+code_libraries_js     = './src/code/libraries/*.js'
+code_libraries_coffee = './src/code/libraries/*.coffee'
 
-# index file
-index_html = './compiled/index.html'
+# code destination
+code_dest = './assets/code/'
+
+# less style files
+style_src = './src/style/*.less'
+
+# css libraries
+style_libraries_css = './src/style/libraries/*.css'
+
+# style destination
+style_dest = './assets/style/'
+
+# jade template pages
+template_src = './src/templates/*.jade'
+
+# root project directory
+root_dest = './'
+
+# image files
+image_src = './src/images/*.png'
+
+# image destination
+image_dest = './assets/images/'
+
+# download files
+download_src = './src/downloads/*'
+
+# download destination
+download_dest = './assets/downloads/'
 
 # bower libraries
 jquery_js     = './bower_components/jquery/dist/jquery.min.js'
 bootstrap_js  = './bower_components/bootstrap/dist/js/bootstrap.min.js'
 bootstrap_css = './bower_components/bootstrap/dist/css/bootstrap.min.css'
 
-# images
-images_src = './app/images/**/*.png'
-images_dest = './compiled/images/'
+# delete the assets folder and all site contents
+gulp.task 'clean-assets', ->
+  gulp.src(assets_src, read: false)
+    .pipe(clean())
 
-gulp.task 'compile-templates', ->
-  gulp.src(template_src)
-    .pipe(jade())
-    .pipe(gulp.dest(template_dest))
+gulp.task 'clean-html', ->
+  gulp.src(html_src, read: false)
+    .pipe(clean())
 
-gulp.task 'compile-style', ->
-  gulp.src(style_src)
-    .pipe(less())
-    .pipe(minify_css(keepSpecialComments: 0))
-    .pipe(gulp.dest(style_dest))
-
+# compile the coffeescript code into the assets folder
 gulp.task 'compile-code', ->
   gulp.src(code_src)
     .pipe(coffee(bare: true))
     .pipe(uglify())
     .pipe(gulp.dest(code_dest))
 
-gulp.task 'compile-libraries', ->
-  gulp.src(libraries_src)
+# copy the js libraries into the assets folder
+gulp.task 'copy-libraries-js', ->
+  gulp.src(code_libraries_js)
+    .pipe(uglify())
+    .pipe(gulp.dest(code_dest))
+
+# compile the coffeescript libraries into the assets folder
+gulp.task 'compile-libraries-coffee', ->
+  gulp.src(code_libraries_coffee)
     .pipe(coffee(bare: true))
     .pipe(uglify())
-    .pipe(gulp.dest(libraries_dest))
+    .pipe(gulp.dest(code_dest))
 
-gulp.task 'copy-bower-js-files', ->
+# compile the less style sheets into the assets folder
+gulp.task 'compile-style', ->
+  gulp.src(style_src)
+    .pipe(less())
+    .pipe(minify_css(keepSpecialComments: 0))
+    .pipe(gulp.dest(style_dest))
+
+# copy the css libraries into the assets folder
+gulp.task 'copy-libraries-css', ->
+  gulp.src(style_libraries_css)
+    .pipe(minify_css(keepSpecialComments: 0))
+    .pipe(gulp.dest(style_dest))
+
+# compile the jade pages to the root directory
+gulp.task 'compile-templates', ->
+  gulp.src(template_src)
+    .pipe(jade())
+    .pipe(gulp.dest(root_dest))
+
+# copy images to the assets folder
+gulp.task 'copy-images', ->
+  gulp.src(image_src)
+    .pipe(gulp.dest(image_dest))
+
+# copy downloads to the assets folder
+gulp.task 'copy-downloads', ->
+  gulp.src(download_src)
+    .pipe(gulp.dest(download_dest))
+
+# copy bower js libraries to the assets folder
+gulp.task 'copy-bower-js', ->
   gulp.src([jquery_js, bootstrap_js])
-    .pipe(gulp.dest(libraries_dest))
+    .pipe(gulp.dest(code_dest))
 
-gulp.task 'copy-bower-css-files', ->
+# copy bower css libraries to the assets folder
+gulp.task 'copy-bower-css', ->
   gulp.src(bootstrap_css)
     .pipe(gulp.dest(style_dest))
 
-gulp.task 'copy-index-to-root', ->
-  gulp.src(index_html)
-    .pipe(gulp.dest('./'))
+# clean everything
+gulp.task 'clean-up', ->
+  sequence(
+    'clean-assets'
+    'clean-html'
+  )
 
-gulp.task 'copy-images', ->
-  gulp.src(images_src)
-    .pipe(gulp.dest(images_dest))
+# run everything
+gulp.task 'compile', ->
+  sequence(
+    'clean-up'
+    'compile-code'
+    'copy-libraries-js'
+    'compile-libraries-coffee'
+    'compile-style'
+    'copy-libraries-css'
+    'compile-templates'
+    'copy-images'
+    'copy-downloads'
+    'copy-bower-js'
+    'copy-bower-css'
+  )
 
-
-# this will compile everything
-gulp.task 'compile', [
-  'compile-templates'
-  'compile-style'
-  'compile-code'
-  'compile-libraries'
-  'copy-bower-js-files'
-  'copy-bower-css-files'
-  'copy-index-to-root'
-  'copy-images'
-]
-
-# only compile when source files change
-gulp.task 'watch-files', ->
-  gulp.watch(template_src, ['compile-templates'])
-  gulp.watch('compiled/index.html', ['copy-index-to-root'])
-  gulp.watch(style_src, ['compile-style'])
-  gulp.watch(code_src, ['compile-code'])
-  gulp.watch(libraries_src, ['compile-libraries'])
-
-# run this command to start developing
-gulp.task 'develop', ['compile', 'watch-files']
+# # only compile when source files change
+# gulp.task 'watch-files', ->
+#   gulp.watch(template_src, ['compile-templates'])
+#   gulp.watch('compiled/index.html', ['copy-index-to-root'])
+#   gulp.watch(style_src, ['compile-style'])
+#   gulp.watch(code_src, ['compile-code'])
+#   gulp.watch(libraries_src, ['compile-libraries'])
+#
+# # run this command to start developing
+# gulp.task 'develop', ['compile', 'watch-files']

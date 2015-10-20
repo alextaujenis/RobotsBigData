@@ -1,0 +1,192 @@
+<!DOCTYPE html><html lang="en"><head><title>Robots + Big Data: Human Sensor Documentation</title><link href="assets/style/bootstrap.min.css" rel="stylesheet" type="text/css"><link href="assets/style/shCore.css" rel="stylesheet" type="text/css"><link href="assets/style/shCoreDefault.css" rel="stylesheet" type="text/css"><link href="assets/style/shThemeDefault.css" rel="stylesheet" type="text/css"><link href="assets/style/style.css" rel="stylesheet" type="text/css"><link href="assets/style/docs.css" rel="stylesheet" type="text/css"><link href="assets/style/install.css" rel="stylesheet" type="text/css"><meta content="width=device-width initial-scale=1" name="viewport"></head><body><a name="top"></a><div class="top-nav-spacer1 stuck">&nbsp;</div><div class="top-nav-spacer2">&nbsp;</div><div class="navbar navbar-default navbar-fixed-top"><div class="container-fluid"><div class="navbar-header"><button id="toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false" class="navbar-toggle collapsed"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="index.html" class="navbar-brand">Robots + Big Data</a></div><!-- Collect the links for mobile toggling--><div id="navbar-collapse" class="collapse navbar-collapse"><ul class="nav navbar-nav"><li><a href="install.html">Install</a></li><li><a href="docs-arduino.html">Docs</a></li><li><a href="github.html">GitHub</a></li><li><a href="#top" style="display:none;" class="back-to-top">BACK TO TOP</a></li></ul></div></div></div><div class="container-fluid"><div class="row"><div class="hidden-xs col-sm-4 stuck"><div class="panel panel-default side-panel"><div class="panel-heading"><div class="panel-title"><a href="docs-arduino.html">Arduino Libraries</a></div></div><div class="panel-body"><h3>Components & Sensors</h3><ul><li><a href="docs-arduino-light.html">Light</a><span data-toggle="tooltip" data-placement="left" title="Timer Dependency" class="badge pull-right">1</span></li><li><a href="docs-arduino-motor.html">Motor</a><span data-toggle="tooltip" data-placement="left" title="Timer Dependency" class="badge pull-right">1</span></li><li><a href="docs-arduino-human-sensor.html">Human Sensor</a><span data-toggle="tooltip" data-placement="left" title="Capacitance and Threshold Dependencies" class="badge pull-right">2</span></li><li><a href="docs-arduino-water-sensor.html">Water Sensor</a><span data-toggle="tooltip" data-placement="left" title="Capacitance and Threshold Dependencies" class="badge pull-right">2</span></li><li><a href="docs-arduino-light-sensor.html">Light Sensor</a></li></ul><h3>Additional Libraries</h3><ul><li><a href="docs-arduino-timer.html">Timer</a></li><li><a href="docs-arduino-threshold.html">Threshold</a></li><li><a href="docs-arduino-capacitance.html">Capacitance</a></li></ul></div></div></div><div class="documentation col-sm-8"><ol class="breadcrumb stuck"><li><a href="index.html">Home</a></li><li><a href="docs-arduino.html">Arduino</a></li><li class="active">Human Sensor</li><a href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/app/templates/docs-arduino-human-sensor.jade" data-toggle="tooltip" data-placement="left" title="Edit this page on GitHub." class="pull-right edit-page">edit</a></ol><div class="jumbotron"><div class="stuck click-through"><div class="row jumbotron-header click-through"><div class="col-xs-12 text-right click-through"><span class="label label-info title-label">Arduino</span></div></div></div><div class="jumbotron-container"><h2>Human Sensor<small> API DOCUMENTATION</small></h2><p>Detect human presence, touch, and pickup events.<small>v1.0.1</small></p><a href="#download" class="btn btn-success">Download</a>&nbsp;&nbsp;<a href="#example-setup" class="btn btn-default">See Example</a>&nbsp;&nbsp;<a href="#public-methods" class="btn btn-default">Public Methods</a></div></div><h3><a name="overview"></a>Overview</h3><p class="lead">Detect and interact with humans through change in capacitance. You can calibrate this library for your sensor very quickly to detect&nbsp;<a href="#onnear" class="click-flash">onNear()</a>,&nbsp;<a href="#ontouch" class="click-flash">onTouch()</a>, and&nbsp;<a href="#onpickup" class="click-flash">onPickup()</a> events. The example below uses a piece of aluminum foil, but you can attach the wire to anything conductive and calibrate the sensor accordingly.</p><p class="lead">This library measures relative capacitance so it is prone to interference. You can temporarily adjust the entire scale and then reset it when the capacitance disruption has stopped by using&nbsp;<a href="#setmodifier" class="click-flash">setModifier()</a> and&nbsp;<a href="#resetmodifier" class="click-flash">resetModifier()</a>. Look at the&nbsp;<a href="docs-arduino-capacitance.html">Capacitance Library</a> if you would like to know more about how capacitance is calculated.</p><h3><a name="download"></a>Download</h3><p>This library is part of a larger package that you can download to access<i> all</i> of the documented sensors,&nbsp;<i>or</i> you can use this library by itself with two dependencies.</p><p><ul><li><a href="https://github.com/alextaujenis/RBD_HumanSensor/raw/master/extras/RBD_HumanSensor.zip">Download Human Sensor Library v1.0.1&nbsp;<label class="label label-warning zip-label">.zip</label></a> by itself with the&nbsp;<a href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip" class="dark-link">Capacitance</a> and&nbsp;<a href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip" class="dark-link">Threshold</a> dependencies, or</li><li><a href="install.html">Download All Sensor Libraries</a> with this library and dependencies included, or</li><li><a href="https://github.com/alextaujenis/RBD_HumanSensor">View Source on GitHub</a> with&nbsp;<a href="http://opensource.org/licenses/mit-license.php" class="dark-link">MIT license</a></li></ul></p><h3><a name="example-setup"></a>Example Setup</h3><p><ol><li>Bridge a 10Meg Ohm resistor across the send (tx 1) and receive (rx 0) pins</li><li>Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil</li><li>Attach the foil to an object by covering it with a non-conductive material (duct tape)</li><li>Load up the example sketch and open a serial connection at 115200 baud</li><li>Move your hand by the object, touch it, pick it up, and change the raw threshold values in the sketch</li><li>Compile and reload the calibrated sketch back into the Arduino</li><li>Your human sensor is calibrated and ready to use</li></ol></p><h3><a name="example-sketch"></a>Example Sketch<span class="label label-info">Arduino</span><span class="label label-primary">C++</span></h3><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[#include <RBD_Capacitance.h>
+#include <RBD_Threshold.h>
+#include <RBD_HumanSensor.h>
+
+RBD::HumanSensor human_sensor(1, 0); // send, receive
+
+void setup() {
+  Serial.begin(115200);
+  human_sensor.setNearValue(100);
+  human_sensor.setTouchValue(200);
+  human_sensor.setPickupValue(300);
+}
+
+void loop() {
+  human_sensor.update();
+
+  if(human_sensor.onGone()) {
+    Serial.print("0. GONE   ");
+  }
+  else if(human_sensor.onNear()) {
+    Serial.print("1. NEAR   ");
+  }
+  else if(human_sensor.onTouch()) {
+    Serial.print("2. TOUCH  ");
+  }
+  else if(human_sensor.onPickup()) {
+    Serial.print("3. PICKUP ");
+  }
+
+  if(human_sensor.onRawValueChange()) {
+    Serial.println(human_sensor.getRawValue());
+  }
+}]]></script><h3><a name="public-methods"></a>Public Methods</h3><p>You must continuously call&nbsp;<a href="#update" class="click-flash">update()</a> inside of loop() in order to use the<span class="label label-success">REAL-TIME</span> methods tagged below.</p><h4 class="class-name"><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::HumanSensor
+]]></script></h4><ul class="public-methods"><li><a href="#constructor" class="click-flash">constructor(send_pin, receive_pin)</a></li><hr class="divider"><li><a href="#setsamplesize" class="click-flash">.setSampleSize(value)</a></li><li><a href="#setnearvalue" class="click-flash">.setNearValue(value)</a></li><li><a href="#settouchvalue" class="click-flash">.setTouchValue(value)</a></li><li><a href="#setpickupvalue" class="click-flash">.setPickupValue(value)</a></li><li><a href="#setmodifier" class="click-flash">.setModifier(value)</a></li><li><a href="#resetmodifier" class="click-flash">.resetModifier()</a></li><hr class="divider"><li><a href="#update" class="click-flash">.update()</a><span data-toggle="tooltip" data-placement="right" title="This helps move real-time methods along." class="label label-primary">PROCESS REAL-TIME</span></li><li><a href="#isgone" class="click-flash">.isGone()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#isnear" class="click-flash">.isNear()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#istouch" class="click-flash">.isTouch()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#ispickup" class="click-flash">.isPickup()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#getvalue" class="click-flash">.getValue()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#getrawvalue" class="click-flash">.getRawValue()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><li><a href="#getactivelevel" class="click-flash">.getActiveLevel()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></li><hr class="divider"><li><a href="#ongone" class="click-flash">.onGone()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onnear" class="click-flash">.onNear()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#ontouch" class="click-flash">.onTouch()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onpickup" class="click-flash">.onPickup()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onvaluechange" class="click-flash">.onValueChange()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onrawvaluechange" class="click-flash">.onRawValueChange()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li><li><a href="#onactivelevelchange" class="click-flash">.onActiveLevelChange()</a><span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></li></ul><div class="section"><a name="constructor"></a><h4>RBD::HumanSensor constructor(send_pin, receive_pin)</h4><p>Pass in integers for the send and receive pins to create a new instance of this class.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[RBD::HumanSensor human_sensor(1,0);
+
+void setup() {
+  ...
+}
+]]></script></div><div class="section"><a name="setsamplesize"></a><h4>human_sensor.setSampleSize(value)</h4><p>Pass in an integer to change the number of readings taken to calculate the moving average&nbsp;<a href="#getrawvalue" class="click-flash">getRawValue()</a>. This can be called inside of setup() or also safely at runtime inside of loop().</p><ul><li><b>Decrease Variation</b> in readings by making this number larger: 1000</li><li><b>Increase Variation</b> in readings by making this number smaller: 10</li><li><b>Default Value</b>: 250</li></ul><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  human_sensor.setSampleSize(1000);
+}
+]]></script></div><div class="section"><a name="setnearvalue"></a><h4>human_sensor.setNearValue(value)</h4><p>Provide an integer from&nbsp;<a href="#getrawvalue" class="click-flash">getRawValue()</a> to calibrate the lowest threshold for when a person is near the sensor.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  human_sensor.setNearValue(100);
+}
+]]></script></div><div class="section"><a name="settouchvalue"></a><h4>human_sensor.setTouchValue(value)</h4><p>Provide an integer from&nbsp;<a href="#getrawvalue" class="click-flash">getRawValue()</a> to calibrate the lowest threshold for when a person is touching the sensor.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  human_sensor.setTouchValue(150);
+}
+]]></script></div><div class="section"><a name="setpickupvalue"></a><h4>human_sensor.setPickupValue(value)</h4><p>Provide an integer from&nbsp;<a href="#getrawvalue" class="click-flash">getRawValue()</a> to calibrate the lowest threshold for when a person is picking up the sensor.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void setup() {
+  human_sensor.setPickupValue(200);
+}
+]]></script></div><div class="section"><a name="setmodifier"></a><h4>human_sensor.setModifier(value)</h4><p>Provide a positive or negative integer to temporarily adjust the human sensor threshold scale. The default value is 0.</p><p><i>For example</i>; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.<ul><li>If a running motor increases the difference in human sensor readings by a&nbsp;<a href="#getrawvalue" class="click-flash">getRawValue()</a> of +200</li><li>Call&nbsp;<a href="#setmodifier" class="click-flash">setModifier(-200)</a> on the human sensor when the motor turns on</li><li>All of the calibrated human sensor thresholds will adjust -200</li><li>The human sensor readings will account for motor interference</li><li>Call&nbsp;<a href="#resetmodifier" class="click-flash">resetModifier()</a> on the human sensor when the motor shuts off</li></ul></p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(...) { // motor is on
+    human_sensor.setModifier(-200);
+  }
+  else {
+    human_sensor.resetModifier();
+  }
+
+  // when the motor is on; require +200 more from
+  // the raw sensor reading to trigger all events
+  if(human_sensor.isNear()) {
+    ...
+  }
+  else if(...) {
+    ...
+  }
+}
+]]></script></div><div class="section"><a name="resetmodifier"></a><h4>human_sensor.resetModifier()</h4><p>Changes the&nbsp;<a href="#setmodifier" class="click-flash">setModifier()</a> back to 0 and resets calibration of the human sensor threshold scale.</p><p><i>For example</i>; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.<ul><li>If a running motor increases the difference in human sensor readings by a&nbsp;<a href="#getrawvalue" class="click-flash">getRawValue()</a> of +200</li><li>Call&nbsp;<a href="#setmodifier" class="click-flash">setModifier(-200)</a> on the human sensor when the motor turns on</li><li>All of the calibrated human sensor thresholds will adjust -200</li><li>The human sensor readings will account for motor interference</li><li>Call&nbsp;<a href="#resetmodifier" class="click-flash">resetModifier()</a> on the human sensor when the motor shuts off</li></ul></p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(...) {
+    human_sensor.setModifier(-200);
+  }
+  else {  // motor is off
+    human_sensor.resetModifier();
+  }
+
+  // when the motor is off; reset the
+  // threshold values for all events
+  if(human_sensor.isNear()) {
+    ...
+  }
+  else if(...) {
+    ...
+  }
+}
+]]></script></div><div class="section"><a name="update"></a><h4>human_sensor.update()<span data-toggle="tooltip" data-placement="right" title="This helps move real-time methods along." class="label label-primary">PROCESS REAL-TIME</span></h4><p>Keep processing the readings and move this library along in real-time.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+}
+]]></script></div><div class="section"><a name="isgone"></a><h4>human_sensor.isGone()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></h4><p>Returns true if no human is present and the sensor is reading a value below the&nbsp;<a href="#setnearvalue" class="click-flash">setNearValue()</a>. This will always return true if no thresholds (near, touch, pickup) are set.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.isGone()) {
+    ...
+  }
+}
+]]></script></div><div class="section"><a name="isnear"></a><h4>human_sensor.isNear()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></h4><p>Returns true if a human is present and the sensor is reading a value at or above the&nbsp;<a href="#setnearvalue" class="click-flash">setNearValue()</a>.</p><p>Returns false if the sensor is reading a value below the&nbsp;<a href="#setnearvalue" class="click-flash">setNearValue()</a>, or if a&nbsp;<a href="#settouchvalue" class="click-flash">setTouchValue()</a> has been assigned and the sensor is reading a value at or above the&nbsp;<a href="#istouch" class="click-flash">isTouch()</a> value.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.isNear()) {
+    ...
+  }
+}
+]]></script></div><div class="section"><a name="istouch"></a><h4>human_sensor.isTouch()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></h4><p>Returns true if a human is touching the sensor and it is reading a value at or above the&nbsp;<a href="#settouchvalue" class="click-flash">setTouchValue()</a>.</p><p>Returns false if the sensor is reading a value below the&nbsp;<a href="#settouchvalue" class="click-flash">setTouchValue()</a>, or if a&nbsp;<a href="#setpickupvalue" class="click-flash">setPickupValue()</a> has been assigned and the sensor is reading a value at or above the&nbsp;<a href="#ispickup" class="click-flash">isPickup()</a> value.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.isTouch()) {
+    ...
+  }
+}
+]]></script></div><div class="section"><a name="ispickup"></a><h4>human_sensor.isPickup()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></h4><p>Returns true if a human is picking up the sensor and it is reading a value at or above the&nbsp;<a href="#setpickupvalue" class="click-flash">setPickupValue()</a>.</p><p>Returns false if the sensor is reading a value below the&nbsp;<a href="#setpickupvalue" class="click-flash">setPickupValue()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.isPickup()) {
+    ...
+  }
+}
+]]></script></div><div class="section"><a name="getvalue"></a><h4>human_sensor.getValue()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></h4><p>Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;<a href="#setmodifier" class="click-flash">setModifier()</a>.</p><p>This will return the raw capacitance sensor reading if you have not used&nbsp;<a href="#setmodifier" class="click-flash">setModifier()</a> yet, or if you have called&nbsp;<a href="#resetmodifier" class="click-flash">resetModifier()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.onValueChange()) {
+    Serial.println(human_sensor.getValue());
+  }
+}
+]]></script></div><div class="section"><a name="getrawvalue"></a><h4>human_sensor.getRawValue()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></h4><p>Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;<a href="#setmodifier" class="click-flash">setModifier()</a>.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  Serial.println(human_sensor.getRawValue());
+}
+]]></script></div><div class="section"><a name="getactivelevel"></a><h4>human_sensor.getActiveLevel()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span></h4><p>Returns the current sensor level after being adjusted by&nbsp;<a href="#setmodifier" class="click-flash">setModifier()</a>.<ul><li>&nbsp;<b>0</b>&nbsp;&nbsp;no human is present</li><li>&nbsp;<b>1</b>&nbsp;&nbsp;a human is near</li><li>&nbsp;<b>2</b>&nbsp;&nbsp;a human is touching the sensor</li><li>&nbsp;<b>3</b>&nbsp;&nbsp;a human is picking up the sensor</li><li><b>-1</b>&nbsp;&nbsp;an error occured (non-continuous range)</li></ul></p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  Serial.println(human_sensor.getActiveLevel());
+}
+]]></script></div><div class="section"><a name="ongone"></a><h4>human_sensor.onGone()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will return true once the sensor registers a value below the&nbsp;<a href="#setnearvalue" class="click-flash">setNearValue()</a>. The active level must change away from and then come back to&nbsp;<a href="#isgone" class="click-flash">isGone()</a> in order for this method to return true again.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.onGone()) {
+    // code only runs once per event
+    Serial.println("Gone");
+  }
+}]]></script></div><div class="section"><a name="onnear"></a><h4>human_sensor.onNear()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will return true once the sensor registers a value at or above the&nbsp;<a href="#setnearvalue" class="click-flash">setNearValue()</a> and below the&nbsp;<a href="#settouchvalue" class="click-flash">setTouchValue()</a>. The active level must change away from and then come back to&nbsp;<a href="#isnear" class="click-flash">isNear()</a> in order for this method to return true again.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.onNear()) {
+    // code only runs once per event
+    Serial.println("Near");
+  }
+}
+]]></script></div><div class="section"><a name="ontouch"></a><h4>human_sensor.onTouch()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will return true once the sensor registers a value at or above the&nbsp;<a href="#settouchvalue" class="click-flash">setTouchValue()</a> and below the&nbsp;<a href="#setpickupvalue" class="click-flash">setPickupValue()</a>. The active level must change away from and then come back to&nbsp;<a href="#isnear" class="click-flash">isTouch()</a> in order for this method to return true again.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.onTouch()) {
+    // code only runs once per event
+    Serial.println("Touch");
+  }
+}
+]]></script></div><div class="section"><a name="onpickup"></a><h4>human_sensor.onPickup()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will return true once the sensor registers a value at or above the&nbsp;<a href="#setpickupvalue" class="click-flash">setPickupValue()</a>. The active level must change away from and then come back to&nbsp;<a href="#ispickup" class="click-flash">isPickup()</a> in order for this method to return true again.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.onPickup()) {
+    // code only runs once per event
+    Serial.println("Pickup");
+  }
+}
+]]></script></div><div class="section"><a name="onvaluechange"></a><h4>human_sensor.onValueChange()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will return true once the&nbsp;<a href="#getvalue" class="click-flash">getValue()</a> changes.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.onValueChange()) {
+    // code only runs once per event
+    Serial.println(human_sensor.getValue());
+  }
+}
+]]></script></div><div class="section"><a name="onrawvaluechange"></a><h4>human_sensor.onRawValueChange()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will return true once the&nbsp;<a href="#getrawvalue" class="click-flash">getRawValue()</a> changes.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.onRawValueChange()) {
+    // code only runs once per event
+    Serial.println(human_sensor.getRawValue());
+  }
+}
+]]></script></div><div class="section"><a name="onactivelevelchange"></a><h4>human_sensor.onActiveLevelChange()<span data-toggle="tooltip" data-placement="right" title="You must continuously call update() to use this method." class="label label-success">REAL-TIME</span><span data-toggle="tooltip" data-placement="right" title="Use this method to find when an event has been triggered." class="label label-default">EVENT</span></h4><p>This method will return true once the&nbsp;<a href="#getactivelevel" class="click-flash">getActiveLevel()</a> changes.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: cpp; gutter: false;"><![CDATA[void loop() {
+  human_sensor.update();
+
+  if(human_sensor.onActiveLevelChange()) {
+    // code only runs once per event
+    Serial.println(human_sensor.getActiveLevel());
+  }
+}
+]]></script></div></div></div></div><script src="assets/code/jquery.min.js"></script><script src="assets/code/bootstrap.min.js"></script><script src="assets/code/init_bootstrap.js"></script><script src="assets/code/back_to_top.js"></script><script src="assets/code/jquery.stuck.js"></script><script src="assets/code/init_jquery_stuck.js"></script><script src="assets/code/shCore.js"></script><script src="assets/code/shLegacy.js"></script><script src="assets/code/shAutoloader.js"></script><script src="assets/code/shBrushCpp.js"></script><script src="assets/code/shBrushBash.js"></script><script src="assets/code/shBrushJScript.js"></script><script src="assets/code/syntax_highlighter.js"></script><script src="assets/code/click_flash.js"></script><script src="assets/code/jquery.color.min.js"></script><div class="navbar navbar-default navbar-footer"><div class="container-fluid"><div class="row"><div class="col-xs-12 text-right">&copy; 2015&nbsp;<a href="http://opensource.org/licenses/mit-license.php">MIT License</a></div></div></div></div></body></html>

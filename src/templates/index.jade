@@ -1,0 +1,78 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: an open-source framework for connecting sensors to the internet
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid#reveal(style="opacity: 0.001")
+      .branding
+        .row
+          img.logo.img-responsive(src='assets/images/robots_big_data_logo.png')
+          h3.tagline An open-source framework for connecting sensors to the internet.
+        .row
+          .col-sm-3
+          .col-xs-6.col-sm-3
+            a.btn.btn-custom.pull-right(href="#hardware-overview") Learn More
+          .col-xs-6.col-sm-3
+            a.btn.btn-custom(href="docs-arduino.html") Read Docs
+          .col-sm-3
+      .row.hardware-spacer
+      .row
+        h2.section-header.text-center
+          | Say hello to the hardware
+          a(name="hardware-overview")
+      .row.text-center
+        .col-sm-12
+          .hardware1 Program the real world
+          .hardware-with with any
+          .hardware-name Arduino
+          img(src="assets/images/arduino-uno.png")
+          .row.text-left
+            .col-xs-2.col-sm-3
+            .col-xs-10.col-sm-9
+              ul.hardware-benefits
+                li
+                  b Connect
+                  |  really cheap and effective sensors to the Arduino
+                li
+                  b Run everything
+                  |  at the same time with no delay
+                li
+                  b Do it fast
+                  |  in microsecond response times
+      .row.software-spacer
+      .row
+        a(name="software-overview") &nbsp;
+        h2.section-header.text-center Take a peek at the software
+      .row
+        .col-sm-12.text-center
+          .software1 Simple libraries that help
+          .software2 to solve all the "simple" problems
+          a(href="docs-arduino-light.html")
+            img(src="assets/images/library-rbd-light.png")
+          a(href="docs-arduino-motor.html")
+            img(src="assets/images/library-rbd-motor.png")
+          a(href="docs-arduino-human-sensor.html")
+            img(src="assets/images/library-rbd-human-sensor.png")
+          a(href="docs-arduino-water-sensor.html")
+            img(src="assets/images/library-rbd-water-sensor.png")
+          a(href="docs-arduino-light-sensor.html")
+            img(src="assets/images/library-rbd-light-sensor.png")
+          .software-footer Control your sensors with C++
+      .row.getting-started-spacer
+      .branding
+        .row.text-center
+          a(name="getting-started") &nbsp;
+          h2.getting-started-header Getting Started
+          h3.tagline Install the Arduino sensor libraries and read the docs
+        .row
+          .col-sm-3
+          .col-xs-6.col-sm-3
+            a.btn.btn-custom.pull-right(href="install.html") Install Guide
+          .col-xs-6.col-sm-3
+            a.btn.btn-custom(href="docs-arduino.html") Read Docs
+          .col-sm-3
+    include ./global/foot-content.jade
+    script(src='assets/code/init_branding.js')
+    script(src='assets/code/branding.js')

@@ -1,0 +1,264 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Light Sensor Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8
+          ol.breadcrumb.stuck
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs-arduino.html") Arduino
+            li.active
+              | Light Sensor
+            a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/app/templates/docs-arduino-light-sensor.jade", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
+          .jumbotron
+            .stuck.click-through
+              .row.jumbotron-header.click-through
+                .col-xs-12.text-right.click-through
+                  span.label.label-info.title-label Arduino
+            .jumbotron-container
+              h2
+                | Light Sensor
+                small  API DOCUMENTATION
+              p
+                | Read and calibrate photoresistors.
+                small v1.0.1
+              a.btn.btn-success(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-setup") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
+          h3
+            a(name="overview")
+            | Overview
+          p.lead
+            | Read and calibrate photoresistors.
+          h3
+            a(name="download")
+            | Download
+          p
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself.
+          p
+            ul
+              li
+                a(href="https://github.com/alextaujenis/RBD_LightSensor/raw/master/extras/RBD_LightSensor.zip")
+                  | Download Light Sensor Library v1.0.1&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  by itself, or
+              li
+                a(href="install.html") Download All Sensor Libraries
+                |  with this library included, or
+              li
+                a(href="https://github.com/alextaujenis/RBD_LightSensor") View Source on GitHub
+                |  with&nbsp;
+                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+          h3
+            a(name="example-setup")
+            | Example Setup
+          p
+            ol
+              li
+                | Wire up a photoresistor to Arduino pin A0
+              li Install this library and load the example sketch on to the Arduino
+              li Open a serial connection at 115200 BAUD
+              li Watch a stream of the current light percentage
+          h3
+            a(name="example-sketch")
+            | Example Sketch
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
+          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            :cdata
+              #include <RBD_LightSensor.h>
+
+              RBD::LightSensor light_sensor(A0);
+
+              void setup() {
+                Serial.begin(115200);
+              }
+
+              void loop() {
+                Serial.println(light_sensor.getPercentValue());
+              }
+
+          h3
+            a(name="public-methods")
+            | Public Methods
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::LightSensor
+
+          ul.public-methods
+            li
+              a.click-flash(href="#constructor") constructor(pin)
+            hr.divider
+            li
+              a.click-flash(href="#setfloor") .setFloor(value)
+            li
+              a.click-flash(href="#setceiling") .setCeiling(value)
+            li
+              a.click-flash(href="#resetfloor") .resetFloor()
+            li
+              a.click-flash(href="#resetceiling") .resetCeiling()
+            hr.divider
+            li
+              a.click-flash(href="#getvalue") .getValue()
+            li
+              a.click-flash(href="#getrawvalue") .getRawValue()
+            li
+              a.click-flash(href="#getinversevalue") .getInverseValue()
+            li
+              a.click-flash(href="#getpercentvalue") .getPercentValue()
+            li
+              a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
+
+          .section
+            a(name="constructor")
+            h4 RBD::LightSensor constructor(pin)
+            p Create a new sensor and pass in the Arduino pin number.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::LightSensor light_sensor(A0);
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            a(name="setfloor")
+            h4 light_sensor.setFloor(value)
+            p
+              | Provide an integer from 0 - 1023 to calibrate the sensor with a lower bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the floor with help from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light_sensor.setFloor(10);
+                }
+
+          .section
+            a(name="setceiling")
+            h4 light_sensor.setCeiling(value)
+            p Provide an integer from 0 - 1023 to calibrate the sensor with an upper bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the ceiling with help from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light_sensor.setCeiling(999);
+                }
+
+          .section
+            a(name="resetfloor")
+            h4 light_sensor.resetFloor()
+            p
+              | Change the&nbsp;
+              a.click-flash(href="#setfloor") setFloor()
+              |  value back to 0, which also resets the lower bounds of the scale for all methods that return a value in this library.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light_sensor.resetFloor();
+                }
+
+          .section
+            a(name="resetceiling")
+            h4 light_sensor.resetCeiling()
+            p
+              | Change the&nbsp;
+              a.click-flash(href="#setceiling") setCeiling()
+              |  value back to 1023, which also resets the upper bounds of the scale for all methods that return a value in this library.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  light_sensor.resetCeiling();
+                }
+
+          .section
+            a(name="getvalue")
+            h4 light_sensor.getValue()
+            p
+              | Returns an integer from 0 - 1023 for the current light level adjusted for the&nbsp;
+              a.click-flash(href="#setfloor") setFloor()
+              |  and&nbsp;
+              a.click-flash(href="#setceiling") setCeiling()
+              |  values. If the floor or ceiling are not set, this method will return&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getValue();
+                }
+
+          .section
+            a(name="getrawvalue")
+            h4 light_sensor.getRawValue()
+            p
+              | Returns an integer from 0 - 1023 for the current light level reading from the sensor. Use this method to calibrate&nbsp;
+              a.click-flash(href="#setfloor") setFloor()
+              |  and&nbsp;
+              a.click-flash(href="#setceiling") setCeiling()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getRawValue();
+                }
+
+          .section
+            a(name="getinversevalue")
+            h4 light_sensor.getInverseValue()
+            p Returns an integer from 1023 - 0 for the opposite of the current light level.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getInverseValue();
+                }
+
+          .section
+            a(name="getpercentvalue")
+            h4 light_sensor.getPercentValue()
+            p Returns an integer from 0 - 100 for the current light percentage.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getPercentValue();
+                }
+
+          .section
+            a(name="getinversepercentvalue")
+            h4 light_sensor.getInversePercentValue()
+            p Returns an integer from 100 - 0 for the opposite of the current light percentage.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  light_sensor.getInversePercentValue();
+                }
+
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
+    include ./global/footer.jade

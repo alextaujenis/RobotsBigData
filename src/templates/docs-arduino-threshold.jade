@@ -1,0 +1,239 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Threshold Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8
+          ol.breadcrumb.stuck
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs-arduino.html") Arduino
+            li.active
+              | Threshold
+            a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/app/templates/docs-arduino-threshold.jade", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
+          .jumbotron
+            .stuck.click-through
+              .row.jumbotron-header.click-through
+                .col-xs-12.text-right.click-through
+                  span.label.label-info.title-label Arduino
+            .jumbotron-container
+              h2
+                | Threshold
+                small  API DOCUMENTATION
+              p
+                | Set and check numeric quantile scales.
+                small v1.0.1
+              a.btn.btn-success(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-setup") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
+          h3
+            a(name="overview")
+            | Overview
+          p.lead
+            | Set and check numeric quantile scales. Provide an input domain and this library will convert it to a numeric quantile output range. It is different from the Arduino map() function because this library can handle a non-uniform input range.
+          h3
+            a(name="download")
+            | Download
+          p
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself.
+          p
+            ul
+              li
+                a(href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip")
+                  | Download Threshold Library v1.0.1&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  by itself, or
+              li
+                a(href="install.html") Download All Sensor Libraries
+                |  with this library included, or
+              li
+                a(href="https://github.com/alextaujenis/RBD_Threshold") View Source on GitHub
+                |  with&nbsp;
+                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+
+          h3
+            a(name="example-setup")
+            | Example Setup
+          p
+            ul
+              li Install this library and load the example sketch on to an Arduino
+              li Open a serial connection at 115200 BAUD
+              li Watch as values are converted into the output range
+          p
+            | This example takes an input domain of:
+          p
+            ul
+              li [under 0]
+              li [0 - 10.49]
+              li [10.5 - 19.99]
+              li [20 - 30]
+              li [over 30]
+          p
+            | and converts it to the quantile output range:
+            ol(start="0")
+              li UNDER
+              li LOW
+              li MEDIUM
+              li HIGH
+              li OVER
+
+          h3
+            a(name="example-sketch")
+            | Example Sketch
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
+          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            :cdata
+              #include <RBD_Threshold.h>
+
+              RBD::Threshold threshold(3); // 3 levels
+
+              void setup() {
+                Serial.begin(115200);
+                threshold.setLevel(1,0);    // low
+                threshold.setLevel(2,10.5); // medium
+                threshold.setLevel(3,20);   // high
+                threshold.setMaxLevel(30);
+              }
+
+              void loop() {
+                Serial.println(threshold.computeLevel(-1));   // 0
+                Serial.println(threshold.computeLevel(8));    // 1
+                Serial.println(threshold.computeLevel(10.6)); // 2
+                Serial.println(threshold.computeLevel(30));   // 3
+                Serial.println(threshold.computeLevel(31));   // 4
+              }
+          h3
+            a(name="public-methods")
+            | Public Methods
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::Threshold
+
+          ul.public-methods
+            li
+              a.click-flash(href="#constructor") constructor(level_count)
+            hr.divider
+            li
+              a.click-flash(href="#setlevel") .setLevel(index, value)
+            li
+              a.click-flash(href="#setmaxlevel") .setMaxLevel(value)
+            hr.divider
+            li
+              a.click-flash(href="#getlevel") .getLevel(index)
+            li
+              a.click-flash(href="#getmaxlevel") .getMaxLevel()
+            hr.divider
+            li
+              a.click-flash(href="#computelevel") .computeLevel(value)
+
+          .section
+            a(name="constructor")
+            h4 RBD::Threshold constructor(level_count)
+            p Create a new instance and provide an integer for the maximum number of threshold levels. For example; set the level_count to 3 if you have levels of low, medium, and high. If you need more levels, this library will dynamically allocate an array to accommodate the size you provide the constructor.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::Threshold threshold(3) // 3 levels
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            a(name="setlevel")
+            h4 threshold.setLevel(index, value)
+            p
+              | Provide an integer for a level index and an integer, float, or double for the threshold value. This is not zero based, the first level starts at 1. You must also call&nbsp;
+              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              |  at the end to set an upper bounds of your last level.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  threshold.setLevel(1,0);    // [0 - 10.49]
+                  threshold.setLevel(2,10.5); // [10.5 - 19.99]
+                  threshold.setLevel(3,20);   // [20 - max]
+                }
+
+          .section
+            a(name="setmaxlevel")
+            h4 threshold.setMaxLevel(value)
+            p Provide an integer, float, or double to set the upper-bounds threshold of the last level.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  threshold.setMaxLevel(30); // [max = 30]
+                }
+
+          .section
+            a(name="getlevel")
+            h4 threshold.getLevel(index)
+            p
+              | Provide an integer for the level index, and this returns the value originally provided to&nbsp;
+              a.click-flash(href="#setlevel") setLevel()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(threshold.getLevel(3); // returns 20
+                }
+
+          .section
+            a(name="getmaxlevel")
+            h4 threshold.getMaxLevel()
+            p
+              | Returns the value originally provided to&nbsp;
+              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(threshold.getMaxLevel()); // returns 30
+                }
+
+          .section
+            a(name="computelevel")
+            h4 threshold.computeLevel(value)
+            p
+              | Provide an integer, float, or double value to compare against the thresholds for&nbsp;
+              a.click-flash(href="#setlevel") setLevel()
+              |  and&nbsp;
+              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              | . This returns an integer for the computed level.
+            ul
+              li it returns 0 for values that are under the first level
+              li 1 for your first level
+              li 2 for your second level
+              li n for your nth level
+              li
+                | sizeof(n) + 1 for any value greater than&nbsp;
+                a.click-flash(href="#getmaxlevel") getMaxLevel()
+              li -1 if the value was not found
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(threshold.computeLevel(17)); // returns 2 (medium)
+                }
+
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
+    include ./global/footer.jade

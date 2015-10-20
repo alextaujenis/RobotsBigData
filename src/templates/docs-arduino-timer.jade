@@ -1,0 +1,371 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Timer Documentation
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8
+          ol.breadcrumb.stuck
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs-arduino.html") Arduino
+            li.active
+              | Timer
+            a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/app/templates/docs-arduino-timer.jade", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
+          .jumbotron
+            .stuck.click-through
+              .row.jumbotron-header.click-through
+                .col-xs-12.text-right.click-through
+                  span.label.label-info.title-label Arduino
+            .jumbotron-container
+              h2
+                | Timer
+                small  API DOCUMENTATION
+              p
+                | Manage many timed events.
+                small v1.0.1
+              a.btn.btn-success(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-setup") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
+          h3
+            a(name="overview")
+            | Overview
+          p.lead
+            | The Arduino real-time loop stops advancing when you write delay() or use interrupts in your sketch. You can keep the real-time loop moving by using millis() to track time and create delay, but it's more complicated and soon becomes messy to manage.
+          p.lead
+            | This lightweight library manages time the same way you would by setting a waypoint and calculating elapsed millis(). It is a simple replacement to manage your timed events with english instead of math.
+
+          h3
+            a(name="relativevsabsolute")
+            | Soft Real-Time
+          p
+            | This library performs in Soft Real-Time, which means that it will mostly stay on time but is allowed to slip if performance is an issue. This could look like a microsecond of time loss when the timer expires but before it is restarted. Or this could look like a busy Arduino loop() where the timer resolution degrades to only fire an event within 25 microseconds of an actual event. (A microsecond is a small fraction of a millisecond).
+          p
+            | There are other solutions for Hard Real-Time problems that require exact timing, which cannot slip for any reason. These are consideration when using this timer within a project, but for the most part; performance is awesome and you should use this library.
+          h3
+            a(name="download")
+            | Download
+          p
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself.
+          p
+            ul
+              li
+                a(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip")
+                  | Download Timer Library v1.0.1&nbsp;
+                  label.label.label-warning.zip-label .zip
+                |  by itself, or
+              li
+                a(href="install.html") Download All Sensor Libraries
+                |  with this library included, or
+              li
+                a(href="https://github.com/alextaujenis/RBD_Timer") View Source on GitHub
+                |  with&nbsp;
+                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+
+          h3
+            a(name="example-setup")
+            | Example Setup
+          p
+            ol
+              li Install this library and load the example sketch on to an Arduino
+              li Open a serial connection at 115200 BAUD
+              li Watch an interval timer print to serial every three seconds
+          h3
+            a(name="example-sketch")
+            | Example Sketch
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
+          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            :cdata
+              #include <RBD_Timer.h>
+
+              RBD::Timer timer;
+
+              void setup() {
+                Serial.begin(115200);
+                timer.setTimeout(3000);
+                timer.restart();
+              }
+
+              void loop() {
+                if(timer.onRestart()) {
+                  Serial.println("Three seconds passed");
+                }
+              }
+          h3
+            a(name="public-methods")
+            | Public Methods
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::Timer
+
+          ul.public-methods
+            li
+              a.click-flash(href="#constructor") constructor()
+            hr.divider
+            li
+              a.click-flash(href="#settimeout") .setTimeout(value)
+            li
+              a.click-flash(href="#sethertz") .setHertz(value)
+            hr.divider
+            li
+              a.click-flash(href="#getvalue") .getValue()
+            li
+              a.click-flash(href="#getinversevalue") .getInverseValue()
+            li
+              a.click-flash(href="#getpercentvalue") .getPercentValue()
+            li
+              a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
+            hr.divider
+            li
+              a.click-flash(href="#restart") .restart()
+            li
+              a.click-flash(href="#isactive") .isActive()
+            li
+              a.click-flash(href="#isexpired") .isExpired()
+            hr.divider
+            li
+              a.click-flash(href="#onrestart") .onRestart()
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onactive") .onActive()
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onexpired") .onExpired()
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+
+          .section
+            a(name="constructor")
+            h4 RBD::Timer constructor()
+            p Create a new timer instance.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                RBD::Timer timer;
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            a(name="settimeout")
+            h4 timer.setTimeout(value)
+            p
+              | Provide an unsigned long value to change how long the timer will run (in milliseconds). This can be done inside of setup() or also inside of loop() to change the value at runtime.
+              | This will override any value given to&nbsp;
+              a.click-flash(href="#sethertz") setHertz()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  timer.setTimeout(200);  // expire after 200ms
+                }
+
+                void loop() {
+                  if(timer.isExpired()) {
+                    // returns true after 200ms
+                  }
+                }
+
+          .section
+            a(name="sethertz")
+            h4 timer.setHertz(value)
+            p
+              | Provide an integer from 1 - 1000 to set approximately how many times the timer will restart in one second. This can be done inside of setup() or also inside of loop() to change the value at runtime.
+              | This will override any value given to&nbsp;
+              a.click-flash(href="#settimeout") setTimeout()
+              | .
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void setup() {
+                  timer.setHertz(5);  // expire after 200ms
+                }
+
+                void loop() {
+                  if(timer.onRestart()) {
+                    // events fired here are close to 5Hz
+                  }
+                }
+          .section
+            a(name="getvalue")
+            h4 timer.getValue()
+            p Returns an unsigned long of how many milliseconds that have passed since the start of the timer.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(timer.getValue());
+                }
+
+          .section
+            a(name="getinversevalue")
+            h4 timer.getInverseValue()
+            p Returns an unsigned long of how many milliseconds left until the end of the timer.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(timer.getInverseValue());
+                }
+
+          .section
+            a(name="getpercentvalue")
+            h4 timer.getPercentValue()
+            p Returns an integer from 0 - 100 of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 25.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(timer.getPercentValue());
+                }
+
+          .section
+            a(name="getinversepercentvalue")
+            h4 timer.getInversePercentValue()
+            p Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(timer.getInversePercentValue());
+                }
+
+          .section
+            a(name="restart")
+            h4 timer.restart()
+            p
+              | There are no start or stop methods. All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;
+              a.click-flash(href="#isexpired") isExpired()
+              |  to create a continuous loop.
+            p
+              | If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;
+              a.click-flash(href="#onrestart") onRestart()
+              |  instead.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  if(timer.isExpired()) {
+                    // run code here, then restart the timer
+                    timer.restart();
+                  }
+                }
+
+          .section
+            a(name="isactive")
+            h4 timer.isActive()
+            p
+              | Returns true if time is available. Use this method with&nbsp;
+              a.click-flash(href="#getpercentvalue") getPercentValue()
+              |  or&nbsp;
+              a.click-flash(href="#getinversepercentvalue") getInversePercentValue()
+              |  to perform real-time actions tweened over time.
+            p
+              | Use&nbsp;
+              a.click-flash(href="#onactive") onActive()
+              |  to only fire a single event when the timer goes active.
+
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  if(timer.isActive()) {
+                    Serial.println(timer.getPercentValue());
+                  }
+                }
+
+          .section
+            a(name="isexpired")
+            h4 timer.isExpired()
+            p
+              | Returns true if time has run out. This can be used for a single non-blocking delay, or it can be used with&nbsp;
+              a.click-flash(href="#restart") restart()
+              |  to create a continuous loop that you restart when an action has completed.
+            p
+              | Use&nbsp;
+              a.click-flash(href="#onexpired") onExpired()
+              |  to fire a single event and not restart the timer right away.
+
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  if(timer.isExpired()) {
+                    // run code here and restart when finished
+                    timer.restart();
+                  }
+                }
+
+          .section
+            a(name="onrestart")
+            h4
+              | timer.onRestart()
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;
+              a.click-flash(href="#isexpired") isExpired()
+              |   and&nbsp;
+              a.click-flash(href="#restart") restart()
+              |  together, but with a simple syntax and a tighter time loop.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  if(timer.onRestart()) {
+                    // code only runs once per event
+                    Serial.println("Timer Restarted");
+                  }
+                }
+
+          .section
+            a(name="onactive")
+            h4
+              | timer.onActive()
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will fire a single event when the timer goes active. The timer must expire and then be restarted for this event to fire again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  if(timer.onActive()) {
+                    // code only runs once per event
+                    Serial.println("Timer Active");
+                  }
+                }
+
+          .section
+            a(name="onexpired")
+            h4
+              | timer.onExpired()
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will fire a single event when the timer expires. The timer must be restarted and then allowed to expire for this event to fire again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+              :cdata
+                void loop() {
+                  if(timer.onExpired()) {
+                    // code only runs once per event
+                    Serial.println("Timer Expired");
+                  }
+                }
+
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
+    include ./global/footer.jade
