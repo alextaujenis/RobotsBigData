@@ -60,6 +60,7 @@ gulp.task 'clean-assets', ->
   gulp.src(assets_src, read: false)
     .pipe(clean())
 
+# remove the html files from the root directory
 gulp.task 'clean-html', ->
   gulp.src(html_src, read: false)
     .pipe(clean())
@@ -133,7 +134,8 @@ gulp.task 'clean-up', ->
 # run everything
 gulp.task 'compile', ->
   sequence(
-    'clean-up'
+    'clean-assets'
+    'clean-html'
     'compile-code'
     'copy-libraries-js'
     'compile-libraries-coffee'
