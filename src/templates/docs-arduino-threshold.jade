@@ -95,7 +95,7 @@ html(lang='en')
             span.label.label-info Arduino
             span.label.label-primary C++
 
-          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_Threshold.h>
 
@@ -120,7 +120,7 @@ html(lang='en')
             a(name="public-methods")
             | Public Methods
           h4.class-name
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Threshold
 
@@ -146,7 +146,7 @@ html(lang='en')
             h4 RBD::Threshold constructor(level_count)
             p Create a new instance and provide an integer for the maximum number of threshold levels. For example; set the level_count to 3 if you have levels of low, medium, and high. If you need more levels, this library will dynamically allocate an array to accommodate the size you provide the constructor.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Threshold threshold(3) // 3 levels
 
@@ -156,13 +156,15 @@ html(lang='en')
 
           .section
             a(name="setlevel")
-            h4 threshold.setLevel(index, value)
+            h4
+              .light threshold
+              | .setLevel(index, value)
             p
               | Provide an integer for a level index and an integer, float, or double for the threshold value. This is not zero based, the first level starts at 1. You must also call&nbsp;
               a.click-flash(href="#setmaxlevel") setMaxLevel()
               |  at the end to set an upper bounds of your last level.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   threshold.setLevel(1,0);    // [0 - 10.49]
@@ -172,10 +174,12 @@ html(lang='en')
 
           .section
             a(name="setmaxlevel")
-            h4 threshold.setMaxLevel(value)
+            h4
+              .light threshold
+              | .setMaxLevel(value)
             p Provide an integer, float, or double to set the upper-bounds threshold of the last level.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   threshold.setMaxLevel(30); // [max = 30]
@@ -183,13 +187,15 @@ html(lang='en')
 
           .section
             a(name="getlevel")
-            h4 threshold.getLevel(index)
+            h4
+              .light threshold
+              | .getLevel(index)
             p
               | Provide an integer for the level index, and this returns the value originally provided to&nbsp;
               a.click-flash(href="#setlevel") setLevel()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   Serial.println(threshold.getLevel(3); // returns 20
@@ -197,13 +203,15 @@ html(lang='en')
 
           .section
             a(name="getmaxlevel")
-            h4 threshold.getMaxLevel()
+            h4
+              .light threshold
+              | .getMaxLevel()
             p
               | Returns the value originally provided to&nbsp;
               a.click-flash(href="#setmaxlevel") setMaxLevel()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   Serial.println(threshold.getMaxLevel()); // returns 30
@@ -211,7 +219,9 @@ html(lang='en')
 
           .section
             a(name="computelevel")
-            h4 threshold.computeLevel(value)
+            h4
+              .light threshold
+              | .computeLevel(value)
             p
               | Provide an integer, float, or double value to compare against the thresholds for&nbsp;
               a.click-flash(href="#setlevel") setLevel()
@@ -228,7 +238,7 @@ html(lang='en')
                 a.click-flash(href="#getmaxlevel") getMaxLevel()
               li -1 if the value was not found
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   Serial.println(threshold.computeLevel(17)); // returns 2 (medium)

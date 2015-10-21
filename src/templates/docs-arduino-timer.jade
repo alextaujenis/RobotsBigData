@@ -87,7 +87,7 @@ html(lang='en')
             span.label.label-info Arduino
             span.label.label-primary C++
 
-          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_Timer.h>
 
@@ -108,7 +108,7 @@ html(lang='en')
             a(name="public-methods")
             | Public Methods
           h4.class-name
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Timer
 
@@ -152,7 +152,7 @@ html(lang='en')
             h4 RBD::Timer constructor()
             p Create a new timer instance.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Timer timer;
 
@@ -162,14 +162,16 @@ html(lang='en')
 
           .section
             a(name="settimeout")
-            h4 timer.setTimeout(value)
+            h4
+              .light timer
+              | .setTimeout(value)
             p
               | Provide an unsigned long value to change how long the timer will run (in milliseconds). This can be done inside of setup() or also inside of loop() to change the value at runtime.
               | This will override any value given to&nbsp;
               a.click-flash(href="#sethertz") setHertz()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   timer.setTimeout(200);  // expire after 200ms
@@ -183,14 +185,16 @@ html(lang='en')
 
           .section
             a(name="sethertz")
-            h4 timer.setHertz(value)
+            h4
+              .light timer
+              | .setHertz(value)
             p
               | Provide an integer from 1 - 1000 to set approximately how many times the timer will restart in one second. This can be done inside of setup() or also inside of loop() to change the value at runtime.
               | This will override any value given to&nbsp;
               a.click-flash(href="#settimeout") setTimeout()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   timer.setHertz(5);  // expire after 200ms
@@ -203,10 +207,12 @@ html(lang='en')
                 }
           .section
             a(name="getvalue")
-            h4 timer.getValue()
+            h4
+              .light timer
+              | .getValue()
             p Returns an unsigned long of how many milliseconds that have passed since the start of the timer.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   Serial.println(timer.getValue());
@@ -214,10 +220,12 @@ html(lang='en')
 
           .section
             a(name="getinversevalue")
-            h4 timer.getInverseValue()
+            h4
+              .light timer
+              | .getInverseValue()
             p Returns an unsigned long of how many milliseconds left until the end of the timer.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   Serial.println(timer.getInverseValue());
@@ -225,10 +233,12 @@ html(lang='en')
 
           .section
             a(name="getpercentvalue")
-            h4 timer.getPercentValue()
+            h4
+              .light timer
+              | .getPercentValue()
             p Returns an integer from 0 - 100 of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 25.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   Serial.println(timer.getPercentValue());
@@ -236,10 +246,12 @@ html(lang='en')
 
           .section
             a(name="getinversepercentvalue")
-            h4 timer.getInversePercentValue()
+            h4
+              .light timer
+              | .getInversePercentValue()
             p Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   Serial.println(timer.getInversePercentValue());
@@ -247,7 +259,9 @@ html(lang='en')
 
           .section
             a(name="restart")
-            h4 timer.restart()
+            h4
+              .light timer
+              | .restart()
             p
               | There are no start or stop methods. All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;
               a.click-flash(href="#isexpired") isExpired()
@@ -257,7 +271,7 @@ html(lang='en')
               a.click-flash(href="#onrestart") onRestart()
               |  instead.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(timer.isExpired()) {
@@ -268,7 +282,9 @@ html(lang='en')
 
           .section
             a(name="isactive")
-            h4 timer.isActive()
+            h4
+              .light timer
+              | .isActive()
             p
               | Returns true if time is available. Use this method with&nbsp;
               a.click-flash(href="#getpercentvalue") getPercentValue()
@@ -281,7 +297,7 @@ html(lang='en')
               |  to only fire a single event when the timer goes active.
 
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(timer.isActive()) {
@@ -291,7 +307,9 @@ html(lang='en')
 
           .section
             a(name="isexpired")
-            h4 timer.isExpired()
+            h4
+              .light timer
+              | .isExpired()
             p
               | Returns true if time has run out. This can be used for a single non-blocking delay, or it can be used with&nbsp;
               a.click-flash(href="#restart") restart()
@@ -302,7 +320,7 @@ html(lang='en')
               |  to fire a single event and not restart the timer right away.
 
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(timer.isExpired()) {
@@ -314,7 +332,8 @@ html(lang='en')
           .section
             a(name="onrestart")
             h4
-              | timer.onRestart()
+              .light timer
+              | .onRestart()
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
               | This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;
@@ -323,7 +342,7 @@ html(lang='en')
               a.click-flash(href="#restart") restart()
               |  together, but with a simple syntax and a tighter time loop.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(timer.onRestart()) {
@@ -335,12 +354,13 @@ html(lang='en')
           .section
             a(name="onactive")
             h4
-              | timer.onActive()
+              .light timer
+              | .onActive()
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
               | This method will fire a single event when the timer goes active. The timer must expire and then be restarted for this event to fire again.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(timer.onActive()) {
@@ -352,12 +372,13 @@ html(lang='en')
           .section
             a(name="onexpired")
             h4
-              | timer.onExpired()
+              .light timer
+              | .onExpired()
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
               | This method will fire a single event when the timer expires. The timer must be restarted and then allowed to expire for this event to fire again.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(timer.onExpired()) {

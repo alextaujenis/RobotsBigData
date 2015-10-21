@@ -80,7 +80,7 @@ html(lang='en')
             span.label.label-info Arduino
             span.label.label-primary C++
 
-          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_Timer.h>
               #include <RBD_Light.h>
@@ -112,7 +112,7 @@ html(lang='en')
 
 
           h4.class-name
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Light
 
@@ -153,7 +153,7 @@ html(lang='en')
             h4 RBD::Light constructor(pin)
             p Create a new light and pass in the Arduino pin number.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Light light(13);
 
@@ -163,10 +163,12 @@ html(lang='en')
 
           .section
             a(name="on")
-            h4 light.on()
+            h4
+              .light light
+              | .on()
             p Turn on the light.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light.on();
@@ -174,10 +176,12 @@ html(lang='en')
 
           .section
             a(name="off")
-            h4 light.off()
+            h4
+              .light light
+              | .off()
             p Turn off the light.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light.off();
@@ -185,10 +189,12 @@ html(lang='en')
 
           .section
             a(name="setpwm")
-            h4 light.setPwm(value)
+            h4
+              .light light
+              | .setPwm(value)
             p Pass in an integer between 0 - 255 to set the brightness of the light.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light.setPwm(200);
@@ -196,10 +202,12 @@ html(lang='en')
 
           .section
             a(name="setpwmpercent")
-            h4 light.setPwmPercent(value)
+            h4
+              .light light
+              | .setPwmPercent(value)
             p Pass in an integer between 0 - 100 to set the brightness of the light.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light.setPwmPercent(75);
@@ -207,10 +215,12 @@ html(lang='en')
 
           .section
             a(name="ison")
-            h4 light.isOn()
+            h4
+              .light light
+              | .isOn()
             p Returns true if the current light brightness is at 100%.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(light.isOn()) {
@@ -220,10 +230,12 @@ html(lang='en')
 
           .section
             a(name="isoff")
-            h4 light.isOff()
+            h4
+              .light light
+              | .isOff()
             p Returns true if the current light brightness is at 0%.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(light.isOff()) {
@@ -231,13 +243,14 @@ html(lang='en')
                   }
                 }
 
-
           .section
             a(name="getpwm")
-            h4 light.getPwm()
+            h4
+              .light light
+              | .getPwm()
             p Returns an integer of the current light brightness from 0 - 255.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light.getPwm();
@@ -245,10 +258,12 @@ html(lang='en')
 
           .section
             a(name="getpwmpercent")
-            h4 light.getPwmPercent()
+            h4
+              .light light
+              | .getPwmPercent()
             p Returns an integer of the current light percentage brightness from 0 - 100.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light.getPwmPercent();
@@ -257,7 +272,8 @@ html(lang='en')
           .section
             a(name="update")
             h4
-              | light.update()
+              .light light
+              | .update()
               span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             p
               | Keep the light moving in real-time. This must be called continuously from within loop() in order to&nbsp;
@@ -266,7 +282,7 @@ html(lang='en')
               a.click-flash(href="#fade") fade()
               |  the light.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light.update();
@@ -275,7 +291,8 @@ html(lang='en')
           .section
             a(name="blink")
             h4
-              | light.blink(on_time, off_time, times
+              .light light
+              | .blink(on_time, off_time, times
               sup.superscript 1
               | )
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -290,7 +307,7 @@ html(lang='en')
                 | and will repeat this cycle for the number of times you provided
                 sup.superscript 1
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   light.blink(1000,500,25);
@@ -303,7 +320,8 @@ html(lang='en')
           .section
             a(name="fade")
             h4
-              | light.fade(up_time, on_time, down_time, off_time, times
+              .light light
+              | .fade(up_time, on_time, down_time, off_time, times
               sup.superscript 1
               | )
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
@@ -321,7 +339,7 @@ html(lang='en')
                 | and will repeat this cycle for the number of times your provided
                 sup.superscript 1
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   light.fade(2500,250,2000,750,1000);

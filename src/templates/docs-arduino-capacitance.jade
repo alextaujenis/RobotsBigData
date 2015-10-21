@@ -87,7 +87,7 @@ html(lang='en')
             span.label.label-primary C++
 
 
-          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_Capacitance.h>
 
@@ -155,7 +155,7 @@ html(lang='en')
             |  methods tagged below.
 
           h4.class-name
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Capacitance
 
@@ -189,7 +189,7 @@ html(lang='en')
             h4 RBD::Capacitance constructor(send_pin, receive_pin)
             p Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Capacitance cap_sensor(1,0);
 
@@ -199,7 +199,9 @@ html(lang='en')
 
           .section
             a(name="setsamplesize")
-            h4 cap_sensor.setSampleSize(value)
+            h4
+              .light cap_sensor
+              | .setSampleSize(value)
             p
               | Pass in an integer to change the number of readings taken to calculate a moving average&nbsp;
               a.click-flash(href="#getvalue") getValue()
@@ -215,7 +217,7 @@ html(lang='en')
                 b Default Value
                 | : 100
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   cap_sensor.setSampleSize(1000);
@@ -224,11 +226,12 @@ html(lang='en')
           .section
             a(name="update")
             h4
-              | cap_sensor.update()
+              .light cap_sensor
+              | .update()
               span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             p This must be call continuously from within the loop() to move the library along in real-time.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   cap_sensor.update();
@@ -237,14 +240,15 @@ html(lang='en')
           .section
             a(name="start")
             h4
-              | cap_sensor.start()
+              .light cap_sensor
+              | .start()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Begin taking many readings and start adding up the moving average for&nbsp;
               a.click-flash(href="#getvalue") getValue()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   cap_sensor.start();
@@ -257,7 +261,8 @@ html(lang='en')
           .section
             a(name="isfinished")
             h4
-              | cap_sensor.isFinished()
+              .light cap_sensor
+              | .isFinished()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns true if all readings have been taken and a moving average&nbsp;
@@ -266,7 +271,7 @@ html(lang='en')
               a.click-flash(href="#start") start()
               |   to begin the sampling process.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   cap_sensor.start();
@@ -283,7 +288,8 @@ html(lang='en')
           .section
             a(name="getvalue")
             h4
-              | cap_sensor.getValue()
+              .light cap_sensor
+              | .getValue()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns an unsigned long of the moving average value for the capacitance reading (microseconds taken to charge the pin). This will only return a value after calling&nbsp;
@@ -292,7 +298,7 @@ html(lang='en')
               a.click-flash(href="#isfinished") isFinished()
               |  has returned true.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   cap_sensor.start();
@@ -309,7 +315,8 @@ html(lang='en')
           .section
             a(name="onchange")
             h4
-              | cap_sensor.onChange()
+              .light cap_sensor
+              | .onChange()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -321,7 +328,7 @@ html(lang='en')
               a.click-flash(href="#isfinished") isFinished()
               |  together, but with a simple syntax and a tighter time loop.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   cap_sensor.update();

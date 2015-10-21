@@ -100,7 +100,7 @@ html(lang='en')
             span.label.label-primary C++
 
 
-          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_Capacitance.h>
               #include <RBD_Threshold.h>
@@ -147,7 +147,7 @@ html(lang='en')
             |  methods tagged below.
 
           h4.class-name
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::HumanSensor
 
@@ -227,7 +227,7 @@ html(lang='en')
             h4 RBD::HumanSensor constructor(send_pin, receive_pin)
             p Pass in integers for the send and receive pins to create a new instance of this class.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::HumanSensor human_sensor(1,0);
 
@@ -237,7 +237,9 @@ html(lang='en')
 
           .section
             a(name="setsamplesize")
-            h4 human_sensor.setSampleSize(value)
+            h4
+              .light human_sensor
+              | .setSampleSize(value)
             p
               | Pass in an integer to change the number of readings taken to calculate the moving average&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
@@ -253,7 +255,7 @@ html(lang='en')
                 b Default Value
                 | : 250
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   human_sensor.setSampleSize(1000);
@@ -261,13 +263,15 @@ html(lang='en')
 
           .section
             a(name="setnearvalue")
-            h4 human_sensor.setNearValue(value)
+            h4
+              .light human_sensor
+              | .setNearValue(value)
             p
               | Provide an integer from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  to calibrate the lowest threshold for when a person is near the sensor.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   human_sensor.setNearValue(100);
@@ -275,13 +279,15 @@ html(lang='en')
 
           .section
             a(name="settouchvalue")
-            h4 human_sensor.setTouchValue(value)
+            h4
+              .light human_sensor
+              | .setTouchValue(value)
             p
               | Provide an integer from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  to calibrate the lowest threshold for when a person is touching the sensor.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   human_sensor.setTouchValue(150);
@@ -289,13 +295,15 @@ html(lang='en')
 
           .section
             a(name="setpickupvalue")
-            h4 human_sensor.setPickupValue(value)
+            h4
+              .light human_sensor
+              | .setPickupValue(value)
             p
               | Provide an integer from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  to calibrate the lowest threshold for when a person is picking up the sensor.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   human_sensor.setPickupValue(200);
@@ -303,7 +311,9 @@ html(lang='en')
 
           .section
             a(name="setmodifier")
-            h4 human_sensor.setModifier(value)
+            h4
+              .light human_sensor
+              | .setModifier(value)
             p
               | Provide a positive or negative integer to temporarily adjust the human sensor threshold scale. The default value is 0.
             p
@@ -327,7 +337,7 @@ html(lang='en')
                   a.click-flash(href="#resetmodifier") resetModifier()
                   |  on the human sensor when the motor shuts off
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -351,7 +361,9 @@ html(lang='en')
 
           .section
             a(name="resetmodifier")
-            h4 human_sensor.resetModifier()
+            h4
+              .light human_sensor
+              | .resetModifier()
             p
               | Changes the&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
@@ -377,7 +389,7 @@ html(lang='en')
                   a.click-flash(href="#resetmodifier") resetModifier()
                   |  on the human sensor when the motor shuts off
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -402,11 +414,12 @@ html(lang='en')
           .section
             a(name="update")
             h4
-              | human_sensor.update()
+              .light human_sensor
+              | .update()
               span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             p Keep processing the readings and move this library along in real-time.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -415,14 +428,15 @@ html(lang='en')
           .section
             a(name="isgone")
             h4
-              | human_sensor.isGone()
+              .light human_sensor
+              | .isGone()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns true if no human is present and the sensor is reading a value below the&nbsp;
               a.click-flash(href="#setnearvalue") setNearValue()
               | . This will always return true if no thresholds (near, touch, pickup) are set.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -435,7 +449,8 @@ html(lang='en')
           .section
             a(name="isnear")
             h4
-              | human_sensor.isNear()
+              .light human_sensor
+              | .isNear()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns true if a human is present and the sensor is reading a value at or above the&nbsp;
@@ -450,7 +465,7 @@ html(lang='en')
               a.click-flash(href="#istouch") isTouch()
               |  value.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -463,7 +478,8 @@ html(lang='en')
           .section
             a(name="istouch")
             h4
-              | human_sensor.isTouch()
+              .light human_sensor
+              | .isTouch()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns true if a human is touching the sensor and it is reading a value at or above the&nbsp;
@@ -478,7 +494,7 @@ html(lang='en')
               a.click-flash(href="#ispickup") isPickup()
               |  value.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -491,7 +507,8 @@ html(lang='en')
           .section
             a(name="ispickup")
             h4
-              | human_sensor.isPickup()
+              .light human_sensor
+              | .isPickup()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns true if a human is picking up the sensor and it is reading a value at or above the&nbsp;
@@ -502,7 +519,7 @@ html(lang='en')
               a.click-flash(href="#setpickupvalue") setPickupValue()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -515,7 +532,8 @@ html(lang='en')
           .section
             a(name="getvalue")
             h4
-              | human_sensor.getValue()
+              .light human_sensor
+              | .getValue()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;
@@ -528,7 +546,7 @@ html(lang='en')
               a.click-flash(href="#resetmodifier") resetModifier()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -541,14 +559,15 @@ html(lang='en')
           .section
             a(name="getrawvalue")
             h4
-              | human_sensor.getRawValue()
+              .light human_sensor
+              | .getRawValue()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -559,7 +578,8 @@ html(lang='en')
           .section
             a(name="getactivelevel")
             h4
-              | human_sensor.getActiveLevel()
+              .light human_sensor
+              | .getActiveLevel()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns the current sensor level after being adjusted by&nbsp;
@@ -586,7 +606,7 @@ html(lang='en')
                   b -1
                   | &nbsp;&nbsp;an error occured (non-continuous range)
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -597,7 +617,8 @@ html(lang='en')
           .section
             a(name="ongone")
             h4
-              | human_sensor.onGone()
+              .light human_sensor
+              | .onGone()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -607,7 +628,7 @@ html(lang='en')
               a.click-flash(href="#isgone") isGone()
               |  in order for this method to return true again.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -620,7 +641,8 @@ html(lang='en')
           .section
             a(name="onnear")
             h4
-              | human_sensor.onNear()
+              .light human_sensor
+              | .onNear()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -632,7 +654,7 @@ html(lang='en')
               a.click-flash(href="#isnear") isNear()
               |  in order for this method to return true again.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -646,7 +668,8 @@ html(lang='en')
           .section
             a(name="ontouch")
             h4
-              | human_sensor.onTouch()
+              .light human_sensor
+              | .onTouch()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -658,7 +681,7 @@ html(lang='en')
               a.click-flash(href="#isnear") isTouch()
               |  in order for this method to return true again.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -672,7 +695,8 @@ html(lang='en')
           .section
             a(name="onpickup")
             h4
-              | human_sensor.onPickup()
+              .light human_sensor
+              | .onPickup()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -682,7 +706,7 @@ html(lang='en')
               a.click-flash(href="#ispickup") isPickup()
               |  in order for this method to return true again.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -696,7 +720,8 @@ html(lang='en')
           .section
             a(name="onvaluechange")
             h4
-              | human_sensor.onValueChange()
+              .light human_sensor
+              | .onValueChange()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -704,7 +729,7 @@ html(lang='en')
               a.click-flash(href="#getvalue") getValue()
               |  changes.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -718,7 +743,8 @@ html(lang='en')
           .section
             a(name="onrawvaluechange")
             h4
-              | human_sensor.onRawValueChange()
+              .light human_sensor
+              | .onRawValueChange()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -726,7 +752,7 @@ html(lang='en')
               a.click-flash(href="#getrawvalue") getRawValue()
               |  changes.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();
@@ -740,7 +766,8 @@ html(lang='en')
           .section
             a(name="onactivelevelchange")
             h4
-              | human_sensor.onActiveLevelChange()
+              .light human_sensor
+              | .onActiveLevelChange()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -748,7 +775,7 @@ html(lang='en')
               a.click-flash(href="#getactivelevel") getActiveLevel()
               |  changes.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   human_sensor.update();

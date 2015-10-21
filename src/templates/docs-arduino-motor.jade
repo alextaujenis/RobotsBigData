@@ -81,7 +81,7 @@ html(lang='en')
             span.label.label-primary C++
 
 
-          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_Timer.h>
               #include <RBD_Motor.h>
@@ -120,7 +120,7 @@ html(lang='en')
             |  methods tagged below.
 
           h4.class-name
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Motor
 
@@ -179,7 +179,7 @@ html(lang='en')
             h4 RBD::Motor constructor(pin)
             p Create a new motor and pass in the Arduino pin number.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Motor motor(3); // pwm pin 3
 
@@ -189,11 +189,13 @@ html(lang='en')
 
           .section
             a(name="on")
-            h4 motor.on()
+            h4
+              .light motor
+              | .on()
             p
               | Start the motor at full speed.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.on();
@@ -201,10 +203,12 @@ html(lang='en')
 
           .section
             a(name="off")
-            h4 motor.off()
+            h4
+              .light motor
+              | .off()
             p Stop the motor.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.off();
@@ -212,10 +216,12 @@ html(lang='en')
 
           .section
             a(name="setpwm")
-            h4 motor.setPwm(value)
+            h4
+              .light motor
+              | .setPwm(value)
             p Pass in an integer from 0 - 255 to control the speed of the motor.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.setPwm(85); // one-third speed
@@ -223,13 +229,15 @@ html(lang='en')
 
           .section
             a(name="setpwmpercent")
-            h4 motor.setPwmPercent(value)
+            h4
+              .light motor
+              | .setPwmPercent(value)
             p
               | Pass in an integer from 0 - 100 to control the speed percentage of the motor. This is essentially the same as&nbsp;
               a.click-flash(href="#setpwm") setPwm()
               |  but with a smaller input scale.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.setPwmPercent(50); // half speed
@@ -237,11 +245,13 @@ html(lang='en')
 
           .section
             a(name="ison")
-            h4 motor.isOn()
+            h4
+              .light motor
+              | .isOn()
             p
               | Returns true if the motor is running at 100% speed.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.on();
@@ -253,11 +263,13 @@ html(lang='en')
 
           .section
             a(name="isoff")
-            h4 motor.isOff()
+            h4
+              .light motor
+              | .isOff()
             p
               | Returns true if the motor is running at 0% speed.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.off();
@@ -269,11 +281,13 @@ html(lang='en')
 
           .section
             a(name="getpwm")
-            h4 motor.getPwm()
+            h4
+              .light motor
+              | .getPwm()
             p
               | Returns an integer from 0 - 255 for the current motor speed.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.setPwm(123);
@@ -285,11 +299,13 @@ html(lang='en')
 
           .section
             a(name="getpwmpercent")
-            h4 motor.getPwmPercent()
+            h4
+              .light motor
+              | .getPwmPercent()
             p
               | Returns an integer from 0 - 100 for the current motor speed percentage.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.setPwmPercent(45);
@@ -301,13 +317,15 @@ html(lang='en')
 
           .section
             a(name="ispwm")
-            h4 motor.isPwm(value)
+            h4
+              .light motor
+              | .isPwm(value)
             p
               | Provide an integer from 0 to 255 and this will return true if it's equal to the current&nbsp;
               a.click-flash(href="#getpwm") getPwm()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.ramp(99, 1000);
@@ -325,13 +343,15 @@ html(lang='en')
 
           .section
             a(name="ispwmpercent")
-            h4 motor.isPwmPercent(value)
+            h4
+              .light motor
+              | .isPwmPercent(value)
             p
               | Provide an integer from 0 to 100 and this will return true if it's equal to the current&nbsp;
               a.click-flash(href="#getpwmpercent") getPwmPercent()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.rampPercent(45, 1000);
@@ -350,11 +370,12 @@ html(lang='en')
           .section
             a(name="update")
             h4
-              | motor.update()
+              .light motor
+              | .update()
               span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             p Keep the real-time functions processing with each loop().
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   motor.update();
@@ -363,12 +384,13 @@ html(lang='en')
           .section
             a(name="timedon")
             h4
-              | motor.timedOn(timeout)
+              .light motor
+              | .timedOn(timeout)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Start the motor at full speed and turn it off after the specified time in milliseconds.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.timedOn(5000);
@@ -381,11 +403,12 @@ html(lang='en')
           .section
             a(name="rampup")
             h4
-              | motor.rampUp(timeout)
+              .light motor
+              | .rampUp(timeout)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p Pass in a timeout in milliseconds for how long it will take to ramp from the current speed to full speed with a linear transition.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.rampUp(3000);
@@ -398,11 +421,12 @@ html(lang='en')
           .section
             a(name="rampdown")
             h4
-              | motor.rampDown(timeout)
+              .light motor
+              | .rampDown(timeout)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p Pass in a timeout in milliseconds for how long it will take to ramp from the current speed to full stop with a linear transition.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.on();
@@ -416,11 +440,12 @@ html(lang='en')
           .section
             a(name="ramp")
             h4
-              | motor.ramp(value, timeout)
+              .light motor
+              | .ramp(value, timeout)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p Pass in a value from 0 - 255 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.ramp(85, 2000); // one-third speed in 2 seconds
@@ -433,14 +458,15 @@ html(lang='en')
           .section
             a(name="ramppercent")
             h4
-              | motor.rampPercent(value, timeout)
+              .light motor
+              | .rampPercent(value, timeout)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Pass in a value from 0 - 100 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition. This is essentially the same as&nbsp;
               a.click-flash(href="#ramp") ramp()
               |  but with a smaller input scale.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.rampPercent(50, 1000); // half speed in 1 second
@@ -453,13 +479,14 @@ html(lang='en')
           .section
             a(name="ontargetspeed")
             h4
-              | motor.onTargetSpeed()
+              .light motor
+              | .onTargetSpeed()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
               | This method will return true once the motor hits the target speed set in any of the real-time methods. This method will return false until a new target speed is set (with a real-time method) and then achieved by the motor.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   motor.off();

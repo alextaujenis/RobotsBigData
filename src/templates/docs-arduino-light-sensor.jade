@@ -78,7 +78,7 @@ html(lang='en')
             span.label.label-info Arduino
             span.label.label-primary C++
 
-          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_LightSensor.h>
 
@@ -96,7 +96,7 @@ html(lang='en')
             a(name="public-methods")
             | Public Methods
           h4.class-name
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::LightSensor
 
@@ -129,7 +129,7 @@ html(lang='en')
             h4 RBD::LightSensor constructor(pin)
             p Create a new sensor and pass in the Arduino pin number.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::LightSensor light_sensor(A0);
 
@@ -139,13 +139,15 @@ html(lang='en')
 
           .section
             a(name="setfloor")
-            h4 light_sensor.setFloor(value)
+            h4
+              .light light_sensor
+              | .setFloor(value)
             p
               | Provide an integer from 0 - 1023 to calibrate the sensor with a lower bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the floor with help from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   light_sensor.setFloor(10);
@@ -153,12 +155,14 @@ html(lang='en')
 
           .section
             a(name="setceiling")
-            h4 light_sensor.setCeiling(value)
+            h4
+              .light light_sensor
+              | .setCeiling(value)
             p Provide an integer from 0 - 1023 to calibrate the sensor with an upper bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the ceiling with help from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   light_sensor.setCeiling(999);
@@ -166,13 +170,15 @@ html(lang='en')
 
           .section
             a(name="resetfloor")
-            h4 light_sensor.resetFloor()
+            h4
+              .light light_sensor
+              | .resetFloor()
             p
               | Change the&nbsp;
               a.click-flash(href="#setfloor") setFloor()
               |  value back to 0, which also resets the lower bounds of the scale for all methods that return a value in this library.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   light_sensor.resetFloor();
@@ -180,13 +186,15 @@ html(lang='en')
 
           .section
             a(name="resetceiling")
-            h4 light_sensor.resetCeiling()
+            h4
+              .light light_sensor
+              | .resetCeiling()
             p
               | Change the&nbsp;
               a.click-flash(href="#setceiling") setCeiling()
               |  value back to 1023, which also resets the upper bounds of the scale for all methods that return a value in this library.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   light_sensor.resetCeiling();
@@ -194,7 +202,9 @@ html(lang='en')
 
           .section
             a(name="getvalue")
-            h4 light_sensor.getValue()
+            h4
+              .light light_sensor
+              | .getValue()
             p
               | Returns an integer from 0 - 1023 for the current light level adjusted for the&nbsp;
               a.click-flash(href="#setfloor") setFloor()
@@ -204,7 +214,7 @@ html(lang='en')
               a.click-flash(href="#getrawvalue") getRawValue()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light_sensor.getValue();
@@ -212,7 +222,9 @@ html(lang='en')
 
           .section
             a(name="getrawvalue")
-            h4 light_sensor.getRawValue()
+            h4
+              .light light_sensor
+              | .getRawValue()
             p
               | Returns an integer from 0 - 1023 for the current light level reading from the sensor. Use this method to calibrate&nbsp;
               a.click-flash(href="#setfloor") setFloor()
@@ -220,7 +232,7 @@ html(lang='en')
               a.click-flash(href="#setceiling") setCeiling()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light_sensor.getRawValue();
@@ -228,10 +240,12 @@ html(lang='en')
 
           .section
             a(name="getinversevalue")
-            h4 light_sensor.getInverseValue()
+            h4
+              .light light_sensor
+              | .getInverseValue()
             p Returns an integer from 1023 - 0 for the opposite of the current light level.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light_sensor.getInverseValue();
@@ -239,10 +253,12 @@ html(lang='en')
 
           .section
             a(name="getpercentvalue")
-            h4 light_sensor.getPercentValue()
+            h4
+              .light light_sensor
+              | .getPercentValue()
             p Returns an integer from 0 - 100 for the current light percentage.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light_sensor.getPercentValue();
@@ -250,10 +266,12 @@ html(lang='en')
 
           .section
             a(name="getinversepercentvalue")
-            h4 light_sensor.getInversePercentValue()
+            h4
+              .light light_sensor
+              | .getInversePercentValue()
             p Returns an integer from 100 - 0 for the opposite of the current light percentage.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   light_sensor.getInversePercentValue();

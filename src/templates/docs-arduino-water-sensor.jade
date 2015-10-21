@@ -94,7 +94,7 @@ html(lang='en')
             span.label.label-primary C++
 
 
-          script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_Capacitance.h>
               #include <RBD_Threshold.h>
@@ -133,7 +133,7 @@ html(lang='en')
             |  methods tagged below.
 
           h4.class-name
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::WaterSensor
 
@@ -186,7 +186,7 @@ html(lang='en')
             h4 RBD::WaterSensor constructor(send_pin, receive_pin, level_count)
             p Pass in integers for the send and receive pins to create a new instance of this class, along with an integer for the total number of levels the water sensor will detect. Example: if you want to detect low, medium, and high levels then level_count should equal 3.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::WaterSensor water_sensor(1, 0, 3); // send, receive, level count
 
@@ -196,7 +196,9 @@ html(lang='en')
 
           .section
             a(name="setsamplesize")
-            h4 water_sensor.setSampleSize(value)
+            h4
+              .light water_sensor
+              | .setSampleSize(value)
             p
               | Pass in an integer to change the number of readings taken to calculate the moving average&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
@@ -212,7 +214,7 @@ html(lang='en')
                 b Default Value
                 | : 1000
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   water_sensor.setSampleSize(250);
@@ -220,7 +222,9 @@ html(lang='en')
 
           .section
             a(name="setlevel")
-            h4 water_sensor.setLevel(index, raw_value)
+            h4
+              .light water_sensor
+              | .setLevel(index, raw_value)
             p
               | Provide an integer for the level index and a raw value from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
@@ -228,7 +232,7 @@ html(lang='en')
               a.click-flash(href="#setmaxlevel") setMaxLevel()
               |  at the end to set an upper bounds of the last level.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   water_sensor.setLevel(1, 120);
@@ -238,13 +242,15 @@ html(lang='en')
 
           .section
             a(name="setmaxlevel")
-            h4 water_sensor.setMaxLevel(raw_value)
+            h4
+              .light water_sensor
+              | .setMaxLevel(raw_value)
             p
               | Provide an integer from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  to set the upper-bounds threshold of the last level.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void setup() {
                   water_sensor.setMaxLevel(220);
@@ -252,7 +258,9 @@ html(lang='en')
 
           .section
             a(name="setmodifier")
-            h4 water_sensor.setModifier(value)
+            h4
+              .light water_sensor
+              | .setModifier(value)
             p
               | Provide a positive or negative integer to temporarily adjust the water sensor threshold scale. The default value is 0.
             p
@@ -280,7 +288,7 @@ html(lang='en')
                   a.click-flash(href="#resetmodifier") resetModifier()
                   |  on the water sensor when the motor shuts off
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(...) { // adjust when motor is on
@@ -300,7 +308,9 @@ html(lang='en')
 
           .section
             a(name="resetmodifier")
-            h4 water_sensor.resetModifier()
+            h4
+              .light water_sensor
+              | .resetModifier()
             p
               | Changes the&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
@@ -330,7 +340,7 @@ html(lang='en')
                   a.click-flash(href="#resetmodifier") resetModifier()
                   |  on the water sensor when the motor shuts off
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   if(...) {
@@ -351,11 +361,12 @@ html(lang='en')
           .section
             a(name="update")
             h4
-              | water_sensor.update()
+              .light water_sensor
+              | .update()
               span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
             p Keep processing the readings and move this library along in real-time.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   water_sensor.update();
@@ -364,7 +375,8 @@ html(lang='en')
           .section
             a(name="getvalue")
             h4
-              | water_sensor.getValue()
+              .light water_sensor
+              | .getValue()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;
@@ -379,7 +391,7 @@ html(lang='en')
               a.click-flash(href="#resetmodifier") resetModifier()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   water_sensor.update();
@@ -392,14 +404,15 @@ html(lang='en')
           .section
             a(name="getrawvalue")
             h4
-              | water_sensor.getRawValue()
+              .light water_sensor
+              | .getRawValue()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   water_sensor.update();
@@ -412,7 +425,8 @@ html(lang='en')
           .section
             a(name="getactivelevel")
             h4
-              | water_sensor.getActiveLevel()
+              .light water_sensor
+              | .getActiveLevel()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Returns the current water level.
@@ -424,7 +438,7 @@ html(lang='en')
                 li sizeof(n) + 1 means the water is above the max level
                 li -1 if the value was not found
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   water_sensor.update();
@@ -437,14 +451,15 @@ html(lang='en')
           .section
             a(name="isactivelevel")
             h4
-              | water_sensor.isActiveLevel(value)
+              .light water_sensor
+              | .isActiveLevel(value)
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             p
               | Provide an integer from 0 to 255 and this will return true if it's equal to the current&nbsp;
               a.click-flash(href="#getactivelevel") getActiveLevel()
               | .
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   water_sensor.update();
@@ -459,7 +474,8 @@ html(lang='en')
           .section
             a(name="onvaluechange")
             h4
-              | water_sensor.onValueChange()
+              .light water_sensor
+              | .onValueChange()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -467,7 +483,7 @@ html(lang='en')
               a.click-flash(href="#getvalue") getValue()
               |  changes. It will then return false until the reading changes to a different value again.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   water_sensor.update();
@@ -481,7 +497,8 @@ html(lang='en')
           .section
             a(name="onrawvaluechange")
             h4
-              | water_sensor.onRawValueChange()
+              .light water_sensor
+              | .onRawValueChange()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -489,7 +506,7 @@ html(lang='en')
               a.click-flash(href="#getrawvalue") getRawValue()
               |  changes. It will then return false until the reading changes to a different value again.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   water_sensor.update();
@@ -503,7 +520,8 @@ html(lang='en')
           .section
             a(name="onactivelevelchange")
             h4
-              | water_sensor.onActiveLevelChange()
+              .light water_sensor
+              | .onActiveLevelChange()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
@@ -511,7 +529,7 @@ html(lang='en')
               a.click-flash(href="#getactivelevel") getActiveLevel()
               |  changes. It will then return false until the level changes to a different value again.
             h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: cpp; gutter: false;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 void loop() {
                   water_sensor.update();
