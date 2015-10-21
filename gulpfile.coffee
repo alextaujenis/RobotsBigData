@@ -148,13 +148,15 @@ gulp.task 'compile', ->
     'copy-bower-css'
   )
 
-# # only compile when source files change
-# gulp.task 'watch-files', ->
-#   gulp.watch(template_src, ['compile-templates'])
-#   gulp.watch('compiled/index.html', ['copy-index-to-root'])
-#   gulp.watch(style_src, ['compile-style'])
-#   gulp.watch(code_src, ['compile-code'])
-#   gulp.watch(libraries_src, ['compile-libraries'])
-#
-# # run this command to start developing
-# gulp.task 'develop', ['compile', 'watch-files']
+# only compile when source files change
+gulp.task 'watch-files', ->
+  gulp.watch(code_src, ['compile-code'])
+  gulp.watch(code_libraries_js, ['copy-libraries-js'])
+  gulp.watch(code_libraries_coffee, ['compile-libraries-coffee'])
+  gulp.watch(style_src, ['compile-style'])
+  gulp.watch(style_libraries_css, ['copy-libraries-css'])
+  gulp.watch(template_src, ['compile-templates'])
+  gulp.watch(image_src, ['copy-images-'])
+
+# run this command to start developing
+gulp.task 'develop', ['compile', 'watch-files']
