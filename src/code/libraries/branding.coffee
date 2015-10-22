@@ -16,7 +16,7 @@ class Branding
     return
 
   resize: ->
-    padding = (@window.height() - @el.height()) / 2
+    padding = (@window.height() / 2 - @el.height()) / 2
     shift_up = 60
 
     @el.css
