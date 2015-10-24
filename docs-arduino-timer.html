@@ -60,7 +60,7 @@ void loop() {
     Serial.println(timer.getPercentValue());
   }
 }
-]]></script></div><div class="section"><a name="isexpired"></a><h4><div class="light">timer</div>.isExpired()</h4><p>Returns true if time has run out. This can be used for a single non-blocking delay, or it can be used with&nbsp;<a href="#restart" class="click-flash">restart()</a> to create a continuous loop that you restart when an action has completed.</p><p>Use&nbsp;<a href="#onexpired" class="click-flash">onExpired()</a> to fire a single event and not restart the timer right away.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
+]]></script></div><div class="section"><a name="isexpired"></a><h4><div class="light">timer</div>.isExpired()</h4><p>Returns true if time has run out. This can be used for a single non-blocking delay, or it can be used with&nbsp;<a href="#restart" class="click-flash">restart()</a> to create a continuous loop that you restart when an action has completed.</p><p>Use&nbsp;<a href="#onexpired" class="click-flash">onExpired()</a> to fire a single event when the timer expires.</p><h5>EXAMPLE SKETCH</h5><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   if(timer.isExpired()) {
     // run code here and restart when finished
     timer.restart();
