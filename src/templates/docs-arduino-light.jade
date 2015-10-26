@@ -107,9 +107,8 @@ html(lang='en')
             |  methods will function correctly. You must continuously call&nbsp;
             a.click-flash(href="#update") update()
             |  inside of loop() in order to use the
-            span.label.label-success REAL-TIME
-            |  methods tagged below.
-
+            span.label.label-success RT
+            |  (Real-Time) methods tagged below.
 
           h4.class-name
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -140,13 +139,13 @@ html(lang='en')
             hr.divider
             li
               a.click-flash(href="#update") .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+              include ./global/labels/update.jade
             li
-              a.click-flash(href="#blink") .blink(on_time, off_time, times)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              a.click-flash(href="#blink") .blink(on_time, off_time, [times])
+              include ./global/labels/real-time.jade
             li
-              a.click-flash(href="#fade") .fade(up_time, on_time, down_time, off_time, times)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              a.click-flash(href="#fade") .fade(up_time, on_time, down_time, off_time, [times])
+              include ./global/labels/real-time.jade
 
           .section
             a(name="constructor")
@@ -274,9 +273,9 @@ html(lang='en')
             h4
               .light light
               | .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+              include ./global/labels/update.jade
             p
-              | Keep the light moving in real-time. This must be called continuously from within loop() in order to&nbsp;
+              | Keep the light moving in real-time. This must be called continuously within loop() in order to&nbsp;
               a.click-flash(href="#blink") blink()
               |  or&nbsp;
               a.click-flash(href="#fade") fade()
@@ -292,20 +291,14 @@ html(lang='en')
             a(name="blink")
             h4
               .light light
-              | .blink(on_time, off_time, times
-              sup.superscript 1
-              | )
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              | .blink(on_time, off_time, [times])
+              include ./global/labels/real-time.jade
             p
-              | Pass in unsigned longs for the time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should blink. The last parameter is optional
-              sup.superscript 1
-              |  and can be left out to make the light repeat the blink cycle forever.
+              | Pass in unsigned longs for the time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should blink, which is [optional] and can be left out to make the light repeat the blink cycle forever.
             ul
               li the light will turn on for the on_time
               li then turn off for the off_time
-              li
-                | and will repeat this cycle for the number of times you provided
-                sup.superscript 1
+              li and will repeat this cycle for the number of times you provided [optional]
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
@@ -321,23 +314,17 @@ html(lang='en')
             a(name="fade")
             h4
               .light light
-              | .fade(up_time, on_time, down_time, off_time, times
-              sup.superscript 1
-              | )
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              | .fade(up_time, on_time, down_time, off_time, [times])
+              include ./global/labels/real-time.jade
             p
-              | Pass in unsigned longs for the time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should fade. The last parameter is optional
-              sup.superscript 1
-              |  and can be left out to make the light repeat the fade cycle forever.
+              | Pass in unsigned longs for the time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should fade, which is [optional] and can be left out to make the light repeat the fade cycle forever.
 
             ul
               li the light will perform a linear fade up according to the up_time
               li stay on for the on_time
               li linear fade down for the down_time
               li then stay off for the off_time
-              li
-                | and will repeat this cycle for the number of times your provided
-                sup.superscript 1
+              li and will repeat this cycle for the number of times your provided [optional]
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata

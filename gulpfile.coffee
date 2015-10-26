@@ -35,6 +35,9 @@ style_dest = './assets/style/'
 # jade template pages
 template_src = './src/templates/*.jade'
 
+# jade template subudirectories
+template_subdirectory_src = './src/templates/**/*.jade'
+
 # root project directory
 root_dest = './'
 
@@ -155,7 +158,7 @@ gulp.task 'watch-files', ->
   gulp.watch(code_libraries_coffee, ['compile-libraries-coffee'])
   gulp.watch(style_src, ['compile-style'])
   gulp.watch(style_libraries_css, ['copy-libraries-css'])
-  gulp.watch(template_src, ['compile-templates'])
+  gulp.watch(template_subdirectory_src, ['compile-templates'])
   gulp.watch(image_src, ['copy-images-'])
 
 # run this command to start developing

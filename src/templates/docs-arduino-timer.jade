@@ -139,13 +139,13 @@ html(lang='en')
             hr.divider
             li
               a.click-flash(href="#onrestart") .onRestart()
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onactive") .onActive()
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onexpired") .onExpired()
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/event.jade
 
           .section
             a(name="constructor")
@@ -334,7 +334,7 @@ html(lang='en')
             h4
               .light timer
               | .onRestart()
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/event.jade
             p
               | This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;
               a.click-flash(href="#isexpired") isExpired()
@@ -356,7 +356,7 @@ html(lang='en')
             h4
               .light timer
               | .onActive()
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/event.jade
             p
               | This method will fire a single event when the timer goes active. The timer must expire and then be restarted for this event to fire again.
             h5 EXAMPLE SKETCH
@@ -374,7 +374,7 @@ html(lang='en')
             h4
               .light timer
               | .onExpired()
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/event.jade
             p
               | This method will fire a single event when the timer expires. The timer must be restarted and then allowed to expire for this event to fire again.
             h5 EXAMPLE SKETCH

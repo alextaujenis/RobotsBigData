@@ -143,8 +143,8 @@ html(lang='en')
             | You must continuously call&nbsp;
             a.click-flash(href="#update") update()
             |  inside of loop() in order to use the
-            span.label.label-success REAL-TIME
-            |  methods tagged below.
+            span.label.label-success RT
+            |  (Real-Time) methods tagged below.
 
           h4.class-name
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -170,57 +170,57 @@ html(lang='en')
             hr.divider
             li
               a.click-flash(href="#update") .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+              include ./global/labels/update.jade
             li
               a.click-flash(href="#isgone") .isGone()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#isnear") .isNear()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#istouch") .isTouch()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#ispickup") .isPickup()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#getvalue") .getValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#getrawvalue") .getRawValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#getactivelevel") .getActiveLevel()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             hr.divider
             li
               a.click-flash(href="#ongone") .onGone()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onnear") .onNear()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#ontouch") .onTouch()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onpickup") .onPickup()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onvaluechange") .onValueChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onrawvaluechange") .onRawValueChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onactivelevelchange") .onActiveLevelChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
 
           .section
             a(name="constructor")
@@ -416,7 +416,7 @@ html(lang='en')
             h4
               .light human_sensor
               | .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+              include ./global/labels/update.jade
             p Keep processing the readings and move this library along in real-time.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -430,7 +430,7 @@ html(lang='en')
             h4
               .light human_sensor
               | .isGone()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns true if no human is present and the sensor is reading a value below the&nbsp;
               a.click-flash(href="#setnearvalue") setNearValue()
@@ -451,7 +451,7 @@ html(lang='en')
             h4
               .light human_sensor
               | .isNear()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns true if a human is present and the sensor is reading a value at or above the&nbsp;
               a.click-flash(href="#setnearvalue") setNearValue()
@@ -480,7 +480,7 @@ html(lang='en')
             h4
               .light human_sensor
               | .isTouch()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns true if a human is touching the sensor and it is reading a value at or above the&nbsp;
               a.click-flash(href="#settouchvalue") setTouchValue()
@@ -509,7 +509,7 @@ html(lang='en')
             h4
               .light human_sensor
               | .isPickup()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns true if a human is picking up the sensor and it is reading a value at or above the&nbsp;
               a.click-flash(href="#setpickupvalue") setPickupValue()
@@ -534,7 +534,7 @@ html(lang='en')
             h4
               .light human_sensor
               | .getValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
@@ -561,7 +561,7 @@ html(lang='en')
             h4
               .light human_sensor
               | .getRawValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
@@ -580,7 +580,7 @@ html(lang='en')
             h4
               .light human_sensor
               | .getActiveLevel()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns the current sensor level after being adjusted by&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
@@ -619,8 +619,8 @@ html(lang='en')
             h4
               .light human_sensor
               | .onGone()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the sensor registers a value below the&nbsp;
               a.click-flash(href="#setnearvalue") setNearValue()
@@ -643,8 +643,8 @@ html(lang='en')
             h4
               .light human_sensor
               | .onNear()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the sensor registers a value at or above the&nbsp;
               a.click-flash(href="#setnearvalue") setNearValue()
@@ -670,8 +670,8 @@ html(lang='en')
             h4
               .light human_sensor
               | .onTouch()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the sensor registers a value at or above the&nbsp;
               a.click-flash(href="#settouchvalue") setTouchValue()
@@ -697,8 +697,8 @@ html(lang='en')
             h4
               .light human_sensor
               | .onPickup()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the sensor registers a value at or above the&nbsp;
               a.click-flash(href="#setpickupvalue") setPickupValue()
@@ -722,8 +722,8 @@ html(lang='en')
             h4
               .light human_sensor
               | .onValueChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the&nbsp;
               a.click-flash(href="#getvalue") getValue()
@@ -745,8 +745,8 @@ html(lang='en')
             h4
               .light human_sensor
               | .onRawValueChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
@@ -768,8 +768,8 @@ html(lang='en')
             h4
               .light human_sensor
               | .onActiveLevelChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the&nbsp;
               a.click-flash(href="#getactivelevel") getActiveLevel()

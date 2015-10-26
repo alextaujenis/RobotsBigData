@@ -129,8 +129,8 @@ html(lang='en')
             | You must continuously call&nbsp;
             a.click-flash(href="#update") update()
             |  inside of loop() in order to use the
-            span.label.label-success REAL-TIME
-            |  methods tagged below.
+            span.label.label-success RT
+            |  (Real-Time) methods tagged below.
 
           h4.class-name
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -154,32 +154,32 @@ html(lang='en')
             hr.divider
             li
               a.click-flash(href="#update") .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+              include ./global/labels/update.jade
             li
               a.click-flash(href="#getvalue") .getValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#getrawvalue") .getRawValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#getactivelevel") .getActiveLevel()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#isactivelevel") .isActiveLevel(value)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             hr.divider
             li
               a.click-flash(href="#onvaluechange") .onValueChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onrawvaluechange") .onRawValueChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onactivelevelchange") .onActiveLevelChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
 
           .section
             a(name="constructor")
@@ -363,7 +363,7 @@ html(lang='en')
             h4
               .light water_sensor
               | .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+              include ./global/labels/update.jade
             p Keep processing the readings and move this library along in real-time.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -377,7 +377,7 @@ html(lang='en')
             h4
               .light water_sensor
               | .getValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
@@ -406,7 +406,7 @@ html(lang='en')
             h4
               .light water_sensor
               | .getRawValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
@@ -427,7 +427,7 @@ html(lang='en')
             h4
               .light water_sensor
               | .getActiveLevel()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns the current water level.
               ul
@@ -453,7 +453,7 @@ html(lang='en')
             h4
               .light water_sensor
               | .isActiveLevel(value)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Provide an integer from 0 to 255 and this will return true if it's equal to the current&nbsp;
               a.click-flash(href="#getactivelevel") getActiveLevel()
@@ -476,8 +476,8 @@ html(lang='en')
             h4
               .light water_sensor
               | .onValueChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the sensor&nbsp;
               a.click-flash(href="#getvalue") getValue()
@@ -499,8 +499,8 @@ html(lang='en')
             h4
               .light water_sensor
               | .onRawValueChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the sensor&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
@@ -522,8 +522,8 @@ html(lang='en')
             h4
               .light water_sensor
               | .onActiveLevelChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the sensor&nbsp;
               a.click-flash(href="#getactivelevel") getActiveLevel()

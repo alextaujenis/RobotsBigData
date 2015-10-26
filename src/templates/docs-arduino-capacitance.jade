@@ -151,8 +151,8 @@ html(lang='en')
             | You must continuously call&nbsp;
             a.click-flash(href="#update") update()
             |  inside of loop() in order to use the
-            span.label.label-success REAL-TIME
-            |  methods tagged below.
+            span.label.label-success RT
+            |  (Real-Time) methods tagged below.
 
           h4.class-name
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -168,21 +168,21 @@ html(lang='en')
             hr.divider
             li
               a.click-flash(href="#update") .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+              include ./global/labels/update.jade
             li
               a.click-flash(href="#start") .start()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#isfinished") .isFinished()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#getvalue") .getValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             hr.divider
             li
               a.click-flash(href="#onchange") .onChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
 
           .section
             a(name="constructor")
@@ -228,7 +228,7 @@ html(lang='en')
             h4
               .light cap_sensor
               | .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+              include ./global/labels/update.jade
             p This must be call continuously from within the loop() to move the library along in real-time.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -242,7 +242,7 @@ html(lang='en')
             h4
               .light cap_sensor
               | .start()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Begin taking many readings and start adding up the moving average for&nbsp;
               a.click-flash(href="#getvalue") getValue()
@@ -263,7 +263,7 @@ html(lang='en')
             h4
               .light cap_sensor
               | .isFinished()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns true if all readings have been taken and a moving average&nbsp;
               a.click-flash(href="#getvalue") getValue()
@@ -290,7 +290,7 @@ html(lang='en')
             h4
               .light cap_sensor
               | .getValue()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Returns an unsigned long of the moving average value for the capacitance reading (microseconds taken to charge the pin). This will only return a value after calling&nbsp;
               a.click-flash(href="#start") start()
@@ -317,8 +317,8 @@ html(lang='en')
             h4
               .light cap_sensor
               | .onChange()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will fire a single event and start taking another sensor reading each time the&nbsp;
               a.click-flash(href="#getvalue") getValue()

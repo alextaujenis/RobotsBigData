@@ -126,8 +126,8 @@ html(lang='en')
             |  methods will function correctly. You must continuously call&nbsp;
             a.click-flash(href="#update") update()
             |  inside of loop() in order to use the
-            span.label.label-success REAL-TIME
-            |  methods tagged below.
+            span.label.label-success RT
+            |  (Real-Time) methods tagged below.
 
           h4.class-name
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -172,35 +172,35 @@ html(lang='en')
             hr.divider
             li
               a.click-flash(href="#update") .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
+              include ./global/labels/update.jade
             li
               a.click-flash(href="#timedon") .timedOn(timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#rampup") .rampUp(timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#rampdown") .rampDown(timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#ramp") .ramp(value, timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#ramppercent") .rampPercent(value, timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             hr.divider
             li
               a.click-flash(href="#onforward") .onForward()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#onreverse") .onReverse()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             li
               a.click-flash(href="#ontargetspeed") .onTargetSpeed()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
 
           .section
             a(name="constructor")
@@ -512,8 +512,8 @@ html(lang='en')
             h4
               .light motor
               | .update()
-              span.label.label-primary(data-toggle="tooltip", data-placement="right", title="This helps move real-time methods along.") PROCESS REAL-TIME
-            p Keep the real-time functions processing with each loop().
+              include ./global/labels/update.jade
+            p Keep the real-time functions processing with each loop(). This must be called continuously within loop() in order to use any real-time methods.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
@@ -526,7 +526,7 @@ html(lang='en')
             h4
               .light motor
               | .timedOn(timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Start the motor at full speed and turn it off after the specified time in milliseconds.
             h5 EXAMPLE SKETCH
@@ -545,7 +545,7 @@ html(lang='en')
             h4
               .light motor
               | .rampUp(timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p Pass in a timeout in milliseconds for how long it will take to ramp from the current speed to full speed with a linear transition.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -563,7 +563,7 @@ html(lang='en')
             h4
               .light motor
               | .rampDown(timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p Pass in a timeout in milliseconds for how long it will take to ramp from the current speed to full stop with a linear transition.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -582,7 +582,7 @@ html(lang='en')
             h4
               .light motor
               | .ramp(value, timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p Pass in a value from 0 - 255 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -600,7 +600,7 @@ html(lang='en')
             h4
               .light motor
               | .rampPercent(value, timeout)
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              include ./global/labels/real-time.jade
             p
               | Pass in a value from 0 - 100 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition. This is essentially the same as&nbsp;
               a.click-flash(href="#ramp") ramp()
@@ -621,8 +621,8 @@ html(lang='en')
             h4
               .light motor
               | .onForward()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the motor starts moving&nbsp;
               a.click-flash(href="#forward") forward()
@@ -652,8 +652,8 @@ html(lang='en')
             h4
               .light motor
               | .onReverse()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the motor starts moving in&nbsp;
               a.click-flash(href="#reverse") reverse()
@@ -684,8 +684,8 @@ html(lang='en')
             h4
               .light motor
               | .onTargetSpeed()
-              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
-              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+              include ./global/labels/real-time.jade
+              include ./global/labels/event.jade
             p
               | This method will return true once the motor hits the target speed set in any of the real-time methods. This method will then return false until a new target speed is set (with a real-time method) and then achieved by the motor.
             h5 EXAMPLE SKETCH
