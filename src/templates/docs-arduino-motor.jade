@@ -28,7 +28,7 @@ html(lang='en')
                 small  API DOCUMENTATION
               p
                 | Control many motors.
-                small v1.0.4
+                small v1.1.0
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#example-sketch") See Example
@@ -38,17 +38,25 @@ html(lang='en')
             a(name="overview")
             | Overview
           p.lead
-            | Control many motors without delay using commands like&nbsp;
+            | Control motors without delay with commands like&nbsp;
             a.click-flash(href="#on") on()
             | ,&nbsp;
             a.click-flash(href="#off") off()
             | ,&nbsp;
-            a.click-flash(href="#timedon") timedOn()
+            a.click-flash(href="#forward") forward()
+            | ,&nbsp;
+            a.click-flash(href="#reverse") reverse()
             | , and&nbsp;
             a.click-flash(href="#ramp") ramp()
             | . Fire custom events when the motor has reached the target speed with&nbsp;
             a.click-flash(href="#ontargetspeed") onTargetSpeed()
-            | . Motors must be correctly wired to PWM enabled Arduino pins to work with this library.
+            | , or when it has changed direction with the&nbsp;
+            a.click-flash(href="#onforward") onForward()
+            |  and&nbsp;
+            a.click-flash(href="#onreverse") onReverse()
+            |  events.
+          p.lead
+            | Motors can be wired to move in a single direction, or can be driven in both directions with the help of a motor-shield or H bridge and this library.
           h3
             a(name="download")
             | Download
@@ -62,7 +70,7 @@ html(lang='en')
             ul
               li
                 a(href="https://github.com/alextaujenis/RBD_Motor/raw/master/extras/RBD_Motor.zip")
-                  | Download Motor Library v1.0.4&nbsp;
+                  | Download Motor Library v1.1.0&nbsp;
                   label.label.label-warning.zip-label .zip
                 |  by itself with the&nbsp;
                 a.dark-link(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip") Timer
@@ -86,10 +94,11 @@ html(lang='en')
               #include <RBD_Timer.h>
               #include <RBD_Motor.h>
 
-              RBD::Motor motor(3); // PWM pin 3
+              // motor shield
+              RBD::Motor motor(9, 11, 8); // pwm pin, forward pin, reverse pin
 
               void setup() {
-                motor.rampUp(1000);
+                motor.rampUp(5000);
               }
 
               void loop() {
@@ -97,10 +106,11 @@ html(lang='en')
 
                 if(motor.onTargetSpeed()) {
                   if(motor.isOn()) {
-                    motor.rampDown(1000);
+                    motor.rampDown(3000);
                   }
-                  if(motor.isOff()) {
-                    motor.rampUp(1000);
+                  else {
+                    motor.toggleDirection();
+                    motor.rampUp(5000);
                   }
                 }
               }
@@ -126,12 +136,18 @@ html(lang='en')
 
           ul.public-methods
             li
-              a.click-flash(href="#constructor") constructor(pin)
+              a.click-flash(href="#constructor") constructor(pwm_pin, [forward_pin], [reverse_pin])
             hr.divider
             li
               a.click-flash(href="#on") .on()
             li
               a.click-flash(href="#off") .off()
+            li
+              a.click-flash(href="#forward") .forward()
+            li
+              a.click-flash(href="#reverse") .reverse()
+            li
+              a.click-flash(href="#toggledirection") .toggleDirection()
             li
               a.click-flash(href="#setpwm") .setPwm(value)
             li
@@ -141,6 +157,10 @@ html(lang='en')
               a.click-flash(href="#ison") .isOn()
             li
               a.click-flash(href="#isoff") .isOff()
+            li
+              a.click-flash(href="#isforward") .isForward()
+            li
+              a.click-flash(href="#isreverse") .isReverse()
             li
               a.click-flash(href="#getpwm") .getPwm()
             li
@@ -170,18 +190,30 @@ html(lang='en')
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
             hr.divider
             li
+              a.click-flash(href="#onforward") .onForward()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
+              a.click-flash(href="#onreverse") .onReverse()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            li
               a.click-flash(href="#ontargetspeed") .onTargetSpeed()
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
 
           .section
             a(name="constructor")
-            h4 RBD::Motor constructor(pin)
-            p Create a new motor and pass in the Arduino pin number.
+            h4 RBD::Motor constructor(pwm_pin, [forward_pin], [reverse_pin])
+            p
+              | Create a new motor and pass in the Arduino pwm pin number. The forward and reverse pins are optional and can be used to control the motor in both directions with the help of a motor-shield or H bridge. The motor will be set&nbsp;
+              a.click-flash(href="#forward") forward()
+              |  by default if you provide the forward and reverse pins.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
-                RBD::Motor motor(3); // pwm pin 3
+                // motor shield
+                RBD::Motor motor(9, 11, 8); // pwm pin, forward pin, reverse pin
 
                 void setup() {
                   ...
@@ -212,6 +244,72 @@ html(lang='en')
               :cdata
                 void setup() {
                   motor.off();
+                }
+
+          .section
+            a(name="forward")
+            h4
+              .light motor
+              | .forward()
+            p
+              | Set the spin direction for the motor so that all new commands move it forward. The motor is set&nbsp;
+              a.click-flash(href="#forward") forward()
+              |  by default.
+            p
+              | You must provide the optional forward and reverse pins in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              |  and correctly wire the motor to use this method. The motor should be spun to a full-stop before calling this method. This library will forcibly stop the motor before switching to the forward state.
+
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.forward();
+                  motor.rampUp(3000);
+                }
+
+          .section
+            a(name="reverse")
+            h4
+              .light motor
+              | .reverse()
+            p
+              | Set the spin direction for the motor so that all new commands move it in reverse.
+            p
+              | You must provide the optional forward and reverse pins in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              |  and correctly wire the motor to use this method. The motor should be spun to a full-stop before calling this method. This library will forcibly stop the motor before switching to the reverse state.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.reverse();
+                  motor.rampUp(3000);
+                }
+
+          .section
+            a(name="toggledirection")
+            h4
+              .light motor
+              | .toggleDirection()
+            p
+              | Flip the spin direction for the motor so that all new commands will move it in the opposite direction than they do currently. This alternates between&nbsp;
+              a.click-flash(href="#forward") forward()
+              |  and&nbsp;
+              a.click-flash(href="#reverse") reverse()
+              | .
+            p
+              | You must provide the optional forward and reverse pins in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              |  and correctly wire the motor to use this method. The motor should be spun to a full-stop before calling this method. This library will forcibly stop the motor before toggling to the new state.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void loop() {
+                  if(...) {
+                    motor.toggleDirection();
+                    motor.rampUp(3000);
+                  }
                 }
 
           .section
@@ -277,6 +375,48 @@ html(lang='en')
 
                 void loop() {
                   Serial.println(motor.isOff());
+                }
+
+          .section
+            a(name="isforward")
+            h4
+              .light motor
+              | .isForward()
+            p
+              | Returns true if the motor is set in the&nbsp;
+              a.click-flash(href="#forward") forward()
+              |  state.
+            p
+              | You must provide the optional forward and reverse pins in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              |  and correctly wire the motor to use this method.
+
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(motor.isForward());
+                }
+
+          .section
+            a(name="isreverse")
+            h4
+              .light motor
+              | .isReverse()
+            p
+              | Returns true if the motor is set in the&nbsp;
+              a.click-flash(href="#reverse") reverse()
+              |  state.
+            p
+              | You must provide the optional forward and reverse pins in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              |  and correctly wire the motor to use this method.
+
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void loop() {
+                  Serial.println(motor.isReverse());
                 }
 
           .section
@@ -477,6 +617,69 @@ html(lang='en')
                 }
 
           .section
+            a(name="onforward")
+            h4
+              .light motor
+              | .onForward()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the motor starts moving&nbsp;
+              a.click-flash(href="#forward") forward()
+              | . This method will then return false until the motor has stopped, moved in reverse, then started moving forward again.
+            p
+              | You must provide the optional forward and reverse pins in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              |  and correctly wire the motor to use this method.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.rampUp(5000);
+                }
+
+                void loop() {
+                  motor.update();
+
+                  if(motor.onForward()) {
+                    // code only runs once per event
+                    Serial.println("Moving Forward");
+                  }
+                }
+
+          .section
+            a(name="onreverse")
+            h4
+              .light motor
+              | .onReverse()
+              span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
+              span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
+            p
+              | This method will return true once the motor starts moving in&nbsp;
+              a.click-flash(href="#reverse") reverse()
+              | . This method will then return false until the motor has stopped, moved forward, then started moving in reverse again.
+            p
+              | You must provide the optional forward and reverse pins in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              |  and correctly wire the motor to use this method.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void setup() {
+                  motor.reverse();
+                  motor.rampUp(5000);
+                }
+
+                void loop() {
+                  motor.update();
+
+                  if(motor.onReverse()) {
+                    // code only runs once per event
+                    Serial.println("Moving in Reverse");
+                  }
+                }
+
+          .section
             a(name="ontargetspeed")
             h4
               .light motor
@@ -484,7 +687,7 @@ html(lang='en')
               span.label.label-success(data-toggle="tooltip", data-placement="right", title="You must continuously call update() to use this method.") REAL-TIME
               span.label.label-default(data-toggle="tooltip", data-placement="right", title="Use this method to find when an event has been triggered.") EVENT
             p
-              | This method will return true once the motor hits the target speed set in any of the real-time methods. This method will return false until a new target speed is set (with a real-time method) and then achieved by the motor.
+              | This method will return true once the motor hits the target speed set in any of the real-time methods. This method will then return false until a new target speed is set (with a real-time method) and then achieved by the motor.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata

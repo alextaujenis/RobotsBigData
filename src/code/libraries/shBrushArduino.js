@@ -83,7 +83,7 @@
             'HumanSensor update setSampleSize setNearValue setTouchValue setPickupValue setModifier resetModifier isGone isNear isTouch isPickup getValue getRawValue getActiveLevel onGone onNear onTouch onPickup onValueChange onRawValueChange onActiveLevelChange	' +
             'Light on off isOn isOff update setPwm setPwmPercent getPwm getPwmPercent blink fade ' +
             'LightSensor getValue getRawValue getInverseValue getPercentValue getInversePercentValue setFloor setCeiling resetFloor resetCeiling ' +
-            'Motor on off update timedOn isOn isOff getPwm getPwmPercent isPwm isPwmPercent setPwm setPwmPercent rampUp rampDown ramp rampPercent onTargetSpeed ' +
+            'Motor on off forward reverse toggleDirection update timedOn isOn isOff isForward isReverse getPwm getPwmPercent isPwm isPwmPercent setPwm setPwmPercent rampUp rampDown ramp rampPercent onForward onReverse onTargetSpeed ' +
             'Threshold setLevel getLevel setMaxLevel getMaxLevel computeLevel	' +
             'Timer setTimeout setHertz restart isActive isExpired onRestart onActive onExpired getValue getInverseValue getPercentValue getInversePercentValue ' +
             'WaterSensor update setSampleSize setLevel setMaxLevel setModifier resetModifier getValue getRawValue getActiveLevel isActiveLevel onValueChange onRawValueChange onActiveLevelChange';
