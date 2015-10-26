@@ -35,7 +35,7 @@ html(lang='en')
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           h3
-            a(name="overview")
+            #overview.anchor
             | Overview
           p.lead
             | Detect and interact with humans through change in capacitance. You can calibrate this library for your sensor very quickly to detect&nbsp;
@@ -54,7 +54,7 @@ html(lang='en')
             a(href="docs-arduino-capacitance.html") Capacitance Library
             |  if you would like to know more about how capacitance is calculated.
           h3
-            a(name="download")
+            #download.anchor
             | Download
           p
             | This library is part of a larger package that you can download to access
@@ -82,7 +82,7 @@ html(lang='en')
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           h3
-            a(name="example-setup")
+            #example-setup.anchor
             | Example Setup
           p
             ol
@@ -94,7 +94,7 @@ html(lang='en')
               li Compile and reload the calibrated sketch back into the Arduino
               li Your human sensor is calibrated and ready to use
           h3
-            a(name="example-sketch")
+            #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
@@ -136,7 +136,7 @@ html(lang='en')
                 }
               }
           h3
-            a(name="public-methods")
+            #public-methods.anchor
             | Public Methods
 
           p
@@ -223,7 +223,7 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            a(name="constructor")
+            #constructor.anchor
             h4 RBD::HumanSensor constructor(send_pin, receive_pin)
             p Pass in integers for the send and receive pins to create a new instance of this class.
             h5 EXAMPLE SKETCH
@@ -236,7 +236,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setsamplesize")
+            #setsamplesize.anchor
             h4
               .light human_sensor
               | .setSampleSize(value)
@@ -262,7 +262,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setnearvalue")
+            #setnearvalue.anchor
             h4
               .light human_sensor
               | .setNearValue(value)
@@ -278,7 +278,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="settouchvalue")
+            #settouchvalue.anchor
             h4
               .light human_sensor
               | .setTouchValue(value)
@@ -294,7 +294,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setpickupvalue")
+            #setpickupvalue.anchor
             h4
               .light human_sensor
               | .setPickupValue(value)
@@ -310,7 +310,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setmodifier")
+            #setmodifier.anchor
             h4
               .light human_sensor
               | .setModifier(value)
@@ -360,7 +360,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="resetmodifier")
+            #resetmodifier.anchor
             h4
               .light human_sensor
               | .resetModifier()
@@ -412,7 +412,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="update")
+            #update.anchor
             h4
               .light human_sensor
               | .update()
@@ -426,7 +426,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isgone")
+            #isgone.anchor
             h4
               .light human_sensor
               | .isGone()
@@ -447,7 +447,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isnear")
+            #isnear.anchor
             h4
               .light human_sensor
               | .isNear()
@@ -476,7 +476,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="istouch")
+            #istouch.anchor
             h4
               .light human_sensor
               | .isTouch()
@@ -505,7 +505,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ispickup")
+            #ispickup.anchor
             h4
               .light human_sensor
               | .isPickup()
@@ -530,7 +530,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getvalue")
+            #getvalue.anchor
             h4
               .light human_sensor
               | .getValue()
@@ -557,7 +557,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getrawvalue")
+            #getrawvalue.anchor
             h4
               .light human_sensor
               | .getRawValue()
@@ -576,7 +576,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getactivelevel")
+            #getactivelevel.anchor
             h4
               .light human_sensor
               | .getActiveLevel()
@@ -615,7 +615,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ongone")
+            #ongone.anchor
             h4
               .light human_sensor
               | .onGone()
@@ -639,7 +639,7 @@ html(lang='en')
                   }
                 }
           .section
-            a(name="onnear")
+            #onnear.anchor
             h4
               .light human_sensor
               | .onNear()
@@ -666,7 +666,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ontouch")
+            #ontouch.anchor
             h4
               .light human_sensor
               | .onTouch()
@@ -693,7 +693,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onpickup")
+            #onpickup.anchor
             h4
               .light human_sensor
               | .onPickup()
@@ -718,7 +718,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onvaluechange")
+            #onvaluechange.anchor
             h4
               .light human_sensor
               | .onValueChange()
@@ -741,7 +741,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onrawvaluechange")
+            #onrawvaluechange.anchor
             h4
               .light human_sensor
               | .onRawValueChange()
@@ -764,7 +764,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onactivelevelchange")
+            #onactivelevelchange.anchor
             h4
               .light human_sensor
               | .onActiveLevelChange()

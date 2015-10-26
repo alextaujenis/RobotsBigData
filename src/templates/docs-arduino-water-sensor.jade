@@ -35,7 +35,7 @@ html(lang='en')
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           h3
-            a(name="overview")
+            #overview.anchor
             | Overview
           p.lead
             | Measure and calibrate capacitance sensors to detect change in water levels from the outside of a plastic container. The example below uses a piece of aluminum foil, but you can attach the wire to anything conductive and calibrate the sensor accordingly.
@@ -48,7 +48,7 @@ html(lang='en')
             a(href="docs-arduino-capacitance.html") Capacitance Library
             |  if you would like to know more about how capacitance is calculated.
           h3
-            a(name="download")
+            #download.anchor
             | Download
           p
             | This library is part of a larger package that you can download to access
@@ -76,7 +76,7 @@ html(lang='en')
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           h3
-            a(name="example-setup")
+            #example-setup.anchor
             | Example Setup
           p
             ol
@@ -88,7 +88,7 @@ html(lang='en')
               li Pour out the water, then compile and load the calibrated sketch back into the Arduino
               li Your water level is calibrated and ready to use
           h3
-            a(name="example-sketch")
+            #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
@@ -122,7 +122,7 @@ html(lang='en')
                 }
               }
           h3
-            a(name="public-methods")
+            #public-methods.anchor
             | Public Methods
 
           p
@@ -182,7 +182,7 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            a(name="constructor")
+            #constructor.anchor
             h4 RBD::WaterSensor constructor(send_pin, receive_pin, level_count)
             p Pass in integers for the send and receive pins to create a new instance of this class, along with an integer for the total number of levels the water sensor will detect. Example: if you want to detect low, medium, and high levels then level_count should equal 3.
             h5 EXAMPLE SKETCH
@@ -195,7 +195,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setsamplesize")
+            #setsamplesize.anchor
             h4
               .light water_sensor
               | .setSampleSize(value)
@@ -221,7 +221,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setlevel")
+            #setlevel.anchor
             h4
               .light water_sensor
               | .setLevel(index, raw_value)
@@ -241,7 +241,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setmaxlevel")
+            #setmaxlevel.anchor
             h4
               .light water_sensor
               | .setMaxLevel(raw_value)
@@ -257,7 +257,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setmodifier")
+            #setmodifier.anchor
             h4
               .light water_sensor
               | .setModifier(value)
@@ -307,7 +307,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="resetmodifier")
+            #resetmodifier.anchor
             h4
               .light water_sensor
               | .resetModifier()
@@ -359,7 +359,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="update")
+            #update.anchor
             h4
               .light water_sensor
               | .update()
@@ -373,7 +373,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getvalue")
+            #getvalue.anchor
             h4
               .light water_sensor
               | .getValue()
@@ -402,7 +402,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getrawvalue")
+            #getrawvalue.anchor
             h4
               .light water_sensor
               | .getRawValue()
@@ -423,7 +423,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getactivelevel")
+            #getactivelevel.anchor
             h4
               .light water_sensor
               | .getActiveLevel()
@@ -449,7 +449,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isactivelevel")
+            #isactivelevel.anchor
             h4
               .light water_sensor
               | .isActiveLevel(value)
@@ -472,7 +472,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onvaluechange")
+            #onvaluechange.anchor
             h4
               .light water_sensor
               | .onValueChange()
@@ -495,7 +495,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onrawvaluechange")
+            #onrawvaluechange.anchor
             h4
               .light water_sensor
               | .onRawValueChange()
@@ -518,7 +518,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onactivelevelchange")
+            #onactivelevelchange.anchor
             h4
               .light water_sensor
               | .onActiveLevelChange()

@@ -35,7 +35,7 @@ html(lang='en')
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           h3
-            a(name="overview")
+            #overview.anchor
             | Overview
           p.lead
             | Control motors without delay with commands like&nbsp;
@@ -58,7 +58,7 @@ html(lang='en')
           p.lead
             | Motors can be wired to move in a single direction, or can be driven in both directions with the help of a motor-shield or H bridge and this library.
           h3
-            a(name="download")
+            #download.anchor
             | Download
           p
             | This library is part of a larger package that you can download to access
@@ -83,7 +83,7 @@ html(lang='en')
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
           h3
-            a(name="example-sketch")
+            #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
@@ -115,7 +115,7 @@ html(lang='en')
                 }
               }
           h3
-            a(name="public-methods")
+            #public-methods.anchor
             | Public Methods
 
           p
@@ -203,7 +203,7 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            a(name="constructor")
+            #constructor.anchor
             h4 RBD::Motor constructor(pwm_pin, [forward_pin], [reverse_pin])
             p
               | Create a new motor and pass in the Arduino pwm pin number. The forward and reverse pins are optional and can be used to control the motor in both directions with the help of a motor-shield or H bridge. The motor will be set&nbsp;
@@ -220,7 +220,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="on")
+            #on.anchor
             h4
               .light motor
               | .on()
@@ -234,7 +234,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="off")
+            #off.anchor
             h4
               .light motor
               | .off()
@@ -247,7 +247,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="forward")
+            #forward.anchor
             h4
               .light motor
               | .forward()
@@ -269,7 +269,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="reverse")
+            #reverse.anchor
             h4
               .light motor
               | .reverse()
@@ -288,7 +288,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="toggledirection")
+            #toggledirection.anchor
             h4
               .light motor
               | .toggleDirection()
@@ -313,7 +313,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setpwm")
+            #setpwm.anchor
             h4
               .light motor
               | .setPwm(value)
@@ -326,7 +326,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setpwmpercent")
+            #setpwmpercent.anchor
             h4
               .light motor
               | .setPwmPercent(value)
@@ -342,7 +342,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ison")
+            #ison.anchor
             h4
               .light motor
               | .isOn()
@@ -360,7 +360,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isoff")
+            #isoff.anchor
             h4
               .light motor
               | .isOff()
@@ -378,7 +378,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isforward")
+            #isforward.anchor
             h4
               .light motor
               | .isForward()
@@ -399,7 +399,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isreverse")
+            #isreverse.anchor
             h4
               .light motor
               | .isReverse()
@@ -420,7 +420,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getpwm")
+            #getpwm.anchor
             h4
               .light motor
               | .getPwm()
@@ -438,7 +438,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getpwmpercent")
+            #getpwmpercent.anchor
             h4
               .light motor
               | .getPwmPercent()
@@ -456,7 +456,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ispwm")
+            #ispwm.anchor
             h4
               .light motor
               | .isPwm(value)
@@ -482,7 +482,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ispwmpercent")
+            #ispwmpercent.anchor
             h4
               .light motor
               | .isPwmPercent(value)
@@ -508,7 +508,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="update")
+            #update.anchor
             h4
               .light motor
               | .update()
@@ -522,7 +522,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="timedon")
+            #timedon.anchor
             h4
               .light motor
               | .timedOn(timeout)
@@ -541,7 +541,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="rampup")
+            #rampup.anchor
             h4
               .light motor
               | .rampUp(timeout)
@@ -559,7 +559,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="rampdown")
+            #rampdown.anchor
             h4
               .light motor
               | .rampDown(timeout)
@@ -578,7 +578,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ramp")
+            #ramp.anchor
             h4
               .light motor
               | .ramp(value, timeout)
@@ -596,7 +596,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ramppercent")
+            #ramppercent.anchor
             h4
               .light motor
               | .rampPercent(value, timeout)
@@ -617,7 +617,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onforward")
+            #onforward.anchor
             h4
               .light motor
               | .onForward()
@@ -648,7 +648,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onreverse")
+            #onreverse.anchor
             h4
               .light motor
               | .onReverse()
@@ -680,7 +680,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ontargetspeed")
+            #ontargetspeed.anchor
             h4
               .light motor
               | .onTargetSpeed()

@@ -35,7 +35,7 @@ html(lang='en')
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           h3
-            a(name="overview")
+            #overview.anchor
             | Overview
           p.lead
             | Detect human presence and touch from behind several millimeters of material, or detect change in water levels from the outside of a plastic container. This library is meant to help&nbsp;
@@ -48,7 +48,7 @@ html(lang='en')
             a(href="#example-setup") Example
             |  below for help wiring and programming the Arduino with this library.
           h3
-            a(name="download")
+            #download.anchor
             | Download
           p
             | This library is part of a larger package that you can download to access
@@ -71,7 +71,7 @@ html(lang='en')
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
           h3
-            a(name="example-setup")
+            #example-setup.anchor
             | Example Setup
           ol
             li Bridge a 10Meg Ohm resistor across the Arduino send (tx 1) and receive (rx 0) pins
@@ -81,7 +81,7 @@ html(lang='en')
             li Touch or move your hand by the sensor
 
           h3
-            a(name="example-sketch")
+            #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
@@ -106,7 +106,7 @@ html(lang='en')
               }
 
           h3
-            a(name="sensitivity")
+            #sensitivity.anchor
             | Sensitivity
           p Sensitivity is how far away the sensor can detect things, or how much resolution you have to recognize change in the sensor readings.
           ul
@@ -127,7 +127,7 @@ html(lang='en')
               |  decrease the surface area (size) of the piece of aluminum used as the sensor.
 
           h3
-            a(name="variability")
+            #variability.anchor
             | Variability
           p Variability is how wildly the sensor readings fluctuate. This library helps adjust the variability by taking a moving average of many readings over time. This is done without delay so it has little impact on the main loop() performance.
           ul
@@ -144,7 +144,7 @@ html(lang='en')
               | .
 
           h3
-            a(name="public-methods")
+            #public-methods.anchor
             | Public Methods
 
           p
@@ -185,7 +185,7 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            a(name="constructor")
+            #constructor.anchor
             h4 RBD::Capacitance constructor(send_pin, receive_pin)
             p Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.
             h5 EXAMPLE SKETCH
@@ -198,7 +198,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setsamplesize")
+            #setsamplesize.anchor
             h4
               .light cap_sensor
               | .setSampleSize(value)
@@ -224,7 +224,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="update")
+            #update.anchor
             h4
               .light cap_sensor
               | .update()
@@ -238,7 +238,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="start")
+            #start.anchor
             h4
               .light cap_sensor
               | .start()
@@ -259,7 +259,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isfinished")
+            #isfinished.anchor
             h4
               .light cap_sensor
               | .isFinished()
@@ -286,7 +286,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getvalue")
+            #getvalue.anchor
             h4
               .light cap_sensor
               | .getValue()
@@ -313,7 +313,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onchange")
+            #onchange.anchor
             h4
               .light cap_sensor
               | .onChange()

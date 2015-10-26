@@ -35,12 +35,12 @@ html(lang='en')
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           h3
-            a(name="overview")
+            #overview.anchor
             | Overview
           p.lead
             | Set and check numeric quantile scales. Provide an input domain and this library will convert it to a numeric quantile output range. This is different from the Arduino map() function because this library can handle a non-uniform input range.
           h3
-            a(name="download")
+            #download.anchor
             | Download
           p
             | This library is part of a larger package that you can download to access
@@ -64,7 +64,7 @@ html(lang='en')
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           h3
-            a(name="example-setup")
+            #example-setup.anchor
             | Example Setup
           p
             ul
@@ -90,7 +90,7 @@ html(lang='en')
               li OVER
 
           h3
-            a(name="example-sketch")
+            #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
@@ -117,7 +117,7 @@ html(lang='en')
                 Serial.println(threshold.computeLevel(31));   // 4
               }
           h3
-            a(name="public-methods")
+            #public-methods.anchor
             | Public Methods
           h4.class-name
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -142,7 +142,7 @@ html(lang='en')
               a.click-flash(href="#computelevel") .computeLevel(value)
 
           .section
-            a(name="constructor")
+            #constructor.anchor
             h4 RBD::Threshold constructor(level_count)
             p Create a new instance and provide an integer for the maximum number of threshold levels. For example; set the level_count to 3 if you have levels of low, medium, and high. If you need more levels, this library will dynamically allocate an array to accommodate the size you provide the constructor.
             h5 EXAMPLE SKETCH
@@ -155,7 +155,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setlevel")
+            #setlevel.anchor
             h4
               .light threshold
               | .setLevel(index, value)
@@ -173,7 +173,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setmaxlevel")
+            #setmaxlevel.anchor
             h4
               .light threshold
               | .setMaxLevel(value)
@@ -186,7 +186,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getlevel")
+            #getlevel.anchor
             h4
               .light threshold
               | .getLevel(index)
@@ -202,7 +202,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getmaxlevel")
+            #getmaxlevel.anchor
             h4
               .light threshold
               | .getMaxLevel()
@@ -218,7 +218,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="computelevel")
+            #computelevel.anchor
             h4
               .light threshold
               | .computeLevel(value)

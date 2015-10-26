@@ -35,7 +35,7 @@ html(lang='en')
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           h3
-            a(name="overview")
+            #overview.anchor
             | Overview
           p.lead
             | Control many lights and blink without delay using commands such as&nbsp
@@ -49,7 +49,7 @@ html(lang='en')
             | . Lights must be connected to PWM enabled Arduino pins to work with this library.
 
           h3
-            a(name="download")
+            #download.anchor
             | Download
           p
             | This library is part of a larger package that you can download to access
@@ -75,7 +75,7 @@ html(lang='en')
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           h3
-            a(name="example-sketch")
+            #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
@@ -96,7 +96,7 @@ html(lang='en')
               }
 
           h3
-            a(name="public-methods")
+            #public-methods.anchor
             | Public Methods
 
           p
@@ -148,7 +148,7 @@ html(lang='en')
               include ./global/labels/real-time.jade
 
           .section
-            a(name="constructor")
+            #constructor.anchor
             h4 RBD::Light constructor(pin)
             p Create a new light and pass in the Arduino pin number.
             h5 EXAMPLE SKETCH
@@ -161,7 +161,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="on")
+            #on.anchor
             h4
               .light light
               | .on()
@@ -174,7 +174,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="off")
+            #off.anchor
             h4
               .light light
               | .off()
@@ -187,7 +187,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setpwm")
+            #setpwm.anchor
             h4
               .light light
               | .setPwm(value)
@@ -200,7 +200,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="setpwmpercent")
+            #setpwmpercent.anchor
             h4
               .light light
               | .setPwmPercent(value)
@@ -213,7 +213,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="ison")
+            #ison.anchor
             h4
               .light light
               | .isOn()
@@ -228,7 +228,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isoff")
+            #isoff.anchor
             h4
               .light light
               | .isOff()
@@ -243,7 +243,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getpwm")
+            #getpwm.anchor
             h4
               .light light
               | .getPwm()
@@ -256,7 +256,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getpwmpercent")
+            #getpwmpercent.anchor
             h4
               .light light
               | .getPwmPercent()
@@ -269,7 +269,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="update")
+            #update.anchor
             h4
               .light light
               | .update()
@@ -288,7 +288,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="blink")
+            #blink.anchor
             h4
               .light light
               | .blink(on_time, off_time, [times])
@@ -311,7 +311,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="fade")
+            #fade.anchor
             h4
               .light light
               | .fade(up_time, on_time, down_time, off_time, [times])

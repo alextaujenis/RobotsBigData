@@ -13,7 +13,7 @@
         $('a.click-flash').each (index, el)->
           href = $(el).attr("href").replace("#",'')
           $(el).on "click", ->
-            target = $("[name=#{href}]").parent().find("h4")
+            target = $("##{href}").parent().find("h4")
             time = 1250
             target
               .css({color: "#00a2ff", backgroundColor: "#EEE"})

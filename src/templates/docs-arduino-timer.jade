@@ -35,7 +35,7 @@ html(lang='en')
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           h3
-            a(name="overview")
+            #overview.anchor
             | Overview
           p.lead
             | The Arduino real-time loop stops advancing when you write delay() or use interrupts in your sketch. You can keep the real-time loop moving by using millis() to track time and create delay, but it's more complicated and soon becomes messy to manage.
@@ -43,14 +43,14 @@ html(lang='en')
             | This lightweight library manages time the same way you would by setting a waypoint and calculating elapsed millis(). It is a simple replacement to manage your timed events with english instead of math.
 
           h3
-            a(name="relativevsabsolute")
+            #relativevsabsolute.anchor
             | Soft Real-Time
           p
             | This library performs in Soft Real-Time, which means that it will mostly stay on time but is allowed to slip if performance is an issue. This could look like a microsecond of time loss when the timer expires but before it is restarted. Or this could look like a busy Arduino loop() where the timer resolution degrades to only fire an event within 25 microseconds of an actual event. (A microsecond is a small fraction of a millisecond).
           p
             | There are other solutions for Hard Real-Time problems that require exact timing, which cannot slip for any reason. These are consideration when using this timer within a project, but for the most part; performance is awesome and you should use this library.
           h3
-            a(name="download")
+            #download.anchor
             | Download
           p
             | This library is part of a larger package that you can download to access
@@ -74,7 +74,7 @@ html(lang='en')
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           h3
-            a(name="example-setup")
+            #example-setup.anchor
             | Example Setup
           p
             ol
@@ -82,7 +82,7 @@ html(lang='en')
               li Open a serial connection at 115200 BAUD
               li Watch an interval timer print to serial every three seconds
           h3
-            a(name="example-sketch")
+            #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
@@ -105,7 +105,7 @@ html(lang='en')
                 }
               }
           h3
-            a(name="public-methods")
+            #public-methods.anchor
             | Public Methods
           h4.class-name
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -148,7 +148,7 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            a(name="constructor")
+            #constructor.anchor
             h4 RBD::Timer constructor()
             p Create a new timer instance.
             h5 EXAMPLE SKETCH
@@ -161,7 +161,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="settimeout")
+            #settimeout.anchor
             h4
               .light timer
               | .setTimeout(value)
@@ -184,7 +184,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="sethertz")
+            #sethertz.anchor
             h4
               .light timer
               | .setHertz(value)
@@ -206,7 +206,7 @@ html(lang='en')
                   }
                 }
           .section
-            a(name="getvalue")
+            #getvalue.anchor
             h4
               .light timer
               | .getValue()
@@ -219,7 +219,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getinversevalue")
+            #getinversevalue.anchor
             h4
               .light timer
               | .getInverseValue()
@@ -232,7 +232,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getpercentvalue")
+            #getpercentvalue.anchor
             h4
               .light timer
               | .getPercentValue()
@@ -245,7 +245,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="getinversepercentvalue")
+            #getinversepercentvalue.anchor
             h4
               .light timer
               | .getInversePercentValue()
@@ -258,7 +258,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="restart")
+            #restart.anchor
             h4
               .light timer
               | .restart()
@@ -281,7 +281,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isactive")
+            #isactive.anchor
             h4
               .light timer
               | .isActive()
@@ -306,7 +306,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="isexpired")
+            #isexpired.anchor
             h4
               .light timer
               | .isExpired()
@@ -330,7 +330,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onrestart")
+            #onrestart.anchor
             h4
               .light timer
               | .onRestart()
@@ -352,7 +352,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onactive")
+            #onactive.anchor
             h4
               .light timer
               | .onActive()
@@ -370,7 +370,7 @@ html(lang='en')
                 }
 
           .section
-            a(name="onexpired")
+            #onexpired.anchor
             h4
               .light timer
               | .onExpired()
