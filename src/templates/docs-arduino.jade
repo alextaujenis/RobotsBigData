@@ -14,7 +14,6 @@ html(lang='en')
               a(href="index.html") Home
             li.active
               | Arduino Libraries
-            a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/src/templates/docs-arduino.jade", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
           .jumbotron
             .stuck.click-through
               .row.jumbotron-header.click-through
@@ -70,5 +69,14 @@ html(lang='en')
                   h5
                     | Capacitance
                     small Measure change in capacitance.
+
+    .navbar.navbar-default.navbar-footer
+      .container-fluid
+        .row
+          .col-xs-6.text-right
+            | &copy; 2015&nbsp;
+            a(href="http://opensource.org/licenses/mit-license.php") MIT License
+          .col-xs-6
+            a(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/src/templates/docs-arduino.jade") Edit this page
+
     include ./global/foot-content.jade
-    include ./global/footer.jade

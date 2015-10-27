@@ -11,7 +11,6 @@ html(lang='en')
           a(href="index.html") Home
         li.active
           | Install Guide
-        a.pull-right.edit-page(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/src/templates/install.jade", data-toggle="tooltip", data-placement="left", title="Edit this page on GitHub.") edit
       .row
         .col-xs-12
           #step-1
@@ -52,8 +51,15 @@ html(lang='en')
             | Read&nbsp;
             a(href="docs-arduino.html") the docs
             |  to learn how to use the libraries.
-        .spacer &nbsp;
-        .spacer &nbsp;
+
+    .navbar.navbar-default.navbar-footer
+      .container-fluid
+        .row
+          .col-xs-6.text-right
+            | &copy; 2015&nbsp;
+            a(href="http://opensource.org/licenses/mit-license.php") MIT License
+          .col-xs-6
+            a(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/src/templates/install.jade") Edit this page
+
     include ./global/foot-content.jade
     include ./global/docs-foot-content.jade
-    include ./global/footer.jade
