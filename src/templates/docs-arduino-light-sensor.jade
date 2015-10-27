@@ -34,12 +34,14 @@ html(lang='en')
               a.btn.btn-default(href="#example-setup") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
-          h3
+
+          .h3
             #overview.anchor
             | Overview
           p.lead
             | Read and calibrate photoresistors.
-          h3
+
+          .h3
             #download.anchor
             | Download
           p
@@ -62,7 +64,8 @@ html(lang='en')
                 a(href="https://github.com/alextaujenis/RBD_LightSensor") View Source on GitHub
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
-          h3
+
+          .h3
             #example-setup.anchor
             | Example Setup
           p
@@ -72,12 +75,12 @@ html(lang='en')
               li Install this library and load the example sketch on to the Arduino
               li Open a serial connection at 115200 BAUD
               li Watch a stream of the current light percentage
-          h3
+
+          .h3
             #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
-
           script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_LightSensor.h>
@@ -92,7 +95,7 @@ html(lang='en')
                 Serial.println(light_sensor.getPercentValue());
               }
 
-          h3
+          .h3
             #public-methods.anchor
             | Public Methods
           h4.class-name
@@ -125,8 +128,9 @@ html(lang='en')
               a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
 
           .section
-            #constructor.anchor
-            h4 RBD::LightSensor constructor(pin)
+            .method-name
+              #constructor.anchor
+              | RBD::LightSensor constructor(pin)
             p Create a new sensor and pass in the Arduino pin number.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -138,8 +142,8 @@ html(lang='en')
                 }
 
           .section
-            #setfloor.anchor
-            h4
+            .method-name
+              #setfloor.anchor
               .light light_sensor
               | .setFloor(value)
             p
@@ -154,8 +158,8 @@ html(lang='en')
                 }
 
           .section
-            #setceiling.anchor
-            h4
+            .method-name
+              #setceiling.anchor
               .light light_sensor
               | .setCeiling(value)
             p Provide an integer from 0 - 1023 to calibrate the sensor with an upper bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the ceiling with help from&nbsp;
@@ -169,8 +173,8 @@ html(lang='en')
                 }
 
           .section
-            #resetfloor.anchor
-            h4
+            .method-name
+              #resetfloor.anchor
               .light light_sensor
               | .resetFloor()
             p
@@ -185,8 +189,8 @@ html(lang='en')
                 }
 
           .section
-            #resetceiling.anchor
-            h4
+            .method-name
+              #resetceiling.anchor
               .light light_sensor
               | .resetCeiling()
             p
@@ -201,8 +205,8 @@ html(lang='en')
                 }
 
           .section
-            #getvalue.anchor
-            h4
+            .method-name
+              #getvalue.anchor
               .light light_sensor
               | .getValue()
             p
@@ -221,8 +225,8 @@ html(lang='en')
                 }
 
           .section
-            #getrawvalue.anchor
-            h4
+            .method-name
+              #getrawvalue.anchor
               .light light_sensor
               | .getRawValue()
             p
@@ -239,8 +243,8 @@ html(lang='en')
                 }
 
           .section
-            #getinversevalue.anchor
-            h4
+            .method-name
+              #getinversevalue.anchor
               .light light_sensor
               | .getInverseValue()
             p Returns an integer from 1023 - 0 for the opposite of the current light level.
@@ -252,8 +256,8 @@ html(lang='en')
                 }
 
           .section
-            #getpercentvalue.anchor
-            h4
+            .method-name
+              #getpercentvalue.anchor
               .light light_sensor
               | .getPercentValue()
             p Returns an integer from 0 - 100 for the current light percentage.
@@ -265,8 +269,8 @@ html(lang='en')
                 }
 
           .section
-            #getinversepercentvalue.anchor
-            h4
+            .method-name
+              #getinversepercentvalue.anchor
               .light light_sensor
               | .getInversePercentValue()
             p Returns an integer from 100 - 0 for the opposite of the current light percentage.

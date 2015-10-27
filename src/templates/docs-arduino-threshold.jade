@@ -34,12 +34,12 @@ html(lang='en')
               a.btn.btn-default(href="#example-setup") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
-          h3
+          .h3
             #overview.anchor
             | Overview
           p.lead
             | Set and check numeric quantile scales. Provide an input domain and this library will convert it to a numeric quantile output range. This is different from the Arduino map() function because this library can handle a non-uniform input range.
-          h3
+          .h3
             #download.anchor
             | Download
           p
@@ -63,7 +63,7 @@ html(lang='en')
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
-          h3
+          .h3
             #example-setup.anchor
             | Example Setup
           p
@@ -89,7 +89,7 @@ html(lang='en')
               li HIGH
               li OVER
 
-          h3
+          .h3
             #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
@@ -116,7 +116,7 @@ html(lang='en')
                 Serial.println(threshold.computeLevel(30));   // 3
                 Serial.println(threshold.computeLevel(31));   // 4
               }
-          h3
+          .h3
             #public-methods.anchor
             | Public Methods
           h4.class-name
@@ -142,8 +142,9 @@ html(lang='en')
               a.click-flash(href="#computelevel") .computeLevel(value)
 
           .section
-            #constructor.anchor
-            h4 RBD::Threshold constructor(level_count)
+            .method-name
+              #constructor.anchor
+              | RBD::Threshold constructor(level_count)
             p Create a new instance and provide an integer for the maximum number of threshold levels. For example; set the level_count to 3 if you have levels of low, medium, and high. If you need more levels, this library will dynamically allocate an array to accommodate the size you provide the constructor.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -155,8 +156,8 @@ html(lang='en')
                 }
 
           .section
-            #setlevel.anchor
-            h4
+            .method-name
+              #setlevel.anchor
               .light threshold
               | .setLevel(index, value)
             p
@@ -173,8 +174,8 @@ html(lang='en')
                 }
 
           .section
-            #setmaxlevel.anchor
-            h4
+            .method-name
+              #setmaxlevel.anchor
               .light threshold
               | .setMaxLevel(value)
             p Provide an integer, float, or double to set the upper-bounds threshold of the last level.
@@ -186,8 +187,8 @@ html(lang='en')
                 }
 
           .section
-            #getlevel.anchor
-            h4
+            .method-name
+              #getlevel.anchor
               .light threshold
               | .getLevel(index)
             p
@@ -202,8 +203,8 @@ html(lang='en')
                 }
 
           .section
-            #getmaxlevel.anchor
-            h4
+            .method-name
+              #getmaxlevel.anchor
               .light threshold
               | .getMaxLevel()
             p
@@ -218,8 +219,8 @@ html(lang='en')
                 }
 
           .section
-            #computelevel.anchor
-            h4
+            .method-name
+              #computelevel.anchor
               .light threshold
               | .computeLevel(value)
             p

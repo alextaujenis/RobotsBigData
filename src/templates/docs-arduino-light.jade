@@ -34,7 +34,7 @@ html(lang='en')
               a.btn.btn-default(href="#example-sketch") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
-          h3
+          .h3
             #overview.anchor
             | Overview
           p.lead
@@ -48,7 +48,7 @@ html(lang='en')
             a.click-flash(href="#fade") fade()
             | . Lights must be connected to PWM enabled Arduino pins to work with this library.
 
-          h3
+          .h3
             #download.anchor
             | Download
           p
@@ -74,7 +74,7 @@ html(lang='en')
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
-          h3
+          .h3
             #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
@@ -95,7 +95,7 @@ html(lang='en')
                 light.update();
               }
 
-          h3
+          .h3
             #public-methods.anchor
             | Public Methods
 
@@ -148,8 +148,9 @@ html(lang='en')
               include ./global/labels/real-time.jade
 
           .section
-            #constructor.anchor
-            h4 RBD::Light constructor(pin)
+            .method-name
+              #constructor.anchor
+              | RBD::Light constructor(pin)
             p Create a new light and pass in the Arduino pin number.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -161,8 +162,8 @@ html(lang='en')
                 }
 
           .section
-            #on.anchor
-            h4
+            .method-name
+              #on.anchor
               .light light
               | .on()
             p Turn on the light.
@@ -174,8 +175,8 @@ html(lang='en')
                 }
 
           .section
-            #off.anchor
-            h4
+            .method-name
+              #off.anchor
               .light light
               | .off()
             p Turn off the light.
@@ -187,8 +188,8 @@ html(lang='en')
                 }
 
           .section
-            #setpwm.anchor
-            h4
+            .method-name
+              #setpwm.anchor
               .light light
               | .setPwm(value)
             p Pass in an integer between 0 - 255 to set the brightness of the light.
@@ -200,8 +201,8 @@ html(lang='en')
                 }
 
           .section
-            #setpwmpercent.anchor
-            h4
+            .method-name
+              #setpwmpercent.anchor
               .light light
               | .setPwmPercent(value)
             p Pass in an integer between 0 - 100 to set the brightness of the light.
@@ -213,8 +214,8 @@ html(lang='en')
                 }
 
           .section
-            #ison.anchor
-            h4
+            .method-name
+              #ison.anchor
               .light light
               | .isOn()
             p Returns true if the current light brightness is at 100%.
@@ -228,8 +229,8 @@ html(lang='en')
                 }
 
           .section
-            #isoff.anchor
-            h4
+            .method-name
+              #isoff.anchor
               .light light
               | .isOff()
             p Returns true if the current light brightness is at 0%.
@@ -243,8 +244,8 @@ html(lang='en')
                 }
 
           .section
-            #getpwm.anchor
-            h4
+            .method-name
+              #getpwm.anchor
               .light light
               | .getPwm()
             p Returns an integer of the current light brightness from 0 - 255.
@@ -256,8 +257,8 @@ html(lang='en')
                 }
 
           .section
-            #getpwmpercent.anchor
-            h4
+            .method-name
+              #getpwmpercent.anchor
               .light light
               | .getPwmPercent()
             p Returns an integer of the current light percentage brightness from 0 - 100.
@@ -269,8 +270,8 @@ html(lang='en')
                 }
 
           .section
-            #update.anchor
-            h4
+            .method-name
+              #update.anchor
               .light light
               | .update()
               include ./global/labels/update.jade
@@ -288,8 +289,8 @@ html(lang='en')
                 }
 
           .section
-            #blink.anchor
-            h4
+            .method-name
+              #blink.anchor
               .light light
               | .blink(on_time, off_time, [times])
               include ./global/labels/real-time.jade
@@ -311,8 +312,8 @@ html(lang='en')
                 }
 
           .section
-            #fade.anchor
-            h4
+            .method-name
+              #fade.anchor
               .light light
               | .fade(up_time, on_time, down_time, off_time, [times])
               include ./global/labels/real-time.jade

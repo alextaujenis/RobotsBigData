@@ -34,7 +34,8 @@ html(lang='en')
               a.btn.btn-default(href="#example-setup") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
-          h3
+
+          .h3
             #overview.anchor
             | Overview
           p.lead
@@ -53,7 +54,8 @@ html(lang='en')
             | . Look at the&nbsp;
             a(href="docs-arduino-capacitance.html") Capacitance Library
             |  if you would like to know more about how capacitance is calculated.
-          h3
+
+          .h3
             #download.anchor
             | Download
           p
@@ -81,7 +83,7 @@ html(lang='en')
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
-          h3
+          .h3
             #example-setup.anchor
             | Example Setup
           p
@@ -93,13 +95,12 @@ html(lang='en')
               li Move your hand by the object, touch it, pick it up, and change the raw threshold values in the sketch
               li Compile and reload the calibrated sketch back into the Arduino
               li Your human sensor is calibrated and ready to use
-          h3
+
+          .h3
             #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
-
-
           script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
             :cdata
               #include <RBD_Capacitance.h>
@@ -135,17 +136,16 @@ html(lang='en')
                   Serial.println(human_sensor.getRawValue());
                 }
               }
-          h3
+
+          .h3
             #public-methods.anchor
             | Public Methods
-
           p
             | You must continuously call&nbsp;
             a.click-flash(href="#update") update()
             |  inside of loop() in order to use the
             span.label.label-success RT
             |  (Real-Time) methods tagged below.
-
           h4.class-name
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
@@ -223,8 +223,9 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            #constructor.anchor
-            h4 RBD::HumanSensor constructor(send_pin, receive_pin)
+            .method-name
+              #constructor.anchor
+              | RBD::HumanSensor constructor(send_pin, receive_pin)
             p Pass in integers for the send and receive pins to create a new instance of this class.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -236,8 +237,8 @@ html(lang='en')
                 }
 
           .section
-            #setsamplesize.anchor
-            h4
+            .method-name
+              #setsamplesize.anchor
               .light human_sensor
               | .setSampleSize(value)
             p
@@ -262,8 +263,8 @@ html(lang='en')
                 }
 
           .section
-            #setnearvalue.anchor
-            h4
+            .method-name
+              #setnearvalue.anchor
               .light human_sensor
               | .setNearValue(value)
             p
@@ -278,8 +279,8 @@ html(lang='en')
                 }
 
           .section
-            #settouchvalue.anchor
-            h4
+            .method-name
+              #settouchvalue.anchor
               .light human_sensor
               | .setTouchValue(value)
             p
@@ -294,8 +295,8 @@ html(lang='en')
                 }
 
           .section
-            #setpickupvalue.anchor
-            h4
+            .method-name
+              #setpickupvalue.anchor
               .light human_sensor
               | .setPickupValue(value)
             p
@@ -310,8 +311,8 @@ html(lang='en')
                 }
 
           .section
-            #setmodifier.anchor
-            h4
+            .method-name
+              #setmodifier.anchor
               .light human_sensor
               | .setModifier(value)
             p
@@ -360,8 +361,8 @@ html(lang='en')
                 }
 
           .section
-            #resetmodifier.anchor
-            h4
+            .method-name
+              #resetmodifier.anchor
               .light human_sensor
               | .resetModifier()
             p
@@ -412,8 +413,8 @@ html(lang='en')
                 }
 
           .section
-            #update.anchor
-            h4
+            .method-name
+              #update.anchor
               .light human_sensor
               | .update()
               include ./global/labels/update.jade
@@ -426,8 +427,8 @@ html(lang='en')
                 }
 
           .section
-            #isgone.anchor
-            h4
+            .method-name
+              #isgone.anchor
               .light human_sensor
               | .isGone()
               include ./global/labels/real-time.jade
@@ -447,8 +448,8 @@ html(lang='en')
                 }
 
           .section
-            #isnear.anchor
-            h4
+            .method-name
+              #isnear.anchor
               .light human_sensor
               | .isNear()
               include ./global/labels/real-time.jade
@@ -476,8 +477,8 @@ html(lang='en')
                 }
 
           .section
-            #istouch.anchor
-            h4
+            .method-name
+              #istouch.anchor
               .light human_sensor
               | .isTouch()
               include ./global/labels/real-time.jade
@@ -505,8 +506,8 @@ html(lang='en')
                 }
 
           .section
-            #ispickup.anchor
-            h4
+            .method-name
+              #ispickup.anchor
               .light human_sensor
               | .isPickup()
               include ./global/labels/real-time.jade
@@ -530,8 +531,8 @@ html(lang='en')
                 }
 
           .section
-            #getvalue.anchor
-            h4
+            .method-name
+              #getvalue.anchor
               .light human_sensor
               | .getValue()
               include ./global/labels/real-time.jade
@@ -557,8 +558,8 @@ html(lang='en')
                 }
 
           .section
-            #getrawvalue.anchor
-            h4
+            .method-name
+              #getrawvalue.anchor
               .light human_sensor
               | .getRawValue()
               include ./global/labels/real-time.jade
@@ -576,8 +577,8 @@ html(lang='en')
                 }
 
           .section
-            #getactivelevel.anchor
-            h4
+            .method-name
+              #getactivelevel.anchor
               .light human_sensor
               | .getActiveLevel()
               include ./global/labels/real-time.jade
@@ -615,8 +616,8 @@ html(lang='en')
                 }
 
           .section
-            #ongone.anchor
-            h4
+            .method-name
+              #ongone.anchor
               .light human_sensor
               | .onGone()
               include ./global/labels/real-time.jade
@@ -638,9 +639,10 @@ html(lang='en')
                     Serial.println("Gone");
                   }
                 }
+
           .section
-            #onnear.anchor
-            h4
+            .method-name
+              #onnear.anchor
               .light human_sensor
               | .onNear()
               include ./global/labels/real-time.jade
@@ -666,8 +668,8 @@ html(lang='en')
                 }
 
           .section
-            #ontouch.anchor
-            h4
+            .method-name
+              #ontouch.anchor
               .light human_sensor
               | .onTouch()
               include ./global/labels/real-time.jade
@@ -693,8 +695,8 @@ html(lang='en')
                 }
 
           .section
-            #onpickup.anchor
-            h4
+            .method-name
+              #onpickup.anchor
               .light human_sensor
               | .onPickup()
               include ./global/labels/real-time.jade
@@ -718,8 +720,8 @@ html(lang='en')
                 }
 
           .section
-            #onvaluechange.anchor
-            h4
+            .method-name
+              #onvaluechange.anchor
               .light human_sensor
               | .onValueChange()
               include ./global/labels/real-time.jade
@@ -741,8 +743,8 @@ html(lang='en')
                 }
 
           .section
-            #onrawvaluechange.anchor
-            h4
+            .method-name
+              #onrawvaluechange.anchor
               .light human_sensor
               | .onRawValueChange()
               include ./global/labels/real-time.jade
@@ -764,8 +766,8 @@ html(lang='en')
                 }
 
           .section
-            #onactivelevelchange.anchor
-            h4
+            .method-name
+              #onactivelevelchange.anchor
               .light human_sensor
               | .onActiveLevelChange()
               include ./global/labels/real-time.jade

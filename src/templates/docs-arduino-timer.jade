@@ -34,7 +34,7 @@ html(lang='en')
               a.btn.btn-default(href="#example-setup") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
-          h3
+          .h3
             #overview.anchor
             | Overview
           p.lead
@@ -42,14 +42,14 @@ html(lang='en')
           p.lead
             | This lightweight library manages time the same way you would by setting a waypoint and calculating elapsed millis(). It is a simple replacement to manage your timed events with english instead of math.
 
-          h3
+          .h3
             #relativevsabsolute.anchor
             | Soft Real-Time
           p
             | This library performs in Soft Real-Time, which means that it will mostly stay on time but is allowed to slip if performance is an issue. This could look like a microsecond of time loss when the timer expires but before it is restarted. Or this could look like a busy Arduino loop() where the timer resolution degrades to only fire an event within 25 microseconds of an actual event. (A microsecond is a small fraction of a millisecond).
           p
             | There are other solutions for Hard Real-Time problems that require exact timing, which cannot slip for any reason. These are consideration when using this timer within a project, but for the most part; performance is awesome and you should use this library.
-          h3
+          .h3
             #download.anchor
             | Download
           p
@@ -73,7 +73,7 @@ html(lang='en')
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
-          h3
+          .h3
             #example-setup.anchor
             | Example Setup
           p
@@ -81,7 +81,7 @@ html(lang='en')
               li Install this library and load the example sketch on to an Arduino
               li Open a serial connection at 115200 BAUD
               li Watch an interval timer print to serial every three seconds
-          h3
+          .h3
             #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
@@ -104,7 +104,7 @@ html(lang='en')
                   Serial.println("Three seconds passed");
                 }
               }
-          h3
+          .h3
             #public-methods.anchor
             | Public Methods
           h4.class-name
@@ -148,8 +148,9 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            #constructor.anchor
-            h4 RBD::Timer constructor()
+            .method-name
+              #constructor.anchor
+              | RBD::Timer constructor()
             p Create a new timer instance.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -161,8 +162,8 @@ html(lang='en')
                 }
 
           .section
-            #settimeout.anchor
-            h4
+            .method-name
+              #settimeout.anchor
               .light timer
               | .setTimeout(value)
             p
@@ -184,8 +185,8 @@ html(lang='en')
                 }
 
           .section
-            #sethertz.anchor
-            h4
+            .method-name
+              #sethertz.anchor
               .light timer
               | .setHertz(value)
             p
@@ -206,8 +207,8 @@ html(lang='en')
                   }
                 }
           .section
-            #getvalue.anchor
-            h4
+            .method-name
+              #getvalue.anchor
               .light timer
               | .getValue()
             p Returns an unsigned long of how many milliseconds that have passed since the start of the timer.
@@ -219,8 +220,8 @@ html(lang='en')
                 }
 
           .section
-            #getinversevalue.anchor
-            h4
+            .method-name
+              #getinversevalue.anchor
               .light timer
               | .getInverseValue()
             p Returns an unsigned long of how many milliseconds left until the end of the timer.
@@ -232,8 +233,8 @@ html(lang='en')
                 }
 
           .section
-            #getpercentvalue.anchor
-            h4
+            .method-name
+              #getpercentvalue.anchor
               .light timer
               | .getPercentValue()
             p Returns an integer from 0 - 100 of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 25.
@@ -245,8 +246,8 @@ html(lang='en')
                 }
 
           .section
-            #getinversepercentvalue.anchor
-            h4
+            .method-name
+              #getinversepercentvalue.anchor
               .light timer
               | .getInversePercentValue()
             p Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.
@@ -258,8 +259,8 @@ html(lang='en')
                 }
 
           .section
-            #restart.anchor
-            h4
+            .method-name
+              #restart.anchor
               .light timer
               | .restart()
             p
@@ -281,8 +282,8 @@ html(lang='en')
                 }
 
           .section
-            #isactive.anchor
-            h4
+            .method-name
+              #isactive.anchor
               .light timer
               | .isActive()
             p
@@ -306,8 +307,8 @@ html(lang='en')
                 }
 
           .section
-            #isexpired.anchor
-            h4
+            .method-name
+              #isexpired.anchor
               .light timer
               | .isExpired()
             p
@@ -330,8 +331,8 @@ html(lang='en')
                 }
 
           .section
-            #onrestart.anchor
-            h4
+            .method-name
+              #onrestart.anchor
               .light timer
               | .onRestart()
               include ./global/labels/event.jade
@@ -352,8 +353,8 @@ html(lang='en')
                 }
 
           .section
-            #onactive.anchor
-            h4
+            .method-name
+              #onactive.anchor
               .light timer
               | .onActive()
               include ./global/labels/event.jade
@@ -370,8 +371,8 @@ html(lang='en')
                 }
 
           .section
-            #onexpired.anchor
-            h4
+            .method-name
+              #onexpired.anchor
               .light timer
               | .onExpired()
               include ./global/labels/event.jade

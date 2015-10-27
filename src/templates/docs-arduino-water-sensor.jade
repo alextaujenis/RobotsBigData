@@ -34,7 +34,7 @@ html(lang='en')
               a.btn.btn-default(href="#example-setup") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
-          h3
+          .h3
             #overview.anchor
             | Overview
           p.lead
@@ -47,7 +47,7 @@ html(lang='en')
             | . Look at the&nbsp;
             a(href="docs-arduino-capacitance.html") Capacitance Library
             |  if you would like to know more about how capacitance is calculated.
-          h3
+          .h3
             #download.anchor
             | Download
           p
@@ -75,7 +75,7 @@ html(lang='en')
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
-          h3
+          .h3
             #example-setup.anchor
             | Example Setup
           p
@@ -87,7 +87,7 @@ html(lang='en')
               li Pour water into the container and change the raw threshold values in the sketch to match the levels
               li Pour out the water, then compile and load the calibrated sketch back into the Arduino
               li Your water level is calibrated and ready to use
-          h3
+          .h3
             #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
@@ -121,7 +121,7 @@ html(lang='en')
                   Serial.println(water_sensor.getRawValue());
                 }
               }
-          h3
+          .h3
             #public-methods.anchor
             | Public Methods
 
@@ -182,8 +182,9 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            #constructor.anchor
-            h4 RBD::WaterSensor constructor(send_pin, receive_pin, level_count)
+            .method-name
+              #constructor.anchor
+              | RBD::WaterSensor constructor(send_pin, receive_pin, level_count)
             p Pass in integers for the send and receive pins to create a new instance of this class, along with an integer for the total number of levels the water sensor will detect. Example: if you want to detect low, medium, and high levels then level_count should equal 3.
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -195,8 +196,8 @@ html(lang='en')
                 }
 
           .section
-            #setsamplesize.anchor
-            h4
+            .method-name
+              #setsamplesize.anchor
               .light water_sensor
               | .setSampleSize(value)
             p
@@ -221,8 +222,8 @@ html(lang='en')
                 }
 
           .section
-            #setlevel.anchor
-            h4
+            .method-name
+              #setlevel.anchor
               .light water_sensor
               | .setLevel(index, raw_value)
             p
@@ -241,8 +242,8 @@ html(lang='en')
                 }
 
           .section
-            #setmaxlevel.anchor
-            h4
+            .method-name
+              #setmaxlevel.anchor
               .light water_sensor
               | .setMaxLevel(raw_value)
             p
@@ -257,8 +258,8 @@ html(lang='en')
                 }
 
           .section
-            #setmodifier.anchor
-            h4
+            .method-name
+              #setmodifier.anchor
               .light water_sensor
               | .setModifier(value)
             p
@@ -307,8 +308,8 @@ html(lang='en')
                 }
 
           .section
-            #resetmodifier.anchor
-            h4
+            .method-name
+              #resetmodifier.anchor
               .light water_sensor
               | .resetModifier()
             p
@@ -359,8 +360,8 @@ html(lang='en')
                 }
 
           .section
-            #update.anchor
-            h4
+            .method-name
+              #update.anchor
               .light water_sensor
               | .update()
               include ./global/labels/update.jade
@@ -373,8 +374,8 @@ html(lang='en')
                 }
 
           .section
-            #getvalue.anchor
-            h4
+            .method-name
+              #getvalue.anchor
               .light water_sensor
               | .getValue()
               include ./global/labels/real-time.jade
@@ -402,8 +403,8 @@ html(lang='en')
                 }
 
           .section
-            #getrawvalue.anchor
-            h4
+            .method-name
+              #getrawvalue.anchor
               .light water_sensor
               | .getRawValue()
               include ./global/labels/real-time.jade
@@ -423,8 +424,8 @@ html(lang='en')
                 }
 
           .section
-            #getactivelevel.anchor
-            h4
+            .method-name
+              #getactivelevel.anchor
               .light water_sensor
               | .getActiveLevel()
               include ./global/labels/real-time.jade
@@ -449,8 +450,8 @@ html(lang='en')
                 }
 
           .section
-            #isactivelevel.anchor
-            h4
+            .method-name
+              #isactivelevel.anchor
               .light water_sensor
               | .isActiveLevel(value)
               include ./global/labels/real-time.jade
@@ -472,8 +473,8 @@ html(lang='en')
                 }
 
           .section
-            #onvaluechange.anchor
-            h4
+            .method-name
+              #onvaluechange.anchor
               .light water_sensor
               | .onValueChange()
               include ./global/labels/real-time.jade
@@ -495,8 +496,8 @@ html(lang='en')
                 }
 
           .section
-            #onrawvaluechange.anchor
-            h4
+            .method-name
+              #onrawvaluechange.anchor
               .light water_sensor
               | .onRawValueChange()
               include ./global/labels/real-time.jade
@@ -518,8 +519,8 @@ html(lang='en')
                 }
 
           .section
-            #onactivelevelchange.anchor
-            h4
+            .method-name
+              #onactivelevelchange.anchor
               .light water_sensor
               | .onActiveLevelChange()
               include ./global/labels/real-time.jade

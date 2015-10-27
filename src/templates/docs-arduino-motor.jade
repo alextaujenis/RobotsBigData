@@ -34,7 +34,7 @@ html(lang='en')
               a.btn.btn-default(href="#example-sketch") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
-          h3
+          .h3
             #overview.anchor
             | Overview
           p.lead
@@ -57,7 +57,7 @@ html(lang='en')
             |  events.
           p.lead
             | Motors can be wired to move in a single direction, or can be driven in both directions with the help of a motor-shield or H bridge and this library.
-          h3
+          .h3
             #download.anchor
             | Download
           p
@@ -82,7 +82,7 @@ html(lang='en')
                 a(href="https://github.com/alextaujenis/RBD_Motor") View Source on GitHub
                 |  with&nbsp;
                 a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
-          h3
+          .h3
             #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
@@ -114,7 +114,7 @@ html(lang='en')
                   }
                 }
               }
-          h3
+          .h3
             #public-methods.anchor
             | Public Methods
 
@@ -203,8 +203,9 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            #constructor.anchor
-            h4 RBD::Motor constructor(pwm_pin, [forward_pin], [reverse_pin])
+            .method-name
+              #constructor.anchor
+              | RBD::Motor constructor(pwm_pin, [forward_pin], [reverse_pin])
             p
               | Create a new motor and pass in the Arduino pwm pin number. The forward and reverse pins are optional and can be used to control the motor in both directions with the help of a motor-shield or H bridge. The motor will be set&nbsp;
               a.click-flash(href="#forward") forward()
@@ -220,8 +221,8 @@ html(lang='en')
                 }
 
           .section
-            #on.anchor
-            h4
+            .method-name
+              #on.anchor
               .light motor
               | .on()
             p
@@ -234,8 +235,8 @@ html(lang='en')
                 }
 
           .section
-            #off.anchor
-            h4
+            .method-name
+              #off.anchor
               .light motor
               | .off()
             p Stop the motor.
@@ -247,8 +248,8 @@ html(lang='en')
                 }
 
           .section
-            #forward.anchor
-            h4
+            .method-name
+              #forward.anchor
               .light motor
               | .forward()
             p
@@ -269,8 +270,8 @@ html(lang='en')
                 }
 
           .section
-            #reverse.anchor
-            h4
+            .method-name
+              #reverse.anchor
               .light motor
               | .reverse()
             p
@@ -288,8 +289,8 @@ html(lang='en')
                 }
 
           .section
-            #toggledirection.anchor
-            h4
+            .method-name
+              #toggledirection.anchor
               .light motor
               | .toggleDirection()
             p
@@ -313,8 +314,8 @@ html(lang='en')
                 }
 
           .section
-            #setpwm.anchor
-            h4
+            .method-name
+              #setpwm.anchor
               .light motor
               | .setPwm(value)
             p Pass in an integer from 0 - 255 to control the speed of the motor.
@@ -326,8 +327,8 @@ html(lang='en')
                 }
 
           .section
-            #setpwmpercent.anchor
-            h4
+            .method-name
+              #setpwmpercent.anchor
               .light motor
               | .setPwmPercent(value)
             p
@@ -342,8 +343,8 @@ html(lang='en')
                 }
 
           .section
-            #ison.anchor
-            h4
+            .method-name
+              #ison.anchor
               .light motor
               | .isOn()
             p
@@ -360,8 +361,8 @@ html(lang='en')
                 }
 
           .section
-            #isoff.anchor
-            h4
+            .method-name
+              #isoff.anchor
               .light motor
               | .isOff()
             p
@@ -378,8 +379,8 @@ html(lang='en')
                 }
 
           .section
-            #isforward.anchor
-            h4
+            .method-name
+              #isforward.anchor
               .light motor
               | .isForward()
             p
@@ -399,8 +400,8 @@ html(lang='en')
                 }
 
           .section
-            #isreverse.anchor
-            h4
+            .method-name
+              #isreverse.anchor
               .light motor
               | .isReverse()
             p
@@ -420,8 +421,8 @@ html(lang='en')
                 }
 
           .section
-            #getpwm.anchor
-            h4
+            .method-name
+              #getpwm.anchor
               .light motor
               | .getPwm()
             p
@@ -438,8 +439,8 @@ html(lang='en')
                 }
 
           .section
-            #getpwmpercent.anchor
-            h4
+            .method-name
+              #getpwmpercent.anchor
               .light motor
               | .getPwmPercent()
             p
@@ -456,8 +457,8 @@ html(lang='en')
                 }
 
           .section
-            #ispwm.anchor
-            h4
+            .method-name
+              #ispwm.anchor
               .light motor
               | .isPwm(value)
             p
@@ -482,8 +483,8 @@ html(lang='en')
                 }
 
           .section
-            #ispwmpercent.anchor
-            h4
+            .method-name
+              #ispwmpercent.anchor
               .light motor
               | .isPwmPercent(value)
             p
@@ -508,8 +509,8 @@ html(lang='en')
                 }
 
           .section
-            #update.anchor
-            h4
+            .method-name
+              #update.anchor
               .light motor
               | .update()
               include ./global/labels/update.jade
@@ -522,8 +523,8 @@ html(lang='en')
                 }
 
           .section
-            #timedon.anchor
-            h4
+            .method-name
+              #timedon.anchor
               .light motor
               | .timedOn(timeout)
               include ./global/labels/real-time.jade
@@ -541,8 +542,8 @@ html(lang='en')
                 }
 
           .section
-            #rampup.anchor
-            h4
+            .method-name
+              #rampup.anchor
               .light motor
               | .rampUp(timeout)
               include ./global/labels/real-time.jade
@@ -559,8 +560,8 @@ html(lang='en')
                 }
 
           .section
-            #rampdown.anchor
-            h4
+            .method-name
+              #rampdown.anchor
               .light motor
               | .rampDown(timeout)
               include ./global/labels/real-time.jade
@@ -578,8 +579,8 @@ html(lang='en')
                 }
 
           .section
-            #ramp.anchor
-            h4
+            .method-name
+              #ramp.anchor
               .light motor
               | .ramp(value, timeout)
               include ./global/labels/real-time.jade
@@ -596,8 +597,8 @@ html(lang='en')
                 }
 
           .section
-            #ramppercent.anchor
-            h4
+            .method-name
+              #ramppercent.anchor
               .light motor
               | .rampPercent(value, timeout)
               include ./global/labels/real-time.jade
@@ -617,8 +618,8 @@ html(lang='en')
                 }
 
           .section
-            #onforward.anchor
-            h4
+            .method-name
+              #onforward.anchor
               .light motor
               | .onForward()
               include ./global/labels/real-time.jade
@@ -648,8 +649,8 @@ html(lang='en')
                 }
 
           .section
-            #onreverse.anchor
-            h4
+            .method-name
+              #onreverse.anchor
               .light motor
               | .onReverse()
               include ./global/labels/real-time.jade
@@ -680,8 +681,8 @@ html(lang='en')
                 }
 
           .section
-            #ontargetspeed.anchor
-            h4
+            .method-name
+              #ontargetspeed.anchor
               .light motor
               | .onTargetSpeed()
               include ./global/labels/real-time.jade

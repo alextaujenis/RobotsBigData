@@ -70,6 +70,7 @@ ul.libraries {
     padding-bottom: 2px;
     padding-top: 10px;
     border-bottom: solid 1px #DDD;
+    margin-top: 0px;
   }
   h4 {
     font-size: 20px;
@@ -101,7 +102,7 @@ ul.libraries {
   }
 
   .section {
-    padding: 20px 0 30px 0;
+    padding: 25px 0 25px 0;
     border: solid 1px #DDD;
     border-left: none;
     border-right: none;
@@ -195,17 +196,35 @@ ul.libraries {
   color: #bae6ff;
 }
 
+.h3 {
+  border-bottom: solid 1px #DDD;
+  padding-bottom: 5px;
+  padding-top: 15px;
+}
+
 // page anchors, offset for fixed top bar
 .anchor {
   display: block;
   position: relative;
-  top: -130px;
+  top: -132px;
   visibility: hidden;
 }
 
+.method-name {
+  font-size: 20px;
+  font-weight: 500;
+  padding: 5px;
+  padding-top: 0px;
+  margin-bottom: 10px;
+}
+
 @media(max-width:767px){
-  a[name] {
-    top: -95px;
+  .anchor {
+    top: -115px;
+  }
+
+  .method-name {
+    font-size: 16px;
   }
 }
 
