@@ -48,46 +48,43 @@ html(lang='en')
             |  of the documented sensors,&nbsp;
             i or
             |  you can use this library by itself.
-          p
-            ul
-              li
-                a(href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip")
-                  | Download Threshold Library v1.0.2&nbsp;
-                  label.label.label-warning.zip-label .zip
-                |  by itself, or
-              li
-                a(href="install.html") Download All Sensor Libraries
-                |  with this library included, or
-              li
-                a(href="https://github.com/alextaujenis/RBD_Threshold") View Source on GitHub
-                |  with&nbsp;
-                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+          ul
+            li
+              a(href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip")
+                | Download Threshold Library v1.0.2&nbsp;
+                label.label.label-warning.zip-label .zip
+              |  by itself, or
+            li
+              a(href="install.html") Download All Sensor Libraries
+              |  with this library included, or
+            li
+              a(href="https://github.com/alextaujenis/RBD_Threshold") View Source on GitHub
+              |  with&nbsp;
+              a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           .h3
             #example-setup.anchor
             | Example Setup
-          p
-            ul
-              li Install this library and load the example sketch on to an Arduino
-              li Open a serial connection at 115200 BAUD
-              li Watch as values are converted into the output range
+          ul
+            li Install this library and load the example sketch on to an Arduino
+            li Open a serial connection at 115200 BAUD
+            li Watch as values are converted into the output range
           p
             | This example takes an input domain of:
-          p
-            ul
-              li [under 0]
-              li [0 - 10.49]
-              li [10.5 - 19.99]
-              li [20 - 30]
-              li [over 30]
+          ul
+            li [under 0]
+            li [0 - 10.49]
+            li [10.5 - 19.99]
+            li [20 - 30]
+            li [over 30]
           p
             | and converts it to the quantile output range:
-            ol(start="0")
-              li UNDER
-              li LOW
-              li MEDIUM
-              li HIGH
-              li OVER
+          ol(start="0")
+            li UNDER
+            li LOW
+            li MEDIUM
+            li HIGH
+            li OVER
 
           .h3
             #example-sketch.anchor

@@ -56,37 +56,35 @@ html(lang='en')
             |  of the documented sensors,&nbsp;
             i or
             |  you can use this library by itself with two dependencies.
-          p
-            ul
-              li
-                a(href="https://github.com/alextaujenis/RBD_WaterSensor/raw/master/extras/RBD_WaterSensor.zip")
-                  | Download Water Sensor Library v1.0.3&nbsp;
-                  label.label.label-warning.zip-label .zip
-                |  by itself with the&nbsp;
-                a.dark-link(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
-                |  and&nbsp;
-                a.dark-link(href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip") Threshold
-                |  dependencies, or
-              li
-                a(href="install.html") Download All Sensor Libraries
-                |  with this library and dependencies included, or
-              li
-                a(href="https://github.com/alextaujenis/RBD_WaterSensor") View Source on GitHub
-                |  with&nbsp;
-                a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+          ul
+            li
+              a(href="https://github.com/alextaujenis/RBD_WaterSensor/raw/master/extras/RBD_WaterSensor.zip")
+                | Download Water Sensor Library v1.0.3&nbsp;
+                label.label.label-warning.zip-label .zip
+              |  by itself with the&nbsp;
+              a.dark-link(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
+              |  and&nbsp;
+              a.dark-link(href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip") Threshold
+              |  dependencies, or
+            li
+              a(href="install.html") Download All Sensor Libraries
+              |  with this library and dependencies included, or
+            li
+              a(href="https://github.com/alextaujenis/RBD_WaterSensor") View Source on GitHub
+              |  with&nbsp;
+              a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           .h3
             #example-setup.anchor
             | Example Setup
-          p
-            ol
-              li Bridge a 10Meg Ohm resistor across the send (tx 1) and receive (rx 0) pins
-              li Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil
-              li Tape the foil to the side of a water-tight non-conductive (plastic) container
-              li Load up the example sketch and open a serial connection at 115200 baud
-              li Pour water into the container and change the raw threshold values in the sketch to match the levels
-              li Pour out the water, then compile and load the calibrated sketch back into the Arduino
-              li Your water level is calibrated and ready to use
+          ol
+            li Bridge a 10Meg Ohm resistor across the send (tx 1) and receive (rx 0) pins
+            li Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil
+            li Tape the foil to the side of a water-tight non-conductive (plastic) container
+            li Load up the example sketch and open a serial connection at 115200 baud
+            li Pour water into the container and change the raw threshold values in the sketch to match the levels
+            li Pour out the water, then compile and load the calibrated sketch back into the Arduino
+            li Your water level is calibrated and ready to use
           .h3
             #example-sketch.anchor
             | Example Sketch
@@ -267,27 +265,27 @@ html(lang='en')
             p
               i For example
               | ; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.
-              ul
-                li
-                  | If a running motor increases the difference in water sensor readings by a&nbsp;
-                  a.click-flash(href="#getrawvalue") getRawValue()
-                  |  of +200
-                li
-                  | Call&nbsp;
-                  a.click-flash(href="#setmodifier") setModifier(-200)
-                  |  on the water sensor when the motor turns on
-                li
-                  | All of the calibrated water sensor thresholds will adjust -200
-                li
-                  | The water sensor&nbsp;
-                  a.click-flash(href="#getactivelevel") getActiveLevel()
-                  |  and&nbsp;
-                  a.click-flash(href="#getvalue") getValue()
-                  |  will account for motor interference
-                li
-                  | Call&nbsp;
-                  a.click-flash(href="#resetmodifier") resetModifier()
-                  |  on the water sensor when the motor shuts off
+            ul
+              li
+                | If a running motor increases the difference in water sensor readings by a&nbsp;
+                a.click-flash(href="#getrawvalue") getRawValue()
+                |  of +200
+              li
+                | Call&nbsp;
+                a.click-flash(href="#setmodifier") setModifier(-200)
+                |  on the water sensor when the motor turns on
+              li
+                | All of the calibrated water sensor thresholds will adjust -200
+              li
+                | The water sensor&nbsp;
+                a.click-flash(href="#getactivelevel") getActiveLevel()
+                |  and&nbsp;
+                a.click-flash(href="#getvalue") getValue()
+                |  will account for motor interference
+              li
+                | Call&nbsp;
+                a.click-flash(href="#resetmodifier") resetModifier()
+                |  on the water sensor when the motor shuts off
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
@@ -319,27 +317,27 @@ html(lang='en')
             p
               i For example
               | ; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.
-              ul
-                li
-                  | If a running motor increases the difference in water sensor readings by a&nbsp;
-                  a.click-flash(href="#getrawvalue") getRawValue()
-                  |  of +200
-                li
-                  | Call&nbsp;
-                  a.click-flash(href="#setmodifier") setModifier(-200)
-                  |  on the water sensor when the motor turns on
-                li
-                  | All of the calibrated water sensor thresholds will adjust -200
-                li
-                  | The water sensor&nbsp;
-                  a.click-flash(href="#getactivelevel") getActiveLevel()
-                  |  and&nbsp;
-                  a.click-flash(href="#getvalue") getValue()
-                  |  will account for motor interference
-                li
-                  | Call&nbsp;
-                  a.click-flash(href="#resetmodifier") resetModifier()
-                  |  on the water sensor when the motor shuts off
+            ul
+              li
+                | If a running motor increases the difference in water sensor readings by a&nbsp;
+                a.click-flash(href="#getrawvalue") getRawValue()
+                |  of +200
+              li
+                | Call&nbsp;
+                a.click-flash(href="#setmodifier") setModifier(-200)
+                |  on the water sensor when the motor turns on
+              li
+                | All of the calibrated water sensor thresholds will adjust -200
+              li
+                | The water sensor&nbsp;
+                a.click-flash(href="#getactivelevel") getActiveLevel()
+                |  and&nbsp;
+                a.click-flash(href="#getvalue") getValue()
+                |  will account for motor interference
+              li
+                | Call&nbsp;
+                a.click-flash(href="#resetmodifier") resetModifier()
+                |  on the water sensor when the motor shuts off
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
@@ -431,13 +429,13 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns the current water level.
-              ul
-                li 0 means there is no water
-                li 1 means the water is touching the first level
-                li 2 means the water is touching the second level
-                li n means the water is touching the nth level
-                li sizeof(n) + 1 means the water is above the max level
-                li -1 if the value was not found
+            ul
+              li 0 means there is no water
+              li 1 means the water is touching the first level
+              li 2 means the water is touching the second level
+              li n means the water is touching the nth level
+              li sizeof(n) + 1 means the water is above the max level
+              li -1 if the value was not found
             h5 EXAMPLE SKETCH
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
