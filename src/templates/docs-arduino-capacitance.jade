@@ -61,7 +61,7 @@ html(lang='en')
             li
               a(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip")
                 | Download Capacitance Library v1.0.2&nbsp;
-                label.label.label-warning.zip-label .zip
+                .label.label-warning.zip-label .zip
               |  by itself, or
             li
               a(href="install.html") Download All Sensor Libraries
@@ -163,10 +163,10 @@ html(lang='en')
           ul.public-methods
             li
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin)
-            hr.divider
+            li.divider
             li
               a.click-flash(href="#setsamplesize") .setSampleSize(value)
-            hr.divider
+            li.divider
             li
               a.click-flash(href="#update") .update()
               include ./global/labels/update.jade
@@ -179,7 +179,7 @@ html(lang='en')
             li
               a.click-flash(href="#getvalue") .getValue()
               include ./global/labels/real-time.jade
-            hr.divider
+            li.divider
             li
               a.click-flash(href="#onchange") .onChange()
               include ./global/labels/real-time.jade

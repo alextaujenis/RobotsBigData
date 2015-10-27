@@ -69,7 +69,7 @@ html(lang='en')
             li
               a(href="https://github.com/alextaujenis/RBD_Motor/raw/master/extras/RBD_Motor.zip")
                 | Download Motor Library v1.1.0&nbsp;
-                label.label.label-warning.zip-label .zip
+                .label.label-warning.zip-label .zip
               |  by itself with the&nbsp;
               a.dark-link(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip") Timer
               |  dependency, or
@@ -135,7 +135,7 @@ html(lang='en')
           ul.public-methods
             li
               a.click-flash(href="#constructor") constructor(pwm_pin, [forward_pin], [reverse_pin])
-            hr.divider
+            li.divider
             li
               a.click-flash(href="#on") .on()
             li
@@ -150,7 +150,7 @@ html(lang='en')
               a.click-flash(href="#setpwm") .setPwm(value)
             li
               a.click-flash(href="#setpwmpercent") .setPwmPercent(value)
-            hr.divider
+            li.divider
             li
               a.click-flash(href="#ison") .isOn()
             li
@@ -167,7 +167,7 @@ html(lang='en')
               a.click-flash(href="#ispwm") .isPwm(value)
             li
               a.click-flash(href="#ispwmpercent") .isPwmPercent(value)
-            hr.divider
+            li.divider
             li
               a.click-flash(href="#update") .update()
               include ./global/labels/update.jade
@@ -186,7 +186,7 @@ html(lang='en')
             li
               a.click-flash(href="#ramppercent") .rampPercent(value, timeout)
               include ./global/labels/real-time.jade
-            hr.divider
+            li.divider
             li
               a.click-flash(href="#onforward") .onForward()
               include ./global/labels/real-time.jade
