@@ -10,9 +10,6 @@ class Branding
 
     # Resize on window resize
     @window.resize => @resize()
-
-    # show the content
-    $("#reveal").animate({opacity: 1});
     return
 
   resize: ->
