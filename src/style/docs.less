@@ -37,8 +37,12 @@
     font-size: 22px !important;
     font-weight: 200;
     padding: 0;
-    margin: 20px 0 0 -25px;
-    border-bottom: solid 1px #ddd;
+    margin: 20px 0 0 -20px;
+    border-bottom: solid 1px #DDD;
+  }
+  a:hover, a:link, a:visited, a:active {
+    text-decoration: none;
+    color: #337ab7;
   }
 }
 
@@ -51,7 +55,19 @@ ul.libraries {
   }
   h5 {
     font-size: 20px;
-    padding: 5px;
+    font-weight: 500;
+    padding: 10px;
+    margin: 0;
+    border: solid 1px white;
+    &:hover {
+      border: solid 1px #DDD;
+      background: linear-gradient(white, #f4f4f4);
+    }
+  }
+  @media(max-width:767px){
+    h5 {
+      font-size: 16px;
+    }
   }
 }
 
