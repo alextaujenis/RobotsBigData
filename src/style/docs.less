@@ -1,4 +1,10 @@
 .side-panel {
+  .panel-title {
+    a {
+      display: block;
+    }
+  }
+
   .panel-body {
     a, a:hover, a:active, a:visited {
       color: black;
@@ -6,27 +12,32 @@
 
     h3 {
       margin: 0;
-      padding: 10px 0 4px 0;
+      padding: 5px 0 4px 0;
       border-bottom: solid 1px #DDD;
       font-size: 12px;
       font-weight: bold;
     }
 
+
     ul {
       list-style-type: none;
-      padding: 5px 0 0 10px;
+      padding: 5px 0 0 5px;
 
       li {
-        padding: 2px 0;
+        padding: 0;
         font-size: 12px;
-      }
-    }
-    span.badge {
-      cursor: default;
-      opacity: 0.2;
 
-      &:hover {
-        opacity: 1;
+        a {
+          padding: 4px 8px 2px 8px;
+          display: block;
+          border: solid 1px white;
+
+          &:hover {
+            background-color: #e9f7ff;
+            border: solid 1px #b8e7ff;
+            text-decoration: none;
+          }
+        }
       }
     }
   }
@@ -37,7 +48,7 @@
     font-size: 22px !important;
     font-weight: 200;
     padding: 0;
-    margin: 20px 0 0 -20px;
+    margin: 20px 0 5px -20px;
     border-bottom: solid 1px #DDD;
   }
   a:hover, a:link, a:visited, a:active {
