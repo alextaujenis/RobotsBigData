@@ -1,0 +1,335 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Arduino Button Docs
+    meta(name="description", content="Read and debounce buttons and switches without delay. React to button events with the onPressed() and onReleased() commands.")
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8
+          ol.breadcrumb.stuck
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs-arduino.html") Arduino
+            li.active
+              | Button
+          .jumbotron
+            .stuck.click-through
+              .row.jumbotron-header.click-through
+                .col-xs-12.text-right.click-through
+                  span.label.label-info.title-label Arduino
+            .jumbotron-container
+              h2
+                | Button
+                small  API DOCUMENTATION
+              p
+                | Read and debounce buttons and switches.
+                small v1.0.0
+              a.btn.btn-success(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-sketch") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
+          .h3
+            #overview.anchor
+            | Overview
+          p.lead
+            | Read and debounce buttons and switches without delay. React to button events with the&nbsp;
+            a.click-flash(href="#onpressed") onPressed()
+            |  and&nbsp;
+            a.click-flash(href="#onreleased") onReleased()
+            |  commands. Control debounce time with&nbsp;
+            a.click-flash(href="#setdebouncetimeout") setDebounceTimeout()
+            | .
+          p.lead
+            | This library sets each button up as input_pullup by default, allowing you to wire the button to any digital input and ground. Input_pullup can be disabled by passing an optional flag to the&nbsp;
+            a.click-flash(href="#constructor") constructor()
+            |  and wiring the button with your own resistor.
+          .h3
+            #download.anchor
+            | Download
+          p
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself with one dependency.
+          ul
+            li
+              a(href="https://github.com/alextaujenis/RBD_Button/raw/master/extras/RBD_Button.zip")
+                | Download Button Library v1.0.0&nbsp;
+                .label.label-warning.zip-label .zip
+              |  by itself with the&nbsp;
+              a.dark-link(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip") Timer
+              |  dependency, or
+            li
+              a(href="install.html") Download All Sensor Libraries
+              |  with this library and dependency included, or
+            li
+              a(href="https://github.com/alextaujenis/RBD_Button") View Source on GitHub
+              |  with&nbsp;
+              a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+
+          .h3
+            #example-sketch.anchor
+            | Example Sketch
+            span.label.label-info Arduino
+            span.label.label-primary C++
+
+          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+            :cdata
+              #include <RBD_Timer.h>
+              #include <RBD_Button.h>
+
+              RBD::Button button(2); // input_pullup by default
+
+              void setup() {
+                Serial.begin(115200);
+              }
+
+              void loop() {
+                if(button.onPressed()) {
+                  Serial.println("Button Pressed");
+                }
+
+                if(button.onReleased()) {
+                  Serial.println("Button Released");
+                }
+              }
+
+          .h3
+            #public-methods.anchor
+            | Public Methods
+
+          h4.class-name
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                RBD::Button
+
+          ul.public-methods
+            li
+              a.click-flash(href="#constructor") constructor(pin, [input_pullup])
+            li.divider
+            li
+              a.click-flash(href="#setdebouncetimeout") .setDebounceTimeout(value)
+            li
+              a.click-flash(href="#inputpullup") .inputPullup()
+            li
+              a.click-flash(href="#disableinputpullup") .disableInputPullup()
+            li
+              a.click-flash(href="#invertreading") .invertReading()
+            li
+              a.click-flash(href="#resetreading") .resetReading()
+            li.divider
+            li
+              a.click-flash(href="#ispressed") .isPressed()
+            li
+              a.click-flash(href="#isreleased") .isReleased()
+            li.divider
+            li
+              a.click-flash(href="#onpressed") .onPressed()
+              include ./global/labels/event.jade
+            li
+              a.click-flash(href="#onreleased") .onReleased()
+              include ./global/labels/event.jade
+
+          .section
+            .method-name
+              #constructor.anchor
+              | RBD::Button constructor(pin, [input_pullup])
+            p Create a new button and pass in the Arduino pin number. This library will default to input_pullup and invert the button readings to simplify wiring for you. Pass in the second [optional] parameter as false to disable input_pullup.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                RBD::Button button(2);
+
+                void setup() {
+                  ...
+                }
+
+          .section
+            .method-name
+              #setdebouncetimeout.anchor
+              .light button
+              | .setDebounceTimeout(value)
+            p Pass in an unsigned long value to set the debounce time in milliseconds. Most mechanical buttons will flip between on and off very quickly before settling in the correct state when you switch them. Adjusting the debounce timeout will help remove these extra state-change events.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void setup() {
+                  button.setDebounceTimeout(10) // default ms
+                }
+
+          .section
+            .method-name
+              #inputpullup.anchor
+              .light button
+              | .inputPullup()
+            p
+              | Set the button as INPUT_PULLUP and invert the button state readings (to give you the correct value). This allows you to wire the button to a digital pin and ground while using the internal resistor to protect the Arduino pin.
+            p
+              | This method is called by default in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              |  if you leave out the [optional] input_pullup flag. This method is provided for convenience only.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                // RBD::Button button(2) // inputPullup() called by default
+
+                void setup() {
+                  button.inputPullup();
+                }
+
+          .section
+            .method-name
+              #disableinputpullup.anchor
+              .light button
+              | .disableInputPullup()
+            p
+              | Set the button as INPUT and set the button state readings back to normal (not inverted). This is the opposite of calling&nbsp;
+              a.click-flash(href="#inputpullup") inputPullup()
+              | .
+            p
+              | The best way to disable input_pullup with this library is to call the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              |  with a false [input_pullup] flag instead of using this method. This method is provided for convenience only.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                // RBD::Button button(2, false) // preferred
+
+                void setup() {
+                  button.disableInputPullup();
+                }
+
+          .section
+            .method-name
+              #invertreading.anchor
+              .light button
+              | .invertReading()
+            p
+              | Flip the value of the raw button state reading so when the button is HIGH, it registers as LOW, and vice versa. This is used when the button is set as input_pullup (by default), because the button is normally HIGH when off, and LOW when on, so flipping the readings gives the correct state of the button.
+            p
+              | This method is automatically called when using this library as input_pullup, which is the default behavior. This method is provided for convenience only.
+
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void setup() {
+                  button.invertReading();
+                }
+
+          .section
+            .method-name
+              #resetreading.anchor
+              .light button
+              | .resetReading()
+            p
+              | Return the button state reading back to normal. This is the opposite of calling&nbsp;
+              a.click-flash(href="#invertreading") invertReading()
+              | .
+            P This method is called by default when using&nbsp;
+              a.click-flash(href="#disableinputpullup") disableInputPullup(),
+              |  or when providing a false [input_pullup] flag in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              | . This method is provided for convenience only.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void setup() {
+                  button.resetReading();
+                }
+
+          .section
+            .method-name
+              #ispressed.anchor
+              .light button
+              | .isPressed()
+            p
+              | Returns true while the button is being pressed, or is on. Returns false while the button is not being pressed, or is off.
+            p
+              | This method is good for real-time actions that must fire many times during a button press. Use the&nbsp;
+              a.click-flash(href="#onpressed") onPressed()
+              |  event to fire only one action on each button press.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void loop() {
+                  if(button.isPressed()) {
+                    // code executes on each loop
+                    Serial.println("Button Pressed");
+                  }
+                }
+
+          .section
+            .method-name
+              #isreleased.anchor
+              .light button
+              | .isReleased()
+            p
+              | Returns true while the button is released, or is off. Returns false while the button is being pressed, or is on.
+            p
+              | This method is good for real-time actions that must fire many times while the button is not pressed. Use the&nbsp;
+              a.click-flash(href="#onreleased") onReleased()
+              |  event to fire only one action on each button release.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void loop() {
+                  if(button.isReleased()) {
+                    // code executes on each loop
+                    Serial.println("Button Released");
+                  }
+                }
+
+          .section
+            .method-name
+              #onpressed.anchor
+              .light button
+              | .onPressed()
+              include ./global/labels/event.jade
+            p
+              | This will return true only once, after the button has been pressed (and debounced). The button must be released and then pressed again for this method to return true again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void loop() {
+                  if(button.onPressed()) {
+                    // code only runs once per event
+                    Serial.println("Button Pressed Event");
+                  }
+                }
+
+          .section
+            .method-name
+              #onreleased.anchor
+              .light button
+              | .onReleased()
+              include ./global/labels/event.jade
+            p
+              | This will return true only once, after the button has been released (and debounced). The button must be pressed and then released again for this method to return true again.
+            h5 EXAMPLE SKETCH
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                void loop() {
+                  if(button.onReleased()) {
+                    // code only runs once per event
+                    Serial.println("Button Released Event");
+                  }
+                }
+
+    .navbar.navbar-default.navbar-footer
+      .container-fluid
+        .row
+          .col-xs-6.text-right
+            | &copy; 2015&nbsp;
+            a(href="http://opensource.org/licenses/mit-license.php") MIT License
+          .col-xs-6
+            a(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/src/templates/docs-arduino-button.jade") Edit this page
+
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
