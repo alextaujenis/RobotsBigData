@@ -15,7 +15,7 @@ html(lang='en')
               a(href="index.html") Home
             li
               a(href="docs-arduino.html") Arduino
-            li.active
+            li.active(translate="no")
               | Threshold
           .jumbotron
             .stuck.click-through
@@ -23,9 +23,9 @@ html(lang='en')
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
-              h2
+              h2(translate="no")
                 | Threshold
-                small  API DOCUMENTATION
+                small(translate="no") API DOCUMENTATION
               p
                 | Set and check numeric quantile scales.
                 small v1.0.2
@@ -91,37 +91,38 @@ html(lang='en')
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Threshold.h>
 
-          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-            :cdata
-              #include <RBD_Threshold.h>
+                RBD::Threshold threshold(3); // 3 levels
 
-              RBD::Threshold threshold(3); // 3 levels
+                void setup() {
+                  Serial.begin(115200);
+                  threshold.setLevel(1,0);    // low
+                  threshold.setLevel(2,10.5); // medium
+                  threshold.setLevel(3,20);   // high
+                  threshold.setMaxLevel(30);
+                }
 
-              void setup() {
-                Serial.begin(115200);
-                threshold.setLevel(1,0);    // low
-                threshold.setLevel(2,10.5); // medium
-                threshold.setLevel(3,20);   // high
-                threshold.setMaxLevel(30);
-              }
+                void loop() {
+                  Serial.println(threshold.computeLevel(-1));   // 0
+                  Serial.println(threshold.computeLevel(8));    // 1
+                  Serial.println(threshold.computeLevel(10.6)); // 2
+                  Serial.println(threshold.computeLevel(30));   // 3
+                  Serial.println(threshold.computeLevel(31));   // 4
+                }
 
-              void loop() {
-                Serial.println(threshold.computeLevel(-1));   // 0
-                Serial.println(threshold.computeLevel(8));    // 1
-                Serial.println(threshold.computeLevel(10.6)); // 2
-                Serial.println(threshold.computeLevel(30));   // 3
-                Serial.println(threshold.computeLevel(31));   // 4
-              }
           .h3
             #public-methods.anchor
             | Public Methods
-          h4.class-name
+          h4.class-name(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Threshold
 
-          ul.public-methods
+          ul.public-methods(translate="no")
             li
               a.click-flash(href="#constructor") constructor(level_count)
             li.divider
@@ -139,21 +140,24 @@ html(lang='en')
               a.click-flash(href="#computelevel") .computeLevel(value)
 
           .section
-            .method-name
+            .method-name(translate="no")
               #constructor.anchor
               | RBD::Threshold constructor(level_count)
             p Create a new instance and provide an integer for the maximum number of threshold levels. For example; set the level_count to 3 if you have levels of low, medium, and high. If you need more levels, this library will dynamically allocate an array to accommodate the size you provide the constructor.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                RBD::Threshold threshold(3) // 3 levels
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  RBD::Threshold threshold(3) // 3 levels
 
-                void setup() {
-                  ...
-                }
+                  void setup() {
+                    ...
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setlevel.anchor
               .light threshold
               | .setLevel(index, value)
@@ -161,30 +165,36 @@ html(lang='en')
               | Provide an integer for a level index and an integer, float, or double for the threshold value. This is not zero based, the first level starts at 1. You must also call&nbsp;
               a.click-flash(href="#setmaxlevel") setMaxLevel()
               |  at the end to set an upper bounds of your last level.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  threshold.setLevel(1,0);    // [0 - 10.49]
-                  threshold.setLevel(2,10.5); // [10.5 - 19.99]
-                  threshold.setLevel(3,20);   // [20 - max]
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    threshold.setLevel(1,0);    // [0 - 10.49]
+                    threshold.setLevel(2,10.5); // [10.5 - 19.99]
+                    threshold.setLevel(3,20);   // [20 - max]
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setmaxlevel.anchor
               .light threshold
               | .setMaxLevel(value)
             p Provide an integer, float, or double to set the upper-bounds threshold of the last level.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  threshold.setMaxLevel(30); // [max = 30]
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    threshold.setMaxLevel(30); // [max = 30]
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getlevel.anchor
               .light threshold
               | .getLevel(index)
@@ -192,15 +202,18 @@ html(lang='en')
               | Provide an integer for the level index, and this returns the value originally provided to&nbsp;
               a.click-flash(href="#setlevel") setLevel()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(threshold.getLevel(3); // returns 20
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(threshold.getLevel(3); // returns 20
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getmaxlevel.anchor
               .light threshold
               | .getMaxLevel()
@@ -208,15 +221,18 @@ html(lang='en')
               | Returns the value originally provided to&nbsp;
               a.click-flash(href="#setmaxlevel") setMaxLevel()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(threshold.getMaxLevel()); // returns 30
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(threshold.getMaxLevel()); // returns 30
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #computelevel.anchor
               .light threshold
               | .computeLevel(value)
@@ -235,12 +251,15 @@ html(lang='en')
                 | sizeof(n) + 1 for any value greater than&nbsp;
                 a.click-flash(href="#getmaxlevel") getMaxLevel()
               li -1 if the value was not found
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(threshold.computeLevel(17)); // returns 2 (medium)
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(threshold.computeLevel(17)); // returns 2 (medium)
+                  }
 
     .navbar.navbar-default.navbar-footer
       .container-fluid

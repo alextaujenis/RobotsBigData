@@ -15,7 +15,7 @@ html(lang='en')
               a(href="index.html") Home
             li
               a(href="docs-arduino.html") Arduino
-            li.active
+            li.active(translate="no")
               | Human Sensor
           .jumbotron
             .stuck.click-through
@@ -23,9 +23,9 @@ html(lang='en')
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
-              h2
+              h2(translate="no")
                 | Human Sensor
-                small  API DOCUMENTATION
+                small(translate="yes") API DOCUMENTATION
               p
                 | Detect human presence, touch, and pickup events.
                 small v1.0.2
@@ -99,41 +99,42 @@ html(lang='en')
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
-          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-            :cdata
-              #include <RBD_Capacitance.h>
-              #include <RBD_Threshold.h>
-              #include <RBD_HumanSensor.h>
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Capacitance.h>
+                #include <RBD_Threshold.h>
+                #include <RBD_HumanSensor.h>
 
-              RBD::HumanSensor human_sensor(1, 0); // send, receive
+                RBD::HumanSensor human_sensor(1, 0); // send, receive
 
-              void setup() {
-                Serial.begin(115200);
-                human_sensor.setNearValue(100);
-                human_sensor.setTouchValue(200);
-                human_sensor.setPickupValue(300);
-              }
-
-              void loop() {
-                human_sensor.update();
-
-                if(human_sensor.onGone()) {
-                  Serial.print("0. GONE   ");
-                }
-                else if(human_sensor.onNear()) {
-                  Serial.print("1. NEAR   ");
-                }
-                else if(human_sensor.onTouch()) {
-                  Serial.print("2. TOUCH  ");
-                }
-                else if(human_sensor.onPickup()) {
-                  Serial.print("3. PICKUP ");
+                void setup() {
+                  Serial.begin(115200);
+                  human_sensor.setNearValue(100);
+                  human_sensor.setTouchValue(200);
+                  human_sensor.setPickupValue(300);
                 }
 
-                if(human_sensor.onRawValueChange()) {
-                  Serial.println(human_sensor.getRawValue());
+                void loop() {
+                  human_sensor.update();
+
+                  if(human_sensor.onGone()) {
+                    Serial.print("0. GONE   ");
+                  }
+                  else if(human_sensor.onNear()) {
+                    Serial.print("1. NEAR   ");
+                  }
+                  else if(human_sensor.onTouch()) {
+                    Serial.print("2. TOUCH  ");
+                  }
+                  else if(human_sensor.onPickup()) {
+                    Serial.print("3. PICKUP ");
+                  }
+
+                  if(human_sensor.onRawValueChange()) {
+                    Serial.println(human_sensor.getRawValue());
+                  }
                 }
-              }
 
           .h3
             #public-methods.anchor
@@ -144,12 +145,12 @@ html(lang='en')
             |  inside of loop() in order to use the
             span.label.label-success RT
             |  (Real-Time) methods tagged below.
-          h4.class-name
+          h4.class-name(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::HumanSensor
 
-          ul.public-methods
+          ul.public-methods(translate="no")
             li
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin)
             li.divider
@@ -221,21 +222,24 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            .method-name
+            .method-name(translate="no")
               #constructor.anchor
               | RBD::HumanSensor constructor(send_pin, receive_pin)
             p Pass in integers for the send and receive pins to create a new instance of this class.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                RBD::HumanSensor human_sensor(1,0);
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  RBD::HumanSensor human_sensor(1,0);
 
-                void setup() {
-                  ...
-                }
+                  void setup() {
+                    ...
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setsamplesize.anchor
               .light human_sensor
               | .setSampleSize(value)
@@ -253,15 +257,18 @@ html(lang='en')
               li
                 b Default Value
                 | : 250
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  human_sensor.setSampleSize(1000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    human_sensor.setSampleSize(1000);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setnearvalue.anchor
               .light human_sensor
               | .setNearValue(value)
@@ -269,15 +276,18 @@ html(lang='en')
               | Provide an integer from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  to calibrate the lowest threshold for when a person is near the sensor.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  human_sensor.setNearValue(100);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    human_sensor.setNearValue(100);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #settouchvalue.anchor
               .light human_sensor
               | .setTouchValue(value)
@@ -285,15 +295,18 @@ html(lang='en')
               | Provide an integer from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  to calibrate the lowest threshold for when a person is touching the sensor.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  human_sensor.setTouchValue(150);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    human_sensor.setTouchValue(150);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setpickupvalue.anchor
               .light human_sensor
               | .setPickupValue(value)
@@ -301,15 +314,18 @@ html(lang='en')
               | Provide an integer from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  to calibrate the lowest threshold for when a person is picking up the sensor.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  human_sensor.setPickupValue(200);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    human_sensor.setPickupValue(200);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setmodifier.anchor
               .light human_sensor
               | .setModifier(value)
@@ -335,31 +351,34 @@ html(lang='en')
                 | Call&nbsp;
                 a.click-flash(href="#resetmodifier") resetModifier()
                 |  on the human sensor when the motor shuts off
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(...) { // motor is on
-                    human_sensor.setModifier(-200);
-                  }
-                  else {
-                    human_sensor.resetModifier();
-                  }
+                    if(...) { // motor is on
+                      human_sensor.setModifier(-200);
+                    }
+                    else {
+                      human_sensor.resetModifier();
+                    }
 
-                  // when the motor is on; require +200 more from
-                  // the raw sensor reading to trigger all events
-                  if(human_sensor.isNear()) {
-                    ...
+                    // when the motor is on; require +200 more from
+                    // the raw sensor reading to trigger all events
+                    if(human_sensor.isNear()) {
+                      ...
+                    }
+                    else if(...) {
+                      ...
+                    }
                   }
-                  else if(...) {
-                    ...
-                  }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #resetmodifier.anchor
               .light human_sensor
               | .resetModifier()
@@ -387,45 +406,51 @@ html(lang='en')
                 | Call&nbsp;
                 a.click-flash(href="#resetmodifier") resetModifier()
                 |  on the human sensor when the motor shuts off
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(...) {
-                    human_sensor.setModifier(-200);
-                  }
-                  else {  // motor is off
-                    human_sensor.resetModifier();
-                  }
+                    if(...) {
+                      human_sensor.setModifier(-200);
+                    }
+                    else {  // motor is off
+                      human_sensor.resetModifier();
+                    }
 
-                  // when the motor is off; reset the
-                  // threshold values for all events
-                  if(human_sensor.isNear()) {
-                    ...
+                    // when the motor is off; reset the
+                    // threshold values for all events
+                    if(human_sensor.isNear()) {
+                      ...
+                    }
+                    else if(...) {
+                      ...
+                    }
                   }
-                  else if(...) {
-                    ...
-                  }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #update.anchor
               .light human_sensor
               | .update()
               include ./global/labels/update.jade
             p Keep processing the readings and move this library along in real-time.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isgone.anchor
               .light human_sensor
               | .isGone()
@@ -434,19 +459,22 @@ html(lang='en')
               | Returns true if no human is present and the sensor is reading a value below the&nbsp;
               a.click-flash(href="#setnearvalue") setNearValue()
               | . This will always return true if no thresholds (near, touch, pickup) are set.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.isGone()) {
-                    ...
+                    if(human_sensor.isGone()) {
+                      ...
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isnear.anchor
               .light human_sensor
               | .isNear()
@@ -463,19 +491,22 @@ html(lang='en')
               |  has been assigned and the sensor is reading a value at or above the&nbsp;
               a.click-flash(href="#istouch") isTouch()
               |  value.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.isNear()) {
-                    ...
+                    if(human_sensor.isNear()) {
+                      ...
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #istouch.anchor
               .light human_sensor
               | .isTouch()
@@ -492,19 +523,22 @@ html(lang='en')
               |  has been assigned and the sensor is reading a value at or above the&nbsp;
               a.click-flash(href="#ispickup") isPickup()
               |  value.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.isTouch()) {
-                    ...
+                    if(human_sensor.isTouch()) {
+                      ...
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ispickup.anchor
               .light human_sensor
               | .isPickup()
@@ -517,19 +551,22 @@ html(lang='en')
               | Returns false if the sensor is reading a value below the&nbsp;
               a.click-flash(href="#setpickupvalue") setPickupValue()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.isPickup()) {
-                    ...
+                    if(human_sensor.isPickup()) {
+                      ...
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getvalue.anchor
               .light human_sensor
               | .getValue()
@@ -544,19 +581,22 @@ html(lang='en')
               |  yet, or if you have called&nbsp;
               a.click-flash(href="#resetmodifier") resetModifier()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.onValueChange()) {
-                    Serial.println(human_sensor.getValue());
+                    if(human_sensor.onValueChange()) {
+                      Serial.println(human_sensor.getValue());
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getrawvalue.anchor
               .light human_sensor
               | .getRawValue()
@@ -565,17 +605,20 @@ html(lang='en')
               | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  Serial.println(human_sensor.getRawValue());
-                }
+                    Serial.println(human_sensor.getRawValue());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getactivelevel.anchor
               .light human_sensor
               | .getActiveLevel()
@@ -604,17 +647,20 @@ html(lang='en')
               li
                 b -1
                 | &nbsp;&nbsp;an error occured (non-continuous range)
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  Serial.println(human_sensor.getActiveLevel());
-                }
+                    Serial.println(human_sensor.getActiveLevel());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ongone.anchor
               .light human_sensor
               | .onGone()
@@ -626,20 +672,23 @@ html(lang='en')
               | . The active level must change away from and then come back to&nbsp;
               a.click-flash(href="#isgone") isGone()
               |  in order for this method to return true again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.onGone()) {
-                    // code only runs once per event
-                    Serial.println("Gone");
+                    if(human_sensor.onGone()) {
+                      // code only runs once per event
+                      Serial.println("Gone");
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onnear.anchor
               .light human_sensor
               | .onNear()
@@ -653,20 +702,23 @@ html(lang='en')
               | . The active level must change away from and then come back to&nbsp;
               a.click-flash(href="#isnear") isNear()
               |  in order for this method to return true again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.onNear()) {
-                    // code only runs once per event
-                    Serial.println("Near");
+                    if(human_sensor.onNear()) {
+                      // code only runs once per event
+                      Serial.println("Near");
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ontouch.anchor
               .light human_sensor
               | .onTouch()
@@ -680,20 +732,23 @@ html(lang='en')
               | . The active level must change away from and then come back to&nbsp;
               a.click-flash(href="#isnear") isTouch()
               |  in order for this method to return true again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.onTouch()) {
-                    // code only runs once per event
-                    Serial.println("Touch");
+                    if(human_sensor.onTouch()) {
+                      // code only runs once per event
+                      Serial.println("Touch");
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onpickup.anchor
               .light human_sensor
               | .onPickup()
@@ -705,20 +760,23 @@ html(lang='en')
               | . The active level must change away from and then come back to&nbsp;
               a.click-flash(href="#ispickup") isPickup()
               |  in order for this method to return true again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.onPickup()) {
-                    // code only runs once per event
-                    Serial.println("Pickup");
+                    if(human_sensor.onPickup()) {
+                      // code only runs once per event
+                      Serial.println("Pickup");
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onvaluechange.anchor
               .light human_sensor
               | .onValueChange()
@@ -728,20 +786,23 @@ html(lang='en')
               | This method will return true once the&nbsp;
               a.click-flash(href="#getvalue") getValue()
               |  changes.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.onValueChange()) {
-                    // code only runs once per event
-                    Serial.println(human_sensor.getValue());
+                    if(human_sensor.onValueChange()) {
+                      // code only runs once per event
+                      Serial.println(human_sensor.getValue());
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onrawvaluechange.anchor
               .light human_sensor
               | .onRawValueChange()
@@ -751,20 +812,23 @@ html(lang='en')
               | This method will return true once the&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  changes.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.onRawValueChange()) {
-                    // code only runs once per event
-                    Serial.println(human_sensor.getRawValue());
+                    if(human_sensor.onRawValueChange()) {
+                      // code only runs once per event
+                      Serial.println(human_sensor.getRawValue());
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onactivelevelchange.anchor
               .light human_sensor
               | .onActiveLevelChange()
@@ -774,17 +838,21 @@ html(lang='en')
               | This method will return true once the&nbsp;
               a.click-flash(href="#getactivelevel") getActiveLevel()
               |  changes.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  human_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
 
-                  if(human_sensor.onActiveLevelChange()) {
-                    // code only runs once per event
-                    Serial.println(human_sensor.getActiveLevel());
+                    if(human_sensor.onActiveLevelChange()) {
+                      // code only runs once per event
+                      Serial.println(human_sensor.getActiveLevel());
+                    }
                   }
-                }
+
     .navbar.navbar-default.navbar-footer
       .container-fluid
         .row

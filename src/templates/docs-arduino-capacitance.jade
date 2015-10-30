@@ -15,7 +15,7 @@ html(lang='en')
               a(href="index.html") Home
             li
               a(href="docs-arduino.html") Arduino
-            li.active
+            li.active(translate="no")
               | Capacitance
           .jumbotron
             .stuck.click-through
@@ -23,9 +23,9 @@ html(lang='en')
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
-              h2
+              h2(translate="no")
                 | Capacitance
-                small  API DOCUMENTATION
+                small(translate="yes") API DOCUMENTATION
               p
                 | Measure change in capacitance.
                 small v1.0.3
@@ -88,24 +88,24 @@ html(lang='en')
             span.label.label-info Arduino
             span.label.label-primary C++
 
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Capacitance.h>
 
-          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-            :cdata
-              #include <RBD_Capacitance.h>
+                RBD::Capacitance cap_sensor(1, 0); // send, receive
 
-              RBD::Capacitance cap_sensor(1, 0); // send, receive
-
-              void setup() {
-                Serial.begin(115200);
-              }
-
-              void loop() {
-                cap_sensor.update();
-
-                if(cap_sensor.onChange()) {
-                  Serial.println(cap_sensor.getValue());
+                void setup() {
+                  Serial.begin(115200);
                 }
-              }
+
+                void loop() {
+                  cap_sensor.update();
+
+                  if(cap_sensor.onChange()) {
+                    Serial.println(cap_sensor.getValue());
+                  }
+                }
 
           .h3
             #sensitivity.anchor
@@ -156,12 +156,12 @@ html(lang='en')
             span.label.label-success RT
             |  (Real-Time) methods tagged below.
 
-          h4.class-name
+          h4.class-name(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Capacitance
 
-          ul.public-methods
+          ul.public-methods(translate="no")
             li
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin)
             li.divider
@@ -187,21 +187,24 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            .method-name
+            .method-name(translate="no")
               #constructor.anchor
               | RBD::Capacitance constructor(send_pin, receive_pin)
             p Create a new capacitance sensor and pass in the Arduino pin numbers for the send and receive pins.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                RBD::Capacitance cap_sensor(1,0);
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  RBD::Capacitance cap_sensor(1,0);
 
-                void setup() {
-                  ...
-                }
+                  void setup() {
+                    ...
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setsamplesize.anchor
               .light cap_sensor
               | .setSampleSize(value)
@@ -219,29 +222,35 @@ html(lang='en')
               li
                 b Default Value
                 | : 100
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  cap_sensor.setSampleSize(1000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    cap_sensor.setSampleSize(1000);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #update.anchor
               .light cap_sensor
               | .update()
               include ./global/labels/update.jade
             p This must be call continuously from within the loop() to move the library along in real-time.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  cap_sensor.update();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    cap_sensor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #start.anchor
               .light cap_sensor
               | .start()
@@ -250,19 +259,22 @@ html(lang='en')
               | Begin taking many readings and start adding up the moving average for&nbsp;
               a.click-flash(href="#getvalue") getValue()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  cap_sensor.start();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    cap_sensor.start();
+                  }
 
-                void loop() {
-                  cap_sensor.update();
-                }
+                  void loop() {
+                    cap_sensor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isfinished.anchor
               .light cap_sensor
               | .isFinished()
@@ -273,23 +285,26 @@ html(lang='en')
               |  is ready. You must first call&nbsp;
               a.click-flash(href="#start") start()
               |   to begin the sampling process.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  cap_sensor.start();
-                }
-
-                void loop() {
-                  cap_sensor.update();
-
-                  if(cap_sensor.isFinished()) {
-                    ...
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    cap_sensor.start();
                   }
-                }
+
+                  void loop() {
+                    cap_sensor.update();
+
+                    if(cap_sensor.isFinished()) {
+                      ...
+                    }
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getvalue.anchor
               .light cap_sensor
               | .getValue()
@@ -300,23 +315,26 @@ html(lang='en')
               |  and waiting until&nbsp;
               a.click-flash(href="#isfinished") isFinished()
               |  has returned true.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  cap_sensor.start();
-                }
-
-                void loop() {
-                  cap_sensor.update();
-
-                  if(cap_sensor.isFinished()) {
-                    Serial.println(cap_sensor.getValue());
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    cap_sensor.start();
                   }
-                }
+
+                  void loop() {
+                    cap_sensor.update();
+
+                    if(cap_sensor.isFinished()) {
+                      Serial.println(cap_sensor.getValue());
+                    }
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onchange.anchor
               .light cap_sensor
               | .onChange()
@@ -330,17 +348,20 @@ html(lang='en')
               |  and&nbsp;
               a.click-flash(href="#isfinished") isFinished()
               |  together, but with a simple syntax and a tighter time loop.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  cap_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    cap_sensor.update();
 
-                  if(cap_sensor.onChange()) {
-                    // code only runs once per event
-                    Serial.println(cap_sensor.getValue());
+                    if(cap_sensor.onChange()) {
+                      // code only runs once per event
+                      Serial.println(cap_sensor.getValue());
+                    }
                   }
-                }
 
     .navbar.navbar-default.navbar-footer
       .container-fluid

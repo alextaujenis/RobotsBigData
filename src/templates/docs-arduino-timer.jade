@@ -15,7 +15,7 @@ html(lang='en')
               a(href="index.html") Home
             li
               a(href="docs-arduino.html") Arduino
-            li.active
+            li.active(translate="no")
               | Timer
           .jumbotron
             .stuck.click-through
@@ -23,9 +23,9 @@ html(lang='en')
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
-              h2
+              h2(translate="no")
                 | Timer
-                small  API DOCUMENTATION
+                small(translate="no")  API DOCUMENTATION
               p
                 | Manage many timed events.
                 small v1.0.2
@@ -84,33 +84,34 @@ html(lang='en')
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Timer.h>
 
-          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-            :cdata
-              #include <RBD_Timer.h>
+                RBD::Timer timer;
 
-              RBD::Timer timer;
-
-              void setup() {
-                Serial.begin(115200);
-                timer.setTimeout(3000);
-                timer.restart();
-              }
-
-              void loop() {
-                if(timer.onRestart()) {
-                  Serial.println("Three seconds passed");
+                void setup() {
+                  Serial.begin(115200);
+                  timer.setTimeout(3000);
+                  timer.restart();
                 }
-              }
+
+                void loop() {
+                  if(timer.onRestart()) {
+                    Serial.println("Three seconds passed");
+                  }
+                }
+
           .h3
             #public-methods.anchor
             | Public Methods
-          h4.class-name
+          h4.class-name(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Timer
 
-          ul.public-methods
+          ul.public-methods(translate="no")
             li
               a.click-flash(href="#constructor") constructor()
             li.divider
@@ -146,21 +147,24 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            .method-name
+            .method-name(translate="no")
               #constructor.anchor
               | RBD::Timer constructor()
             p Create a new timer instance.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                RBD::Timer timer;
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  RBD::Timer timer;
 
-                void setup() {
-                  ...
-                }
+                  void setup() {
+                    ...
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #settimeout.anchor
               .light timer
               | .setTimeout(value)
@@ -169,21 +173,24 @@ html(lang='en')
               | This will override any value given to&nbsp;
               a.click-flash(href="#sethertz") setHertz()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  timer.setTimeout(200);  // expire after 200ms
-                }
-
-                void loop() {
-                  if(timer.isExpired()) {
-                    // returns true after 200ms
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    timer.setTimeout(200);  // expire after 200ms
                   }
-                }
+
+                  void loop() {
+                    if(timer.isExpired()) {
+                      // returns true after 200ms
+                    }
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #sethertz.anchor
               .light timer
               | .setHertz(value)
@@ -192,72 +199,87 @@ html(lang='en')
               | This will override any value given to&nbsp;
               a.click-flash(href="#settimeout") setTimeout()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  timer.setHertz(5);  // expire after 200ms
-                }
-
-                void loop() {
-                  if(timer.onRestart()) {
-                    // events fired here are close to 5Hz
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    timer.setHertz(5);  // expire after 200ms
                   }
-                }
+
+                  void loop() {
+                    if(timer.onRestart()) {
+                      // events fired here are close to 5Hz
+                    }
+                  }
           .section
-            .method-name
+            .method-name(translate="no")
               #getvalue.anchor
               .light timer
               | .getValue()
             p Returns an unsigned long of how many milliseconds that have passed since the start of the timer.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(timer.getValue());
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(timer.getValue());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getinversevalue.anchor
               .light timer
               | .getInverseValue()
             p Returns an unsigned long of how many milliseconds left until the end of the timer.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(timer.getInverseValue());
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(timer.getInverseValue());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getpercentvalue.anchor
               .light timer
               | .getPercentValue()
             p Returns an integer from 0 - 100 of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 25.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(timer.getPercentValue());
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(timer.getPercentValue());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getinversepercentvalue.anchor
               .light timer
               | .getInversePercentValue()
             p Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(timer.getInversePercentValue());
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(timer.getInversePercentValue());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #restart.anchor
               .light timer
               | .restart()
@@ -269,18 +291,21 @@ html(lang='en')
               | If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;
               a.click-flash(href="#onrestart") onRestart()
               |  instead.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(timer.isExpired()) {
-                    // run code here, then restart the timer
-                    timer.restart();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.isExpired()) {
+                      // run code here, then restart the timer
+                      timer.restart();
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isactive.anchor
               .light timer
               | .isActive()
@@ -295,17 +320,20 @@ html(lang='en')
               a.click-flash(href="#onactive") onActive()
               |  to only fire a single event when the timer goes active.
 
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(timer.isActive()) {
-                    Serial.println(timer.getPercentValue());
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.isActive()) {
+                      Serial.println(timer.getPercentValue());
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isexpired.anchor
               .light timer
               | .isExpired()
@@ -318,18 +346,21 @@ html(lang='en')
               a.click-flash(href="#onexpired") onExpired()
               |  to fire a single event when the timer expires.
 
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(timer.isExpired()) {
-                    // run code here and restart when finished
-                    timer.restart();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.isExpired()) {
+                      // run code here and restart when finished
+                      timer.restart();
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onrestart.anchor
               .light timer
               | .onRestart()
@@ -340,51 +371,60 @@ html(lang='en')
               |   and&nbsp;
               a.click-flash(href="#restart") restart()
               |  together, but with a simple syntax and a tighter time loop.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(timer.onRestart()) {
-                    // code only runs once per event
-                    Serial.println("Timer Restarted");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.onRestart()) {
+                      // code only runs once per event
+                      Serial.println("Timer Restarted");
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onactive.anchor
               .light timer
               | .onActive()
               include ./global/labels/event.jade
             p
               | This method will fire a single event when the timer goes active. The timer must expire and then be restarted for this event to fire again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(timer.onActive()) {
-                    // code only runs once per event
-                    Serial.println("Timer Active");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.onActive()) {
+                      // code only runs once per event
+                      Serial.println("Timer Active");
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onexpired.anchor
               .light timer
               | .onExpired()
               include ./global/labels/event.jade
             p
               | This method will fire a single event when the timer expires. The timer must be restarted and then allowed to expire for this event to fire again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(timer.onExpired()) {
-                    // code only runs once per event
-                    Serial.println("Timer Expired");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.onExpired()) {
+                      // code only runs once per event
+                      Serial.println("Timer Expired");
+                    }
                   }
-                }
 
     .navbar.navbar-default.navbar-footer
       .container-fluid

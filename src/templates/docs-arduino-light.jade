@@ -15,7 +15,7 @@ html(lang='en')
               a(href="index.html") Home
             li
               a(href="docs-arduino.html") Arduino
-            li.active
+            li.active(translate="no")
               | Light
           .jumbotron
             .stuck.click-through
@@ -23,9 +23,9 @@ html(lang='en')
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
-              h2
+              h2(translate="no")
                 | Light
-                small  API DOCUMENTATION
+                small(translate="yes") API DOCUMENTATION
               p
                 | Control many lights.
                 small v1.0.5
@@ -78,21 +78,21 @@ html(lang='en')
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Timer.h>
+                #include <RBD_Light.h>
 
-          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-            :cdata
-              #include <RBD_Timer.h>
-              #include <RBD_Light.h>
+                RBD::Light light(13);
 
-              RBD::Light light(13);
+                void setup() {
+                  light.blink(250,250);
+                }
 
-              void setup() {
-                light.blink(250,250);
-              }
-
-              void loop() {
-                light.update();
-              }
+                void loop() {
+                  light.update();
+                }
 
           .h3
             #public-methods.anchor
@@ -109,12 +109,12 @@ html(lang='en')
             span.label.label-success RT
             |  (Real-Time) methods tagged below.
 
-          h4.class-name
+          h4.class-name(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Light
 
-          ul.public-methods
+          ul.public-methods(translate="no")
             li
               a.click-flash(href="#constructor") constructor(pin)
             li.divider
@@ -147,129 +147,156 @@ html(lang='en')
               include ./global/labels/real-time.jade
 
           .section
-            .method-name
+            .method-name(translate="no")
               #constructor.anchor
               | RBD::Light constructor(pin)
             p Create a new light and pass in the Arduino pin number.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                RBD::Light light(13);
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  RBD::Light light(13);
 
-                void setup() {
-                  ...
-                }
+                  void setup() {
+                    ...
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #on.anchor
               .light light
               | .on()
             p Turn on the light.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  light.on();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    light.on();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #off.anchor
               .light light
               | .off()
             p Turn off the light.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  light.off();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    light.off();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setpwm.anchor
               .light light
               | .setPwm(value)
             p Pass in an integer between 0 - 255 to set the brightness of the light.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  light.setPwm(200);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    light.setPwm(200);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setpwmpercent.anchor
               .light light
               | .setPwmPercent(value)
             p Pass in an integer between 0 - 100 to set the brightness of the light.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  light.setPwmPercent(75);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    light.setPwmPercent(75);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ison.anchor
               .light light
               | .isOn()
             p Returns true if the current light brightness is at 100%.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(light.isOn()) {
-                    ...
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(light.isOn()) {
+                      ...
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isoff.anchor
               .light light
               | .isOff()
             p Returns true if the current light brightness is at 0%.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(light.isOff()) {
-                    ...
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(light.isOff()) {
+                      ...
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getpwm.anchor
               .light light
               | .getPwm()
             p Returns an integer of the current light brightness from 0 - 255.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  light.getPwm();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    light.getPwm();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getpwmpercent.anchor
               .light light
               | .getPwmPercent()
             p Returns an integer of the current light percentage brightness from 0 - 100.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  light.getPwmPercent();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    light.getPwmPercent();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #update.anchor
               .light light
               | .update()
@@ -280,15 +307,18 @@ html(lang='en')
               |  or&nbsp;
               a.click-flash(href="#fade") fade()
               |  the light.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  light.update();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    light.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #blink.anchor
               .light light
               | .blink(on_time, off_time, [times])
@@ -299,19 +329,22 @@ html(lang='en')
               li the light will turn on for the on_time
               li then turn off for the off_time
               li and will repeat this cycle for the number of times you provided [optional]
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  light.blink(1000,500,25);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    light.blink(1000,500,25);
+                  }
 
-                void loop() {
-                  light.update();
-                }
+                  void loop() {
+                    light.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #fade.anchor
               .light light
               | .fade(up_time, on_time, down_time, off_time, [times])
@@ -324,16 +357,20 @@ html(lang='en')
               li linear fade down for the down_time
               li then stay off for the off_time
               li and will repeat this cycle for the number of times your provided [optional]
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  light.fade(2500,250,2000,750,1000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    light.fade(2500,250,2000,750,1000);
+                  }
 
-                void loop() {
-                  light.update();
-                }
+                  void loop() {
+                    light.update();
+                  }
+
     .navbar.navbar-default.navbar-footer
       .container-fluid
         .row

@@ -15,7 +15,7 @@ html(lang='en')
               a(href="index.html") Home
             li
               a(href="docs-arduino.html") Arduino
-            li.active
+            li.active(translate="no")
               | Water Sensor
           .jumbotron
             .stuck.click-through
@@ -23,9 +23,9 @@ html(lang='en')
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
-              h2
+              h2(translate="no")
                 | Water Sensor
-                small  API DOCUMENTATION
+                small(translate="no") API DOCUMENTATION
               p
                 | Measure and calibrate water level sensors.
                 small v1.0.3
@@ -91,34 +91,35 @@ html(lang='en')
             span.label.label-info Arduino
             span.label.label-primary C++
 
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Capacitance.h>
+                #include <RBD_Threshold.h>
+                #include <RBD_WaterSensor.h>
 
-          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-            :cdata
-              #include <RBD_Capacitance.h>
-              #include <RBD_Threshold.h>
-              #include <RBD_WaterSensor.h>
+                RBD::WaterSensor water_sensor(1, 0, 3); // send, receive, level count
 
-              RBD::WaterSensor water_sensor(1, 0, 3); // send, receive, level count
-
-              void setup() {
-                Serial.begin(115200);
-                water_sensor.setLevel(1, 120);
-                water_sensor.setLevel(2, 154);
-                water_sensor.setLevel(3, 187);
-                water_sensor.setMaxLevel(220);
-              }
-
-              void loop() {
-                water_sensor.update();
-
-                if(water_sensor.onRawValueChange()) {
-                  Serial.print("Active Level: ");
-                  Serial.print(water_sensor.getActiveLevel());
-                  Serial.print("  ---  ");
-                  Serial.print("Raw Value: ");
-                  Serial.println(water_sensor.getRawValue());
+                void setup() {
+                  Serial.begin(115200);
+                  water_sensor.setLevel(1, 120);
+                  water_sensor.setLevel(2, 154);
+                  water_sensor.setLevel(3, 187);
+                  water_sensor.setMaxLevel(220);
                 }
-              }
+
+                void loop() {
+                  water_sensor.update();
+
+                  if(water_sensor.onRawValueChange()) {
+                    Serial.print("Active Level: ");
+                    Serial.print(water_sensor.getActiveLevel());
+                    Serial.print("  ---  ");
+                    Serial.print("Raw Value: ");
+                    Serial.println(water_sensor.getRawValue());
+                  }
+                }
+
           .h3
             #public-methods.anchor
             | Public Methods
@@ -130,12 +131,12 @@ html(lang='en')
             span.label.label-success RT
             |  (Real-Time) methods tagged below.
 
-          h4.class-name
+          h4.class-name(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::WaterSensor
 
-          ul.public-methods
+          ul.public-methods(translate="no")
             li
               a.click-flash(href="#constructor") constructor(send_pin, receive_pin, level_count)
             li.divider
@@ -180,21 +181,24 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            .method-name
+            .method-name(translate="no")
               #constructor.anchor
               | RBD::WaterSensor constructor(send_pin, receive_pin, level_count)
             p Pass in integers for the send and receive pins to create a new instance of this class, along with an integer for the total number of levels the water sensor will detect. Example: if you want to detect low, medium, and high levels then level_count should equal 3.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                RBD::WaterSensor water_sensor(1, 0, 3); // send, receive, level count
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  RBD::WaterSensor water_sensor(1, 0, 3); // send, receive, level count
 
-                void setup() {
-                  ...
-                }
+                  void setup() {
+                    ...
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setsamplesize.anchor
               .light water_sensor
               | .setSampleSize(value)
@@ -212,15 +216,18 @@ html(lang='en')
               li
                 b Default Value
                 | : 1000
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  water_sensor.setSampleSize(250);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    water_sensor.setSampleSize(250);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setlevel.anchor
               .light water_sensor
               | .setLevel(index, raw_value)
@@ -230,17 +237,20 @@ html(lang='en')
               | . The level index starts at one (it is not zero-based). You must also call&nbsp;
               a.click-flash(href="#setmaxlevel") setMaxLevel()
               |  at the end to set an upper bounds of the last level.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  water_sensor.setLevel(1, 120);
-                  water_sensor.setLevel(2, 154);
-                  water_sensor.setLevel(3, 187);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    water_sensor.setLevel(1, 120);
+                    water_sensor.setLevel(2, 154);
+                    water_sensor.setLevel(3, 187);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setmaxlevel.anchor
               .light water_sensor
               | .setMaxLevel(raw_value)
@@ -248,15 +258,18 @@ html(lang='en')
               | Provide an integer from&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  to set the upper-bounds threshold of the last level.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  water_sensor.setMaxLevel(220);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    water_sensor.setMaxLevel(220);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setmodifier.anchor
               .light water_sensor
               | .setModifier(value)
@@ -286,27 +299,30 @@ html(lang='en')
                 | Call&nbsp;
                 a.click-flash(href="#resetmodifier") resetModifier()
                 |  on the water sensor when the motor shuts off
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(...) { // adjust when motor is on
-                    water_sensor.setModifier(-200);
-                  }
-                  else {
-                    water_sensor.resetModifier();
-                  }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(...) { // adjust when motor is on
+                      water_sensor.setModifier(-200);
+                    }
+                    else {
+                      water_sensor.resetModifier();
+                    }
 
-                  water_sensor.update();
+                    water_sensor.update();
 
-                  // still works as expected with interference
-                  if(water_sensor.onActiveLevelChange()) {
-                    ...
+                    // still works as expected with interference
+                    if(water_sensor.onActiveLevelChange()) {
+                      ...
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #resetmodifier.anchor
               .light water_sensor
               | .resetModifier()
@@ -338,41 +354,47 @@ html(lang='en')
                 | Call&nbsp;
                 a.click-flash(href="#resetmodifier") resetModifier()
                 |  on the water sensor when the motor shuts off
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(...) {
-                    water_sensor.setModifier(-200);
-                  }
-                  else { // reset when motor is off
-                    water_sensor.resetModifier();
-                  }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(...) {
+                      water_sensor.setModifier(-200);
+                    }
+                    else { // reset when motor is off
+                      water_sensor.resetModifier();
+                    }
 
-                  water_sensor.update();
+                    water_sensor.update();
 
-                  // still works as expected with interference
-                  if(water_sensor.onActiveLevelChange()) {
-                    ...
+                    // still works as expected with interference
+                    if(water_sensor.onActiveLevelChange()) {
+                      ...
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #update.anchor
               .light water_sensor
               | .update()
               include ./global/labels/update.jade
             p Keep processing the readings and move this library along in real-time.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  water_sensor.update();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    water_sensor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getvalue.anchor
               .light water_sensor
               | .getValue()
@@ -389,19 +411,22 @@ html(lang='en')
               |  yet, or if you have called&nbsp;
               a.click-flash(href="#resetmodifier") resetModifier()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  water_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    water_sensor.update();
 
-                  if(water_sensor.onValueChange()) {
-                    Serial.println(water_sensor.getValue());
+                    if(water_sensor.onValueChange()) {
+                      Serial.println(water_sensor.getValue());
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getrawvalue.anchor
               .light water_sensor
               | .getRawValue()
@@ -410,19 +435,22 @@ html(lang='en')
               | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
               a.click-flash(href="#setmodifier") setModifier()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  water_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    water_sensor.update();
 
-                  if(water_sensor.onRawValueChange()) {
-                    Serial.println(water_sensor.getRawValue());
+                    if(water_sensor.onRawValueChange()) {
+                      Serial.println(water_sensor.getRawValue());
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getactivelevel.anchor
               .light water_sensor
               | .getActiveLevel()
@@ -436,19 +464,22 @@ html(lang='en')
               li n means the water is touching the nth level
               li sizeof(n) + 1 means the water is above the max level
               li -1 if the value was not found
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  water_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    water_sensor.update();
 
-                  if(water_sensor.onActiveLevelChange()) {
-                    Serial.println(water_sensor.getActiveLevel());
+                    if(water_sensor.onActiveLevelChange()) {
+                      Serial.println(water_sensor.getActiveLevel());
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isactivelevel.anchor
               .light water_sensor
               | .isActiveLevel(value)
@@ -457,21 +488,24 @@ html(lang='en')
               | Provide an integer from 0 to 255 and this will return true if it's equal to the current&nbsp;
               a.click-flash(href="#getactivelevel") getActiveLevel()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  water_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    water_sensor.update();
 
-                  if(water_sensor.onActiveLevelChange()) {
-                    if(water_sensor.isActiveLevel(1)) {
-                      Serial.println("First level active");
+                    if(water_sensor.onActiveLevelChange()) {
+                      if(water_sensor.isActiveLevel(1)) {
+                        Serial.println("First level active");
+                      }
                     }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onvaluechange.anchor
               .light water_sensor
               | .onValueChange()
@@ -481,20 +515,23 @@ html(lang='en')
               | This method will return true once the sensor&nbsp;
               a.click-flash(href="#getvalue") getValue()
               |  changes. It will then return false until the reading changes to a different value again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  water_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    water_sensor.update();
 
-                  if(water_sensor.onValueChange()) {
-                    // code only runs once per event
-                    Serial.println(water_sensor.getValue());
+                    if(water_sensor.onValueChange()) {
+                      // code only runs once per event
+                      Serial.println(water_sensor.getValue());
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onrawvaluechange.anchor
               .light water_sensor
               | .onRawValueChange()
@@ -504,20 +541,23 @@ html(lang='en')
               | This method will return true once the sensor&nbsp;
               a.click-flash(href="#getrawvalue") getRawValue()
               |  changes. It will then return false until the reading changes to a different value again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  water_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    water_sensor.update();
 
-                  if(water_sensor.onRawValueChange()) {
-                    // code only runs once per event
-                    Serial.println(water_sensor.getRawValue());
+                    if(water_sensor.onRawValueChange()) {
+                      // code only runs once per event
+                      Serial.println(water_sensor.getRawValue());
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onactivelevelchange.anchor
               .light water_sensor
               | .onActiveLevelChange()
@@ -527,17 +567,20 @@ html(lang='en')
               | This method will return true once the sensor&nbsp;
               a.click-flash(href="#getactivelevel") getActiveLevel()
               |  changes. It will then return false until the level changes to a different value again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  water_sensor.update();
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    water_sensor.update();
 
-                  if(water_sensor.onActiveLevelChange()) {
-                    // code only runs once per event
-                    Serial.println(water_sensor.getActiveLevel());
+                    if(water_sensor.onActiveLevelChange()) {
+                      // code only runs once per event
+                      Serial.println(water_sensor.getActiveLevel());
+                    }
                   }
-                }
 
     .navbar.navbar-default.navbar-footer
       .container-fluid

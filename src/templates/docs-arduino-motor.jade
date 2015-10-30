@@ -15,7 +15,7 @@ html(lang='en')
               a(href="index.html") Home
             li
               a(href="docs-arduino.html") Arduino
-            li.active
+            li.active(translate="no")
               | Motor
           .jumbotron
             .stuck.click-through
@@ -23,9 +23,9 @@ html(lang='en')
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
-              h2
+              h2(translate="no")
                 | Motor
-                small  API DOCUMENTATION
+                small(translate="yes") API DOCUMENTATION
               p
                 | Control many motors.
                 small v1.1.1
@@ -87,32 +87,33 @@ html(lang='en')
             span.label.label-info Arduino
             span.label.label-primary C++
 
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Timer.h>
+                #include <RBD_Motor.h>
 
-          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-            :cdata
-              #include <RBD_Timer.h>
-              #include <RBD_Motor.h>
+                // motor shield
+                RBD::Motor motor(9, 11, 8); // pwm pin, forward pin, reverse pin
 
-              // motor shield
-              RBD::Motor motor(9, 11, 8); // pwm pin, forward pin, reverse pin
+                void setup() {
+                  motor.rampUp(5000);
+                }
 
-              void setup() {
-                motor.rampUp(5000);
-              }
+                void loop() {
+                  motor.update();
 
-              void loop() {
-                motor.update();
-
-                if(motor.onTargetSpeed()) {
-                  if(motor.isOn()) {
-                    motor.rampDown(3000);
-                  }
-                  else {
-                    motor.toggleDirection();
-                    motor.rampUp(5000);
+                  if(motor.onTargetSpeed()) {
+                    if(motor.isOn()) {
+                      motor.rampDown(3000);
+                    }
+                    else {
+                      motor.toggleDirection();
+                      motor.rampUp(5000);
+                    }
                   }
                 }
-              }
+
           .h3
             #public-methods.anchor
             | Public Methods
@@ -128,12 +129,12 @@ html(lang='en')
             span.label.label-success RT
             |  (Real-Time) methods tagged below.
 
-          h4.class-name
+          h4.class-name(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Motor
 
-          ul.public-methods
+          ul.public-methods(translate="no")
             li
               a.click-flash(href="#constructor") constructor(pwm_pin, [forward_pin], [reverse_pin])
             li.divider
@@ -202,52 +203,61 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            .method-name
+            .method-name(translate="no")
               #constructor.anchor
               | RBD::Motor constructor(pwm_pin, [forward_pin], [reverse_pin])
             p
               | Create a new motor and pass in the Arduino pwm pin number. The forward and reverse pins are [optional] and can be used to control the motor in both directions with the help of a motor-shield or H bridge. The motor will be set&nbsp;
               a.click-flash(href="#forward") forward()
               |  by default if you provide the forward and reverse pins.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                // motor shield
-                RBD::Motor motor(9, 11, 8); // pwm pin, forward pin, reverse pin
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  // motor shield
+                  RBD::Motor motor(9, 11, 8); // pwm pin, forward pin, reverse pin
 
-                void setup() {
-                  ...
-                }
+                  void setup() {
+                    ...
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #on.anchor
               .light motor
               | .on()
             p
               | Start the motor at full speed.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.on();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.on();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #off.anchor
               .light motor
               | .off()
             p Stop the motor.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.off();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.off();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #forward.anchor
               .light motor
               | .forward()
@@ -260,16 +270,19 @@ html(lang='en')
               a.click-flash(href="#constructor") constructor()
               |  and correctly wire the motor to use this method. The motor should be spun to a full-stop before calling this method. This library will forcibly stop the motor before switching to the forward state.
 
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.forward();
-                  motor.rampUp(3000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.forward();
+                    motor.rampUp(3000);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #reverse.anchor
               .light motor
               | .reverse()
@@ -279,16 +292,19 @@ html(lang='en')
               | You must provide the optional forward and reverse pins in the&nbsp;
               a.click-flash(href="#constructor") constructor()
               |  and correctly wire the motor to use this method. The motor should be spun to a full-stop before calling this method. This library will forcibly stop the motor before switching to the reverse state.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.reverse();
-                  motor.rampUp(3000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.reverse();
+                    motor.rampUp(3000);
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #toggledirection.anchor
               .light motor
               | .toggleDirection()
@@ -302,31 +318,37 @@ html(lang='en')
               | You must provide the optional forward and reverse pins in the&nbsp;
               a.click-flash(href="#constructor") constructor()
               |  and correctly wire the motor to use this method. The motor should be spun to a full-stop before calling this method. This library will forcibly stop the motor before toggling to the new state.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(...) {
-                    motor.toggleDirection();
-                    motor.rampUp(3000);
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(...) {
+                      motor.toggleDirection();
+                      motor.rampUp(3000);
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setpwm.anchor
               .light motor
               | .setPwm(value)
             p Pass in an integer from 0 - 255 to control the speed of the motor.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.setPwm(85); // one-third speed
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.setPwm(85); // one-third speed
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setpwmpercent.anchor
               .light motor
               | .setPwmPercent(value)
@@ -334,51 +356,60 @@ html(lang='en')
               | Pass in an integer from 0 - 100 to control the speed percentage of the motor. This is essentially the same as&nbsp;
               a.click-flash(href="#setpwm") setPwm()
               |  but with a smaller input scale.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.setPwmPercent(50); // half speed
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.setPwmPercent(50); // half speed
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ison.anchor
               .light motor
               | .isOn()
             p
               | Returns true if the motor is running at 100% speed.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.on();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.on();
+                  }
 
-                void loop() {
-                  Serial.println(motor.isOn());
-                }
+                  void loop() {
+                    Serial.println(motor.isOn());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isoff.anchor
               .light motor
               | .isOff()
             p
               | Returns true if the motor is running at 0% speed.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.off();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.off();
+                  }
 
-                void loop() {
-                  Serial.println(motor.isOff());
-                }
+                  void loop() {
+                    Serial.println(motor.isOff());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isforward.anchor
               .light motor
               | .isForward()
@@ -391,15 +422,18 @@ html(lang='en')
               a.click-flash(href="#constructor") constructor()
               |  and correctly wire the motor to use this method.
 
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(motor.isForward());
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(motor.isForward());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isreverse.anchor
               .light motor
               | .isReverse()
@@ -412,51 +446,60 @@ html(lang='en')
               a.click-flash(href="#constructor") constructor()
               |  and correctly wire the motor to use this method.
 
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  Serial.println(motor.isReverse());
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(motor.isReverse());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getpwm.anchor
               .light motor
               | .getPwm()
             p
               | Returns an integer from 0 - 255 for the current motor speed.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.setPwm(123);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.setPwm(123);
+                  }
 
-                void loop() {
-                  Serial.println(motor.getPwm());
-                }
+                  void loop() {
+                    Serial.println(motor.getPwm());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #getpwmpercent.anchor
               .light motor
               | .getPwmPercent()
             p
               | Returns an integer from 0 - 100 for the current motor speed percentage.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.setPwmPercent(45);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.setPwmPercent(45);
+                  }
 
-                void loop() {
-                  Serial.println(motor.getPwmPercent());
-                }
+                  void loop() {
+                    Serial.println(motor.getPwmPercent());
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ispwm.anchor
               .light motor
               | .isPwm(value)
@@ -464,25 +507,28 @@ html(lang='en')
               | Provide an integer from 0 to 255 and this will return true if it's equal to the current&nbsp;
               a.click-flash(href="#getpwm") getPwm()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.ramp(99, 1000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.ramp(99, 1000);
+                  }
 
-                void loop() {
-                  motor.update()
+                  void loop() {
+                    motor.update()
 
-                  if(motor.onTargetSpeed()) {
-                    if(motor.isPwm(99)) {
-                      ...
+                    if(motor.onTargetSpeed()) {
+                      if(motor.isPwm(99)) {
+                        ...
+                      }
                     }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ispwmpercent.anchor
               .light motor
               | .isPwmPercent(value)
@@ -490,113 +536,131 @@ html(lang='en')
               | Provide an integer from 0 to 100 and this will return true if it's equal to the current&nbsp;
               a.click-flash(href="#getpwmpercent") getPwmPercent()
               | .
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.rampPercent(45, 1000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.rampPercent(45, 1000);
+                  }
 
-                void loop() {
-                  motor.update()
+                  void loop() {
+                    motor.update()
 
-                  if(motor.onTargetSpeed()) {
-                    if(motor.isPwmPercent(45)) {
-                      ...
+                    if(motor.onTargetSpeed()) {
+                      if(motor.isPwmPercent(45)) {
+                        ...
+                      }
                     }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #update.anchor
               .light motor
               | .update()
               include ./global/labels/update.jade
             p Keep the real-time functions processing with each loop(). This must be called continuously within loop() in order to use any real-time methods.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  motor.update();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    motor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #timedon.anchor
               .light motor
               | .timedOn(timeout)
               include ./global/labels/real-time.jade
             p
               | Start the motor at full speed and turn it off after the specified time in milliseconds.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.timedOn(5000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.timedOn(5000);
+                  }
 
-                void loop() {
-                  motor.update();
-                }
+                  void loop() {
+                    motor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #rampup.anchor
               .light motor
               | .rampUp(timeout)
               include ./global/labels/real-time.jade
             p Pass in a timeout in milliseconds for how long it will take to ramp from the current speed to full speed with a linear transition.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.rampUp(3000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.rampUp(3000);
+                  }
 
-                void loop() {
-                  motor.update();
-                }
+                  void loop() {
+                    motor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #rampdown.anchor
               .light motor
               | .rampDown(timeout)
               include ./global/labels/real-time.jade
             p Pass in a timeout in milliseconds for how long it will take to ramp from the current speed to full stop with a linear transition.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.on();
-                  motor.rampDown(4000);
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.on();
+                    motor.rampDown(4000);
+                  }
 
-                void loop() {
-                  motor.update();
-                }
+                  void loop() {
+                    motor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ramp.anchor
               .light motor
               | .ramp(value, timeout)
               include ./global/labels/real-time.jade
             p Pass in a value from 0 - 255 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.ramp(85, 2000); // one-third speed in 2 seconds
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.ramp(85, 2000); // one-third speed in 2 seconds
+                  }
 
-                void loop() {
-                  motor.update();
-                }
+                  void loop() {
+                    motor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ramppercent.anchor
               .light motor
               | .rampPercent(value, timeout)
@@ -605,19 +669,22 @@ html(lang='en')
               | Pass in a value from 0 - 100 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition. This is essentially the same as&nbsp;
               a.click-flash(href="#ramp") ramp()
               |  but with a smaller input scale.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.rampPercent(50, 1000); // half speed in 1 second
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.rampPercent(50, 1000); // half speed in 1 second
+                  }
 
-                void loop() {
-                  motor.update();
-                }
+                  void loop() {
+                    motor.update();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onforward.anchor
               .light motor
               | .onForward()
@@ -631,24 +698,27 @@ html(lang='en')
               | You must provide the optional forward and reverse pins in the&nbsp;
               a.click-flash(href="#constructor") constructor()
               |  and correctly wire the motor to use this method.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.rampUp(5000);
-                }
-
-                void loop() {
-                  motor.update();
-
-                  if(motor.onForward()) {
-                    // code only runs once per event
-                    Serial.println("Moving Forward");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.rampUp(5000);
                   }
-                }
+
+                  void loop() {
+                    motor.update();
+
+                    if(motor.onForward()) {
+                      // code only runs once per event
+                      Serial.println("Moving Forward");
+                    }
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onreverse.anchor
               .light motor
               | .onReverse()
@@ -662,25 +732,28 @@ html(lang='en')
               | You must provide the optional forward and reverse pins in the&nbsp;
               a.click-flash(href="#constructor") constructor()
               |  and correctly wire the motor to use this method.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.reverse();
-                  motor.rampUp(5000);
-                }
-
-                void loop() {
-                  motor.update();
-
-                  if(motor.onReverse()) {
-                    // code only runs once per event
-                    Serial.println("Moving in Reverse");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.reverse();
+                    motor.rampUp(5000);
                   }
-                }
+
+                  void loop() {
+                    motor.update();
+
+                    if(motor.onReverse()) {
+                      // code only runs once per event
+                      Serial.println("Moving in Reverse");
+                    }
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ontargetspeed.anchor
               .light motor
               | .onTargetSpeed()
@@ -688,22 +761,26 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the motor hits the target speed set in any of the real-time methods. This method will then return false until a new target speed is set (with a real-time method) and then achieved by the motor.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  motor.off();
-                  motor.rampPercent(50, 5000);
-                }
-
-                void loop() {
-                  motor.update();
-
-                  if(motor.onTargetSpeed()) {
-                    // code only runs once per event
-                    Serial.println("Target Speed");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    motor.off();
+                    motor.rampPercent(50, 5000);
                   }
-                }
+
+                  void loop() {
+                    motor.update();
+
+                    if(motor.onTargetSpeed()) {
+                      // code only runs once per event
+                      Serial.println("Target Speed");
+                    }
+                  }
+
     .navbar.navbar-default.navbar-footer
       .container-fluid
         .row

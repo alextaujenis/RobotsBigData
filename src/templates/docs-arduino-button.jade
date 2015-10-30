@@ -15,7 +15,7 @@ html(lang='en')
               a(href="index.html") Home
             li
               a(href="docs-arduino.html") Arduino
-            li.active
+            li.active(translate="no")
               | Button
           .jumbotron
             .stuck.click-through
@@ -23,9 +23,9 @@ html(lang='en')
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
             .jumbotron-container
-              h2
+              h2(translate="no")
                 | Button
-                small  API DOCUMENTATION
+                small(translate="yes") API DOCUMENTATION
               p
                 | Read and debounce buttons and switches.
                 small v1.0.0
@@ -80,37 +80,38 @@ html(lang='en')
             span.label.label-info Arduino
             span.label.label-primary C++
 
-          script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-            :cdata
-              #include <RBD_Timer.h>
-              #include <RBD_Button.h>
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Timer.h>
+                #include <RBD_Button.h>
 
-              RBD::Button button(2); // input_pullup by default
+                RBD::Button button(2); // input_pullup by default
 
-              void setup() {
-                Serial.begin(115200);
-              }
-
-              void loop() {
-                if(button.onPressed()) {
-                  Serial.println("Button Pressed");
+                void setup() {
+                  Serial.begin(115200);
                 }
 
-                if(button.onReleased()) {
-                  Serial.println("Button Released");
+                void loop() {
+                  if(button.onPressed()) {
+                    Serial.println("Button Pressed");
+                  }
+
+                  if(button.onReleased()) {
+                    Serial.println("Button Released");
+                  }
                 }
-              }
 
           .h3
             #public-methods.anchor
             | Public Methods
 
-          h4.class-name
+          h4.class-name(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 RBD::Button
 
-          ul.public-methods
+          ul.public-methods(translate="no")
             li
               a.click-flash(href="#constructor") constructor(pin, [input_pullup])
             li.divider
@@ -138,34 +139,40 @@ html(lang='en')
               include ./global/labels/event.jade
 
           .section
-            .method-name
+            .method-name(translate="no")
               #constructor.anchor
               | RBD::Button constructor(pin, [input_pullup])
             p Create a new button and pass in the Arduino pin number. This library will default to input_pullup and invert the button readings to simplify wiring for you. Pass in the second [optional] parameter as false to disable input_pullup.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                RBD::Button button(2);
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  RBD::Button button(2);
 
-                void setup() {
-                  ...
-                }
+                  void setup() {
+                    ...
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #setdebouncetimeout.anchor
               .light button
               | .setDebounceTimeout(value)
             p Pass in an unsigned long value to set the debounce time in milliseconds. Most mechanical buttons will flip between on and off very quickly before settling in the correct state when you switch them. Adjusting the debounce timeout will help remove these extra state-change events.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  button.setDebounceTimeout(10) // default ms
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    button.setDebounceTimeout(10) // default ms
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #inputpullup.anchor
               .light button
               | .inputPullup()
@@ -175,17 +182,20 @@ html(lang='en')
               | This method is called by default in the&nbsp;
               a.click-flash(href="#constructor") constructor()
               |  if you leave out the [optional] input_pullup flag. This method is provided for convenience only.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                // RBD::Button button(2) // inputPullup() called by default
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  // RBD::Button button(2) // inputPullup() called by default
 
-                void setup() {
-                  button.inputPullup();
-                }
+                  void setup() {
+                    button.inputPullup();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #disableinputpullup.anchor
               .light button
               | .disableInputPullup()
@@ -197,17 +207,20 @@ html(lang='en')
               | The best way to disable input_pullup with this library is to call the&nbsp;
               a.click-flash(href="#constructor") constructor()
               |  with a false [input_pullup] flag instead of using this method. This method is provided for convenience only.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                // RBD::Button button(2, false) // preferred
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  // RBD::Button button(2, false) // preferred
 
-                void setup() {
-                  button.disableInputPullup();
-                }
+                  void setup() {
+                    button.disableInputPullup();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #invertreading.anchor
               .light button
               | .invertReading()
@@ -216,15 +229,18 @@ html(lang='en')
             p
               | This method is automatically called when using this library as input_pullup, which is the default behavior. This method is provided for convenience only.
 
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  button.invertReading();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    button.invertReading();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #resetreading.anchor
               .light button
               | .resetReading()
@@ -237,15 +253,18 @@ html(lang='en')
               |  or when providing a false [input_pullup] flag in the&nbsp;
               a.click-flash(href="#constructor") constructor()
               | . This method is provided for convenience only.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void setup() {
-                  button.resetReading();
-                }
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    button.resetReading();
+                  }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #ispressed.anchor
               .light button
               | .isPressed()
@@ -255,18 +274,21 @@ html(lang='en')
               | This method is good for real-time actions that must fire many times during a button press. Use the&nbsp;
               a.click-flash(href="#onpressed") onPressed()
               |  event to fire only one action on each button press.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(button.isPressed()) {
-                    // code executes on each loop
-                    Serial.println("Button Pressed");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(button.isPressed()) {
+                      // code executes on each loop
+                      Serial.println("Button Pressed");
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #isreleased.anchor
               .light button
               | .isReleased()
@@ -276,51 +298,60 @@ html(lang='en')
               | This method is good for real-time actions that must fire many times while the button is not pressed. Use the&nbsp;
               a.click-flash(href="#onreleased") onReleased()
               |  event to fire only one action on each button release.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(button.isReleased()) {
-                    // code executes on each loop
-                    Serial.println("Button Released");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(button.isReleased()) {
+                      // code executes on each loop
+                      Serial.println("Button Released");
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onpressed.anchor
               .light button
               | .onPressed()
               include ./global/labels/event.jade
             p
               | This will return true only once, after the button has been pressed (and debounced). The button must be released and then pressed again for this method to return true again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(button.onPressed()) {
-                    // code only runs once per event
-                    Serial.println("Button Pressed Event");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(button.onPressed()) {
+                      // code only runs once per event
+                      Serial.println("Button Pressed Event");
+                    }
                   }
-                }
 
           .section
-            .method-name
+            .method-name(translate="no")
               #onreleased.anchor
               .light button
               | .onReleased()
               include ./global/labels/event.jade
             p
               | This will return true only once, after the button has been released (and debounced). The button must be pressed and then released again for this method to return true again.
-            h5 EXAMPLE SKETCH
-            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-              :cdata
-                void loop() {
-                  if(button.onReleased()) {
-                    // code only runs once per event
-                    Serial.println("Button Released Event");
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(button.onReleased()) {
+                      // code only runs once per event
+                      Serial.println("Button Released Event");
+                    }
                   }
-                }
 
     .navbar.navbar-default.navbar-footer
       .container-fluid
