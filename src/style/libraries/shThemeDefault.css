@@ -15,6 +15,8 @@
  * Dual licensed under the MIT and GPL licenses.
  */
 .syntaxhighlighter {
+  border: dashed 1px #AAA;
+  padding: 20px 20px 23px 20px;
   background-color: white !important;
 }
 .syntaxhighlighter .line.alt1 {
