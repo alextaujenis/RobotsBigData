@@ -15,18 +15,18 @@
  * Dual licensed under the MIT and GPL licenses.
  */
 .syntaxhighlighter {
-  border: dashed 1px #AAA;
-  padding: 20px 20px 23px 20px;
   background-color: white !important;
+  padding: 10px 0 10px 20px;
+  margin: 0px !important;
 }
 .syntaxhighlighter .line.alt1 {
-  background-color: white !important;
+  background-color: transparent !important;
 }
 .syntaxhighlighter .line.alt2 {
-  background-color: white !important;
+  background-color: transparent !important;
 }
 .syntaxhighlighter .line.highlighted.alt1, .syntaxhighlighter .line.highlighted.alt2 {
-  background-color: #e0e0e0 !important;
+  background-color: transparent !important;
 }
 .syntaxhighlighter .line.highlighted.number {
   color: black !important;
