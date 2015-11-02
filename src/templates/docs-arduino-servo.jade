@@ -1,0 +1,245 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Arduino Servo Docs
+    meta(name="description", content="An Arduino library to control many servos without delay or interrupts while using PWM/PPM for a rotation signal.")
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8
+          ol.breadcrumb.stuck
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs-arduino.html") Arduino
+            li.active(translate="no")
+              | Servo
+          .jumbotron
+            .stuck.click-through
+              .row.jumbotron-header.click-through
+                .col-xs-12.text-right.click-through
+                  span.label.label-info.title-label Arduino
+            .jumbotron-container
+              h2(translate="no")
+                | Servo
+                small(translate="yes") API DOCUMENTATION
+              p
+                | Control many servos.
+                small v1.0.0
+              a.btn.btn-success(href="#download") Download
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-setup") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
+
+          .h3
+            #overview.anchor
+            | Overview
+          p.lead
+            | Control many servos without delay or interrupts while applying rotation adjustments with PWM/PPM. Quickly calibrate each servo and make real-time adjustments to the rotation with&nbsp;
+            a.click-flash(href="#movetodegrees") moveToDegrees()
+            | .
+          p.lead
+            | Connect as many servos as the number of digital pins available on your Arduino. This library is very fast and has a small, lightweight code footprint.
+
+          .h3
+            #download.anchor
+            | Download
+          p
+            | This library is part of a larger package that you can download to access
+            i  all
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself.
+          ul
+            li
+              a(href="https://github.com/alextaujenis/RBD_Servo/raw/master/extras/RBD_Servo.zip")
+                | Download Servo Library v1.0.0&nbsp;
+                .label.label-warning.zip-label .zip
+              |  by itself, or
+            li
+              a(href="install.html") Download All Sensor Libraries
+              |  with this library included, or
+            li
+              a(href="https://github.com/alextaujenis/RBD_Servo") View Source on GitHub
+              |  with&nbsp;
+              a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+
+          .h3
+            #example-setup.anchor
+            | Example Setup
+          ol
+            li Connect + motor power source to the red servo wire
+            li Connect - motor power source to the brown or black servo wire
+            li Connect the Arduino digital pin 5 to the orange or yellow servo wire
+            li Adjust the low and high pulse times in the constructor to the correct range
+            li Load up the example sketch and watch the servo adjust to the desired position
+
+          .h3
+            #example-sketch.anchor
+            | Example Sketch
+            span.label.label-info Arduino
+            span.label.label-primary C++
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Servo.h>
+
+                RBD::Servo servo(5, 1000, 2000); // pin 5, 1ms - 2ms pulse
+
+                void setup() {
+                  servo.moveToDegrees(90)
+                }
+
+                void loop() {
+                  servo.update();
+                }
+          .h3
+            #public-methods.anchor
+            | Public Methods
+          p
+            | You must continuously call&nbsp;
+            a.click-flash(href="#update") update()
+            |  inside of loop() in order to use the
+            span.label.label-success RT
+            |  (Real-Time) methods tagged below.
+
+          h4.class-name(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                RBD::Servo
+
+          ul.public-methods(translate="no")
+            li
+              a.click-flash(href="#constructor") constructor(pin, pulse_min, pulse_max)
+            li.divider
+            li
+              a.click-flash(href="#setpulseinterval") .setPulseInterval(value)
+            li
+              a.click-flash(href="#setdegreesofrotation") .setDegreesOfRotation(value)
+            li.divider
+            li
+              a.click-flash(href="#update") .update()
+              include ./global/labels/update.jade
+            li
+              a.click-flash(href="#movetodegrees") .moveToDegrees()
+              include ./global/labels/real-time.jade
+
+          .section
+            .method-name(translate="no")
+              #constructor.anchor
+              | RBD::Servo constructor(pin, pulse_min, pulse_max)
+            p
+              | Pass in an integer for the digital Arduino pin that is connected to the servo movement control wire (orange or yellow).
+            p
+              | For the second and third parameters; pass in unsigned longs for the hardware specified microsecond pulse min and max times, which determine the time limits for calculating the length of the orientation pulse (typically between 1000-2000 microseconds, or 1-2 milliseconds).
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  RBD::Servo servo(5, 1000, 2000); // pin 5, 1ms - 2ms pulse
+
+                  void setup() {
+                    ...
+                  }
+
+          .section
+            .method-name(translate="no")
+              #setpulseinterval.anchor
+              .light servo
+              | .setPulseInterval(value)
+            p
+              | Provide an unsigned long to set the amount of time between each orientation pulse. The default is 20ms and is set automatically in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              | .
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    servo.setPulseInterval(20); // 20 ms default
+                  }
+
+          .section
+            .method-name(translate="no")
+              #setdegreesofrotation.anchor
+              .light servo
+              | .setDegreesOfRotation(value)
+            p
+              | Provide an integer to set the maximum number of degrees of rotation the servo can handle. The default is 180 degrees and is set automatically in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              | .
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    servo.setDegreesOfRotation(180); // default
+                  }
+
+          .section
+            .method-name(translate="no")
+              #update.anchor
+              .light servo
+              | .update()
+              include ./global/labels/update.jade
+            p
+              | Keep processing and applying servo movements to the motor. This must be called continuously within loop() in order to use&nbsp;
+              a.click-flash(href="#movetodegrees") moveToDegrees()
+              | .
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    servo.update();
+                  }
+
+          .section
+            .method-name(translate="no")
+              #movetodegrees.anchor
+              .light servo
+              | .moveToDegrees(value)
+              include ./global/labels/real-time.jade
+            p
+              | Provide an integer and the servo will move to the specified position in degrees. This can be called inside of setup() or also at run-time inside of loop().
+            p
+              | For performance reasons; you should only call this method&nbsp;
+              b once
+              |  for each change in adjustment requested inside of loop(). This can be done by wrapping this method in a conditional statement and controlling the program flow with a state-machine.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    servo.moveToDegrees(90);
+                  }
+
+                  void loop() {
+                    servo.update();
+                  }
+
+    .navbar.navbar-default.navbar-footer
+      .container-fluid
+        .row
+          .col-xs-6.text-right
+            | &copy; 2015&nbsp;
+            a(href="http://opensource.org/licenses/mit-license.php") MIT License
+          .col-xs-6
+            a(href="https://github.com/alextaujenis/RobotsBigData/edit/gh-pages/src/templates/docs-arduino-light-sensor.jade") Edit this page
+
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade

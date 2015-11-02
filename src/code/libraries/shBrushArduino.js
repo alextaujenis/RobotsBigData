@@ -87,7 +87,8 @@
             'Threshold setLevel getLevel setMaxLevel getMaxLevel computeLevel	' +
             'Timer setTimeout setHertz restart isActive isExpired onRestart onActive onExpired getValue getInverseValue getPercentValue getInversePercentValue ' +
             'WaterSensor update setSampleSize setLevel setMaxLevel setModifier resetModifier getValue getRawValue getActiveLevel isActiveLevel onValueChange onRawValueChange onActiveLevelChange ' +
-            'Button setDebounceTimeout inputPullup disableInputPullup invertReading resetReading isPressed isReleased onPressed onReleased';
+            'Button setDebounceTimeout inputPullup disableInputPullup invertReading resetReading isPressed isReleased onPressed onReleased ' +
+            'Servo setPulseInterval setDegreesOfRotation moveToDegrees update';
 
 		this.regexList = [
 			{ regex: SyntaxHighlighter.regexLib.singleLineCComments,	css: 'color1' },			// one line comments

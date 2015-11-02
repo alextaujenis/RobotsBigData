@@ -159,7 +159,7 @@ gulp.task 'watch-files', ->
   gulp.watch(style_src, ['compile-style'])
   gulp.watch(style_libraries_css, ['copy-libraries-css'])
   gulp.watch(template_subdirectory_src, ['compile-templates'])
-  gulp.watch(image_src, ['copy-images-'])
+  gulp.watch(image_src, ['copy-images'])
 
 # run this command to start developing
 gulp.task 'develop', ['compile', 'watch-files']
