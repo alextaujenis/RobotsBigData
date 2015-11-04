@@ -200,7 +200,7 @@ html(lang='en')
               #setpwm.anchor
               .light light
               | .setPwm(value)
-            p Pass in an integer between 0 - 255 to set the brightness of the light.
+            p Pass in an integer between 0 - 255 to set the raw brightness of the light.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
@@ -208,7 +208,7 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   void loop() {
-                    light.setPwm(200);
+                    light.setPwm(128); // about 50% brightness
                   }
 
           .section
@@ -216,7 +216,10 @@ html(lang='en')
               #setpwmpercent.anchor
               .light light
               | .setPwmPercent(value)
-            p Pass in an integer between 0 - 100 to set the brightness of the light.
+            p
+              | Pass in an integer between 0 - 100 to set the percentage brightness of the light. This is the same as&nbsp;
+              a.click-flash(href="#setpwm") setPwm()
+              |  except with a smaller input domain.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
@@ -224,7 +227,7 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   void loop() {
-                    light.setPwmPercent(75);
+                    light.setPwmPercent(75); // 75% brightness
                   }
 
           .section
@@ -268,7 +271,7 @@ html(lang='en')
               #getpwm.anchor
               .light light
               | .getPwm()
-            p Returns an integer of the current light brightness from 0 - 255.
+            p Returns an integer from 0 - 255 of the current light raw brightness.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
@@ -284,7 +287,10 @@ html(lang='en')
               #getpwmpercent.anchor
               .light light
               | .getPwmPercent()
-            p Returns an integer of the current light percentage brightness from 0 - 100.
+            p
+              | Returns an integer from 0 - 100 of the current light percentage brightness. This is the same as&nbsp;
+              a.click-flash(href="#getpwm") getPwm()
+              |  except with a smaller input domain.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
@@ -302,7 +308,7 @@ html(lang='en')
               | .update()
               include ./global/labels/update.jade
             p
-              | Keep the light moving in real-time. This must be called continuously within loop() in order to&nbsp;
+              | Keep calculating brightness values over time. This must be called continuously within loop() in order to&nbsp;
               a.click-flash(href="#blink") blink()
               |  or&nbsp;
               a.click-flash(href="#fade") fade()
