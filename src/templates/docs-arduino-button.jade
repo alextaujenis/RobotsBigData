@@ -2,7 +2,7 @@ doctype html
 html(lang='en')
   head
     title Robots + Big Data: Arduino Button Docs
-    meta(name="description", content="Read and debounce buttons and switches without delay. React to button events with the onPressed() and onReleased() commands.")
+    meta(name="description", content="Read and debounce buttons and switches without delay or interrupts. React to button events with the onPressed() and onReleased() commands.")
     include ./global/head-content.jade
   body
     include ./global/top-nav.jade
@@ -28,7 +28,7 @@ html(lang='en')
                 small(translate="yes") API DOCUMENTATION
               p
                 | Read and debounce buttons and switches.
-                small v1.0.0
+                small v1.0.1
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#example-sketch") See Example
@@ -38,7 +38,7 @@ html(lang='en')
             #overview.anchor
             | Overview
           p.lead
-            | Read and debounce buttons and switches without delay. React to button events with the&nbsp;
+            | Read and debounce buttons and switches without delay or interrupts. React to button events with the&nbsp;
             a.click-flash(href="#onpressed") onPressed()
             |  and&nbsp;
             a.click-flash(href="#onreleased") onReleased()
@@ -61,7 +61,7 @@ html(lang='en')
           ul
             li
               a(href="https://github.com/alextaujenis/RBD_Button/raw/master/extras/RBD_Button.zip")
-                | Download Button Library v1.0.0&nbsp;
+                | Download Button Library v1.0.1&nbsp;
                 .label.label-warning.zip-label .zip
               |  by itself with the&nbsp;
               a.dark-link(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip") Timer
