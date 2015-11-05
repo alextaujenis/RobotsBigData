@@ -28,7 +28,7 @@ html(lang='en')
                 small(translate="yes") API DOCUMENTATION
               p
                 | Control many motors.
-                small v1.1.1
+                small v2.0.0
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#example-sketch") See Example
@@ -69,7 +69,7 @@ html(lang='en')
           ul
             li
               a(href="https://github.com/alextaujenis/RBD_Motor/raw/master/extras/RBD_Motor.zip")
-                | Download Motor Library v1.1.1&nbsp;
+                | Download Motor Library v2.0.0&nbsp;
                 .label.label-warning.zip-label .zip
               |  by itself with the&nbsp;
               a.dark-link(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip") Timer
@@ -94,7 +94,7 @@ html(lang='en')
                 #include <RBD_Motor.h>
 
                 // motor shield
-                RBD::Motor motor(9, 11, 8); // pwm pin, forward pin, reverse pin
+                RBD::Motor motor(9, 11, 8); // speed pin, forward pin, reverse pin
 
                 void setup() {
                   motor.rampUp(5000);
@@ -125,8 +125,8 @@ html(lang='en')
             |  methods will function correctly. You must continuously call&nbsp;
             a.click-flash(href="#update") update()
             |  inside of loop() in order to use the
-            span.label.label-success RT
-            |  (Real-Time) methods tagged below.
+            span.label.label-success Real-Time
+            |  methods tagged below.
 
           h4.class-name(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
@@ -135,7 +135,7 @@ html(lang='en')
 
           ul.public-methods(translate="no")
             li
-              a.click-flash(href="#constructor") constructor(pwm_pin, [forward_pin], [reverse_pin])
+              a.click-flash(href="#constructor") constructor(speed_pin, [forward_pin], [reverse_pin])
             li.divider
             li
               a.click-flash(href="#on") .on()
@@ -148,9 +148,9 @@ html(lang='en')
             li
               a.click-flash(href="#toggledirection") .toggleDirection()
             li
-              a.click-flash(href="#setpwm") .setPwm(value)
+              a.click-flash(href="#setspeed") .setSpeed(value)
             li
-              a.click-flash(href="#setpwmpercent") .setPwmPercent(value)
+              a.click-flash(href="#setspeedpercent") .setSpeedPercent(value)
             li.divider
             li
               a.click-flash(href="#ison") .isOn()
@@ -161,13 +161,9 @@ html(lang='en')
             li
               a.click-flash(href="#isreverse") .isReverse()
             li
-              a.click-flash(href="#getpwm") .getPwm()
+              a.click-flash(href="#getspeed") .getSpeed()
             li
-              a.click-flash(href="#getpwmpercent") .getPwmPercent()
-            li
-              a.click-flash(href="#ispwm") .isPwm(value)
-            li
-              a.click-flash(href="#ispwmpercent") .isPwmPercent(value)
+              a.click-flash(href="#getspeedpercent") .getSpeedPercent()
             li.divider
             li
               a.click-flash(href="#update") .update()
@@ -204,9 +200,9 @@ html(lang='en')
           .section
             .method-name(translate="no")
               #constructor.anchor
-              | RBD::Motor constructor(pwm_pin, [forward_pin], [reverse_pin])
+              | RBD::Motor constructor(speed_pin, [forward_pin], [reverse_pin])
             p
-              | Create a new motor and pass in the Arduino pwm pin number. The forward and reverse pins are [optional] and can be used to control the motor in both directions with the help of a motor-shield or H bridge. The motor will be set&nbsp;
+              | Create a new motor and pass in the Arduino speed pin number. The forward and reverse pins are [optional] and can be used to control the motor in both directions with the help of a motor-shield or H bridge. The motor will be set&nbsp;
               a.click-flash(href="#forward") forward()
               |  by default if you provide the forward and reverse pins.
             h5
@@ -216,7 +212,7 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   // motor shield
-                  RBD::Motor motor(9, 11, 8); // pwm pin, forward pin, reverse pin
+                  RBD::Motor motor(9, 11, 8); // speed pin, forward pin, reverse pin
 
                   void setup() {
                     ...
@@ -332,9 +328,9 @@ html(lang='en')
 
           .section
             .method-name(translate="no")
-              #setpwm.anchor
+              #setspeed.anchor
               .light motor
-              | .setPwm(value)
+              | .setSpeed(value)
             p Pass in an integer from 0 - 255 to control the speed of the motor.
             h5
               | EXAMPLE&nbsp;
@@ -343,17 +339,17 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   void setup() {
-                    motor.setPwm(85); // one-third speed
+                    motor.setSpeed(85); // one-third speed
                   }
 
           .section
             .method-name(translate="no")
-              #setpwmpercent.anchor
+              #setspeedpercent.anchor
               .light motor
-              | .setPwmPercent(value)
+              | .setSpeedPercent(value)
             p
               | Pass in an integer from 0 - 100 to control the speed percentage of the motor. This is essentially the same as&nbsp;
-              a.click-flash(href="#setpwm") setPwm()
+              a.click-flash(href="#setspeed") setSpeed()
               |  but with a smaller input scale.
             h5
               | EXAMPLE&nbsp;
@@ -362,7 +358,7 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   void setup() {
-                    motor.setPwmPercent(50); // half speed
+                    motor.setSpeedPercent(50); // half speed
                   }
 
           .section
@@ -457,9 +453,9 @@ html(lang='en')
 
           .section
             .method-name(translate="no")
-              #getpwm.anchor
+              #getspeed.anchor
               .light motor
-              | .getPwm()
+              | .getSpeed()
             p
               | Returns an integer from 0 - 255 for the current motor speed.
             h5
@@ -469,18 +465,18 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   void setup() {
-                    motor.setPwm(123);
+                    motor.setSpeed(123);
                   }
 
                   void loop() {
-                    Serial.println(motor.getPwm());
+                    Serial.println(motor.getSpeed());
                   }
 
           .section
             .method-name(translate="no")
-              #getpwmpercent.anchor
+              #getspeedpercent.anchor
               .light motor
-              | .getPwmPercent()
+              | .getSpeedPercent()
             p
               | Returns an integer from 0 - 100 for the current motor speed percentage.
             h5
@@ -490,69 +486,11 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   void setup() {
-                    motor.setPwmPercent(45);
+                    motor.setSpeedPercent(45);
                   }
 
                   void loop() {
-                    Serial.println(motor.getPwmPercent());
-                  }
-
-          .section
-            .method-name(translate="no")
-              #ispwm.anchor
-              .light motor
-              | .isPwm(value)
-            p
-              | Provide an integer from 0 to 255 and this will return true if it's equal to the current&nbsp;
-              a.click-flash(href="#getpwm") getPwm()
-              | .
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void setup() {
-                    motor.ramp(99, 1000);
-                  }
-
-                  void loop() {
-                    motor.update()
-
-                    if(motor.onTargetSpeed()) {
-                      if(motor.isPwm(99)) {
-                        ...
-                      }
-                    }
-                  }
-
-          .section
-            .method-name(translate="no")
-              #ispwmpercent.anchor
-              .light motor
-              | .isPwmPercent(value)
-            p
-              | Provide an integer from 0 to 100 and this will return true if it's equal to the current&nbsp;
-              a.click-flash(href="#getpwmpercent") getPwmPercent()
-              | .
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void setup() {
-                    motor.rampPercent(45, 1000);
-                  }
-
-                  void loop() {
-                    motor.update()
-
-                    if(motor.onTargetSpeed()) {
-                      if(motor.isPwmPercent(45)) {
-                        ...
-                      }
-                    }
+                    Serial.println(motor.getSpeedPercent());
                   }
 
           .section
