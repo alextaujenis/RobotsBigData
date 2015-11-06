@@ -28,10 +28,10 @@ html(lang='en')
                 small(translate="yes") API DOCUMENTATION
               p
                 | Control many lights.
-                small v2.0.1
+                small v2.0.2
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-sketch") See Example
+              a.btn.btn-default(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           .h3
@@ -60,7 +60,7 @@ html(lang='en')
           ul
             li
               a(href="https://github.com/alextaujenis/RBD_Light/raw/master/extras/RBD_Light.zip")
-                | Download Light Library v2.0.1&nbsp;
+                | Download Light Library v2.0.2&nbsp;
                 .label.label-warning.zip-label .zip
               |  by itself with the&nbsp;
               a.dark-link(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip") Timer
@@ -72,6 +72,28 @@ html(lang='en')
               a(href="https://github.com/alextaujenis/RBD_Light") View Source on GitHub
               |  with&nbsp;
               a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+          .h3
+            #example-wiring.anchor
+            | Example Wiring
+          p
+            ol
+              li
+                | Connect the Arduino&nbsp;
+                .ground-wire ground pin
+                |  to a resistor calculated for your LED
+              li
+                | Connect the resistor to the short (negative) LED leg
+              li
+                | Connect the Arduino&nbsp;
+                .hot-wire PWM pin 3
+                |  to the long (positive) LED leg
+              li
+                | Load the&nbsp;
+                a(href="#example-sketch") Example Sketch
+                |  onto the Arduino
+              li
+                | Watch the LED blink without delay
+            img.img-responsive(src="assets/images/arduino-light-wiring-diagram.png", alt="A LED and resistor wired to an Arduino Micro PWM 3 and ground.")
 
           .h3
             #example-sketch.anchor
@@ -84,7 +106,7 @@ html(lang='en')
                 #include <RBD_Timer.h>
                 #include <RBD_Light.h>
 
-                RBD::Light light(13);
+                RBD::Light light(3); // PWM pin 3
 
                 void setup() {
                   light.blink(250,250);
@@ -157,7 +179,7 @@ html(lang='en')
             div(translate="no")
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
-                  RBD::Light light(13);
+                  RBD::Light light(3);
 
                   void setup() {
                     ...
