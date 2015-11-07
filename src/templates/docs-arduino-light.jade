@@ -34,6 +34,7 @@ html(lang='en')
               a.btn.btn-default(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
+
           .h3
             #overview.anchor
             | Overview
@@ -72,27 +73,28 @@ html(lang='en')
               a(href="https://github.com/alextaujenis/RBD_Light") View Source on GitHub
               |  with&nbsp;
               a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+
           .h3
             #example-wiring.anchor
             | Example Wiring
+          ol
+            li
+              | Connect the Arduino&nbsp;
+              .ground-wire ground pin
+              |  to a resistor calculated for your LED
+            li
+              | Connect the resistor to the short (negative) LED leg
+            li
+              | Connect the Arduino&nbsp;
+              .hot-wire PWM pin 3
+              |  to the long (positive) LED leg
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  onto the Arduino
+            li
+              | Watch the LED blink without delay
           p
-            ol
-              li
-                | Connect the Arduino&nbsp;
-                .ground-wire ground pin
-                |  to a resistor calculated for your LED
-              li
-                | Connect the resistor to the short (negative) LED leg
-              li
-                | Connect the Arduino&nbsp;
-                .hot-wire PWM pin 3
-                |  to the long (positive) LED leg
-              li
-                | Load the&nbsp;
-                a(href="#example-sketch") Example Sketch
-                |  onto the Arduino
-              li
-                | Watch the LED blink without delay
             img.img-responsive(src="assets/images/arduino-light-wiring-diagram.png", alt="A LED and resistor wired to an Arduino Micro PWM 3 and ground.")
 
           .h3
@@ -119,7 +121,6 @@ html(lang='en')
           .h3
             #public-methods.anchor
             | Public Methods
-
           p
             | You can use this library without calling&nbsp;
             a.click-flash(href="#update") update()

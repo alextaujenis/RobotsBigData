@@ -34,6 +34,7 @@ html(lang='en')
               a.btn.btn-default(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
+
           .h3
             #overview.anchor
             | Overview
@@ -49,6 +50,7 @@ html(lang='en')
             | This library sets each button up as input_pullup by default, allowing you to wire the button to any digital input and ground. Input_pullup can be disabled by passing an optional flag to the&nbsp;
             a.click-flash(href="#constructor") constructor()
             |  and wiring the button with your own resistor.
+
           .h3
             #download.anchor
             | Download
@@ -73,26 +75,28 @@ html(lang='en')
               a(href="https://github.com/alextaujenis/RBD_Button") View Source on GitHub
               |  with&nbsp;
               a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+
           .h3
             #example-wiring.anchor
             | Example Wiring
+          ol
+            li
+              | Connect the Arduino&nbsp;
+              .ground-wire ground pin
+              |  to one of the button terminals
+            li
+              | Connect the Arduino&nbsp;
+              .hot-wire digital pin 2
+              |  to the other button terminal
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  onto the Arduino
+            li
+              | Open a serial connection at 115200 baud and press the button
           p
-            ol
-              li
-                | Connect the Arduino&nbsp;
-                .ground-wire ground pin
-                |  to one of the button terminals
-              li
-                | Connect the Arduino&nbsp;
-                .hot-wire digital pin 2
-                |  to the other button terminal
-              li
-                | Load the&nbsp;
-                a(href="#example-sketch") Example Sketch
-                |  onto the Arduino
-              li
-                | Open a serial connection at 115200 baud and press the button
             img.img-responsive(src="assets/images/arduino-button-wiring-diagram.png", alt="A mechanical push button wired to an Arduino Micro pin 2 and ground.")
+
           .h3
             #example-sketch.anchor
             | Example Sketch
