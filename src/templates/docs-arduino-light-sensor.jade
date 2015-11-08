@@ -31,7 +31,7 @@ html(lang='en')
                 small v1.0.3
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-setup") See Example
+              a.btn.btn-default(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
 
@@ -63,16 +63,31 @@ html(lang='en')
               a(href="https://github.com/alextaujenis/RBD_LightSensor") View Source on GitHub
               |  with&nbsp;
               a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
-
           .h3
-            #example-setup.anchor
-            | Example Setup
+            #example-wiring.anchor
+            | Example Wiring
           ol
             li
-              | Wire up a photoresistor to Arduino pin A0
-            li Install this library and load the example sketch on to the Arduino
+              | Connect one leg of a photoresistor to the Arduino&nbsp;
+              span.control-wire analog pin A0
+            li
+              | Connect a&nbsp;
+              b 10k resistor
+              |  between&nbsp;
+              span.control-wire analog pin A0
+              |  and&nbsp;
+              span.ground-wire ground
+            li
+              | Connect the other leg of the photoresistor to Arduino&nbsp;
+              span.hot-wire +5v
+            li
+              | Install this library and load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  on to the Arduino
             li Open a serial connection at 115200 BAUD
-            li Watch a stream of the current light percentage
+            li Watch a constant stream of the light percentage
+          p
+            img.img-responsive(src="assets/images/arduino-light-sensor-wiring-diagram-sm.png", alt="A photoresistor wired to an Arduino Micro pin A0 with a 10k pull-down resistor.")
 
           .h3
             #example-sketch.anchor
