@@ -338,13 +338,9 @@ html(lang='en')
               .light timer
               | .isExpired()
             p
-              | Returns true if time has run out. This can be used for a single non-blocking delay, or it can be used with&nbsp;
+              | Returns true if time has run out. This can be used with&nbsp;
               a.click-flash(href="#restart") restart()
-              |  to create a continuous loop that you restart when an action has completed.
-            p
-              | Use&nbsp;
-              a.click-flash(href="#onexpired") onExpired()
-              |  to fire a single event when the timer expires.
+              |  to create a continuous loop where you execute code once and then restart the timer when the action is complete.
 
             h5
               | EXAMPLE&nbsp;
