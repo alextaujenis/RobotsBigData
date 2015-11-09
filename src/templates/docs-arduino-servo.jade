@@ -28,10 +28,10 @@ html(lang='en')
                 small(translate="yes") API DOCUMENTATION
               p
                 | Control many servos without delay or interrupts.
-                small v1.0.0
+                small v1.0.1
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-setup") See Example
+              a.btn.btn-default(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
 
@@ -59,7 +59,7 @@ html(lang='en')
           ul
             li
               a(href="https://github.com/alextaujenis/RBD_Servo/raw/master/extras/RBD_Servo.zip")
-                | Download Servo Library v1.0.0&nbsp;
+                | Download Servo Library v1.0.1&nbsp;
                 .label.label-warning.zip-label .zip
               |  by itself, or
             li
@@ -71,15 +71,36 @@ html(lang='en')
               a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           .h3
-            #example-setup.anchor
-            | Example Setup
+            #example-wiring.anchor
+            | Example Wiring
           ol
-            li Connect a + motor power source to the red servo wire
-            li Connect a - motor power source to the brown or black servo wire
-            li Connect the Arduino digital pin 5 to the orange or yellow servo wire
-            li Adjust the low and high pulse times in the constructor to the correct range
-            li Load up the example sketch and watch the servo adjust to the desired position
-
+            li
+              | Connect the servo&nbsp;
+              span.hot-wire red wire
+              |  to the Arduino&nbsp;
+              span.hot-wire +5v pin
+              i  (or use external power)
+            li
+              | Connect the servo&nbsp;
+              span.brown-wire brown
+              |  or&nbsp;
+              span.ground-wire black wire
+              |  to the Arduino&nbsp;
+              span.ground-wire ground pin
+            li
+              | Connect the servo&nbsp;
+              span.orange-wire orange
+              |  or&nbsp;
+              span.yellow-wire yellow wire
+              |  to the Arduino&nbsp;
+              span.control-wire digital pin 2
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  on to the Arduino
+            li Watch the servo adjust to the desired position
+          p
+            img.img-responsive(src="assets/images/arduino-servo-wiring-diagram-sm.png", alt="A servo wired to an Arduino Micro digital pin 2.")
           .h3
             #example-sketch.anchor
             | Example Sketch
@@ -90,7 +111,7 @@ html(lang='en')
               :cdata
                 #include <RBD_Servo.h>
 
-                RBD::Servo servo(5, 1000, 2000); // pin 5, 1ms - 2ms pulse
+                RBD::Servo servo(2, 1000, 2000); // pin 2, 1ms - 2ms pulse
 
                 void setup() {
                   servo.moveToDegrees(90)
@@ -144,7 +165,7 @@ html(lang='en')
             div(translate="no")
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
-                  RBD::Servo servo(5, 1000, 2000); // pin 5, 1ms - 2ms pulse
+                  RBD::Servo servo(2, 1000, 2000); // pin 2, 1ms - 2ms pulse
 
                   void setup() {
                     ...
