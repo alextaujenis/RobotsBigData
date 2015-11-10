@@ -28,10 +28,10 @@ html(lang='en')
                 small(translate="no") API DOCUMENTATION
               p
                 | Measure and calibrate water level sensors.
-                small v1.0.3
+                small v2.0.0
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-setup") See Example
+              a.btn.btn-default(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           .h3
@@ -59,7 +59,7 @@ html(lang='en')
           ul
             li
               a(href="https://github.com/alextaujenis/RBD_WaterSensor/raw/master/extras/RBD_WaterSensor.zip")
-                | Download Water Sensor Library v1.0.3&nbsp;
+                | Download Water Sensor Library v2.0.0&nbsp;
                 .label.label-warning.zip-label .zip
               |  by itself with the&nbsp;
               a.dark-link(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
@@ -75,16 +75,36 @@ html(lang='en')
               a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           .h3
-            #example-setup.anchor
-            | Example Setup
+            #example-wiring.anchor
+            | Example Wiring
           ol
-            li Bridge a 10Meg Ohm resistor across the send (tx 1) and receive (rx 0) pins
-            li Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil
-            li Tape the foil to the side of a water-tight non-conductive (plastic) container
-            li Load up the example sketch and open a serial connection at 115200 baud
-            li Pour water into the container and change the raw threshold values in the sketch to match the levels
-            li Pour out the water, then compile and load the calibrated sketch back into the Arduino
-            li Your water level is calibrated and ready to use
+            li
+              | Connect Arduino&nbsp;
+              span.blue-wire digital pin 2
+              |  to a&nbsp;
+              b 10k&#8486; resistor
+            li
+              | Connect the other end of the&nbsp;
+              b 10k&#8486; resistor
+              |  to Arduino&nbsp;
+              span.control-wire digital pin 3
+            li
+              | Connect Arduino&nbsp;
+              span.control-wire digital pin 3
+              |  to a wire leading to  a piece of conductive material
+            li
+              | Tape or glue the conductive material to a non-conductive water tight container
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  on to the Arduino
+            li Open a serial connection at 115200 BAUD to see the reported values
+            li
+              a(href="#example-sketch-calibration") Calibrate
+              |  the water level sensor
+          p
+            img.img-responsive(src="assets/images/arduino-water-sensor-wiring-diagram-sm.png", alt="A piece of aluminum foil taped to a plastic cup connected to a 10 Meg Ohm resistor that is bridged across Arduino digital pins 2 and 3.")
+
           .h3
             #example-sketch.anchor
             | Example Sketch
@@ -98,7 +118,7 @@ html(lang='en')
                 #include <RBD_Threshold.h>
                 #include <RBD_WaterSensor.h>
 
-                RBD::WaterSensor water_sensor(1, 0, 3); // send, receive, level count
+                RBD::WaterSensor water_sensor(2, 3, 3); // send, receive pin, levels
 
                 void setup() {
                   Serial.begin(115200);
@@ -119,6 +139,29 @@ html(lang='en')
                     Serial.println(water_sensor.getRawValue());
                   }
                 }
+
+          .h3
+            #example-sketch-calibration.anchor
+            | Example Sketch Calibration
+          p
+            | Follow these steps to calibrate each water level sensor before use:
+          ol
+            li Affix the water level sensor and pour water into the container
+            li Stop at each level and notice the Raw Value printed to the serial console
+            li
+              | Use&nbsp;
+              a.click-flash(href="#setlevel") setLevel()
+              |  to add each level and Raw Value -&nbsp;
+              i
+                | in the&nbsp;
+                a(href="#example-sketch") example sketch
+                |  setup()
+            li
+              | After using&nbsp;
+              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              | ; pour out all water
+            li Load the calibrated sketch back into the Arduino
+            li The water level is calibrated and ready to use
 
           .h3
             #public-methods.anchor
@@ -143,13 +186,14 @@ html(lang='en')
             li
               a.click-flash(href="#setsamplesize") .setSampleSize(value)
             li
-              a.click-flash(href="#setlevel") .setLevel(index, raw_value)
-            li
-              a.click-flash(href="#setmaxlevel") .setMaxLevel(raw_value)
-            li
               a.click-flash(href="#setmodifier") .setModifier(value)
             li
               a.click-flash(href="#resetmodifier") .resetModifier()
+            li.divider
+            li
+              a.click-flash(href="#setlevel") .setLevel(index, raw_value)
+            li
+              a.click-flash(href="#setmaxlevel") .setMaxLevel(raw_value)
             li.divider
             li
               a.click-flash(href="#update") .update()
@@ -162,9 +206,6 @@ html(lang='en')
               include ./global/labels/real-time.jade
             li
               a.click-flash(href="#getactivelevel") .getActiveLevel()
-              include ./global/labels/real-time.jade
-            li
-              a.click-flash(href="#isactivelevel") .isActiveLevel(value)
               include ./global/labels/real-time.jade
             li.divider
             li
@@ -191,7 +232,7 @@ html(lang='en')
             div(translate="no")
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
-                  RBD::WaterSensor water_sensor(1, 0, 3); // send, receive, level count
+                  RBD::WaterSensor water_sensor(2, 3, 3); // send, receive pin, levels
 
                   void setup() {
                     ...
@@ -224,48 +265,6 @@ html(lang='en')
                 :cdata
                   void setup() {
                     water_sensor.setSampleSize(250);
-                  }
-
-          .section
-            .method-name(translate="no")
-              #setlevel.anchor
-              .light water_sensor
-              | .setLevel(index, raw_value)
-            p
-              | Provide an integer for the level index and a raw value from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
-              | . The level index starts at one (it is not zero-based). You must also call&nbsp;
-              a.click-flash(href="#setmaxlevel") setMaxLevel()
-              |  at the end to set an upper bounds of the last level.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void setup() {
-                    water_sensor.setLevel(1, 120);
-                    water_sensor.setLevel(2, 154);
-                    water_sensor.setLevel(3, 187);
-                  }
-
-          .section
-            .method-name(translate="no")
-              #setmaxlevel.anchor
-              .light water_sensor
-              | .setMaxLevel(raw_value)
-            p
-              | Provide an integer from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
-              |  to set the upper-bounds threshold of the last level.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void setup() {
-                    water_sensor.setMaxLevel(220);
                   }
 
           .section
@@ -378,6 +377,48 @@ html(lang='en')
 
           .section
             .method-name(translate="no")
+              #setlevel.anchor
+              .light water_sensor
+              | .setLevel(index, raw_value)
+            p
+              | Provide an integer for the level index and a raw value from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              | . The level index starts at one (it is not zero-based). You must also call&nbsp;
+              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              |  at the end to set an upper bounds of the last level.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    water_sensor.setLevel(1, 120);
+                    water_sensor.setLevel(2, 154);
+                    water_sensor.setLevel(3, 187);
+                  }
+
+          .section
+            .method-name(translate="no")
+              #setmaxlevel.anchor
+              .light water_sensor
+              | .setMaxLevel(raw_value)
+            p
+              | Provide an integer from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              |  to set the upper-bounds threshold of the last level.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    water_sensor.setMaxLevel(220);
+                  }
+
+          .section
+            .method-name(translate="no")
               #update.anchor
               .light water_sensor
               | .update()
@@ -475,32 +516,6 @@ html(lang='en')
 
                     if(water_sensor.onActiveLevelChange()) {
                       Serial.println(water_sensor.getActiveLevel());
-                    }
-                  }
-
-          .section
-            .method-name(translate="no")
-              #isactivelevel.anchor
-              .light water_sensor
-              | .isActiveLevel(value)
-              include ./global/labels/real-time.jade
-            p
-              | Provide an integer from 0 to 255 and this will return true if it's equal to the current&nbsp;
-              a.click-flash(href="#getactivelevel") getActiveLevel()
-              | .
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    water_sensor.update();
-
-                    if(water_sensor.onActiveLevelChange()) {
-                      if(water_sensor.isActiveLevel(1)) {
-                        Serial.println("First level active");
-                      }
                     }
                   }
 
