@@ -28,10 +28,10 @@ html(lang='en')
                 small(translate="yes") API DOCUMENTATION
               p
                 | Detect human presence, touch, and pickup events.
-                small v1.0.2
+                small v1.0.3
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-setup") See Example
+              a.btn.btn-default(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
 
@@ -67,7 +67,7 @@ html(lang='en')
           ul
             li
               a(href="https://github.com/alextaujenis/RBD_HumanSensor/raw/master/extras/RBD_HumanSensor.zip")
-                | Download Human Sensor Library v1.0.2&nbsp;
+                | Download Human Sensor Library v1.0.3&nbsp;
                 .label.label-warning.zip-label .zip
               |  by itself with the&nbsp;
               a.dark-link(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
@@ -83,16 +83,35 @@ html(lang='en')
               a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           .h3
-            #example-setup.anchor
-            | Example Setup
+            #example-wiring.anchor
+            | Example Wiring
           ol
-            li Bridge a 10Meg Ohm resistor across the send (tx 1) and receive (rx 0) pins
-            li Run a length of wire from the receive (rx 0) pin to a strip of aluminum foil
-            li Attach the foil to an object by covering it with a non-conductive material (tape)
-            li Load up the example sketch and open a serial connection at 115200 baud
-            li Move your hand by the object, touch it, pick it up, and change the raw threshold values in the sketch
-            li Compile and reload the calibrated sketch back into the Arduino
-            li Your human sensor is calibrated and ready to use
+            li
+              | Connect Arduino&nbsp;
+              span.blue-wire digital pin 2
+              |  to a&nbsp;
+              b 10Meg&#8486; resistor
+            li
+              | Connect the other end of the&nbsp;
+              b 10Meg&#8486; resistor
+              |  to Arduino&nbsp;
+              span.control-wire digital pin 3
+            li
+              | Connect Arduino&nbsp;
+              span.control-wire digital pin 3
+              |  to a piece of conductive material (aluminum foil)
+            li
+              | Cover the conductive material with non-conductive material (tape)
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  on to the Arduino
+            li Open a serial connection at 115200 BAUD to see the reported values
+            li
+              a(href="#example-sketch-calibration") Calibrate
+              |  the human sensor
+          p
+            img.img-responsive(src="assets/images/arduino-capacitance-wiring-diagram-sm.png", alt="A piece of aluminum foil connected to a 10 Meg Ohm resistor that is bridged across Arduino digital pins 2 and 3.")
 
           .h3
             #example-sketch.anchor
@@ -106,7 +125,7 @@ html(lang='en')
                 #include <RBD_Threshold.h>
                 #include <RBD_HumanSensor.h>
 
-                RBD::HumanSensor human_sensor(1, 0); // send, receive
+                RBD::HumanSensor human_sensor(2, 3); // send, receive pin
 
                 void setup() {
                   Serial.begin(115200);
@@ -137,6 +156,37 @@ html(lang='en')
                 }
 
           .h3
+            #example-sketch-calibration.anchor
+            | Example Sketch Calibration
+          p
+            | Follow these steps to calibrate each human sensor before use:
+          ol
+            li
+              a(href="#example-wiring") Set up the human sensor
+              |  then open a serial connection to the Arduino
+            li Move your hand just near the sensor to see the Raw Value change
+            li
+              | Change the&nbsp;
+              a.click-flash(href="#setnearvalue") setNearValue()
+              |  to the Raw Value&nbsp;
+              i
+                | - in the&nbsp;
+                a(href="#example-sketch") example sketch
+                |  setup()
+            li Touch the sensor to see the Raw Value change
+            li
+              | Change the&nbsp;
+              a.click-flash(href="#settouchvalue") setTouchValue()
+              |  to the new Raw Value
+            li Pick up the sensor to see the Raw Value change (if it is attached to an object)
+            li
+              | Change the&nbsp;
+              a.click-flash(href="#setpickupvalue") setPickupValue()
+              |  to the new Raw Value
+            li Load the calibrated sketch back into the Arduino
+            li The human sensor is calibrated and ready to use
+
+          .h3
             #public-methods.anchor
             | Public Methods
           p
@@ -157,15 +207,16 @@ html(lang='en')
             li
               a.click-flash(href="#setsamplesize") .setSampleSize(value)
             li
+              a.click-flash(href="#setmodifier") .setModifier(value)
+            li
+              a.click-flash(href="#resetmodifier") .resetModifier()
+            li.divider
+            li
               a.click-flash(href="#setnearvalue") .setNearValue(value)
             li
               a.click-flash(href="#settouchvalue") .setTouchValue(value)
             li
               a.click-flash(href="#setpickupvalue") .setPickupValue(value)
-            li
-              a.click-flash(href="#setmodifier") .setModifier(value)
-            li
-              a.click-flash(href="#resetmodifier") .resetModifier()
             li.divider
             li
               a.click-flash(href="#update") .update()
@@ -183,16 +234,6 @@ html(lang='en')
               a.click-flash(href="#ispickup") .isPickup()
               include ./global/labels/real-time.jade
             li
-              a.click-flash(href="#getvalue") .getValue()
-              include ./global/labels/real-time.jade
-            li
-              a.click-flash(href="#getrawvalue") .getRawValue()
-              include ./global/labels/real-time.jade
-            li
-              a.click-flash(href="#getactivelevel") .getActiveLevel()
-              include ./global/labels/real-time.jade
-            li.divider
-            li
               a.click-flash(href="#ongone") .onGone()
               include ./global/labels/real-time.jade
               include ./global/labels/event.jade
@@ -208,6 +249,16 @@ html(lang='en')
               a.click-flash(href="#onpickup") .onPickup()
               include ./global/labels/real-time.jade
               include ./global/labels/event.jade
+            li.divider
+            li
+              a.click-flash(href="#getvalue") .getValue()
+              include ./global/labels/real-time.jade
+            li
+              a.click-flash(href="#getrawvalue") .getRawValue()
+              include ./global/labels/real-time.jade
+            li
+              a.click-flash(href="#getactivelevel") .getActiveLevel()
+              include ./global/labels/real-time.jade
             li
               a.click-flash(href="#onvaluechange") .onValueChange()
               include ./global/labels/real-time.jade
@@ -232,7 +283,7 @@ html(lang='en')
             div(translate="no")
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
-                  RBD::HumanSensor human_sensor(1,0);
+                  RBD::HumanSensor human_sensor(2, 3);
 
                   void setup() {
                     ...
@@ -265,63 +316,6 @@ html(lang='en')
                 :cdata
                   void setup() {
                     human_sensor.setSampleSize(1000);
-                  }
-
-          .section
-            .method-name(translate="no")
-              #setnearvalue.anchor
-              .light human_sensor
-              | .setNearValue(value)
-            p
-              | Provide an integer from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
-              |  to calibrate the lowest threshold for when a person is near the sensor.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void setup() {
-                    human_sensor.setNearValue(100);
-                  }
-
-          .section
-            .method-name(translate="no")
-              #settouchvalue.anchor
-              .light human_sensor
-              | .setTouchValue(value)
-            p
-              | Provide an integer from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
-              |  to calibrate the lowest threshold for when a person is touching the sensor.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void setup() {
-                    human_sensor.setTouchValue(150);
-                  }
-
-          .section
-            .method-name(translate="no")
-              #setpickupvalue.anchor
-              .light human_sensor
-              | .setPickupValue(value)
-            p
-              | Provide an integer from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
-              |  to calibrate the lowest threshold for when a person is picking up the sensor.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void setup() {
-                    human_sensor.setPickupValue(200);
                   }
 
           .section
@@ -430,6 +424,63 @@ html(lang='en')
                     else if(...) {
                       ...
                     }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #setnearvalue.anchor
+              .light human_sensor
+              | .setNearValue(value)
+            p
+              | Provide an integer from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              |  to calibrate the lowest threshold for when a person is near the sensor.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    human_sensor.setNearValue(100);
+                  }
+
+          .section
+            .method-name(translate="no")
+              #settouchvalue.anchor
+              .light human_sensor
+              | .setTouchValue(value)
+            p
+              | Provide an integer from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              |  to calibrate the lowest threshold for when a person is touching the sensor.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    human_sensor.setTouchValue(150);
+                  }
+
+          .section
+            .method-name(translate="no")
+              #setpickupvalue.anchor
+              .light human_sensor
+              | .setPickupValue(value)
+            p
+              | Provide an integer from&nbsp;
+              a.click-flash(href="#getrawvalue") getRawValue()
+              |  to calibrate the lowest threshold for when a person is picking up the sensor.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    human_sensor.setPickupValue(200);
                   }
 
           .section
@@ -567,100 +618,6 @@ html(lang='en')
 
           .section
             .method-name(translate="no")
-              #getvalue.anchor
-              .light human_sensor
-              | .getValue()
-              include ./global/labels/real-time.jade
-            p
-              | Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
-              | .
-            p
-              | This will return the raw capacitance sensor reading if you have not used&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
-              |  yet, or if you have called&nbsp;
-              a.click-flash(href="#resetmodifier") resetModifier()
-              | .
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    human_sensor.update();
-
-                    if(human_sensor.onValueChange()) {
-                      Serial.println(human_sensor.getValue());
-                    }
-                  }
-
-          .section
-            .method-name(translate="no")
-              #getrawvalue.anchor
-              .light human_sensor
-              | .getRawValue()
-              include ./global/labels/real-time.jade
-            p
-              | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
-              | .
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    human_sensor.update();
-
-                    Serial.println(human_sensor.getRawValue());
-                  }
-
-          .section
-            .method-name(translate="no")
-              #getactivelevel.anchor
-              .light human_sensor
-              | .getActiveLevel()
-              include ./global/labels/real-time.jade
-            p
-              | Returns the current sensor level after being adjusted by&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
-              | .
-            ul
-              li
-                | &nbsp;
-                b 0
-                | &nbsp;&nbsp;no human is present
-              li
-                | &nbsp;
-                b 1
-                | &nbsp;&nbsp;a human is near
-              li
-                | &nbsp;
-                b 2
-                | &nbsp;&nbsp;a human is touching the sensor
-              li
-                | &nbsp;
-                b 3
-                | &nbsp;&nbsp;a human is picking up the sensor
-              li
-                b -1
-                | &nbsp;&nbsp;an error occured (non-continuous range)
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    human_sensor.update();
-
-                    Serial.println(human_sensor.getActiveLevel());
-                  }
-
-          .section
-            .method-name(translate="no")
               #ongone.anchor
               .light human_sensor
               | .onGone()
@@ -773,6 +730,100 @@ html(lang='en')
                       // code only runs once per event
                       Serial.println("Pickup");
                     }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #getvalue.anchor
+              .light human_sensor
+              | .getValue()
+              include ./global/labels/real-time.jade
+            p
+              | Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;
+              a.click-flash(href="#setmodifier") setModifier()
+              | .
+            p
+              | This will return the raw capacitance sensor reading if you have not used&nbsp;
+              a.click-flash(href="#setmodifier") setModifier()
+              |  yet, or if you have called&nbsp;
+              a.click-flash(href="#resetmodifier") resetModifier()
+              | .
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
+
+                    if(human_sensor.onValueChange()) {
+                      Serial.println(human_sensor.getValue());
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #getrawvalue.anchor
+              .light human_sensor
+              | .getRawValue()
+              include ./global/labels/real-time.jade
+            p
+              | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
+              a.click-flash(href="#setmodifier") setModifier()
+              | .
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
+
+                    Serial.println(human_sensor.getRawValue());
+                  }
+
+          .section
+            .method-name(translate="no")
+              #getactivelevel.anchor
+              .light human_sensor
+              | .getActiveLevel()
+              include ./global/labels/real-time.jade
+            p
+              | Returns the current sensor level after being adjusted by&nbsp;
+              a.click-flash(href="#setmodifier") setModifier()
+              | .
+            ul
+              li
+                | &nbsp;
+                b 0
+                | &nbsp;&nbsp;no human is present
+              li
+                | &nbsp;
+                b 1
+                | &nbsp;&nbsp;a human is near
+              li
+                | &nbsp;
+                b 2
+                | &nbsp;&nbsp;a human is touching the sensor
+              li
+                | &nbsp;
+                b 3
+                | &nbsp;&nbsp;a human is picking up the sensor
+              li
+                b -1
+                | &nbsp;&nbsp;an error occured (non-continuous range)
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    human_sensor.update();
+
+                    Serial.println(human_sensor.getActiveLevel());
                   }
 
           .section
