@@ -31,7 +31,7 @@ html(lang='en')
                 small v2.0.1
               a.btn.btn-success(href="#download") Download
               | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-sketch") See Example
+              a.btn.btn-default(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
           .h3
@@ -81,6 +81,76 @@ html(lang='en')
               a(href="https://github.com/alextaujenis/RBD_Motor") View Source on GitHub
               |  with&nbsp;
               a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+
+          .h3
+            #example-wiring.anchor
+            | Example Wiring
+          p
+            | This is a high powered motor driver circuit that can spin a single motor at variable speed in one direction. It is called a low-side switch that includes over-current and inductive kickback protection. The motor can be powered from batteries or a DC adapter. This circuit requires an Arduino PWM pin for variable speed control.
+          ol
+            li
+              | Connect a motor and&nbsp;
+              i power supply
+              |  (batteries or DC adapter)
+            li
+              | Add a&nbsp;
+              b diode
+              |  across the&nbsp;
+              span.hot-wire positive
+              |  and&nbsp;
+              span.ground-wire negative&nbsp;
+              i motor pins
+            li
+              | Add a N-Channel Logic Level&nbsp;
+              b MOSFET
+              |  to the circuit
+            li
+              | Connect the&nbsp;
+              b MOSFET Gate
+              |  to a&nbsp;
+              b 10K&#8486; resistor
+              |  bridged to&nbsp;
+              b ground
+            li
+              | Also connect the&nbsp;
+              b MOSFET Gate
+              |  to a&nbsp;
+              b 150&#8486; resistor
+              |  bridged to&nbsp;
+              span.control-wire PWM pin 3
+            li
+              | Connect the&nbsp;
+              b MOSFET Drain
+              |  to the&nbsp;
+              b negative&nbsp;
+              i motor pin
+            li
+              | Connect the&nbsp;
+              b MOSFET Source
+              |  to the&nbsp;
+              b negative&nbsp;
+              i power supply
+            li
+              | Connect the Arduino&nbsp;
+              b ground
+              |  to the circuit
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  on to the Arduino
+            li Watch the motor spin up and down
+          p
+            img.img-responsive(src="assets/images/arduino-motor-wiring-diagram-sm.png", alt="A motor wired to a low-side switch, a battery pack, and an Arduino Micro PWM pin 3.")
+          .h3
+            #forward-and-reverse.anchor
+            | Forward & Reverse
+          p
+            | The&nbsp;
+            a(href="#example-wiring") Example Wiring
+            |  circuit only spins the motor in one direction, but this library is capable of forward and reverse. To enable this capability you should use a motor shield or H bridge, then specify the [optional] forward and reverse pins in the&nbsp;
+            a.click-flash(href="#constructor") constructor()
+            | .
+
           .h3
             #example-sketch.anchor
             | Example Sketch
@@ -93,8 +163,7 @@ html(lang='en')
                 #include <RBD_Timer.h>
                 #include <RBD_Motor.h>
 
-                // motor shield
-                RBD::Motor motor(9, 11, 8); // speed pin, forward pin, reverse pin
+                RBD::Motor motor(3); // PWM pin
 
                 void setup() {
                   motor.rampUp(5000);
@@ -108,7 +177,6 @@ html(lang='en')
                       motor.rampDown(3000);
                     }
                     else {
-                      motor.toggleDirection();
                       motor.rampUp(5000);
                     }
                   }
@@ -135,7 +203,7 @@ html(lang='en')
 
           ul.public-methods(translate="no")
             li
-              a.click-flash(href="#constructor") constructor(speed_pin, [forward_pin], [reverse_pin])
+              a.click-flash(href="#constructor") constructor(pwm_pin, [forward_pin], [reverse_pin])
             li.divider
             li
               a.click-flash(href="#on") .on()
@@ -200,9 +268,9 @@ html(lang='en')
           .section
             .method-name(translate="no")
               #constructor.anchor
-              | RBD::Motor constructor(speed_pin, [forward_pin], [reverse_pin])
+              | RBD::Motor constructor(pwm_pin, [forward_pin], [reverse_pin])
             p
-              | Create a new motor and pass in the Arduino speed pin number. The forward and reverse pins are [optional] and can be used to control the motor in both directions with the help of a motor-shield or H bridge. The motor will be set&nbsp;
+              | Create a new motor and pass in the Arduino PWM pin number. The forward and reverse pins are [optional] and can be used to control the motor in both directions with the help of a motor shield or H bridge. The motor will be set&nbsp;
               a.click-flash(href="#forward") forward()
               |  by default if you provide the forward and reverse pins.
             h5
@@ -212,7 +280,7 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   // motor shield
-                  RBD::Motor motor(9, 11, 8); // speed pin, forward pin, reverse pin
+                  RBD::Motor motor(3); // PWM pin
 
                   void setup() {
                     ...
