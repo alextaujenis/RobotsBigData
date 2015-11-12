@@ -35,7 +35,7 @@ style_dest = './assets/style/'
 # jade template pages
 template_src = './src/templates/*.jade'
 
-# jade template subudirectories
+# jade template subdirectories
 template_subdirectory_src = './src/templates/**/*.jade'
 
 # root project directory
