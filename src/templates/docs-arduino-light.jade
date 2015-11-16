@@ -139,7 +139,7 @@ html(lang='en')
 
           ul.public-methods(translate="no")
             li
-              a.click-flash(href="#constructor") constructor(pin)
+              a.click-flash(href="#constructor") constructor(pwm_pin)
             li.divider
             li
               a.click-flash(href="#on") .on()
@@ -172,15 +172,15 @@ html(lang='en')
           .section
             .method-name(translate="no")
               #constructor.anchor
-              | RBD::Light constructor(pin)
-            p Create a new light and pass in the Arduino pin number.
+              | RBD::Light constructor(pwm_pin)
+            p Create a new light and pass in the Arduino PWM pin number.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
             div(translate="no")
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
-                  RBD::Light light(3);
+                  RBD::Light light(3); // PWM pin 3
 
                   void setup() {
                     ...
