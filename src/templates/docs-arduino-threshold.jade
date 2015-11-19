@@ -103,15 +103,15 @@ html(lang='en')
                   threshold.setLevel(1,0);    // low
                   threshold.setLevel(2,10.5); // medium
                   threshold.setLevel(3,20);   // high
-                  threshold.setMaxLevel(30);
+                  threshold.setMaxLevel(30);  // max
                 }
 
                 void loop() {
-                  Serial.println(threshold.computeLevel(-1));   // 0
-                  Serial.println(threshold.computeLevel(8));    // 1
-                  Serial.println(threshold.computeLevel(10.6)); // 2
-                  Serial.println(threshold.computeLevel(30));   // 3
-                  Serial.println(threshold.computeLevel(31));   // 4
+                  Serial.println(threshold.computeLevel(-1));   // 0 under
+                  Serial.println(threshold.computeLevel(8));    // 1 low
+                  Serial.println(threshold.computeLevel(10.6)); // 2 medium
+                  Serial.println(threshold.computeLevel(30));   // 3 high
+                  Serial.println(threshold.computeLevel(31));   // 4 over
                 }
 
           .h3

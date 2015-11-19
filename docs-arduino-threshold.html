@@ -7,15 +7,15 @@ void setup() {
   threshold.setLevel(1,0);    // low
   threshold.setLevel(2,10.5); // medium
   threshold.setLevel(3,20);   // high
-  threshold.setMaxLevel(30);
+  threshold.setMaxLevel(30);  // max
 }
 
 void loop() {
-  Serial.println(threshold.computeLevel(-1));   // 0
-  Serial.println(threshold.computeLevel(8));    // 1
-  Serial.println(threshold.computeLevel(10.6)); // 2
-  Serial.println(threshold.computeLevel(30));   // 3
-  Serial.println(threshold.computeLevel(31));   // 4
+  Serial.println(threshold.computeLevel(-1));   // 0 under
+  Serial.println(threshold.computeLevel(8));    // 1 low
+  Serial.println(threshold.computeLevel(10.6)); // 2 medium
+  Serial.println(threshold.computeLevel(30));   // 3 high
+  Serial.println(threshold.computeLevel(31));   // 4 over
 }
 ]]></script></div><div class="h3"><div id="public-methods" class="anchor"></div>Public Methods</div><h4 translate="no" class="class-name"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[RBD::Threshold
 ]]></script></h4><ul translate="no" class="public-methods"><li><a href="#constructor" class="click-flash">constructor(level_count)</a></li><li class="divider"></li><li><a href="#setlevel" class="click-flash">.setLevel(index, value)</a></li><li><a href="#setmaxlevel" class="click-flash">.setMaxLevel(value)</a></li><li class="divider"></li><li><a href="#getlevel" class="click-flash">.getLevel(index)</a></li><li><a href="#getmaxlevel" class="click-flash">.getMaxLevel()</a></li><li class="divider"></li><li><a href="#computelevel" class="click-flash">.computeLevel(value)</a></li></ul><div class="section"><div translate="no" class="method-name"><div id="constructor" class="anchor"></div>RBD::Threshold constructor(level_count)</div><p>Create a new instance and provide an integer for the maximum number of threshold levels. For example; set the level_count to 3 if you have levels of low, medium, and high. If you need more levels, this library will dynamically allocate an array to accommodate the size you provide the constructor.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[RBD::Threshold threshold(3) // 3 levels
