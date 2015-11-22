@@ -237,12 +237,6 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Provide an integer and the servo will move to the specified position in degrees. This can be called inside of setup() or also at run-time inside of loop().
-            p
-              | For performance reasons; you should only call this method&nbsp;
-              b once
-              |  for each change in adjustment requested inside of loop(). This can be done by wrapping this method in a conditional statement and controlling the program flow with the&nbsp;
-              a(href="docs-arduino-timer.html") RBD Timer library
-              | .
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
