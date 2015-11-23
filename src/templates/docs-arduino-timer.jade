@@ -28,7 +28,7 @@ html(lang='en')
                 small(translate="no")  API DOCUMENTATION
               p
                 | Manage many timed events.
-                small v1.0.5
+                small v1.1.0
               a.btn.btn-primary(href="#how-to-install") How to Install
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#example-setup") See Example
@@ -61,7 +61,7 @@ html(lang='en')
           ul
             li
               a(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip")
-                | Download Timer Library v1.0.5&nbsp;
+                | Download Timer Library v1.1.0&nbsp;
                 .label.label-warning.zip-label .zip
               |  by itself, or
             li
@@ -132,9 +132,13 @@ html(lang='en')
             li
               a.click-flash(href="#restart") .restart()
             li
+              a.click-flash(href="#stop") .stop()
+            li
               a.click-flash(href="#isactive") .isActive()
             li
               a.click-flash(href="#isexpired") .isExpired()
+            li
+              a.click-flash(href="#isstopped") .isStopped()
             li.divider
             li
               a.click-flash(href="#onrestart") .onRestart()
@@ -284,7 +288,7 @@ html(lang='en')
               .light timer
               | .restart()
             p
-              | There are no start or stop methods. All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;
+              | All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;
               a.click-flash(href="#isexpired") isExpired()
               |  to create a continuous loop.
             p
@@ -301,6 +305,35 @@ html(lang='en')
                     if(timer.isExpired()) {
                       // run code here, then restart the timer
                       timer.restart();
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #stop.anchor
+              .light timer
+              | .stop()
+            p
+              | Calling&nbsp;
+              a.click-flash(href="#stop") stop()
+              |  kills all events and prohibits everything except&nbsp;
+              a.click-flash(href="#isstopped") isStopped()
+              |  from returning true. You must call&nbsp;
+              a.click-flash(href="#restart") restart()
+              |  to activate the timer again.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.isExpired()) {
+                      timer.stop();
+                    }
+
+                    if(timer.onExpired()) {
+                      // code here will not execute when stopped
                     }
                   }
 
@@ -352,6 +385,35 @@ html(lang='en')
                     if(timer.isExpired()) {
                       // run code here and restart when finished
                       timer.restart();
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #isstopped.anchor
+              .light timer
+              | .isStopped()
+            p
+              | Returns true after calling&nbsp;
+              a.click-flash(href="#stop") stop()
+              | . Returns false if the timer&nbsp;
+              a.click-flash(href="#isactive") isActive()
+              |  or&nbsp;
+              a.click-flash(href="#isexpired") isExpired()
+              | .
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    timer.stop();
+                  }
+
+                  void loop() {
+                    if(timer.isStopped()) {
+                      Serial.println("Timer Stopped");
                     }
                   }
 
