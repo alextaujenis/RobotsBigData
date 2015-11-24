@@ -28,7 +28,7 @@ html(lang='en')
                 small(translate="no")  API DOCUMENTATION
               p
                 | Manage many timed events.
-                small v1.1.0
+                small v1.1.1
               a.btn.btn-primary(href="#how-to-install") How to Install
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#example-setup") See Example
@@ -61,7 +61,7 @@ html(lang='en')
           ul
             li
               a(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip")
-                | Download Timer Library v1.1.0&nbsp;
+                | Download Timer Library v1.1.1&nbsp;
                 .label.label-warning.zip-label .zip
               |  by itself, or
             li
@@ -173,7 +173,7 @@ html(lang='en')
               .light timer
               | .setTimeout(value)
             p
-              | Provide an unsigned long value to change how long the timer will run (in milliseconds). This can be done inside of setup() or also inside of loop() to change the value at runtime.
+              | Provide an unsigned long greater than zero to change how long the timer will run (in milliseconds). This can be done inside of setup() or also inside of loop() to change the value at runtime.
               | This will override any value given to&nbsp;
               a.click-flash(href="#sethertz") setHertz()
               | .
