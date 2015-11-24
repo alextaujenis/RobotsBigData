@@ -88,7 +88,8 @@
             'Timer setTimeout setHertz restart stop isActive isExpired isStopped onRestart onActive onExpired getValue getInverseValue getPercentValue getInversePercentValue ' +
             'WaterSensor update setSampleSize setLevel setMaxLevel setModifier resetModifier getValue getRawValue getActiveLevel onValueChange onRawValueChange onActiveLevelChange ' +
             'Button setDebounceTimeout inputPullup disableInputPullup invertReading resetReading isPressed isReleased onPressed onReleased ' +
-            'Servo setPulseInterval setDegreesOfRotation moveToDegrees update';
+            'Servo setPulseInterval setDegreesOfRotation moveToDegrees update ' +
+            'SerialManager start setFlag setDelimiter onReceive getValue getCmd getParam isCmd isParam';
 
 		this.regexList = [
 			{ regex: SyntaxHighlighter.regexLib.singleLineCComments,	css: 'color1' },			// one line comments

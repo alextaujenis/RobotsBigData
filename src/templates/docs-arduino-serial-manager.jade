@@ -1,0 +1,415 @@
+doctype html
+html(lang='en')
+  head
+    title Robots + Big Data: Arduino Serial Manager Docs
+    meta(name="description", content="An Arduino library with a simple event-based interface for serial communication.")
+    include ./global/head-content.jade
+  body
+    include ./global/top-nav.jade
+    .container-fluid
+      .row
+        include ./global/docs-side-nav.jade
+        .documentation.col-sm-8
+          ol.breadcrumb.stuck
+            li
+              a(href="index.html") Home
+            li
+              a(href="docs-arduino.html") Arduino
+            li.active(translate="no")
+              | Serial Manager
+          .jumbotron
+            .stuck.click-through
+              .row.jumbotron-header.click-through
+                .col-xs-12.text-right.click-through
+                  span.label.label-info.title-label Arduino
+            .jumbotron-container
+              h2(translate="no")
+                | Serial Manager
+                small(translate="no")  API DOCUMENTATION
+              p
+                | A simple interface for serial communication.
+                small v1.0.0-alpha.1
+              a.btn.btn-primary(href="#how-to-install") How to Install
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#example-wiring") See Example
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="#public-methods") Public Methods
+          .h3
+            #overview.anchor
+            | Overview
+          p.lead
+            | The Arduino Serial object provides a great general purpose interface for sending and receiving serial commands. This library takes care of the details and allows you to quickly define and consume an event-based serial protocol.
+          .h3
+            #relativevsabsolute.anchor
+            | Alpha Version
+          p
+            | This library is functional but likely to change. It was released early in order to gain feedback from the community and evolve in the right direction. Please post feedback, questions, and issues to this&nbsp;
+            a(href="https://github.com/alextaujenis/RBD_SerialManager/issues") GitHub issues page
+            | .
+          .h3
+            #how-to-install.anchor
+            | How to Install
+          p
+            | This library is part of a larger package that you can install to access
+            i  all
+            |  of the documented sensors,&nbsp;
+            i or
+            |  you can use this library by itself.
+          ul
+            li
+              a(href="https://github.com/alextaujenis/RBD_SerialManager/raw/master/extras/RBD_SerialManager.zip")
+                | Download Serial Manager Library v1.0.0-alpha.1&nbsp;
+                .label.label-warning.zip-label(translate="no") .zip
+              |  by itself, or
+            li
+              a(href="install.html") Download All Sensor Libraries
+              |  with this library included, or
+            li
+              a(href="https://github.com/alextaujenis/RBD_SerialManager") View Source on GitHub
+              |  with&nbsp;
+              a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+          .h3
+            #example-wiring.anchor
+            | Example Wiring
+          p
+            | This library communicates over the Arduino USB port set at 115200 baud:
+          p
+            img.img-responsive(src="assets/images/arduino-serial-manager-wiring-diagram.png", alt="A USB cord plugged into an Arduino Micro.")
+          .h3
+            #example-setup.anchor
+            | Example Setup
+          ol
+            li Install this library and load the example sketch onto an Arduino
+            li Open a serial connection at 115200 baud
+            li Type something into the serial console followed by a semicolon ; then hit enter
+            li Watch the text get parsed and echoed back into the serial console
+          .h3
+            #example-sketch.anchor
+            | Example Sketch
+            span.label.label-info Arduino
+            span.label.label-primary C++
+          div(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_SerialManager.h>
+
+                RBD::SerialManager serial_manager;
+
+                void setup() {
+                  serial_manager.start();
+                }
+
+                void loop() {
+                  if(serial_manager.onReceive()) {
+                    // example serial command: hello world;
+                    serial_manager.getValue(); // returns: hello world
+                  }
+                }
+
+          .h3
+            #public-methods.anchor
+            | Public Methods
+          h4.class-name(translate="no")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                RBD::SerialManager
+
+          ul.public-methods(translate="no")
+            li
+              a.click-flash(href="#constructor") constructor()
+            li.divider
+            li
+              a.click-flash(href="#start") .start()
+            li
+              a.click-flash(href="#setflag") .setFlag(value)
+            li
+              a.click-flash(href="#setdelimiter") .setDelimiter(value)
+            li.divider
+            li
+              a.click-flash(href="#onreceive") .onReceive()
+              include ./global/labels/update.jade
+              include ./global/labels/event.jade
+            li
+              a.click-flash(href="#getvalue") .getValue()
+              include ./global/labels/real-time-onreceive.jade
+            li.divider
+            li
+              a.click-flash(href="#getcmd") .getCmd()
+              include ./global/labels/real-time-onreceive.jade
+            li
+              a.click-flash(href="#getparam") .getParam()
+              include ./global/labels/real-time-onreceive.jade
+            li
+              a.click-flash(href="#iscmd") .isCmd(value)
+              include ./global/labels/real-time-onreceive.jade
+            li
+              a.click-flash(href="#isparam") .isParam(value)
+              include ./global/labels/real-time-onreceive.jade
+
+          .section
+            .method-name(translate="no")
+              #constructor.anchor
+              | RBD::SerialManager constructor()
+            p Create a new Serial Manager instance.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  RBD::SerialManager serial_manager;
+
+                  void setup() {
+                    ...
+                  }
+
+          .section
+            .method-name(translate="no")
+              #start.anchor
+              .light serial_manager
+              | .start()
+            p
+              | Begin serial communication over the Arduino USB cable at 115200 baud. This method must be called in setup() in order to use this library.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    serial_manager.start();
+                  }
+
+          .section
+            .method-name(translate="no")
+              #setflag.anchor
+              .light serial_manager
+              | .setFlag(value)
+            p
+              | Provide a char or String to change the&nbsp;
+              b identifier that denotes the end of each serial command
+              | . This library defaults to having a terminating flag of ; semicolon.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    // example serial commands: on; off; pwm,123;
+                    serial_manager.setFlag(";");  // default flag
+                  }
+
+          .section
+            .method-name(translate="no")
+              #setdelimiter.anchor
+              .light serial_manager
+              | .setDelimiter(value)
+            p
+              | Provide a char or String to change the&nbsp;
+              b identifier between parameters in serial commands
+              | . This library defaults to having a delimiter of , comma.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    // example serial commands: on; off; pwm,123;
+                    serial_manager.setDelimiter(","); // default delimiter
+                  }
+
+          .section
+            .method-name(translate="no")
+              #onreceive.anchor
+              .light serial_manager
+              | .onReceive()
+              include ./global/labels/update.jade
+              include ./global/labels/event.jade
+            p
+              | Returns true when a&nbsp;
+              a.click-flash(href="#setflag") setFlag()
+              |  has been identified in the serial communication input stream and the parsed data is available from&nbsp;
+              a.click-flash(href="#getvalue") getValue()
+              | .
+            p
+              | In order for this library to behave correctly; you must wrap all real-time methods in a conditional with this method (as shown below).
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    serial_manager.start();
+                  }
+
+                  void loop() {
+                    if(serial_manager.onReceive()) {
+                      // example serial command: hello world;
+                      Serial.println(serial_manager.getValue());
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #getvalue.anchor
+              .light serial_manager
+              | .getValue()
+              include ./global/labels/real-time-onreceive.jade
+            p
+              | Returns a String of data parsed in chunks between&nbsp;
+              a.click-flash(href="#setflag") setFlag()
+              |  from the serial communication input stream. This method must be used in conjunction with&nbsp;
+              a.click-flash(href="#onreceive") onReceive()
+              |  for this library to behave correctly (as shown below).
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    serial_manager.start();
+                  }
+
+                  void loop() {
+                    if(serial_manager.onReceive()) {
+                      // example serial command: hello world;
+                      Serial.println(serial_manager.getValue());
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #getcmd.anchor
+              .light serial_manager
+              | .getCmd()
+              include ./global/labels/real-time-onreceive.jade
+            p
+              | Returns a String of data that is the first (or only) parameter parsed from&nbsp;
+              a.click-flash(href="#getvalue") getValue()
+              | . This enables a serial command structure that follows a cmd; or cmd,param; template. This method must be used in conjunction with&nbsp;
+              a.click-flash(href="#onreceive") onReceive()
+              |  for this library to behave correctly (as shown below).
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    serial_manager.start();
+                  }
+
+                  void loop() {
+                    if(serial_manager.onReceive()) {
+                      // example serial command: pwm,123;
+                      serial_manager.getCmd(); // returns: pwm
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #getparam.anchor
+              .light serial_manager
+              | .getParam()
+              include ./global/labels/real-time-onreceive.jade
+            p
+              | Returns a String of data that is the second parameter parsed from&nbsp;
+              a.click-flash(href="#getvalue") getValue()
+              | . This enables a serial command structure that follows a cmd; or cmd,param; template. This method must be used in conjunction with&nbsp;
+              a.click-flash(href="#onreceive") onReceive()
+              |  for this library to behave correctly (as shown below).
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    serial_manager.start();
+                  }
+
+                  void loop() {
+                    if(serial_manager.onReceive()) {
+                      // example serial command: pwm,123;
+                      serial_manager.getParam().toInt(); // returns: 123
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #iscmd.anchor
+              .light serial_manager
+              | .isCmd(value)
+              include ./global/labels/real-time-onreceive.jade
+            p
+              | Provide a String to see if it matches the current&nbsp;
+              a.click-flash(href="#getcmd") getCmd()
+              | . This method must be used in conjunction with&nbsp;
+              a.click-flash(href="#onreceive") onReceive()
+              |  for this library to behave correctly (as shown below).
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    serial_manager.start();
+                  }
+
+                  void loop() {
+                    if(serial_manager.onReceive()) {
+
+                      // example serial command: on;
+                      if(serial_manager.isCmd("on")) {
+                        // something.on();
+                      }
+
+                      // example serial command: off;
+                      if(serial_manager.isCmd("off")) {
+                        // something.off();
+                      }
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #isparam.anchor
+              .light serial_manager
+              | .isParam(value)
+              include ./global/labels/real-time-onreceive.jade
+            p
+              | Provide a String to see if it matches the current&nbsp;
+              a.click-flash(href="#getparam") getParam()
+              | . This method must be used in conjunction with&nbsp;
+              a.click-flash(href="#onreceive") onReceive()
+              |  for this library to behave correctly (as shown below).
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    serial_manager.start();
+                  }
+
+                  void loop() {
+                    if(serial_manager.onReceive()) {
+                      // example serial command: servo,up;
+                      if(serial_manager.isCmd("servo")) {
+                        if(serial_manager.isParam("up")) {
+                          // servo.moveToDegrees(180);
+                        }
+                      }
+                    }
+                  }
+
+
+    include ./global/footer.jade
+    include ./global/foot-content.jade
+    include ./global/docs-foot-content.jade
