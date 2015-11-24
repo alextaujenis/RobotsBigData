@@ -65,4 +65,8 @@
   <loc>http://robotsbigdata.com/docs-arduino-capacitance.html</loc>
   <priority>0.5</priority>
 </url>
+<url>
+  <loc>http://robotsbigdata.com/docs-arduino-serial-manager.html</loc>
+  <priority>0.70</priority>
+</url>
 </urlset>
