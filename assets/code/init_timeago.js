@@ -1,0 +1,1 @@
+$(document).ready(function(){return jQuery(".timeago").timeago()});

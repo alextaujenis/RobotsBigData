@@ -11,12 +11,13 @@ html(lang='en')
         .row
           img.logo.img-responsive(src="assets/images/robots_big_data_logo.png", alt="Robots + Big Data")
           h3.tagline An open-source framework for connecting sensors to the internet.
-      .row.text-center
-        .col-sm-6
+      .row
+        .col-sm-6.text-center
           .hardware1 Program the real world
           .hardware-with with any
           .hardware-name Arduino
-          img(src="assets/images/arduino-uno.png", alt="Arduino Uno")
+          .hardware-image
+            img(src="assets/images/arduino-uno.png", alt="Arduino Uno")
           .row.text-left
             ul.hardware-benefits
               li
@@ -28,24 +29,69 @@ html(lang='en')
               li
                 b Do it fast
                 |  in microsecond response times
-        .col-sm-6.text-center
-          .software1 Simple real-time libraries
-          .software2 that play nice together
-          a(href="docs-arduino-button.html")
-            img.library-img(src="assets/images/library-rbd-button.png", alt="RBD Button Library")
-          a(href="docs-arduino-light.html")
-            img.library-img(src="assets/images/library-rbd-light.png", alt="RBD Light Library")
-          a(href="docs-arduino-motor.html")
-            img.library-img(src="assets/images/library-rbd-motor.png", alt="RBD Motor Library")
-          a(href="docs-arduino-servo.html")
-            img.library-img(src="assets/images/library-rbd-servo.png", alt="RBD Servo Library")
-          a(href="docs-arduino-light-sensor.html")
-            img.library-img(src="assets/images/library-rbd-light-sensor.png", alt="RBD Light Sensor Library")
-          a(href="docs-arduino-water-sensor.html")
-            img.library-img(src="assets/images/library-rbd-water-sensor.png", alt="RBD Water Sensor Library")
-          a(href="docs-arduino-human-sensor.html")
-            img.library-img(src="assets/images/library-rbd-human-sensor.png", alt="RBD Human Sensor Library")
-          .software-footer Control your sensors with high-level C++ libraries
+        .col-sm-6
+          .header.text-center
+            .software1 Simple real-time libraries
+            .software2 that play nice together
+          .row
+            .col-xs-12.index-libraries
+              a(href="docs-arduino-button.html")
+                .library
+                  .title RBD_Button
+                  .version v1.0.1
+                  .description Arduino Button Library - Read and debounce buttons and switches.
+                  .updated
+                    | Updated&nbsp;
+                    time.timeago(datetime="2015-11-05T03:18:19Z") November 5, 2015
+              a(href="docs-arduino-light.html")
+                .library
+                  .title RBD_Light
+                  .version v2.1.0
+                  .description Arduino Light Library - Control many lights.
+                  .updated
+                    | Updated&nbsp;
+                    time.timeago(datetime="2015-11-14T19:20:10Z") November 14, 2015
+              a(href="docs-arduino-motor.html")
+                .library
+                  .title RBD_Motor
+                  .version v2.1.0
+                  .description Arduino Motor Library - Control many motors.
+                  .updated
+                    | Updated&nbsp;
+                    time.timeago(datetime="2015-11-14T20:10:48Z") November 14, 2015
+              a(href="docs-arduino-servo.html")
+                .library
+                  .title RBD_Servo
+                  .version v1.0.1
+                  .description Arduino Servo Library - Control many servos without delay or interrupts.
+                  .updated
+                    | Updated&nbsp;
+                    time.timeago(datetime="2015-11-09T01:44:52Z") November 14, 2015
+              a(href="docs-arduino-light-sensor.html")
+                .library
+                  .title RBD_LightSensor
+                  .version v1.0.3
+                  .description Arduino Light Sensor Library - Read and calibrate photoresistors.
+                  .updated
+                    | Updated&nbsp;
+                    time.timeago(datetime="2015-10-27T22:09:03Z") October 27, 2015
+              a(href="docs-arduino-water-sensor.html")
+                .library
+                  .title RBD_WaterSensor
+                  .version v2.0.0
+                  .description Arduino Water Sensor Library - Measure and calibrate water level sensors.
+                  .updated
+                    | Updated&nbsp;
+                    time.timeago(datetime="2015-11-10T00:57:25Z") November 10, 2015
+              a(href="docs-arduino-human-sensor.html")
+                .library
+                  .title RBD_HumanSensor
+                  .version v1.0.3
+                  .description Arduino Human Sensor Library - Detect human presence, touch, and pickup events.
+                  .updated
+                    | Updated&nbsp;
+                    time.timeago(datetime="2015-11-10T12:16:35Z") November 10, 2015
+              .software-footer.text-center Control your sensors with high-level C++ libraries
       .row.getting-started-spacer
       .branding
         .row.text-center
@@ -61,5 +107,7 @@ html(lang='en')
 
     include ./global/footer.jade
     include ./global/foot-content.jade
-    script(src='assets/code/init_branding.js')
     script(src='assets/code/branding.js')
+    script(src='assets/code/init_branding.js')
+    script(src='assets/code/jquery.timeago.js')
+    script(src='assets/code/init_timeago.js')

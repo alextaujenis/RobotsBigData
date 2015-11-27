@@ -57,6 +57,7 @@ download_dest = './assets/downloads/'
 jquery_js     = './bower_components/jquery/dist/jquery.min.js'
 bootstrap_js  = './bower_components/bootstrap/dist/js/bootstrap.min.js'
 bootstrap_css = './bower_components/bootstrap/dist/css/bootstrap.min.css'
+timeago_js    = './bower_components/jquery-timeago/jquery.timeago.js'
 
 # delete the assets folder and all site contents
 gulp.task 'clean-assets', ->
@@ -119,7 +120,7 @@ gulp.task 'copy-downloads', ->
 
 # copy bower js libraries to the assets folder
 gulp.task 'copy-bower-js', ->
-  gulp.src([jquery_js, bootstrap_js])
+  gulp.src([jquery_js, bootstrap_js, timeago_js])
     .pipe(gulp.dest(code_dest))
 
 # copy bower css libraries to the assets folder

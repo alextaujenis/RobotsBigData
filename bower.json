@@ -1,13 +1,13 @@
 {
   "name": "Robots Big Data",
   "version": "2.3.0",
-  "authors": [
-  ],
+  "authors": [],
   "moduleType": [
     "node"
   ],
   "license": "MIT",
   "dependencies": {
-    "bootstrap": "~3.3.5"
+    "bootstrap": "~3.3.5",
+    "jquery-timeago": "~1.4.3"
   }
 }
