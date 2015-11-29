@@ -175,7 +175,7 @@ html(lang='en')
             p
               | Provide an unsigned long greater than zero to change how long the timer will run (in milliseconds). This can be done inside of setup() or also inside of loop() to change the value at runtime.
               | This will override any value given to&nbsp;
-              a.click-flash(href="#sethertz") setHertz()
+              a.click-flash(href="#sethertz", translate="no") setHertz()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -201,7 +201,7 @@ html(lang='en')
             p
               | Provide an integer from 1 - 1000 to set approximately how many times the timer will restart in one second. This can be done inside of setup() or also inside of loop() to change the value at runtime.
               | This will override any value given to&nbsp;
-              a.click-flash(href="#settimeout") setTimeout()
+              a.click-flash(href="#settimeout", translate="no") setTimeout()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -289,11 +289,11 @@ html(lang='en')
               | .restart()
             p
               | All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;
-              a.click-flash(href="#isexpired") isExpired()
+              a.click-flash(href="#isexpired", translate="no") isExpired()
               |  to create a continuous loop.
             p
               | If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;
-              a.click-flash(href="#onrestart") onRestart()
+              a.click-flash(href="#onrestart", translate="no") onRestart()
               |  instead.
             h5
               | EXAMPLE&nbsp;
@@ -315,11 +315,11 @@ html(lang='en')
               | .stop()
             p
               | Calling&nbsp;
-              a.click-flash(href="#stop") stop()
+              a.click-flash(href="#stop", translate="no") stop()
               |  kills all events and prohibits everything except&nbsp;
-              a.click-flash(href="#isstopped") isStopped()
+              a.click-flash(href="#isstopped", translate="no") isStopped()
               |  from returning true. You must call&nbsp;
-              a.click-flash(href="#restart") restart()
+              a.click-flash(href="#restart", translate="no") restart()
               |  to activate the timer again.
             h5
               | EXAMPLE&nbsp;
@@ -344,13 +344,13 @@ html(lang='en')
               | .isActive()
             p
               | Returns true if time is available. Use this method with&nbsp;
-              a.click-flash(href="#getpercentvalue") getPercentValue()
+              a.click-flash(href="#getpercentvalue", translate="no") getPercentValue()
               |  or&nbsp;
-              a.click-flash(href="#getinversepercentvalue") getInversePercentValue()
+              a.click-flash(href="#getinversepercentvalue", translate="no") getInversePercentValue()
               |  to perform real-time actions tweened over time.
             p
               | Use&nbsp;
-              a.click-flash(href="#onactive") onActive()
+              a.click-flash(href="#onactive", translate="no") onActive()
               |  to only fire a single event when the timer goes active.
 
             h5
@@ -372,7 +372,7 @@ html(lang='en')
               | .isExpired()
             p
               | Returns true if time has run out. This can be used with&nbsp;
-              a.click-flash(href="#restart") restart()
+              a.click-flash(href="#restart", translate="no") restart()
               |  to create a continuous loop where you execute code once and then restart the timer when the action is complete.
 
             h5
@@ -395,11 +395,11 @@ html(lang='en')
               | .isStopped()
             p
               | Returns true after calling&nbsp;
-              a.click-flash(href="#stop") stop()
+              a.click-flash(href="#stop", translate="no") stop()
               | . Returns false if the timer&nbsp;
-              a.click-flash(href="#isactive") isActive()
+              a.click-flash(href="#isactive", translate="no") isActive()
               |  or&nbsp;
-              a.click-flash(href="#isexpired") isExpired()
+              a.click-flash(href="#isexpired", translate="no") isExpired()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -425,9 +425,9 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;
-              a.click-flash(href="#isexpired") isExpired()
+              a.click-flash(href="#isexpired", translate="no") isExpired()
               |   and&nbsp;
-              a.click-flash(href="#restart") restart()
+              a.click-flash(href="#restart", translate="no") restart()
               |  together, but with a simple syntax and a tighter time loop.
             h5
               | EXAMPLE&nbsp;

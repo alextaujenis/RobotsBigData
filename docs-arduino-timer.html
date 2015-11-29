@@ -20,7 +20,7 @@ void setup() {
   ...
 }
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="settimeout" class="anchor"></div><div class="light">timer</div>.setTimeout(value)</div><p>Provide an unsigned long greater than zero to change how long the timer will run (in milliseconds). This can be done inside of setup() or also inside of loop() to change the value at runtime.
-This will override any value given to&nbsp;<a href="#sethertz" class="click-flash">setHertz()</a>.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void setup() {
+This will override any value given to&nbsp;<a href="#sethertz" translate="no" class="click-flash">setHertz()</a>.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void setup() {
   timer.setTimeout(200);  // expire after 200ms
 }
 
@@ -30,7 +30,7 @@ void loop() {
   }
 }
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="sethertz" class="anchor"></div><div class="light">timer</div>.setHertz(value)</div><p>Provide an integer from 1 - 1000 to set approximately how many times the timer will restart in one second. This can be done inside of setup() or also inside of loop() to change the value at runtime.
-This will override any value given to&nbsp;<a href="#settimeout" class="click-flash">setTimeout()</a>.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void setup() {
+This will override any value given to&nbsp;<a href="#settimeout" translate="no" class="click-flash">setTimeout()</a>.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void setup() {
   timer.setHertz(5);  // expire after 200ms
 }
 
@@ -50,13 +50,13 @@ void loop() {
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="getinversepercentvalue" class="anchor"></div><div class="light">timer</div>.getInversePercentValue()</div><p>Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   Serial.println(timer.getInversePercentValue());
 }
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="restart" class="anchor"></div><div class="light">timer</div>.restart()</div><p>All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a> to create a continuous loop.</p><p>If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;<a href="#onrestart" class="click-flash">onRestart()</a> instead.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="restart" class="anchor"></div><div class="light">timer</div>.restart()</div><p>All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;<a href="#isexpired" translate="no" class="click-flash">isExpired()</a> to create a continuous loop.</p><p>If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;<a href="#onrestart" translate="no" class="click-flash">onRestart()</a> instead.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   if(timer.isExpired()) {
     // run code here, then restart the timer
     timer.restart();
   }
 }
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="stop" class="anchor"></div><div class="light">timer</div>.stop()</div><p>Calling&nbsp;<a href="#stop" class="click-flash">stop()</a> kills all events and prohibits everything except&nbsp;<a href="#isstopped" class="click-flash">isStopped()</a> from returning true. You must call&nbsp;<a href="#restart" class="click-flash">restart()</a> to activate the timer again.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="stop" class="anchor"></div><div class="light">timer</div>.stop()</div><p>Calling&nbsp;<a href="#stop" translate="no" class="click-flash">stop()</a> kills all events and prohibits everything except&nbsp;<a href="#isstopped" translate="no" class="click-flash">isStopped()</a> from returning true. You must call&nbsp;<a href="#restart" translate="no" class="click-flash">restart()</a> to activate the timer again.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   if(timer.isExpired()) {
     timer.stop();
   }
@@ -65,18 +65,18 @@ void loop() {
     // code here will not execute when stopped
   }
 }
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isactive" class="anchor"></div><div class="light">timer</div>.isActive()</div><p>Returns true if time is available. Use this method with&nbsp;<a href="#getpercentvalue" class="click-flash">getPercentValue()</a> or&nbsp;<a href="#getinversepercentvalue" class="click-flash">getInversePercentValue()</a> to perform real-time actions tweened over time.</p><p>Use&nbsp;<a href="#onactive" class="click-flash">onActive()</a> to only fire a single event when the timer goes active.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isactive" class="anchor"></div><div class="light">timer</div>.isActive()</div><p>Returns true if time is available. Use this method with&nbsp;<a href="#getpercentvalue" translate="no" class="click-flash">getPercentValue()</a> or&nbsp;<a href="#getinversepercentvalue" translate="no" class="click-flash">getInversePercentValue()</a> to perform real-time actions tweened over time.</p><p>Use&nbsp;<a href="#onactive" translate="no" class="click-flash">onActive()</a> to only fire a single event when the timer goes active.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   if(timer.isActive()) {
     Serial.println(timer.getPercentValue());
   }
 }
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isexpired" class="anchor"></div><div class="light">timer</div>.isExpired()</div><p>Returns true if time has run out. This can be used with&nbsp;<a href="#restart" class="click-flash">restart()</a> to create a continuous loop where you execute code once and then restart the timer when the action is complete.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isexpired" class="anchor"></div><div class="light">timer</div>.isExpired()</div><p>Returns true if time has run out. This can be used with&nbsp;<a href="#restart" translate="no" class="click-flash">restart()</a> to create a continuous loop where you execute code once and then restart the timer when the action is complete.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   if(timer.isExpired()) {
     // run code here and restart when finished
     timer.restart();
   }
 }
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isstopped" class="anchor"></div><div class="light">timer</div>.isStopped()</div><p>Returns true after calling&nbsp;<a href="#stop" class="click-flash">stop()</a>. Returns false if the timer&nbsp;<a href="#isactive" class="click-flash">isActive()</a> or&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a>.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void setup() {
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isstopped" class="anchor"></div><div class="light">timer</div>.isStopped()</div><p>Returns true after calling&nbsp;<a href="#stop" translate="no" class="click-flash">stop()</a>. Returns false if the timer&nbsp;<a href="#isactive" translate="no" class="click-flash">isActive()</a> or&nbsp;<a href="#isexpired" translate="no" class="click-flash">isExpired()</a>.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void setup() {
   timer.stop();
 }
 
@@ -85,7 +85,7 @@ void loop() {
     Serial.println("Timer Stopped");
   }
 }
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="onrestart" class="anchor"></div><div class="light">timer</div>.onRestart()<span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></div><p>This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;<a href="#isexpired" class="click-flash">isExpired()</a>  and&nbsp;<a href="#restart" class="click-flash">restart()</a> together, but with a simple syntax and a tighter time loop.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="onrestart" class="anchor"></div><div class="light">timer</div>.onRestart()<span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></div><p>This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;<a href="#isexpired" translate="no" class="click-flash">isExpired()</a>  and&nbsp;<a href="#restart" translate="no" class="click-flash">restart()</a> together, but with a simple syntax and a tighter time loop.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   if(timer.onRestart()) {
     // code only runs once per event
     Serial.println("Timer Restarted");
