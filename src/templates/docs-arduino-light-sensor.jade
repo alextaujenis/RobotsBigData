@@ -166,7 +166,7 @@ html(lang='en')
               | .setFloor(value)
             p
               | Provide an integer from 0 - 1023 to calibrate the sensor with a lower bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the floor with help from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -184,7 +184,7 @@ html(lang='en')
               .light light_sensor
               | .setCeiling(value)
             p Provide an integer from 0 - 1023 to calibrate the sensor with an upper bounds of light detection. This will adjust the scale for all methods that return a value in this library, but will not adjust their documented output range. Calibrate the ceiling with help from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -203,7 +203,7 @@ html(lang='en')
               | .resetFloor()
             p
               | Change the&nbsp;
-              a.click-flash(href="#setfloor") setFloor()
+              a.click-flash(href="#setfloor", translate="no") setFloor()
               |  value back to 0, which also resets the lower bounds of the scale for all methods that return a value in this library.
             h5
               | EXAMPLE&nbsp;
@@ -222,7 +222,7 @@ html(lang='en')
               | .resetCeiling()
             p
               | Change the&nbsp;
-              a.click-flash(href="#setceiling") setCeiling()
+              a.click-flash(href="#setceiling", translate="no") setCeiling()
               |  value back to 1023, which also resets the upper bounds of the scale for all methods that return a value in this library.
             h5
               | EXAMPLE&nbsp;
@@ -241,11 +241,11 @@ html(lang='en')
               | .getValue()
             p
               | Returns an integer from 0 - 1023 for the current light level adjusted for the&nbsp;
-              a.click-flash(href="#setfloor") setFloor()
+              a.click-flash(href="#setfloor", translate="no") setFloor()
               |  and&nbsp;
-              a.click-flash(href="#setceiling") setCeiling()
+              a.click-flash(href="#setceiling", translate="no") setCeiling()
               |  values. If the floor or ceiling are not set, this method will return&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -264,9 +264,9 @@ html(lang='en')
               | .getRawValue()
             p
               | Returns an integer from 0 - 1023 for the current light level reading from the sensor. Use this method to calibrate&nbsp;
-              a.click-flash(href="#setfloor") setFloor()
+              a.click-flash(href="#setfloor", translate="no") setFloor()
               |  and&nbsp;
-              a.click-flash(href="#setceiling") setCeiling()
+              a.click-flash(href="#setceiling", translate="no") setCeiling()
               | .
             h5
               | EXAMPLE&nbsp;
