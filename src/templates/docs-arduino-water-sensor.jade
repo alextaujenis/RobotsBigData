@@ -41,11 +41,11 @@ html(lang='en')
             | Measure and calibrate capacitance sensors to detect change in water levels from the outside of a plastic container. The example below uses a piece of aluminum foil, but you can attach the wire to anything conductive and calibrate the sensor accordingly.
           p.lead
             |This library measures relative capacitance so it is prone to interference. You can temporarily adjust the entire scale and then reset it when the capacitance disruption has stopped by using&nbsp;
-            a.click-flash(href="#setmodifier") setModifier()
+            a.click-flash(href="#setmodifier", translate="no") setModifier()
             |  and&nbsp;
-            a.click-flash(href="#resetmodifier") resetModifier()
+            a.click-flash(href="#resetmodifier", translate="no") resetModifier()
             | . Look at the&nbsp;
-            a(href="docs-arduino-capacitance.html") Capacitance Library
+            a(href="docs-arduino-capacitance.html", translate="no") Capacitance Library
             |  if you would like to know more about how capacitance is calculated.
           .h3
             #how-to-install.anchor
@@ -150,15 +150,15 @@ html(lang='en')
             li Stop at each level and notice the Raw Value printed to the serial console
             li
               | Use&nbsp;
-              a.click-flash(href="#setlevel") setLevel()
+              a.click-flash(href="#setlevel", translate="no") setLevel()
               |  to add each level and Raw Value -&nbsp;
               i
                 | in the&nbsp;
-                a(href="#example-sketch") example sketch
+                a(href="#example-sketch", translate="no") example sketch
                 |  setup()
             li
               | After assigning&nbsp;
-              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              a.click-flash(href="#setmaxlevel", translate="no") setMaxLevel()
               | ; pour out all water
             li Load the calibrated sketch back into the Arduino
             li The water level is calibrated and ready to use
@@ -169,7 +169,7 @@ html(lang='en')
 
           p
             | You must continuously call&nbsp;
-            a.click-flash(href="#update") update()
+            a.click-flash(href="#update", translate="no") update()
             |  inside of loop() in order to use the
             span.label.label-success Real-Time
             |  methods tagged below.
@@ -245,7 +245,7 @@ html(lang='en')
               | .setSampleSize(value)
             p
               | Pass in an integer to change the number of readings taken to calculate the moving average&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               | . This can be called inside of setup() or also safely at runtime inside of loop().
             ul
               li
@@ -280,23 +280,23 @@ html(lang='en')
             ul
               li
                 | If a running motor increases the difference in water sensor readings by a&nbsp;
-                a.click-flash(href="#getrawvalue") getRawValue()
+                a.click-flash(href="#getrawvalue", translate="no") getRawValue()
                 |  of +200
               li
                 | Call&nbsp;
-                a.click-flash(href="#setmodifier") setModifier(-200)
+                a.click-flash(href="#setmodifier", translate="no") setModifier(-200)
                 |  on the water sensor when the motor turns on
               li
                 | All of the calibrated water sensor thresholds will adjust -200
               li
                 | The water sensor&nbsp;
-                a.click-flash(href="#getactivelevel") getActiveLevel()
+                a.click-flash(href="#getactivelevel", translate="no") getActiveLevel()
                 |  and&nbsp;
-                a.click-flash(href="#getvalue") getValue()
+                a.click-flash(href="#getvalue", translate="no") getValue()
                 |  will account for motor interference
               li
                 | Call&nbsp;
-                a.click-flash(href="#resetmodifier") resetModifier()
+                a.click-flash(href="#resetmodifier", translate="no") resetModifier()
                 |  on the water sensor when the motor shuts off
             h5
               | EXAMPLE&nbsp;
@@ -327,7 +327,7 @@ html(lang='en')
               | .resetModifier()
             p
               | Changes the&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
               |  back to 0 and resets calibration of the water sensor threshold scale.
             p
               i For example
@@ -335,23 +335,23 @@ html(lang='en')
             ul
               li
                 | If a running motor increases the difference in water sensor readings by a&nbsp;
-                a.click-flash(href="#getrawvalue") getRawValue()
+                a.click-flash(href="#getrawvalue", translate="no") getRawValue()
                 |  of +200
               li
                 | Call&nbsp;
-                a.click-flash(href="#setmodifier") setModifier(-200)
+                a.click-flash(href="#setmodifier", translate="no") setModifier(-200)
                 |  on the water sensor when the motor turns on
               li
                 | All of the calibrated water sensor thresholds will adjust -200
               li
                 | The water sensor&nbsp;
-                a.click-flash(href="#getactivelevel") getActiveLevel()
+                a.click-flash(href="#getactivelevel", translate="no") getActiveLevel()
                 |  and&nbsp;
-                a.click-flash(href="#getvalue") getValue()
+                a.click-flash(href="#getvalue", translate="no") getValue()
                 |  will account for motor interference
               li
                 | Call&nbsp;
-                a.click-flash(href="#resetmodifier") resetModifier()
+                a.click-flash(href="#resetmodifier", translate="no") resetModifier()
                 |  on the water sensor when the motor shuts off
             h5
               | EXAMPLE&nbsp;
@@ -382,9 +382,9 @@ html(lang='en')
               | .setLevel(index, raw_value)
             p
               | Provide an integer for the level index and a raw value from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               | . The level index starts at one (it is not zero-based). You must also call&nbsp;
-              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              a.click-flash(href="#setmaxlevel", translate="no") setMaxLevel()
               |  at the end to set an upper bounds of the last level.
             h5
               | EXAMPLE&nbsp;
@@ -405,7 +405,7 @@ html(lang='en')
               | .setMaxLevel(raw_value)
             p
               | Provide an integer from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               |  to set the upper-bounds threshold of the last level.
             h5
               | EXAMPLE&nbsp;
@@ -442,15 +442,15 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
               | .
             p
               | This will return&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               |  if you have not used&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
               |  yet, or if you have called&nbsp;
-              a.click-flash(href="#resetmodifier") resetModifier()
+              a.click-flash(href="#resetmodifier", translate="no") resetModifier()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -474,7 +474,7 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -528,7 +528,7 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the sensor&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              a.click-flash(href="#getvalue", translate="no") getValue()
               |  changes. It will then return false until the reading changes to a different value again.
             h5
               | EXAMPLE&nbsp;
@@ -554,7 +554,7 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the sensor&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               |  changes. It will then return false until the reading changes to a different value again.
             h5
               | EXAMPLE&nbsp;
@@ -580,7 +580,7 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the sensor&nbsp;
-              a.click-flash(href="#getactivelevel") getActiveLevel()
+              a.click-flash(href="#getactivelevel", translate="no") getActiveLevel()
               |  changes. It will then return false until the level changes to a different value again.
             h5
               | EXAMPLE&nbsp;
