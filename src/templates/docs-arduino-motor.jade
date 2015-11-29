@@ -39,21 +39,21 @@ html(lang='en')
             | Overview
           p.lead
             | Control motors without delay with commands like&nbsp;
-            a.click-flash(href="#on") on()
+            a.click-flash(href="#on", translate="no") on()
             | ,&nbsp;
-            a.click-flash(href="#off") off()
+            a.click-flash(href="#off", translate="no") off()
             | ,&nbsp;
-            a.click-flash(href="#forward") forward()
+            a.click-flash(href="#forward", translate="no") forward()
             | ,&nbsp;
-            a.click-flash(href="#reverse") reverse()
+            a.click-flash(href="#reverse", translate="no") reverse()
             | , and&nbsp;
-            a.click-flash(href="#ramp") ramp()
+            a.click-flash(href="#ramp", translate="no") ramp()
             | . Fire custom events when the motor has reached the target speed with&nbsp;
-            a.click-flash(href="#ontargetspeed") onTargetSpeed()
+            a.click-flash(href="#ontargetspeed", translate="no") onTargetSpeed()
             | , or when it has changed direction with the&nbsp;
-            a.click-flash(href="#onforward") onForward()
+            a.click-flash(href="#onforward", translate="no") onForward()
             |  and&nbsp;
-            a.click-flash(href="#onreverse") onReverse()
+            a.click-flash(href="#onreverse", translate="no") onReverse()
             |  events.
           p.lead
             | Motors can be wired to move in a single direction, or can be driven in both directions with the help of a motor-shield or H bridge and this library.
@@ -148,7 +148,7 @@ html(lang='en')
             | The&nbsp;
             a(href="#example-wiring") Example Wiring
             |  circuit only spins the motor in one direction, but this library is capable of forward and reverse. To enable this capability you should use a motor shield or H bridge, then specify the [optional] forward and reverse pins in the&nbsp;
-            a.click-flash(href="#constructor") constructor()
+            a.click-flash(href="#constructor", translate="no") constructor()
             | . See the forward and reverse example included with installing this library.
 
           .h3
@@ -187,11 +187,11 @@ html(lang='en')
             | Public Methods
           p
             | You can use this library without calling&nbsp;
-            a.click-flash(href="#update") update()
+            a.click-flash(href="#update", translate="no") update()
             |  and&nbsp;
             i most
             |  methods will function correctly. You must continuously call&nbsp;
-            a.click-flash(href="#update") update()
+            a.click-flash(href="#update", translate="no") update()
             |  inside of loop() in order to use the
             span.label.label-success Real-Time
             |  methods tagged below.
@@ -271,7 +271,7 @@ html(lang='en')
               | RBD::Motor constructor(pwm_pin, [forward_pin], [reverse_pin])
             p
               | Create a new motor and pass in the Arduino PWM pin number. The forward and reverse pins are [optional] and can be used to control the motor in both directions with the help of a motor shield or H bridge. The motor will be set&nbsp;
-              a.click-flash(href="#forward") forward()
+              a.click-flash(href="#forward", translate="no") forward()
               |  by default if you provide the forward and reverse pins.
             h5
               | EXAMPLE&nbsp;
@@ -325,11 +325,11 @@ html(lang='en')
               | .forward()
             p
               | Set the spin direction for the motor so that all new commands move it forward. The motor is set&nbsp;
-              a.click-flash(href="#forward") forward()
+              a.click-flash(href="#forward", translate="no") forward()
               |  by default.
             p
               | You must provide the optional forward and reverse pins in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               |  and correctly wire the motor to use this method. The motor should be spun to a full-stop before calling this method. This library will forcibly stop the motor before switching to the forward state.
 
             h5
@@ -352,7 +352,7 @@ html(lang='en')
               | Set the spin direction for the motor so that all new commands move it in reverse.
             p
               | You must provide the optional forward and reverse pins in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               |  and correctly wire the motor to use this method. The motor should be spun to a full-stop before calling this method. This library will forcibly stop the motor before switching to the reverse state.
             h5
               | EXAMPLE&nbsp;
@@ -372,13 +372,13 @@ html(lang='en')
               | .toggleDirection()
             p
               | Flip the spin direction for the motor so that all new commands will move it in the opposite direction than they do currently. This alternates between&nbsp;
-              a.click-flash(href="#forward") forward()
+              a.click-flash(href="#forward", translate="no") forward()
               |  and&nbsp;
-              a.click-flash(href="#reverse") reverse()
+              a.click-flash(href="#reverse", translate="no") reverse()
               | .
             p
               | You must provide the optional forward and reverse pins in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               |  and correctly wire the motor to use this method. The motor should be spun to a full-stop before calling this method. This library will forcibly stop the motor before toggling to the new state.
             h5
               | EXAMPLE&nbsp;
@@ -416,7 +416,7 @@ html(lang='en')
               | .setSpeedPercent(value)
             p
               | Pass in an integer from 0 - 100 to control the speed percentage of the motor. This is essentially the same as&nbsp;
-              a.click-flash(href="#setspeed") setSpeed()
+              a.click-flash(href="#setspeed", translate="no") setSpeed()
               |  but with a smaller input scale.
             h5
               | EXAMPLE&nbsp;
@@ -477,11 +477,11 @@ html(lang='en')
               | .isForward()
             p
               | Returns true if the motor is set in the&nbsp;
-              a.click-flash(href="#forward") forward()
+              a.click-flash(href="#forward", translate="no") forward()
               |  state.
             p
               | You must provide the optional forward and reverse pins in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               |  and correctly wire the motor to use this method.
 
             h5
@@ -501,11 +501,11 @@ html(lang='en')
               | .isReverse()
             p
               | Returns true if the motor is set in the&nbsp;
-              a.click-flash(href="#reverse") reverse()
+              a.click-flash(href="#reverse", translate="no") reverse()
               |  state.
             p
               | You must provide the optional forward and reverse pins in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               |  and correctly wire the motor to use this method.
 
             h5
@@ -671,7 +671,7 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Pass in a value from 0 - 100 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition. This is essentially the same as&nbsp;
-              a.click-flash(href="#ramp") ramp()
+              a.click-flash(href="#ramp", translate="no") ramp()
               |  but with a smaller input scale.
             h5
               | EXAMPLE&nbsp;
@@ -696,11 +696,11 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the motor starts moving&nbsp;
-              a.click-flash(href="#forward") forward()
+              a.click-flash(href="#forward", translate="no") forward()
               | . This method will then return false until the motor has stopped, moved in reverse, then started moving forward again.
             p
               | You must provide the optional forward and reverse pins in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               |  and correctly wire the motor to use this method.
             h5
               | EXAMPLE&nbsp;
@@ -730,11 +730,11 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the motor starts moving in&nbsp;
-              a.click-flash(href="#reverse") reverse()
+              a.click-flash(href="#reverse", translate="no") reverse()
               | . This method will then return false until the motor has stopped, moved forward, then started moving in reverse again.
             p
               | You must provide the optional forward and reverse pins in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               |  and correctly wire the motor to use this method.
             h5
               | EXAMPLE&nbsp;
