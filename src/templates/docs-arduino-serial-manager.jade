@@ -229,9 +229,9 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | Returns true when a&nbsp;
-              a.click-flash(href="#setflag") setFlag()
+              a.click-flash(href="#setflag", translate="no") setFlag()
               |  has been identified in the serial communication input stream and the parsed data is available from&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              a.click-flash(href="#getvalue", translate="no") getValue()
               | .
             p
               | In order for this library to behave correctly; you must wrap all real-time methods in a conditional with this method (as shown below).
@@ -260,9 +260,9 @@ html(lang='en')
               include ./global/labels/real-time-onreceive.jade
             p
               | Returns a String of data parsed in chunks between&nbsp;
-              a.click-flash(href="#setflag") setFlag()
+              a.click-flash(href="#setflag", translate="no") setFlag()
               |  from the serial communication input stream. This method must be used in conjunction with&nbsp;
-              a.click-flash(href="#onreceive") onReceive()
+              a.click-flash(href="#onreceive", translate="no") onReceive()
               |  for this library to behave correctly (as shown below).
             h5
               | EXAMPLE&nbsp;
@@ -289,9 +289,9 @@ html(lang='en')
               include ./global/labels/real-time-onreceive.jade
             p
               | Returns a String of data that is the first (or only) parameter parsed from&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              a.click-flash(href="#getvalue", translate="no") getValue()
               | . This enables a serial command structure that follows a cmd; or cmd,param; template. This method must be used in conjunction with&nbsp;
-              a.click-flash(href="#onreceive") onReceive()
+              a.click-flash(href="#onreceive", translate="no") onReceive()
               |  for this library to behave correctly (as shown below).
             h5
               | EXAMPLE&nbsp;
@@ -318,9 +318,9 @@ html(lang='en')
               include ./global/labels/real-time-onreceive.jade
             p
               | Returns a String of data that is the second parameter parsed from&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              a.click-flash(href="#getvalue", translate="no") getValue()
               | . This enables a serial command structure that follows a cmd; or cmd,param; template. This method must be used in conjunction with&nbsp;
-              a.click-flash(href="#onreceive") onReceive()
+              a.click-flash(href="#onreceive", translate="no") onReceive()
               |  for this library to behave correctly (as shown below).
             h5
               | EXAMPLE&nbsp;
@@ -347,9 +347,9 @@ html(lang='en')
               include ./global/labels/real-time-onreceive.jade
             p
               | Provide a String to see if it matches the current&nbsp;
-              a.click-flash(href="#getcmd") getCmd()
+              a.click-flash(href="#getcmd", translate="no") getCmd()
               | . This method must be used in conjunction with&nbsp;
-              a.click-flash(href="#onreceive") onReceive()
+              a.click-flash(href="#onreceive", translate="no") onReceive()
               |  for this library to behave correctly (as shown below).
             h5
               | EXAMPLE&nbsp;
@@ -384,9 +384,9 @@ html(lang='en')
               include ./global/labels/real-time-onreceive.jade
             p
               | Provide a String to see if it matches the current&nbsp;
-              a.click-flash(href="#getparam") getParam()
+              a.click-flash(href="#getparam", translate="no") getParam()
               | . This method must be used in conjunction with&nbsp;
-              a.click-flash(href="#onreceive") onReceive()
+              a.click-flash(href="#onreceive", translate="no") onReceive()
               |  for this library to behave correctly (as shown below).
             h5
               | EXAMPLE&nbsp;
