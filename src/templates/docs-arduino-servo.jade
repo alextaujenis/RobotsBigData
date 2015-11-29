@@ -40,9 +40,9 @@ html(lang='en')
             | Overview
           p.lead
             | Control many servos without delay or interrupts while applying rotation adjustments with PWM/PPM. Quickly calibrate each servo in the&nbsp;
-            a.click-flash(href="#constructor") constructor()
+            a.click-flash(href="#constructor", translate="no") constructor()
             | , then make real-time adjustments to the rotation with&nbsp;
-            a.click-flash(href="#movetodegrees") moveToDegrees()
+            a.click-flash(href="#movetodegrees", translate="no") moveToDegrees()
             | .
           p.lead
             | Connect as many servos as the number of digital pins available on your Arduino. This library is very fast and has a small, lightweight code footprint.
@@ -125,7 +125,7 @@ html(lang='en')
             | Public Methods
           p
             | You must continuously call&nbsp;
-            a.click-flash(href="#update") update()
+            a.click-flash(href="#update", translate="no") update()
             |  inside of loop() in order to use the
             span.label.label-success Real-Time
             |  methods tagged below.
@@ -178,7 +178,7 @@ html(lang='en')
               | .setPulseInterval(value)
             p
               | Provide an unsigned long to set the amount of time between each orientation pulse. The default is 20ms and is set automatically in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -197,7 +197,7 @@ html(lang='en')
               | .setDegreesOfRotation(value)
             p
               | Provide an integer to set the maximum number of degrees of rotation the servo can handle. The default is 180 degrees and is set automatically in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -217,7 +217,7 @@ html(lang='en')
               include ./global/labels/update.jade
             p
               | Keep processing and applying servo movements to the motor. This must be called continuously within loop() in order to use&nbsp;
-              a.click-flash(href="#movetodegrees") moveToDegrees()
+              a.click-flash(href="#movetodegrees", translate="no") moveToDegrees()
               | .
             h5
               | EXAMPLE&nbsp;
