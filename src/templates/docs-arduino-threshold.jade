@@ -163,7 +163,7 @@ html(lang='en')
               | .setLevel(index, value)
             p
               | Provide an integer for a level index and an integer, float, or double for the threshold value. This is not zero based, the first level starts at 1. You must also call&nbsp;
-              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              a.click-flash(href="#setmaxlevel", translate="no") setMaxLevel()
               |  at the end to set an upper bounds of your last level.
             h5
               | EXAMPLE&nbsp;
@@ -200,7 +200,7 @@ html(lang='en')
               | .getLevel(index)
             p
               | Provide an integer for the level index, and this returns the value originally provided to&nbsp;
-              a.click-flash(href="#setlevel") setLevel()
+              a.click-flash(href="#setlevel", translate="no") setLevel()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -219,7 +219,7 @@ html(lang='en')
               | .getMaxLevel()
             p
               | Returns the value originally provided to&nbsp;
-              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              a.click-flash(href="#setmaxlevel", translate="no") setMaxLevel()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -238,9 +238,9 @@ html(lang='en')
               | .computeLevel(value)
             p
               | Provide an integer, float, or double value to compare against the thresholds for&nbsp;
-              a.click-flash(href="#setlevel") setLevel()
+              a.click-flash(href="#setlevel", translate="no") setLevel()
               |  and&nbsp;
-              a.click-flash(href="#setmaxlevel") setMaxLevel()
+              a.click-flash(href="#setmaxlevel", translate="no") setMaxLevel()
               | . This returns an integer for the computed level.
             ul
               li it returns 0 for values that are under the first level
@@ -249,7 +249,7 @@ html(lang='en')
               li n for your nth level
               li
                 | sizeof(n) + 1 for any value greater than&nbsp;
-                a.click-flash(href="#getmaxlevel") getMaxLevel()
+                a.click-flash(href="#getmaxlevel", translate="no") getMaxLevel()
               li -1 if the value was not found
             h5
               | EXAMPLE&nbsp;
