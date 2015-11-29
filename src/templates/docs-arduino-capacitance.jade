@@ -155,13 +155,13 @@ html(lang='en')
             li
               b Less Variable
               |  readings that don't fluctuate so quickly can be achieved by increasing the sample size:&nbsp;
-              a.click-flash(href="#setsamplesize") setSampleSize(1000)
+              a.click-flash(href="#setsamplesize", translate="no") setSampleSize(1000)
               | .
 
             li
               b More Variable
               |  readings that fluctuate quickly can be achieved by decreasing the sample size:&nbsp;
-              a.click-flash(href="#setsamplesize") setSampleSize(10)
+              a.click-flash(href="#setsamplesize", translate="no") setSampleSize(10)
               | .
 
           .h3
@@ -170,7 +170,7 @@ html(lang='en')
 
           p
             | You must continuously call&nbsp;
-            a.click-flash(href="#update") update()
+            a.click-flash(href="#update", translate="no") update()
             |  inside of loop() in order to use the
             span.label.label-success Real-Time
             |  methods tagged below.
@@ -229,7 +229,7 @@ html(lang='en')
               | .setSampleSize(value)
             p
               | Pass in an integer to change the number of readings taken to calculate a moving average&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              a.click-flash(href="#getvalue", translate="no") getValue()
               | . This can be called inside of setup() or also safely at runtime inside of loop().
             ul
               li
@@ -276,7 +276,7 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Begin taking many readings and start adding up the moving average for&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              a.click-flash(href="#getvalue", translate="no") getValue()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -300,9 +300,9 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns true if all readings have been taken and a moving average&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              a.click-flash(href="#getvalue", translate="no") getValue()
               |  is ready. You must first call&nbsp;
-              a.click-flash(href="#start") start()
+              a.click-flash(href="#start", translate="no") start()
               |   to begin the sampling process.
             h5
               | EXAMPLE&nbsp;
@@ -330,9 +330,9 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns an unsigned long of the moving average value for the capacitance reading (microseconds taken to charge the pin). This will only return a value after calling&nbsp;
-              a.click-flash(href="#start") start()
+              a.click-flash(href="#start", translate="no") start()
               |  and waiting until&nbsp;
-              a.click-flash(href="#isfinished") isFinished()
+              a.click-flash(href="#isfinished", translate="no") isFinished()
               |  has returned true.
             h5
               | EXAMPLE&nbsp;
@@ -361,11 +361,11 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will fire a single event and start taking another sensor reading each time the&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              a.click-flash(href="#getvalue", translate="no") getValue()
               |  changes, mimicking the same process of creating a loop by calling&nbsp;
-              a.click-flash(href="#start") start()
+              a.click-flash(href="#start", translate="no") start()
               |  and&nbsp;
-              a.click-flash(href="#isfinished") isFinished()
+              a.click-flash(href="#isfinished", translate="no") isFinished()
               |  together, but with a simple syntax and a tighter time loop.
             h5
               | EXAMPLE&nbsp;
