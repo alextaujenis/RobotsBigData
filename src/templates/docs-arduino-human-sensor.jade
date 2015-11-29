@@ -40,17 +40,17 @@ html(lang='en')
             | Overview
           p.lead
             | Detect and interact with humans through change in capacitance. You can calibrate this library for your sensor very quickly to detect&nbsp;
-            a.click-flash(href="#onnear") onNear()
+            a.click-flash(href="#onnear", translate="no") onNear()
             | ,&nbsp;
-            a.click-flash(href="#ontouch") onTouch()
+            a.click-flash(href="#ontouch", translate="no") onTouch()
             | , and&nbsp;
-            a.click-flash(href="#onpickup") onPickup()
+            a.click-flash(href="#onpickup", translate="no") onPickup()
             |  events. The example below uses a piece of aluminum foil, but you can attach the wire to anything conductive and calibrate the sensor accordingly.
           p.lead
             |This library measures relative capacitance so it is prone to interference. You can temporarily adjust the entire scale and then reset it when the capacitance disruption has stopped by using&nbsp;
-            a.click-flash(href="#setmodifier") setModifier()
+            a.click-flash(href="#setmodifier", translate="no") setModifier()
             |  and&nbsp;
-            a.click-flash(href="#resetmodifier") resetModifier()
+            a.click-flash(href="#resetmodifier", translate="no") resetModifier()
             | . Look at the&nbsp;
             a(href="docs-arduino-capacitance.html") Capacitance Library
             |  if you would like to know more about how capacitance is calculated.
@@ -167,7 +167,7 @@ html(lang='en')
             li Move your hand just near the sensor to see the Raw Value change
             li
               | Change the&nbsp;
-              a.click-flash(href="#setnearvalue") setNearValue()
+              a.click-flash(href="#setnearvalue", translate="no") setNearValue()
               |  to the Raw Value&nbsp;
               i
                 | - in the&nbsp;
@@ -176,12 +176,12 @@ html(lang='en')
             li Touch the sensor to see the Raw Value change
             li
               | Change the&nbsp;
-              a.click-flash(href="#settouchvalue") setTouchValue()
+              a.click-flash(href="#settouchvalue", translate="no") setTouchValue()
               |  to the new Raw Value
             li Pick up the sensor to see the Raw Value change (if it is attached to an object)
             li
               | Change the&nbsp;
-              a.click-flash(href="#setpickupvalue") setPickupValue()
+              a.click-flash(href="#setpickupvalue", translate="no") setPickupValue()
               |  to the new Raw Value
             li Load the calibrated sketch back into the Arduino
             li The human sensor is calibrated and ready to use
@@ -191,7 +191,7 @@ html(lang='en')
             | Public Methods
           p
             | You must continuously call&nbsp;
-            a.click-flash(href="#update") update()
+            a.click-flash(href="#update", translate="no") update()
             |  inside of loop() in order to use the
             span.label.label-success Real-Time
             |  methods tagged below.
@@ -296,7 +296,7 @@ html(lang='en')
               | .setSampleSize(value)
             p
               | Pass in an integer to change the number of readings taken to calculate the moving average&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               | . This can be called inside of setup() or also safely at runtime inside of loop().
             ul
               li
@@ -331,11 +331,11 @@ html(lang='en')
             ul
               li
                 | If a running motor increases the difference in human sensor readings by a&nbsp;
-                a.click-flash(href="#getrawvalue") getRawValue()
+                a.click-flash(href="#getrawvalue", translate="no") getRawValue()
                 |  of +200
               li
                 | Call&nbsp;
-                a.click-flash(href="#setmodifier") setModifier(-200)
+                a.click-flash(href="#setmodifier", translate="no") setModifier(-200)
                 |  on the human sensor when the motor turns on
               li
                 | All of the calibrated human sensor thresholds will adjust -200
@@ -343,7 +343,7 @@ html(lang='en')
                 | The human sensor readings will account for motor interference
               li
                 | Call&nbsp;
-                a.click-flash(href="#resetmodifier") resetModifier()
+                a.click-flash(href="#resetmodifier", translate="no") resetModifier()
                 |  on the human sensor when the motor shuts off
             h5
               | EXAMPLE&nbsp;
@@ -378,7 +378,7 @@ html(lang='en')
               | .resetModifier()
             p
               | Changes the&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
               |  back to 0 and resets calibration of the human sensor threshold scale.
             p
               i For example
@@ -386,11 +386,11 @@ html(lang='en')
             ul
               li
                 | If a running motor increases the difference in human sensor readings by a&nbsp;
-                a.click-flash(href="#getrawvalue") getRawValue()
+                a.click-flash(href="#getrawvalue", translate="no") getRawValue()
                 |  of +200
               li
                 | Call&nbsp;
-                a.click-flash(href="#setmodifier") setModifier(-200)
+                a.click-flash(href="#setmodifier", translate="no") setModifier(-200)
                 |  on the human sensor when the motor turns on
               li
                 | All of the calibrated human sensor thresholds will adjust -200
@@ -398,7 +398,7 @@ html(lang='en')
                 | The human sensor readings will account for motor interference
               li
                 | Call&nbsp;
-                a.click-flash(href="#resetmodifier") resetModifier()
+                a.click-flash(href="#resetmodifier", translate="no") resetModifier()
                 |  on the human sensor when the motor shuts off
             h5
               | EXAMPLE&nbsp;
@@ -433,7 +433,7 @@ html(lang='en')
               | .setNearValue(value)
             p
               | Provide an integer from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               |  to calibrate the lowest threshold for when a person is near the sensor.
             h5
               | EXAMPLE&nbsp;
@@ -452,7 +452,7 @@ html(lang='en')
               | .setTouchValue(value)
             p
               | Provide an integer from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               |  to calibrate the lowest threshold for when a person is touching the sensor.
             h5
               | EXAMPLE&nbsp;
@@ -471,7 +471,7 @@ html(lang='en')
               | .setPickupValue(value)
             p
               | Provide an integer from&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               |  to calibrate the lowest threshold for when a person is picking up the sensor.
             h5
               | EXAMPLE&nbsp;
@@ -508,7 +508,7 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns true if no human is present and the sensor is reading a value below the&nbsp;
-              a.click-flash(href="#setnearvalue") setNearValue()
+              a.click-flash(href="#setnearvalue", translate="no") setNearValue()
               | . This will always return true if no thresholds (near, touch, pickup) are set.
             h5
               | EXAMPLE&nbsp;
@@ -532,15 +532,15 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns true if a human is present and the sensor is reading a value at or above the&nbsp;
-              a.click-flash(href="#setnearvalue") setNearValue()
+              a.click-flash(href="#setnearvalue", translate="no") setNearValue()
               | .
             p
               | Returns false if the sensor is reading a value below the&nbsp;
-              a.click-flash(href="#setnearvalue") setNearValue()
+              a.click-flash(href="#setnearvalue", translate="no") setNearValue()
               | , or if a&nbsp;
-              a.click-flash(href="#settouchvalue") setTouchValue()
+              a.click-flash(href="#settouchvalue", translate="no") setTouchValue()
               |  has been assigned and the sensor is reading a value at or above the&nbsp;
-              a.click-flash(href="#istouch") isTouch()
+              a.click-flash(href="#istouch", translate="no") isTouch()
               |  value.
             h5
               | EXAMPLE&nbsp;
@@ -564,15 +564,15 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns true if a human is touching the sensor and it is reading a value at or above the&nbsp;
-              a.click-flash(href="#settouchvalue") setTouchValue()
+              a.click-flash(href="#settouchvalue", translate="no") setTouchValue()
               | .
             p
               | Returns false if the sensor is reading a value below the&nbsp;
-              a.click-flash(href="#settouchvalue") setTouchValue()
+              a.click-flash(href="#settouchvalue", translate="no") setTouchValue()
               | , or if a&nbsp;
-              a.click-flash(href="#setpickupvalue") setPickupValue()
+              a.click-flash(href="#setpickupvalue", translate="no") setPickupValue()
               |  has been assigned and the sensor is reading a value at or above the&nbsp;
-              a.click-flash(href="#ispickup") isPickup()
+              a.click-flash(href="#ispickup", translate="no") isPickup()
               |  value.
             h5
               | EXAMPLE&nbsp;
@@ -596,11 +596,11 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns true if a human is picking up the sensor and it is reading a value at or above the&nbsp;
-              a.click-flash(href="#setpickupvalue") setPickupValue()
+              a.click-flash(href="#setpickupvalue", translate="no") setPickupValue()
               | .
             p
               | Returns false if the sensor is reading a value below the&nbsp;
-              a.click-flash(href="#setpickupvalue") setPickupValue()
+              a.click-flash(href="#setpickupvalue", translate="no") setPickupValue()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -625,9 +625,9 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the sensor registers a value below the&nbsp;
-              a.click-flash(href="#setnearvalue") setNearValue()
+              a.click-flash(href="#setnearvalue", translate="no") setNearValue()
               | . The active level must change away from and then come back to&nbsp;
-              a.click-flash(href="#isgone") isGone()
+              a.click-flash(href="#isgone", translate="no") isGone()
               |  in order for this method to return true again.
             h5
               | EXAMPLE&nbsp;
@@ -653,11 +653,11 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the sensor registers a value at or above the&nbsp;
-              a.click-flash(href="#setnearvalue") setNearValue()
+              a.click-flash(href="#setnearvalue", translate="no") setNearValue()
               |  and below the&nbsp;
-              a.click-flash(href="#settouchvalue") setTouchValue()
+              a.click-flash(href="#settouchvalue", translate="no") setTouchValue()
               | . The active level must change away from and then come back to&nbsp;
-              a.click-flash(href="#isnear") isNear()
+              a.click-flash(href="#isnear", translate="no") isNear()
               |  in order for this method to return true again.
             h5
               | EXAMPLE&nbsp;
@@ -683,11 +683,11 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the sensor registers a value at or above the&nbsp;
-              a.click-flash(href="#settouchvalue") setTouchValue()
+              a.click-flash(href="#settouchvalue", translate="no") setTouchValue()
               |  and below the&nbsp;
-              a.click-flash(href="#setpickupvalue") setPickupValue()
+              a.click-flash(href="#setpickupvalue", translate="no") setPickupValue()
               | . The active level must change away from and then come back to&nbsp;
-              a.click-flash(href="#isnear") isTouch()
+              a.click-flash(href="#isnear", translate="no") isTouch()
               |  in order for this method to return true again.
             h5
               | EXAMPLE&nbsp;
@@ -713,9 +713,9 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the sensor registers a value at or above the&nbsp;
-              a.click-flash(href="#setpickupvalue") setPickupValue()
+              a.click-flash(href="#setpickupvalue", translate="no") setPickupValue()
               | . The active level must change away from and then come back to&nbsp;
-              a.click-flash(href="#ispickup") isPickup()
+              a.click-flash(href="#ispickup", translate="no") isPickup()
               |  in order for this method to return true again.
             h5
               | EXAMPLE&nbsp;
@@ -740,13 +740,13 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns the capacitance sensor reading after being adjusted with the value given to&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
               | .
             p
               | This will return the raw capacitance sensor reading if you have not used&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
               |  yet, or if you have called&nbsp;
-              a.click-flash(href="#resetmodifier") resetModifier()
+              a.click-flash(href="#resetmodifier", translate="no") resetModifier()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -770,7 +770,7 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns the raw capacitance sensor reading and ignores any value that has been passed to&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
               | .
             h5
               | EXAMPLE&nbsp;
@@ -792,7 +792,7 @@ html(lang='en')
               include ./global/labels/real-time.jade
             p
               | Returns the current sensor level after being adjusted by&nbsp;
-              a.click-flash(href="#setmodifier") setModifier()
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
               | .
             ul
               li
@@ -835,7 +835,7 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the&nbsp;
-              a.click-flash(href="#getvalue") getValue()
+              a.click-flash(href="#getvalue", translate="no") getValue()
               |  changes.
             h5
               | EXAMPLE&nbsp;
@@ -861,7 +861,7 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the&nbsp;
-              a.click-flash(href="#getrawvalue") getRawValue()
+              a.click-flash(href="#getrawvalue", translate="no") getRawValue()
               |  changes.
             h5
               | EXAMPLE&nbsp;
@@ -887,7 +887,7 @@ html(lang='en')
               include ./global/labels/event.jade
             p
               | This method will return true once the&nbsp;
-              a.click-flash(href="#getactivelevel") getActiveLevel()
+              a.click-flash(href="#getactivelevel", translate="no") getActiveLevel()
               |  changes.
             h5
               | EXAMPLE&nbsp;
