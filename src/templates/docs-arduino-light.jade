@@ -40,13 +40,13 @@ html(lang='en')
             | Overview
           p.lead
             | Control many lights and blink without delay using commands such as&nbsp;
-            a.click-flash(href="#on") on()
+            a.click-flash(href="#on", translate="no") on()
             | ,&nbsp;
-            a.click-flash(href="#off") off()
+            a.click-flash(href="#off", translate="no") off()
             | ,&nbsp;
-            a.click-flash(href="#blink") blink()
+            a.click-flash(href="#blink", translate="no") blink()
             | , and&nbsp;
-            a.click-flash(href="#fade") fade()
+            a.click-flash(href="#fade", translate="no") fade()
             | . Lights must be connected to PWM enabled Arduino pins to work with this library.
 
           .h3
@@ -123,11 +123,11 @@ html(lang='en')
             | Public Methods
           p
             | You can use this library without calling&nbsp;
-            a.click-flash(href="#update") update()
+            a.click-flash(href="#update", translate="no") update()
             |  and&nbsp;
             i most
             |  methods will function correctly. You must continuously call&nbsp;
-            a.click-flash(href="#update") update()
+            a.click-flash(href="#update", translate="no") update()
             |  inside of loop() in order to use the
             span.label.label-success Real-Time
             |  methods tagged below.
@@ -241,7 +241,7 @@ html(lang='en')
               | .setBrightnessPercent(value)
             p
               | Pass in an integer between 0 - 100 to set the percentage brightness of the light. This is the same as&nbsp;
-              a.click-flash(href="#setbrightness") setBrightness()
+              a.click-flash(href="#setbrightness", translate="no") setBrightness()
               |  except with a smaller input domain.
             h5
               | EXAMPLE&nbsp;
@@ -312,7 +312,7 @@ html(lang='en')
               | .getBrightnessPercent()
             p
               | Returns an integer from 0 - 100 of the current light percentage brightness. This is the same as&nbsp;
-              a.click-flash(href="#getbrightness") getBrightness()
+              a.click-flash(href="#getbrightness", translate="no") getBrightness()
               |  except with a smaller output range.
             h5
               | EXAMPLE&nbsp;
@@ -332,9 +332,9 @@ html(lang='en')
               include ./global/labels/update.jade
             p
               | Keep calculating brightness values over time. This must be called continuously within loop() in order to&nbsp;
-              a.click-flash(href="#blink") blink()
+              a.click-flash(href="#blink", translate="no") blink()
               |  or&nbsp;
-              a.click-flash(href="#fade") fade()
+              a.click-flash(href="#fade", translate="no") fade()
               |  the light.
             h5
               | EXAMPLE&nbsp;
