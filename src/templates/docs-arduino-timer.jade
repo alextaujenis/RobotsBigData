@@ -121,20 +121,21 @@ html(lang='en')
               a.click-flash(href="#settimeout") .setTimeout(value)
             li
               a.click-flash(href="#sethertz") .setHertz(value)
+            li.divider
             li
               a.click-flash(href="#restart") .restart()
+            li
+              a.click-flash(href="#stop") .stop()
             li.divider
             li
               a.click-flash(href="#getvalue") .getValue()
             li
-              a.click-flash(href="#getinversevalue") .getInverseValue()
-            li
               a.click-flash(href="#getpercentvalue") .getPercentValue()
+            li
+              a.click-flash(href="#getinversevalue") .getInverseValue()
             li
               a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
             li.divider
-            li
-              a.click-flash(href="#stop") .stop()
             li
               a.click-flash(href="#isactive") .isActive()
             li
@@ -143,13 +144,13 @@ html(lang='en')
               a.click-flash(href="#isstopped") .isStopped()
             li.divider
             li
-              a.click-flash(href="#onrestart") .onRestart()
-              include ./global/labels/event.jade
-            li
               a.click-flash(href="#onactive") .onActive()
               include ./global/labels/event.jade
             li
               a.click-flash(href="#onexpired") .onExpired()
+              include ./global/labels/event.jade
+            li
+              a.click-flash(href="#onrestart") .onRestart()
               include ./global/labels/event.jade
 
           .section
@@ -250,6 +251,35 @@ html(lang='en')
 
           .section
             .method-name(translate="no")
+              #stop.anchor
+              .light timer
+              | .stop()
+            p
+              | Calling&nbsp;
+              a.click-flash(href="#stop", translate="no") stop()
+              |  kills all events and prohibits everything except&nbsp;
+              a.click-flash(href="#isstopped", translate="no") isStopped()
+              |  from returning true. You must call&nbsp;
+              a.click-flash(href="#restart", translate="no") restart()
+              |  to activate the timer again.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.onExpired()) {
+                      timer.stop();
+                    }
+
+                    if(timer.isExpired()) {
+                      // code here will not execute when stopped
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
               #getvalue.anchor
               .light timer
               | .getValue()
@@ -262,22 +292,6 @@ html(lang='en')
                 :cdata
                   void loop() {
                     Serial.println(timer.getValue());
-                  }
-
-          .section
-            .method-name(translate="no")
-              #getinversevalue.anchor
-              .light timer
-              | .getInverseValue()
-            p Returns an unsigned long of how many milliseconds left until the end of the timer.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    Serial.println(timer.getInverseValue());
                   }
 
           .section
@@ -298,6 +312,22 @@ html(lang='en')
 
           .section
             .method-name(translate="no")
+              #getinversevalue.anchor
+              .light timer
+              | .getInverseValue()
+            p Returns an unsigned long of how many milliseconds left until the end of the timer.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    Serial.println(timer.getInverseValue());
+                  }
+
+          .section
+            .method-name(translate="no")
               #getinversepercentvalue.anchor
               .light timer
               | .getInversePercentValue()
@@ -310,35 +340,6 @@ html(lang='en')
                 :cdata
                   void loop() {
                     Serial.println(timer.getInversePercentValue());
-                  }
-
-          .section
-            .method-name(translate="no")
-              #stop.anchor
-              .light timer
-              | .stop()
-            p
-              | Calling&nbsp;
-              a.click-flash(href="#stop", translate="no") stop()
-              |  kills all events and prohibits everything except&nbsp;
-              a.click-flash(href="#isstopped", translate="no") isStopped()
-              |  from returning true. You must call&nbsp;
-              a.click-flash(href="#restart", translate="no") restart()
-              |  to activate the timer again.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    if(timer.isExpired()) {
-                      timer.stop();
-                    }
-
-                    if(timer.onExpired()) {
-                      // code here will not execute when stopped
-                    }
                   }
 
           .section
@@ -423,31 +424,6 @@ html(lang='en')
 
           .section
             .method-name(translate="no")
-              #onrestart.anchor
-              .light timer
-              | .onRestart()
-              include ./global/labels/event.jade
-            p
-              | This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;
-              a.click-flash(href="#isexpired", translate="no") isExpired()
-              |   and&nbsp;
-              a.click-flash(href="#restart", translate="no") restart()
-              |  together, but with a simple syntax and a tighter time loop.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    if(timer.onRestart()) {
-                      // code only runs once per event
-                      Serial.println("Timer Restarted");
-                    }
-                  }
-
-          .section
-            .method-name(translate="no")
               #onactive.anchor
               .light timer
               | .onActive()
@@ -485,6 +461,31 @@ html(lang='en')
                     if(timer.onExpired()) {
                       // code only runs once per event
                       Serial.println("Timer Expired");
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #onrestart.anchor
+              .light timer
+              | .onRestart()
+              include ./global/labels/event.jade
+            p
+              | This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;
+              a.click-flash(href="#isexpired", translate="no") isExpired()
+              |   and&nbsp;
+              a.click-flash(href="#restart", translate="no") restart()
+              |  together, but with a simple syntax and a tighter time loop.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.onRestart()) {
+                      // timer was restarted: code only runs once per restart
+                      Serial.println("Timer Restarted");
                     }
                   }
 

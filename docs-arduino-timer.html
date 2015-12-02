@@ -14,7 +14,7 @@ void loop() {
   }
 }
 ]]></script></div><div class="h3"><div id="public-methods" class="anchor"></div>Public Methods</div><h4 translate="no" class="class-name"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[RBD::Timer
-]]></script></h4><ul translate="no" class="public-methods"><li><a href="#constructor" class="click-flash">constructor()</a></li><li class="divider"></li><li><a href="#settimeout" class="click-flash">.setTimeout(value)</a></li><li><a href="#sethertz" class="click-flash">.setHertz(value)</a></li><li><a href="#restart" class="click-flash">.restart()</a></li><li class="divider"></li><li><a href="#getvalue" class="click-flash">.getValue()</a></li><li><a href="#getinversevalue" class="click-flash">.getInverseValue()</a></li><li><a href="#getpercentvalue" class="click-flash">.getPercentValue()</a></li><li><a href="#getinversepercentvalue" class="click-flash">.getInversePercentValue()</a></li><li class="divider"></li><li><a href="#stop" class="click-flash">.stop()</a></li><li><a href="#isactive" class="click-flash">.isActive()</a></li><li><a href="#isexpired" class="click-flash">.isExpired()</a></li><li><a href="#isstopped" class="click-flash">.isStopped()</a></li><li class="divider"></li><li><a href="#onrestart" class="click-flash">.onRestart()</a><span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></li><li><a href="#onactive" class="click-flash">.onActive()</a><span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></li><li><a href="#onexpired" class="click-flash">.onExpired()</a><span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></li></ul><div class="section"><div translate="no" class="method-name"><div id="constructor" class="anchor"></div>RBD::Timer constructor()</div><p>Create a new timer instance.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[RBD::Timer timer;
+]]></script></h4><ul translate="no" class="public-methods"><li><a href="#constructor" class="click-flash">constructor()</a></li><li class="divider"></li><li><a href="#settimeout" class="click-flash">.setTimeout(value)</a></li><li><a href="#sethertz" class="click-flash">.setHertz(value)</a></li><li class="divider"></li><li><a href="#restart" class="click-flash">.restart()</a></li><li><a href="#stop" class="click-flash">.stop()</a></li><li class="divider"></li><li><a href="#getvalue" class="click-flash">.getValue()</a></li><li><a href="#getpercentvalue" class="click-flash">.getPercentValue()</a></li><li><a href="#getinversevalue" class="click-flash">.getInverseValue()</a></li><li><a href="#getinversepercentvalue" class="click-flash">.getInversePercentValue()</a></li><li class="divider"></li><li><a href="#isactive" class="click-flash">.isActive()</a></li><li><a href="#isexpired" class="click-flash">.isExpired()</a></li><li><a href="#isstopped" class="click-flash">.isStopped()</a></li><li class="divider"></li><li><a href="#onactive" class="click-flash">.onActive()</a><span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></li><li><a href="#onexpired" class="click-flash">.onExpired()</a><span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></li><li><a href="#onrestart" class="click-flash">.onRestart()</a><span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></li></ul><div class="section"><div translate="no" class="method-name"><div id="constructor" class="anchor"></div>RBD::Timer constructor()</div><p>Create a new timer instance.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[RBD::Timer timer;
 
 void setup() {
   ...
@@ -46,26 +46,26 @@ void loop() {
     timer.restart();
   }
 }
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="stop" class="anchor"></div><div class="light">timer</div>.stop()</div><p>Calling&nbsp;<a href="#stop" translate="no" class="click-flash">stop()</a> kills all events and prohibits everything except&nbsp;<a href="#isstopped" translate="no" class="click-flash">isStopped()</a> from returning true. You must call&nbsp;<a href="#restart" translate="no" class="click-flash">restart()</a> to activate the timer again.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
+  if(timer.onExpired()) {
+    timer.stop();
+  }
+
+  if(timer.isExpired()) {
+    // code here will not execute when stopped
+  }
+}
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="getvalue" class="anchor"></div><div class="light">timer</div>.getValue()</div><p>Returns an unsigned long of how many milliseconds that have passed since the start of the timer.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   Serial.println(timer.getValue());
-}
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="getinversevalue" class="anchor"></div><div class="light">timer</div>.getInverseValue()</div><p>Returns an unsigned long of how many milliseconds left until the end of the timer.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
-  Serial.println(timer.getInverseValue());
 }
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="getpercentvalue" class="anchor"></div><div class="light">timer</div>.getPercentValue()</div><p>Returns an integer from 0 - 100 of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 25.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   Serial.println(timer.getPercentValue());
 }
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="getinversevalue" class="anchor"></div><div class="light">timer</div>.getInverseValue()</div><p>Returns an unsigned long of how many milliseconds left until the end of the timer.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
+  Serial.println(timer.getInverseValue());
+}
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="getinversepercentvalue" class="anchor"></div><div class="light">timer</div>.getInversePercentValue()</div><p>Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   Serial.println(timer.getInversePercentValue());
-}
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="stop" class="anchor"></div><div class="light">timer</div>.stop()</div><p>Calling&nbsp;<a href="#stop" translate="no" class="click-flash">stop()</a> kills all events and prohibits everything except&nbsp;<a href="#isstopped" translate="no" class="click-flash">isStopped()</a> from returning true. You must call&nbsp;<a href="#restart" translate="no" class="click-flash">restart()</a> to activate the timer again.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
-  if(timer.isExpired()) {
-    timer.stop();
-  }
-
-  if(timer.onExpired()) {
-    // code here will not execute when stopped
-  }
 }
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isactive" class="anchor"></div><div class="light">timer</div>.isActive()</div><p>Returns true if time is available. Use this method with&nbsp;<a href="#getpercentvalue" translate="no" class="click-flash">getPercentValue()</a> or&nbsp;<a href="#getinversepercentvalue" translate="no" class="click-flash">getInversePercentValue()</a> to perform real-time actions tweened over time.</p><p>Use&nbsp;<a href="#onactive" translate="no" class="click-flash">onActive()</a> to only fire a single event when the timer goes active.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   if(timer.isActive()) {
@@ -87,12 +87,6 @@ void loop() {
     Serial.println("Timer Stopped");
   }
 }
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="onrestart" class="anchor"></div><div class="light">timer</div>.onRestart()<span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></div><p>This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;<a href="#isexpired" translate="no" class="click-flash">isExpired()</a>  and&nbsp;<a href="#restart" translate="no" class="click-flash">restart()</a> together, but with a simple syntax and a tighter time loop.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
-  if(timer.onRestart()) {
-    // code only runs once per event
-    Serial.println("Timer Restarted");
-  }
-}
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="onactive" class="anchor"></div><div class="light">timer</div>.onActive()<span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></div><p>This method will fire a single event when the timer goes active. The timer must expire and then be restarted for this event to fire again.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
   if(timer.onActive()) {
     // code only runs once per event
@@ -103,6 +97,12 @@ void loop() {
   if(timer.onExpired()) {
     // code only runs once per event
     Serial.println("Timer Expired");
+  }
+}
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="onrestart" class="anchor"></div><div class="light">timer</div>.onRestart()<span data-toggle="tooltip" data-placement="right" title="Event: Use this method to find when an event has been triggered." translate="yes" class="label label-default">Event</span></div><p>This method will fire a single event and restart the timer each time it expires, mimicking the same process of creating a loop by calling&nbsp;<a href="#isexpired" translate="no" class="click-flash">isExpired()</a>  and&nbsp;<a href="#restart" translate="no" class="click-flash">restart()</a> together, but with a simple syntax and a tighter time loop.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
+  if(timer.onRestart()) {
+    // timer was restarted: code only runs once per restart
+    Serial.println("Timer Restarted");
   }
 }
 ]]></script></div></div></div></div></div><div class="navbar navbar-default navbar-footer"><div class="container-fluid"><div class="row"><div class="col-xs-12 text-center">&copy; 2015&nbsp;<a href="http://opensource.org/licenses/mit-license.php">MIT License</a></div></div></div></div><script src="assets/code/jquery.min.js"></script><script src="assets/code/bootstrap.min.js"></script><script src="assets/code/init_bootstrap.js"></script><script src="assets/code/back_to_top.js"></script><script src="assets/code/jquery.stuck.js"></script><script src="assets/code/init_jquery_stuck.js"></script><script src="assets/code/google_analytics.js"></script><script src="assets/code/inspectlet.js"></script><script src="assets/code/shCore.js"></script><script src="assets/code/shLegacy.js"></script><script src="assets/code/shAutoloader.js"></script><script src="assets/code/shBrushArduino.js"></script><script src="assets/code/shBrushBash.js"></script><script src="assets/code/shBrushJScript.js"></script><script src="assets/code/syntax_highlighter.js"></script><script src="assets/code/click_flash.js"></script><script src="assets/code/jquery.color.min.js"></script></body></html>
