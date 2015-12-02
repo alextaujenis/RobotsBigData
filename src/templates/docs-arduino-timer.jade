@@ -121,6 +121,8 @@ html(lang='en')
               a.click-flash(href="#settimeout") .setTimeout(value)
             li
               a.click-flash(href="#sethertz") .setHertz(value)
+            li
+              a.click-flash(href="#restart") .restart()
             li.divider
             li
               a.click-flash(href="#getvalue") .getValue()
@@ -131,8 +133,6 @@ html(lang='en')
             li
               a.click-flash(href="#getinversepercentvalue") .getInversePercentValue()
             li.divider
-            li
-              a.click-flash(href="#restart") .restart()
             li
               a.click-flash(href="#stop") .stop()
             li
@@ -187,6 +187,7 @@ html(lang='en')
                 :cdata
                   void setup() {
                     timer.setTimeout(200);  // expire after 200ms
+                    timer.restart();
                   }
 
                   void loop() {
@@ -220,6 +221,33 @@ html(lang='en')
                       // events fired here are close to 5Hz
                     }
                   }
+
+          .section
+            .method-name(translate="no")
+              #restart.anchor
+              .light timer
+              | .restart()
+            p
+              | All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;
+              a.click-flash(href="#isexpired", translate="no") isExpired()
+              |  to create a continuous loop.
+            p
+              | If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;
+              a.click-flash(href="#onrestart", translate="no") onRestart()
+              |  instead.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(timer.isExpired()) {
+                      // run code here, then restart the timer
+                      timer.restart();
+                    }
+                  }
+
           .section
             .method-name(translate="no")
               #getvalue.anchor
@@ -282,32 +310,6 @@ html(lang='en')
                 :cdata
                   void loop() {
                     Serial.println(timer.getInversePercentValue());
-                  }
-
-          .section
-            .method-name(translate="no")
-              #restart.anchor
-              .light timer
-              | .restart()
-            p
-              | All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;
-              a.click-flash(href="#isexpired", translate="no") isExpired()
-              |  to create a continuous loop.
-            p
-              | If you would like a tighter loop that does not wait for your code to run in order to restart the timer, then use&nbsp;
-              a.click-flash(href="#onrestart", translate="no") onRestart()
-              |  instead.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    if(timer.isExpired()) {
-                      // run code here, then restart the timer
-                      timer.restart();
-                    }
                   }
 
           .section

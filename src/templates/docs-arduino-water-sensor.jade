@@ -188,11 +188,6 @@ html(lang='en')
             li
               a.click-flash(href="#setsamplesize") .setSampleSize(value)
             li
-              a.click-flash(href="#setmodifier") .setModifier(value)
-            li
-              a.click-flash(href="#resetmodifier") .resetModifier()
-            li.divider
-            li
               a.click-flash(href="#setlevel") .setLevel(index, raw_value)
             li
               a.click-flash(href="#setmaxlevel") .setMaxLevel(raw_value)
@@ -222,6 +217,11 @@ html(lang='en')
               a.click-flash(href="#onactivelevelchange") .onActiveLevelChange()
               include ./global/labels/real-time.jade
               include ./global/labels/event.jade
+            li.divider
+              li
+                a.click-flash(href="#setmodifier") .setModifier(value)
+              li
+                a.click-flash(href="#resetmodifier") .resetModifier()
 
           .section
             .method-name(translate="no")
@@ -267,114 +267,6 @@ html(lang='en')
                 :cdata
                   void setup() {
                     water_sensor.setSampleSize(250);
-                  }
-
-          .section
-            .method-name(translate="no")
-              #setmodifier.anchor
-              .light water_sensor
-              | .setModifier(value)
-            p
-              | Provide a positive or negative integer to temporarily adjust the water sensor threshold scale. The default value is 0.
-            p
-              i For example
-              | ; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.
-            ul
-              li
-                | If a running motor increases the difference in water sensor readings by a&nbsp;
-                a.click-flash(href="#getrawvalue", translate="no") getRawValue()
-                |  of +200
-              li
-                | Call&nbsp;
-                a.click-flash(href="#setmodifier", translate="no") setModifier(-200)
-                |  on the water sensor when the motor turns on
-              li
-                | All of the calibrated water sensor thresholds will adjust -200
-              li
-                | The water sensor&nbsp;
-                a.click-flash(href="#getactivelevel", translate="no") getActiveLevel()
-                |  and&nbsp;
-                a.click-flash(href="#getvalue", translate="no") getValue()
-                |  will account for motor interference
-              li
-                | Call&nbsp;
-                a.click-flash(href="#resetmodifier", translate="no") resetModifier()
-                |  on the water sensor when the motor shuts off
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    if(...) { // adjust when motor is on
-                      water_sensor.setModifier(-200);
-                    }
-                    else {
-                      water_sensor.resetModifier();
-                    }
-
-                    water_sensor.update();
-
-                    // still works as expected with interference
-                    if(water_sensor.onActiveLevelChange()) {
-                      ...
-                    }
-                  }
-
-          .section
-            .method-name(translate="no")
-              #resetmodifier.anchor
-              .light water_sensor
-              | .resetModifier()
-            p
-              | Changes the&nbsp;
-              a.click-flash(href="#setmodifier", translate="no") setModifier()
-              |  back to 0 and resets calibration of the water sensor threshold scale.
-            p
-              i For example
-              | ; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.
-            ul
-              li
-                | If a running motor increases the difference in water sensor readings by a&nbsp;
-                a.click-flash(href="#getrawvalue", translate="no") getRawValue()
-                |  of +200
-              li
-                | Call&nbsp;
-                a.click-flash(href="#setmodifier", translate="no") setModifier(-200)
-                |  on the water sensor when the motor turns on
-              li
-                | All of the calibrated water sensor thresholds will adjust -200
-              li
-                | The water sensor&nbsp;
-                a.click-flash(href="#getactivelevel", translate="no") getActiveLevel()
-                |  and&nbsp;
-                a.click-flash(href="#getvalue", translate="no") getValue()
-                |  will account for motor interference
-              li
-                | Call&nbsp;
-                a.click-flash(href="#resetmodifier", translate="no") resetModifier()
-                |  on the water sensor when the motor shuts off
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    if(...) {
-                      water_sensor.setModifier(-200);
-                    }
-                    else { // reset when motor is off
-                      water_sensor.resetModifier();
-                    }
-
-                    water_sensor.update();
-
-                    // still works as expected with interference
-                    if(water_sensor.onActiveLevelChange()) {
-                      ...
-                    }
                   }
 
           .section
@@ -596,6 +488,114 @@ html(lang='en')
                     if(water_sensor.onActiveLevelChange()) {
                       // code only runs once per event
                       Serial.println(water_sensor.getActiveLevel());
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #setmodifier.anchor
+              .light water_sensor
+              | .setModifier(value)
+            p
+              | Provide a positive or negative integer to temporarily adjust the water sensor threshold scale. The default value is 0.
+            p
+              i For example
+              | ; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.
+            ul
+              li
+                | If a running motor increases the difference in water sensor readings by a&nbsp;
+                a.click-flash(href="#getrawvalue", translate="no") getRawValue()
+                |  of +200
+              li
+                | Call&nbsp;
+                a.click-flash(href="#setmodifier", translate="no") setModifier(-200)
+                |  on the water sensor when the motor turns on
+              li
+                | All of the calibrated water sensor thresholds will adjust -200
+              li
+                | The water sensor&nbsp;
+                a.click-flash(href="#getactivelevel", translate="no") getActiveLevel()
+                |  and&nbsp;
+                a.click-flash(href="#getvalue", translate="no") getValue()
+                |  will account for motor interference
+              li
+                | Call&nbsp;
+                a.click-flash(href="#resetmodifier", translate="no") resetModifier()
+                |  on the water sensor when the motor shuts off
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(...) { // adjust when motor is on
+                      water_sensor.setModifier(-200);
+                    }
+                    else {
+                      water_sensor.resetModifier();
+                    }
+
+                    water_sensor.update();
+
+                    // still works as expected with interference
+                    if(water_sensor.onActiveLevelChange()) {
+                      ...
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #resetmodifier.anchor
+              .light water_sensor
+              | .resetModifier()
+            p
+              | Changes the&nbsp;
+              a.click-flash(href="#setmodifier", translate="no") setModifier()
+              |  back to 0 and resets calibration of the water sensor threshold scale.
+            p
+              i For example
+              | ; if you have calibrated the scale and turn on a motor near the sensor: all readings will need to be adjusted for the increased capacitance from the motor.
+            ul
+              li
+                | If a running motor increases the difference in water sensor readings by a&nbsp;
+                a.click-flash(href="#getrawvalue", translate="no") getRawValue()
+                |  of +200
+              li
+                | Call&nbsp;
+                a.click-flash(href="#setmodifier", translate="no") setModifier(-200)
+                |  on the water sensor when the motor turns on
+              li
+                | All of the calibrated water sensor thresholds will adjust -200
+              li
+                | The water sensor&nbsp;
+                a.click-flash(href="#getactivelevel", translate="no") getActiveLevel()
+                |  and&nbsp;
+                a.click-flash(href="#getvalue", translate="no") getValue()
+                |  will account for motor interference
+              li
+                | Call&nbsp;
+                a.click-flash(href="#resetmodifier", translate="no") resetModifier()
+                |  on the water sensor when the motor shuts off
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(...) {
+                      water_sensor.setModifier(-200);
+                    }
+                    else { // reset when motor is off
+                      water_sensor.resetModifier();
+                    }
+
+                    water_sensor.update();
+
+                    // still works as expected with interference
+                    if(water_sensor.onActiveLevelChange()) {
+                      ...
                     }
                   }
 
