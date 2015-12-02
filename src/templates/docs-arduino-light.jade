@@ -355,11 +355,11 @@ html(lang='en')
               | .blink(on_time, off_time, [times])
               include ./global/labels/real-time.jade
             p
-              | Pass in unsigned longs for the time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should blink, which is [optional] and can be left out to make the light repeat the blink cycle forever.
+              | Pass in unsigned longs for the on time and off time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should blink, which is [optional] and can be left out to make the light repeat the blink cycle forever.
             ul
-              li the light will turn on for the on_time
-              li then turn off for the off_time
-              li and will repeat this cycle for the number of times you provided [optional]
+              li Light turns ON for the on_time
+              li Then turns OFF for the off_time
+              li Optionally repeats this cycle for the number of [times]
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
@@ -381,13 +381,13 @@ html(lang='en')
               | .fade(up_time, on_time, down_time, off_time, [times])
               include ./global/labels/real-time.jade
             p
-              | Pass in unsigned longs for the time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should fade, which is [optional] and can be left out to make the light repeat the fade cycle forever.
+              | Pass in unsigned longs for the up, on, down, and off time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should fade, which is [optional] and can be left out to make the light repeat the fade cycle forever.
             ul
-              li the light will perform a linear fade up according to the up_time
-              li stay on for the on_time
-              li linear fade down for the down_time
-              li then stay off for the off_time
-              li and will repeat this cycle for the number of times your provided [optional]
+              li Light performs a linear fade UP according to the up_time
+              li Stays ON for the on_time
+              li Linear fades DOWN over the course of the down_time
+              li Stays OFF for the off_time
+              li Optionally repeats this cycle for the number of [times]
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
