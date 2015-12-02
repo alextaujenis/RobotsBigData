@@ -143,15 +143,6 @@ html(lang='en')
             li
               a.click-flash(href="#setdebouncetimeout") .setDebounceTimeout(value)
             li
-              a.click-flash(href="#inputpullup") .inputPullup()
-            li
-              a.click-flash(href="#disableinputpullup") .disableInputPullup()
-            li
-              a.click-flash(href="#invertreading") .invertReading()
-            li
-              a.click-flash(href="#resetreading") .resetReading()
-            li.divider
-            li
               a.click-flash(href="#ispressed") .isPressed()
             li
               a.click-flash(href="#isreleased") .isReleased()
@@ -162,6 +153,15 @@ html(lang='en')
             li
               a.click-flash(href="#onreleased") .onReleased()
               include ./global/labels/event.jade
+            li.divider
+            li
+              a.click-flash(href="#inputpullup") .inputPullup()
+            li
+              a.click-flash(href="#disableinputpullup") .disableInputPullup()
+            li
+              a.click-flash(href="#invertreading") .invertReading()
+            li
+              a.click-flash(href="#resetreading") .resetReading()
 
           .section
             .method-name(translate="no")
@@ -194,6 +194,96 @@ html(lang='en')
                 :cdata
                   void setup() {
                     button.setDebounceTimeout(10) // default ms
+                  }
+
+          .section
+            .method-name(translate="no")
+              #ispressed.anchor
+              .light button
+              | .isPressed()
+            p
+              | Returns true while the button is being pressed, or is on. Returns false while the button is not being pressed, or is off.
+            p
+              | This method is good for real-time actions that must fire many times during a button press. Use the&nbsp;
+              a.click-flash(href="#onpressed", translate="no") onPressed()
+              |  event to fire only one action on each button press.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(button.isPressed()) {
+                      // code executes on each loop
+                      Serial.println("Button Pressed");
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #isreleased.anchor
+              .light button
+              | .isReleased()
+            p
+              | Returns true while the button is released, or is off. Returns false while the button is being pressed, or is on.
+            p
+              | This method is good for real-time actions that must fire many times while the button is not pressed. Use the&nbsp;
+              a.click-flash(href="#onreleased", translate="no") onReleased()
+              |  event to fire only one action on each button release.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(button.isReleased()) {
+                      // code executes on each loop
+                      Serial.println("Button Released");
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #onpressed.anchor
+              .light button
+              | .onPressed()
+              include ./global/labels/event.jade
+            p
+              | This will return true only once, after the button has been pressed (and debounced). The button must be released and then pressed again for this method to return true again.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(button.onPressed()) {
+                      // code only runs once per event
+                      Serial.println("Button Pressed Event");
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #onreleased.anchor
+              .light button
+              | .onReleased()
+              include ./global/labels/event.jade
+            p
+              | This will return true only once, after the button has been released (and debounced). The button must be pressed and then released again for this method to return true again.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void loop() {
+                    if(button.onReleased()) {
+                      // code only runs once per event
+                      Serial.println("Button Released Event");
+                    }
                   }
 
           .section
@@ -286,96 +376,6 @@ html(lang='en')
                 :cdata
                   void setup() {
                     button.resetReading();
-                  }
-
-          .section
-            .method-name(translate="no")
-              #ispressed.anchor
-              .light button
-              | .isPressed()
-            p
-              | Returns true while the button is being pressed, or is on. Returns false while the button is not being pressed, or is off.
-            p
-              | This method is good for real-time actions that must fire many times during a button press. Use the&nbsp;
-              a.click-flash(href="#onpressed", translate="no") onPressed()
-              |  event to fire only one action on each button press.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    if(button.isPressed()) {
-                      // code executes on each loop
-                      Serial.println("Button Pressed");
-                    }
-                  }
-
-          .section
-            .method-name(translate="no")
-              #isreleased.anchor
-              .light button
-              | .isReleased()
-            p
-              | Returns true while the button is released, or is off. Returns false while the button is being pressed, or is on.
-            p
-              | This method is good for real-time actions that must fire many times while the button is not pressed. Use the&nbsp;
-              a.click-flash(href="#onreleased", translate="no") onReleased()
-              |  event to fire only one action on each button release.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    if(button.isReleased()) {
-                      // code executes on each loop
-                      Serial.println("Button Released");
-                    }
-                  }
-
-          .section
-            .method-name(translate="no")
-              #onpressed.anchor
-              .light button
-              | .onPressed()
-              include ./global/labels/event.jade
-            p
-              | This will return true only once, after the button has been pressed (and debounced). The button must be released and then pressed again for this method to return true again.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    if(button.onPressed()) {
-                      // code only runs once per event
-                      Serial.println("Button Pressed Event");
-                    }
-                  }
-
-          .section
-            .method-name(translate="no")
-              #onreleased.anchor
-              .light button
-              | .onReleased()
-              include ./global/labels/event.jade
-            p
-              | This will return true only once, after the button has been released (and debounced). The button must be pressed and then released again for this method to return true again.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void loop() {
-                    if(button.onReleased()) {
-                      // code only runs once per event
-                      Serial.println("Button Released Event");
-                    }
                   }
 
     include ./global/footer.jade
