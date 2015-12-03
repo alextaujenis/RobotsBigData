@@ -11,13 +11,33 @@ html(lang='en')
         .hidden-xs.col-sm-4.stuck
           include ./global/docs-side-nav.jade
         .documentation.col-sm-8
-          ol.breadcrumb.stuck
-            li
-              a(href="index.html") Home
-            li
-              a(href="docs-arduino.html") Arduino
-            li.active(translate="no")
-              | Serial Manager
+          .breadcrumb-container.stuck
+            ol.breadcrumb
+              li
+                a(href="index.html") Home
+              li
+                a(href="docs-arduino.html") Arduino
+              li.active(translate="no")
+                | Serial Manager
+            .breadcrumb-icons.pull-right
+              .icon-container.pull-right
+                a(href="https://github.com/alextaujenis/RBD_SerialManager")
+                  .icon
+                    .image
+                      img(src='assets/images/github-logo.png', alt="GitHub Logo")
+                    .text-container
+                      .name View Source on GitHub
+                      .subtitle With MIT License
+              .icon-container.pull-right.download-button(data-toggle="tooltip", data-placement="bottom", title="Click to download the Serial Manager library")
+                a(href="assets/downloads/RBD_SerialManager.zip")
+                  .icon
+                    .image
+                      img(src='assets/images/zip-icon.png', alt=".zip icon")
+                    .text-container
+                      .name RBD_SerialManager.zip
+                      .subtitle 10KB Download
+              .clearfix
+            .clearfix
           .jumbotron
             .stuck.click-through
               .row.jumbotron-header.click-through
@@ -30,11 +50,11 @@ html(lang='en')
               p
                 | A simple interface for serial communication.
                 small v1.0.0-alpha.1
-              a.btn.btn-primary(href="#how-to-install") How to Install
-              | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-wiring") See Example
+              a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="https://github.com/alextaujenis/RBD_SerialManager/releases") Release Notes
           .h3
             #overview.anchor
             | Overview
@@ -47,30 +67,7 @@ html(lang='en')
             | This library is functional but likely to change. It was released early in order to gain feedback from the community and evolve in the right direction. Please post feedback, questions, and issues to this&nbsp;
             a(href="https://github.com/alextaujenis/RBD_SerialManager/issues") GitHub issues page
             | .
-          .h3
-            #how-to-install.anchor
-            | How to Install
-          p
-            | This library is part of a larger package that you can install to access
-            i  all
-            |  of the documented sensors,&nbsp;
-            i or
-            |  you can use this library by itself.
-          ul
-            li
-              a(href="https://github.com/alextaujenis/RBD_SerialManager/raw/master/extras/RBD_SerialManager.zip")
-                | Download&nbsp;
-                span(translate="no") Serial Manager
-                |  Library v1.0.0-alpha.1&nbsp;
-                .label.label-warning.zip-label(translate="no") .zip
-              |  by itself, or
-            li
-              a(href="install.html") Download All Sensor Libraries
-              |  with this library included, or
-            li
-              a(href="https://github.com/alextaujenis/RBD_SerialManager") View Source on GitHub
-              |  with&nbsp;
-              a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
+
           .h3
             #example-wiring.anchor
             | Example Wiring
@@ -414,6 +411,51 @@ html(lang='en')
 
           .bottom-nav.hidden.visible-xs-block
             include ./global/docs-side-nav.jade
+
+    #modal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') x
+            h4#modalLabel.modal-title Library Installation
+          .modal-body
+            .install-step
+              h3 Step 1
+              p.lead
+                | Check your downloads folder and double-click the&nbsp;
+                img(src="src/images/zip-icon.png", alt=".zip icon")
+                |  RBD_SerialManager.zip file.
+            .install-step
+              h3 Step 2
+              p.lead
+                | Move the&nbsp;
+                img(src="src/images/folder-icon.png", alt="folder icon")
+                |   RBD_SerialManager folder to the Arduino&nbsp;
+                img(src="src/images/folder-icon.png", alt="folder icon")
+                |  libraries folder:
+              h5 INSTALL PATH
+              div(translate="no")
+                script(type="syntaxhighlighter", class="brush: shell; gutter: false;")
+                  :cdata
+                    Mac & Linux:   Documents/Arduino/libraries
+                    Windows:       My Documents\Arduino\libraries
+
+                h5 FOLDER STRUCTURE
+                .image
+                  img(src="assets/images/install-folder-structure-documents.png", alt="Documents/Arduino/Libraries")
+                .image
+                  img(src="assets/images/install-folder-structure-serial-manager.png", alt="RBD_SerialManager")
+            .install-step
+              h3 Step 3
+              p.lead
+                | Upgrade to&nbsp;
+                a(href="https://www.arduino.cc/en/Main/Software") Arduino IDE v1.5 or greater
+                |  and load the&nbsp;
+                a.close-modal(href="#example-sketch") Example Sketch
+                |  to get started.
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
 
     include ./global/footer.jade
     include ./global/foot-content.jade
