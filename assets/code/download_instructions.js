@@ -1,1 +1,1 @@
-$(document).ready(function(){return $(".download-button").click(function(){return $("#modal").modal()}),$(".close-modal").click(function(){return $("#modal").modal("hide")})});
+$(document).ready(function(){return/(iPad|iPhone|iPod)/g.test(navigator.userAgent)&&$(".download-button").hide(),$(".download-button").click(function(){return $("#modal").modal()}),$(".close-modal").click(function(){return $("#modal").modal("hide")})});
