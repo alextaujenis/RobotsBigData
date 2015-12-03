@@ -1,0 +1,1 @@
+$(document).ready(function(){return $(".download-button").click(function(){return $("#modal").modal()}),$(".close-modal").click(function(){return $("#modal").modal("hide")})});
