@@ -11,13 +11,33 @@ html(lang='en')
         .hidden-xs.col-sm-4.stuck
           include ./global/docs-side-nav.jade
         .documentation.col-sm-8
-          ol.breadcrumb.stuck
-            li
-              a(href="index.html") Home
-            li
-              a(href="docs-arduino.html") Arduino
-            li.active(translate="no")
-              | Motor
+          .breadcrumb-container.stuck
+            ol.breadcrumb
+              li
+                a(href="index.html") Home
+              li
+                a(href="docs-arduino.html") Arduino
+              li.active(translate="no")
+                | Motor
+            .breadcrumb-icons.pull-right
+              .icon-container.pull-right
+                a(href="https://github.com/alextaujenis/RBD_Motor")
+                  .icon
+                    .image
+                      img(src='assets/images/github-logo.png', alt="GitHub Logo")
+                    .text-container
+                      .name View Source on GitHub
+                      .subtitle With MIT License
+              .icon-container.pull-right.download-button(data-toggle="tooltip", data-placement="bottom", title="Click to download the Motor library with the Timer dependency")
+                a(href="assets/downloads/Motor.zip")
+                  .icon
+                    .image
+                      img(src='assets/images/zip-icon.png', alt=".zip icon")
+                    .text-container
+                      .name Motor.zip
+                      .subtitle 22KB Download
+              .clearfix
+            .clearfix
           .jumbotron
             .stuck.click-through
               .row.jumbotron-header.click-through
@@ -30,11 +50,12 @@ html(lang='en')
               p
                 | Control many motors.
                 small v2.1.0
-              a.btn.btn-primary(href="#how-to-install") How to Install
-              | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-wiring") See Example
+              a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="https://github.com/alextaujenis/RBD_Motor/releases") Release Notes
+
           .h3
             #overview.anchor
             | Overview
@@ -58,32 +79,6 @@ html(lang='en')
             |  events.
           p.lead
             | Motors can be wired to move in a single direction, or can be driven in both directions with the help of a motor-shield or H bridge and this library.
-          .h3
-            #how-to-install.anchor
-            | How to Install
-          p
-            | This library is part of a larger package that you can install to access
-            i  all
-            |  of the documented sensors,&nbsp;
-            i or
-            |  you can use this library by itself with one dependency.
-          ul
-            li
-              a(href="https://github.com/alextaujenis/RBD_Motor/raw/master/extras/RBD_Motor.zip")
-                | Download&nbsp;
-                span(translate="no") Motor
-                |  Library v2.1.0&nbsp;
-                .label.label-warning.zip-label(translate="no") .zip
-              |  by itself with the&nbsp;
-              a.dark-link(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip") Timer
-              |  dependency, or
-            li
-              a(href="install.html") Download All Sensor Libraries
-              |  with this library and dependency included, or
-            li
-              a(href="https://github.com/alextaujenis/RBD_Motor") View Source on GitHub
-              |  with&nbsp;
-              a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           .h3
             #example-wiring.anchor
@@ -790,6 +785,53 @@ html(lang='en')
 
           .bottom-nav.hidden.visible-xs-block
             include ./global/docs-side-nav.jade
+
+    #modal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') x
+            h4#modalLabel.modal-title Library Installation
+          .modal-body
+            .install-step
+              h3 Step 1
+              p.lead
+                | Check your downloads folder and double-click the&nbsp;
+                img(src="src/images/zip-icon.png", alt=".zip icon")
+                |  Motor.zip file.
+            .install-step
+              h3 Step 2
+              p.lead
+                | Move the un-zipped contents of the&nbsp;
+                img(src="src/images/folder-icon.png", alt="folder icon")
+                |  Motor folder to the Arduino&nbsp;
+                img(src="src/images/folder-icon.png", alt="folder icon")
+                |  libraries folder:
+              h5 INSTALL PATH
+              div(translate="no")
+                script(type="syntaxhighlighter", class="brush: shell; gutter: false;")
+                  :cdata
+                    Mac & Linux:   Documents/Arduino/libraries
+                    Windows:       My Documents\Arduino\libraries
+
+                h5 FOLDER STRUCTURE
+                .image
+                  img(src="assets/images/install-folder-structure-documents.png", alt="Documents/Arduino/Libraries")
+                .image
+                  img(src="assets/images/install-folder-structure-motor.png", alt="RBD_Motor")
+                .image
+                  img(src="assets/images/install-folder-structure-timer.png", alt="RBD_Timer")
+            .install-step
+              h3 Step 3
+              p.lead
+                | Upgrade to&nbsp;
+                a(href="https://www.arduino.cc/en/Main/Software") Arduino IDE v1.5 or greater
+                |  and load the&nbsp;
+                a.close-modal(href="#example-sketch") Example Sketch
+                |  to get started.
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
 
     include ./global/footer.jade
     include ./global/foot-content.jade
