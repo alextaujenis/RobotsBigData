@@ -11,13 +11,33 @@ html(lang='en')
         .hidden-xs.col-sm-4.stuck
           include ./global/docs-side-nav.jade
         .documentation.col-sm-8
-          ol.breadcrumb.stuck
-            li
-              a(href="index.html") Home
-            li
-              a(href="docs-arduino.html") Arduino
-            li.active(translate="no")
-              | Timer
+          .breadcrumb-container.stuck
+            ol.breadcrumb
+              li
+                a(href="index.html") Home
+              li
+                a(href="docs-arduino.html") Arduino
+              li.active(translate="no")
+                | Timer
+            .breadcrumb-icons.pull-right
+              .icon-container.pull-right
+                a(href="https://github.com/alextaujenis/RBD_Timer")
+                  .icon
+                    .image
+                      img(src='assets/images/github-logo.png', alt="GitHub Logo")
+                    .text-container
+                      .name View Source on GitHub
+                      .subtitle With MIT License
+              .icon-container.pull-right.download-button(data-toggle="tooltip", data-placement="bottom", title="Click to download the Timer library")
+                a(href="assets/downloads/RBD_Timer.zip")
+                  .icon
+                    .image
+                      img(src='assets/images/zip-icon.png', alt=".zip icon")
+                    .text-container
+                      .name RBD_Timer.zip
+                      .subtitle 9KB Download
+              .clearfix
+            .clearfix
           .jumbotron
             .stuck.click-through
               .row.jumbotron-header.click-through
@@ -30,11 +50,11 @@ html(lang='en')
               p
                 | Manage many timed events.
                 small v1.1.1
-              a.btn.btn-primary(href="#how-to-install") How to Install
-              | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-setup") See Example
+              a.btn.btn-primary(href="#example-setup") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="https://github.com/alextaujenis/RBD_Timer/releases") Release Notes
           .h3
             #overview.anchor
             | Overview
@@ -50,30 +70,6 @@ html(lang='en')
             | This library performs in Soft Real-Time, which means that it will mostly stay on time but is allowed to slip if performance is an issue. This could look like a microsecond of time loss when the timer expires but before it is restarted. Or this could look like a busy Arduino loop() where the timer resolution degrades to only fire an event within 25 microseconds of an actual event. (A microsecond is a small fraction of a millisecond).
           p
             | There are other solutions for Hard Real-Time problems that require exact timing, which cannot slip for any reason. These are considerations when using this timer within a project, but for the most part; performance is awesome and you should use this library.
-          .h3
-            #how-to-install.anchor
-            | How to Install
-          p
-            | This library is part of a larger package that you can install to access
-            i  all
-            |  of the documented sensors,&nbsp;
-            i or
-            |  you can use this library by itself.
-          ul
-            li
-              a(href="https://github.com/alextaujenis/RBD_Timer/raw/master/extras/RBD_Timer.zip")
-                | Download&nbsp;
-                span(translate="no") Timer
-                |  Library v1.1.1&nbsp;
-                .label.label-warning.zip-label .zip
-              |  by itself, or
-            li
-              a(href="install.html") Download All Sensor Libraries
-              |  with this library included, or
-            li
-              a(href="https://github.com/alextaujenis/RBD_Timer") View Source on GitHub
-              |  with&nbsp;
-              a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           .h3
             #example-setup.anchor
@@ -492,6 +488,51 @@ html(lang='en')
 
           .bottom-nav.hidden.visible-xs-block
             include ./global/docs-side-nav.jade
+
+    #modal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') x
+            h4#modalLabel.modal-title Library Installation
+          .modal-body
+            .install-step
+              h3 Step 1
+              p.lead
+                | Check your downloads folder and double-click the&nbsp;
+                img(src="src/images/zip-icon.png", alt=".zip icon")
+                |  RBD_Timer.zip file.
+            .install-step
+              h3 Step 2
+              p.lead
+                | Move the&nbsp;
+                img(src="src/images/folder-icon.png", alt="folder icon")
+                |   RBD_Timer folder to the Arduino&nbsp;
+                img(src="src/images/folder-icon.png", alt="folder icon")
+                |  libraries folder:
+              h5 INSTALL PATH
+              div(translate="no")
+                script(type="syntaxhighlighter", class="brush: shell; gutter: false;")
+                  :cdata
+                    Mac & Linux:   Documents/Arduino/libraries
+                    Windows:       My Documents\Arduino\libraries
+
+                h5 FOLDER STRUCTURE
+                .image
+                  img(src="assets/images/install-folder-structure-documents.png", alt="Documents/Arduino/Libraries")
+                .image
+                  img(src="assets/images/install-folder-structure-timer.png", alt="RBD_Timer")
+            .install-step
+              h3 Step 3
+              p.lead
+                | Upgrade to&nbsp;
+                a(href="https://www.arduino.cc/en/Main/Software") Arduino IDE v1.5 or greater
+                |  and load the&nbsp;
+                a.close-modal(href="#example-sketch") Example Sketch
+                |  to get started.
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
 
     include ./global/footer.jade
     include ./global/foot-content.jade
