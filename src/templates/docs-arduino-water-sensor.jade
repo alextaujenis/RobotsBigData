@@ -11,13 +11,33 @@ html(lang='en')
         .hidden-xs.col-sm-4.stuck
           include ./global/docs-side-nav.jade
         .documentation.col-sm-8
-          ol.breadcrumb.stuck
-            li
-              a(href="index.html") Home
-            li
-              a(href="docs-arduino.html") Arduino
-            li.active(translate="no")
-              | Water Sensor
+          .breadcrumb-container.stuck
+            ol.breadcrumb
+              li
+                a(href="index.html") Home
+              li
+                a(href="docs-arduino.html") Arduino
+              li.active(translate="no")
+                | Water Sensor
+            .breadcrumb-icons.pull-right
+              .icon-container.pull-right
+                a(href="https://github.com/alextaujenis/RBD_WaterSensor")
+                  .icon
+                    .image
+                      img(src='assets/images/github-logo.png', alt="GitHub Logo")
+                    .text-container
+                      .name View Source on GitHub
+                      .subtitle With MIT License
+              .icon-container.pull-right.download-button(data-toggle="tooltip", data-placement="bottom", title="Click to download the Water Sensor library with the Capacitance and Threshold dependencies")
+                a(href="assets/downloads/WaterSensor.zip")
+                  .icon
+                    .image
+                      img(src='assets/images/zip-icon.png', alt=".zip icon")
+                    .text-container
+                      .name WaterSensor.zip
+                      .subtitle 30KB Download
+              .clearfix
+            .clearfix
           .jumbotron
             .stuck.click-through
               .row.jumbotron-header.click-through
@@ -30,11 +50,11 @@ html(lang='en')
               p
                 | Measure and calibrate water level sensors.
                 small v2.0.0
-              a.btn.btn-primary(href="#how-to-install") How to Install
-              | &nbsp;&nbsp;
-              a.btn.btn-default(href="#example-wiring") See Example
+              a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
+              | &nbsp;&nbsp;
+              a.btn.btn-default(href="https://github.com/alextaujenis/RBD_WaterSensor/releases") Release Notes
           .h3
             #overview.anchor
             | Overview
@@ -48,34 +68,6 @@ html(lang='en')
             | . Look at the&nbsp;
             a(href="docs-arduino-capacitance.html", translate="no") Capacitance Library
             |  if you would like to know more about how capacitance is calculated.
-          .h3
-            #how-to-install.anchor
-            | How to Install
-          p
-            | This library is part of a larger package that you can install to access
-            i  all
-            |  of the documented sensors,&nbsp;
-            i or
-            |  you can use this library by itself with two dependencies.
-          ul
-            li
-              a(href="https://github.com/alextaujenis/RBD_WaterSensor/raw/master/extras/RBD_WaterSensor.zip")
-                | Download&nbsp;
-                span(translate="no") Water Sensor
-                |  Library v2.0.0&nbsp;
-                .label.label-warning.zip-label(translate="no") .zip
-              |  by itself with the&nbsp;
-              a.dark-link(href="https://github.com/alextaujenis/RBD_Capacitance/raw/master/extras/RBD_Capacitance.zip") Capacitance
-              |  and&nbsp;
-              a.dark-link(href="https://github.com/alextaujenis/RBD_Threshold/raw/master/extras/RBD_Threshold.zip") Threshold
-              |  dependencies, or
-            li
-              a(href="install.html") Download All Sensor Libraries
-              |  with this library and dependencies included, or
-            li
-              a(href="https://github.com/alextaujenis/RBD_WaterSensor") View Source on GitHub
-              |  with&nbsp;
-              a.dark-link(href="http://opensource.org/licenses/mit-license.php") MIT license
 
           .h3
             #example-wiring.anchor
@@ -602,6 +594,55 @@ html(lang='en')
 
           .bottom-nav.hidden.visible-xs-block
             include ./global/docs-side-nav.jade
+
+    #modal.modal.fade(tabindex='-1', role='dialog')
+      .modal-dialog.modal-lg
+        .modal-content
+          .modal-header
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') x
+            h4#modalLabel.modal-title Library Installation
+          .modal-body
+            .install-step
+              h3 Step 1
+              p.lead
+                | Check your downloads folder and double-click the&nbsp;
+                img(src="src/images/zip-icon.png", alt=".zip icon")
+                |  WaterSensor.zip file.
+            .install-step
+              h3 Step 2
+              p.lead
+                | Move the un-zipped contents of the&nbsp;
+                img(src="src/images/folder-icon.png", alt="folder icon")
+                |  WaterSensor folder to the Arduino&nbsp;
+                img(src="src/images/folder-icon.png", alt="folder icon")
+                |  libraries folder:
+              h5 INSTALL PATH
+              div(translate="no")
+                script(type="syntaxhighlighter", class="brush: shell; gutter: false;")
+                  :cdata
+                    Mac & Linux:   Documents/Arduino/libraries
+                    Windows:       My Documents\Arduino\libraries
+
+                h5 FOLDER STRUCTURE
+                .image
+                  img(src="assets/images/install-folder-structure-documents.png", alt="Documents/Arduino/Libraries")
+                .image
+                  img(src="assets/images/install-folder-structure-capacitance.png", alt="RBD_Capacitance")
+                .image
+                  img(src="assets/images/install-folder-structure-threshold.png", alt="RBD_Threshold")
+                .image
+                  img(src="assets/images/install-folder-structure-water-sensor.png", alt="RBD_WaterSensor")
+            .install-step
+              h3 Step 3
+              p.lead
+                | Upgrade to&nbsp;
+                a(href="https://www.arduino.cc/en/Main/Software") Arduino IDE v1.5 or greater
+                |  and load the&nbsp;
+                a.close-modal(href="#example-sketch") Example Sketch
+                |  to get started.
+          .modal-footer
+            button.btn.btn-default(type='button', data-dismiss='modal') Close
 
     include ./global/footer.jade
     include ./global/foot-content.jade
