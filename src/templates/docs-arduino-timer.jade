@@ -8,7 +8,8 @@ html(lang='en')
     include ./global/top-nav.jade
     .container-fluid
       .row
-        include ./global/docs-side-nav.jade
+        .hidden-xs.col-sm-4.stuck
+          include ./global/docs-side-nav.jade
         .documentation.col-sm-8
           ol.breadcrumb.stuck
             li
@@ -488,6 +489,9 @@ html(lang='en')
                       Serial.println("Timer Restarted");
                     }
                   }
+
+          .bottom-nav.hidden.visible-xs-block
+            include ./global/docs-side-nav.jade
 
     include ./global/footer.jade
     include ./global/foot-content.jade
