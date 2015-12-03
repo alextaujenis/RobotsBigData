@@ -7,11 +7,12 @@ html(lang='en')
   body
     include ./global/top-nav.jade
     .container-fluid.install-guide
-      ol.breadcrumb.stuck
-        li
-          a(href="index.html") Home
-        li.active
-          | Install Guide
+      .breadcrumb-container.stuck
+        ol.breadcrumb
+          li
+            a(href="index.html") Home
+          li.active
+            | Install Guide
       .row
         .col-xs-12
           #step-1

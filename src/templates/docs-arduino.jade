@@ -11,11 +11,13 @@ html(lang='en')
         .hidden-xs.col-sm-4.stuck
           include ./global/docs-side-nav.jade
         .documentation.col-sm-8
-          ol.breadcrumb.stuck
-            li
-              a(href="index.html") Home
-            li.active
-              | Arduino Libraries
+          .breadcrumb-container.stuck
+            ol.breadcrumb
+              li
+                a(href="index.html") Home
+              li.active
+                | Arduino Libraries
+
           .jumbotron
             .stuck.click-through
               .row.jumbotron-header.click-through
