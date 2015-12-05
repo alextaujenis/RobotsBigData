@@ -296,7 +296,7 @@ html(lang='en')
               #getpercentvalue.anchor
               .light timer
               | .getPercentValue()
-            p Returns an integer from 0 - 100 of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 25.
+            p Returns an integer from 0 - 100 of how much time has passed as a percentage of the total interval. If the timer has run for 500ms in a 2000ms timeout: this method will return 25.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
@@ -328,7 +328,7 @@ html(lang='en')
               #getinversepercentvalue.anchor
               .light timer
               | .getInversePercentValue()
-            p Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the interval is 2000ms, and 500ms have passed: this method will return 75.
+            p Returns an integer from 100 - 0 of the inverse of how much time has passed as a percentage of the total interval. If the timer has run for 500ms in a 2000ms timeout: this method will return 75.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
