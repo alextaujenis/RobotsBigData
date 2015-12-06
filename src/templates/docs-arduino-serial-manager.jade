@@ -39,7 +39,7 @@ html(lang='en')
               .clearfix
             .clearfix
           .jumbotron
-            .stuck.click-through
+            .click-through
               .row.jumbotron-header.click-through
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
@@ -78,17 +78,59 @@ html(lang='en')
           .h3
             #example-setup.anchor
             | Example Setup
-          ol
-            li Install this library and load the example sketch onto an Arduino
+            span.pull-right.example-sketch-buttons
+              .btn-group.btn-group-sm.other-examples(role='group')
+                button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
+                  | All Examples&nbsp;
+                  span.caret
+                ul.dropdown-menu.dropdown-menu-right
+                  li.active(data-target="basic-example") Basic Example
+                  li(data-target="led-example") Light Control
+                  li(data-target="servo-example") Servo Control
+            .clearfix
+          ol.basic-example.code-item
+            li
+              | Install this library and load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  onto an Arduino
             li Open a serial connection at 115200 baud
             li Type something into the serial console followed by a semicolon ; then hit enter
             li Watch the text get parsed and echoed back into the serial console
+
+          ol.led-example.code-item(style="display: none;")
+            li
+              | Install this library along with the&nbsp;
+              a(href="docs-arduino-light.html") Light Library
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  onto an Arduino
+            li Open a serial connection at 115200 baud
+            li Type a command into the serial console followed by a semicolon ; then hit enter
+            li Watch the built-in Arduino LED respond to serial commands
+
+          ol.servo-example.code-item(style="display: none;")
+            li
+              | Install this library along with the&nbsp;
+              a(href="docs-arduino-servo.html") Servo Library
+            li
+              | Connect a servo to the Arduino as shown in the&nbsp;
+              a(href="docs-arduino-servo.html#example-wiring") Servo Library Example Wiring
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  onto an Arduino
+            li Open a serial connection at 115200 baud
+            li Type a command into the serial console followed by a semicolon ; then hit enter
+            li Watch the servo respond to serial commands
+
           .h3
             #example-sketch.anchor
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
-          div(translate="no")
+
+          .basic-example.code-item(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 #include <RBD_SerialManager.h>
@@ -103,6 +145,75 @@ html(lang='en')
                   if(serial_manager.onReceive()) {
                     // example serial command: hello world;
                     serial_manager.getValue(); // returns: hello world
+                  }
+                }
+
+          .led-example.code-item(translate="no", style="display: none;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_SerialManager.h>
+                #include <RBD_Timer.h>
+                #include <RBD_Light.h>
+
+                RBD::SerialManager usb;
+                RBD::Light light(13);
+
+                void setup() {
+                  usb.start();
+                }
+
+                void loop() {
+                  if(usb.onReceive()) {
+                    // example serial command: on;
+                    if(usb.isCmd("on")) {
+                      light.on();
+                    }
+
+                    // example serial command: off;
+                    if(usb.isCmd("off")) {
+                      light.off();
+                    }
+
+                    // example serial command: pwm,123;
+                    if(usb.isCmd("pwm")) {
+                      int pwm = usb.getParam().toInt();
+                      light.setBrightness(pwm);
+                    }
+                  }
+                }
+
+          .servo-example.code-item(translate="no", style="display: none;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_SerialManager.h>
+                #include <RBD_Servo.h>
+
+                RBD::SerialManager usb;
+                RBD::Servo servo(2, 700, 2300); // digital pin 2, 700ms - 2300ms pulse
+
+                void setup() {
+                  usb.start();
+                }
+
+                void loop() {
+                  servo.update();
+
+                  if(usb.onReceive()) {
+                    // example serial command: up;
+                    if(usb.isCmd("up")) {
+                      servo.moveToDegrees(180);
+                    }
+
+                    // example serial command: down;
+                    else if(usb.isCmd("down")) {
+                      servo.moveToDegrees(0);
+                    }
+
+                    // example serial command: move,90;
+                    else if(usb.isCmd("move")) {
+                      int _position = usb.getParam().toInt();
+                      servo.moveToDegrees(_position);
+                    }
                   }
                 }
 

@@ -321,3 +321,49 @@ h4.class-name {
     padding-bottom: 3px;
   }
 }
+
+.other-examples {
+  ul {
+    li {
+      font-size: 12px;
+      padding: 7px 12px;
+      margin: 3px 0;
+      font-weight: normal;
+      cursor: pointer;
+
+      &.active {
+        cursor: default;
+        background-color: #e4e4e4;
+        border: solid 1px #e4e4e4;
+        color: black;
+
+        &:hover {
+          background-color: #e4e4e4;
+          border: solid 1px #e4e4e4;
+          color: black;
+        }
+      }
+
+      border: solid 1px white;
+
+      &:hover {
+        background-color: #e9f7ff;
+        border: solid 1px #b8e7ff;
+        border-left: solid 1px #e9f7ff;
+        border-right: solid 1px #e9f7ff;
+      }
+    }
+  }
+}
+
+.example-sketch-buttons {
+  display: none;
+
+  .dropdown-toggle {
+    font-weight: bold;
+  }
+
+  .button-container {
+    display: inline;
+  }
+}
