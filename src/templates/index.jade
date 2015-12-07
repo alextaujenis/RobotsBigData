@@ -9,7 +9,9 @@ html(lang='en')
     .container-fluid
       .branding
         .row
-          img.logo.img-responsive(src="assets/images/robots-big-data-logo.png", alt="Robots + Big Data")
+          .logo
+            .image-container
+              img.img-responsive(src="assets/images/robots-big-data-logo.png", alt="Robots + Big Data")
           h3.tagline An open-source framework for connecting sensors to the internet.
       .row
         .col-sm-6.text-center
@@ -17,7 +19,7 @@ html(lang='en')
           .hardware-with with any
           .hardware-name Arduino
           .hardware-image
-            img(src="assets/images/arduino-uno-r3.png", alt="Arduino Uno R3")
+            img.img-responsive(src="assets/images/arduino-uno-r3.png", alt="Arduino Uno R3")
           .row.text-left
             ul.hardware-benefits
               li

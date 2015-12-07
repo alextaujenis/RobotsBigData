@@ -113,12 +113,24 @@ p.lead {
 }
 
 .logo {
-  margin: 100px auto 0 auto;
+  .image-container {
+    padding: 0px 15px;
+
+    img {
+      margin: 100px auto 0 auto;
+    }
+  }
 }
 
 .tagline {
   text-align: center;
-  margin: 10px 0 50px 0;
+  margin: 10px 15px 50px 15px;
+}
+
+.hardware-image {
+  img {
+    margin: 0px auto;
+  }
 }
 
 .btn-custom {
@@ -182,18 +194,6 @@ p.lead {
   font-size: 40px;
 }
 
-@media(max-width:900px) {
-  .hardware-image img{
-    width: 400px;
-  }
-}
-
-@media(max-width:810px) {
-  .hardware-image img{
-    width: 350px;
-  }
-}
-
 .hardware-benefits {
   font-size: 14px;
   margin: 20px 0 100px 20px;
@@ -201,6 +201,14 @@ p.lead {
   & li {
     padding: 10px 0;
   }
+}
+
+.hardware-benefits {
+  @media(min-width:450px) {margin-left: 50px;}
+  @media(min-width:550px) {margin-left: 100px;}
+  @media(min-width:650px) {margin-left: 150px;}
+  @media(min-width:768px) {margin-left: 20px;}
+  @media(min-width:900px) {margin-left: 75px;}
 }
 
 .software1 {
