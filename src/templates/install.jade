@@ -18,13 +18,27 @@ html(lang='en')
           #step-1
           h1 Install Step 1
           p.lead
-            | Download all&nbsp;
+            | Click below to download all&nbsp;
             span(translate="no") Robots + Big Data
             |  Arduino libraries:
           .row
             .col-xs-12
-              a.btn.btn-lg.btn-success(href="https://github.com/alextaujenis/RobotsBigData/raw/gh-pages/assets/downloads/RBD_Libraries.zip", translate="no") RBD_Libraries.zip v2.9
-              a.release-notes(href="https://github.com/alextaujenis/RobotsBigData/releases") release notes
+              .library-download
+                .image.pull-left
+                  a(href="https://github.com/alextaujenis/RobotsBigData/raw/gh-pages/assets/downloads/RBD_Libraries.zip")
+                    img(src="assets/images/zip-lg.png", alt=".zip file")
+                .content.pull-left
+                  a(href="https://github.com/alextaujenis/RobotsBigData/raw/gh-pages/assets/downloads/RBD_Libraries.zip")
+                    .title
+                      | RBD_Libraries.zip
+                    .details
+                      | 340KB Download -&nbsp;
+                      span
+                        | Updated&nbsp;
+                        time.timeago(datetime="2015-12-04T21:00:36Z") December 4, 2015
+                  a.release-notes(href="https://github.com/alextaujenis/RobotsBigData/releases")
+                    | v2.9 - Release Notes
+                .clearfix
         .spacer &nbsp;
         .col-xs-12
           #step-2
@@ -63,3 +77,5 @@ html(lang='en')
     include ./global/footer.jade
     include ./global/foot-content.jade
     include ./global/docs-foot-content.jade
+    script(src='assets/code/jquery.timeago.js')
+    script(src='assets/code/init_timeago.js')
