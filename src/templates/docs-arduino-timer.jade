@@ -118,7 +118,6 @@ html(lang='en')
               a.click-flash(href="#settimeout") .setTimeout(value)
             li
               a.click-flash(href="#sethertz") .setHertz(value)
-            li.divider
             li
               a.click-flash(href="#restart") .restart()
             li
@@ -226,7 +225,7 @@ html(lang='en')
               .light timer
               | .restart()
             p
-              | All you need to do is restart the timer when you want to use it. When you first initialize the timer; it will always start expired. This can be used with&nbsp;
+              | When you first initialize the timer it will be expired. All you need to do is restart the timer when you want to use it. This method can be used with&nbsp;
               a.click-flash(href="#isexpired", translate="no") isExpired()
               |  to create a continuous loop.
             p
