@@ -35,7 +35,7 @@ html(lang='en')
                       img(src='assets/images/zip-icon.png', alt=".zip icon")
                     .text-container
                       .name Button.zip
-                      .subtitle 21KB Download
+                      .subtitle 18KB Download
               .clearfix
             .clearfix
           .jumbotron
@@ -49,7 +49,7 @@ html(lang='en')
                 small(translate="yes") API DOCUMENTATION
               p
                 | Read and debounce buttons and switches.
-                small v1.0.1
+                small v2.0.0
               a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
@@ -137,25 +137,18 @@ html(lang='en')
             li
               a.click-flash(href="#setdebouncetimeout") .setDebounceTimeout(value)
             li
+              a.click-flash(href="#invertreading") .invertReading()
+            li.divider
+            li
               a.click-flash(href="#ispressed") .isPressed()
             li
               a.click-flash(href="#isreleased") .isReleased()
-            li.divider
             li
               a.click-flash(href="#onpressed") .onPressed()
               include ./global/labels/event.jade
             li
               a.click-flash(href="#onreleased") .onReleased()
               include ./global/labels/event.jade
-            li.divider
-            li
-              a.click-flash(href="#inputpullup") .inputPullup()
-            li
-              a.click-flash(href="#disableinputpullup") .disableInputPullup()
-            li
-              a.click-flash(href="#invertreading") .invertReading()
-            li
-              a.click-flash(href="#resetreading") .resetReading()
 
           .section
             .method-name(translate="no")
@@ -188,6 +181,32 @@ html(lang='en')
                 :cdata
                   void setup() {
                     button.setDebounceTimeout(10) // default ms
+                  }
+
+          .section
+            .method-name(translate="no")
+              #invertreading.anchor
+              .light button
+              | .invertReading()
+            p
+              | Flip the value of the raw button state reading so when the button&nbsp;
+              a.click-flash(href="#ispressed", translate="no") isPressed()
+              |  it will register as&nbsp;
+              a.click-flash(href="#isreleased", translate="no") isReleased()
+              | , and vice versa. This method changes the behavior for&nbsp;
+              a.click-flash(href="#onpressed", translate="no") onPressed()
+              |  and&nbsp;
+              a.click-flash(href="#onreleased", translate="no") onReleased()
+              |  as well.
+
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    button.invertReading();
                   }
 
           .section
@@ -278,98 +297,6 @@ html(lang='en')
                       // code only runs once per event
                       Serial.println("Button Released Event");
                     }
-                  }
-
-          .section
-            .method-name(translate="no")
-              #inputpullup.anchor
-              .light button
-              | .inputPullup()
-            p
-              | Set the button as INPUT_PULLUP and invert the button state readings (to give you the correct value). This allows you to wire the button to a digital pin and ground while using the internal resistor to protect the Arduino pin.
-            p
-              | This method is called by default in the&nbsp;
-              a.click-flash(href="#constructor", translate="no") constructor()
-              |  if you leave out the [optional] input_pullup flag. This method is provided for convenience only.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  // RBD::Button button(2) // inputPullup() called by default
-
-                  void setup() {
-                    button.inputPullup();
-                  }
-
-          .section
-            .method-name(translate="no")
-              #disableinputpullup.anchor
-              .light button
-              | .disableInputPullup()
-            p
-              | Set the button as INPUT and set the button state readings back to normal (not inverted). This is the opposite of calling&nbsp;
-              a.click-flash(href="#inputpullup", translate="no") inputPullup()
-              | .
-            p
-              | The best way to disable input_pullup with this library is to call the&nbsp;
-              a.click-flash(href="#constructor", translate="no") constructor()
-              |  with a false [input_pullup] flag instead of using this method. This method is provided for convenience only.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  // RBD::Button button(2, false) // preferred
-
-                  void setup() {
-                    button.disableInputPullup();
-                  }
-
-          .section
-            .method-name(translate="no")
-              #invertreading.anchor
-              .light button
-              | .invertReading()
-            p
-              | Flip the value of the raw button state reading so when the button is HIGH, it registers as LOW, and vice versa. This is used when the button is set as input_pullup (by default), because the button is normally HIGH when off, and LOW when on, so flipping the readings gives the correct state of the button.
-            p
-              | This method is automatically called when using this library as input_pullup, which is the default behavior. This method is provided for convenience only.
-
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void setup() {
-                    button.invertReading();
-                  }
-
-          .section
-            .method-name(translate="no")
-              #resetreading.anchor
-              .light button
-              | .resetReading()
-            p
-              | Return the button state reading back to normal. This is the opposite of calling&nbsp;
-              a.click-flash(href="#invertreading", translate="no") invertReading()
-              | .
-            P This method is called by default when using&nbsp;
-              a.click-flash(href="#disableinputpullup", translate="no") disableInputPullup(),
-              |  or when providing a false [input_pullup] flag in the&nbsp;
-              a.click-flash(href="#constructor", translate="no") constructor()
-              | . This method is provided for convenience only.
-            h5
-              | EXAMPLE&nbsp;
-              span(translate="no") SKETCH
-            div(translate="no")
-              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
-                :cdata
-                  void setup() {
-                    button.resetReading();
                   }
 
           .bottom-nav.hidden.visible-xs-block
