@@ -1,1 +1,1 @@
-$(document).ready(function(){var t,e;return e=$(".example-sketch-buttons"),t=e.find("a"),e.show(),t.on("click",function(e){var a,n;return a=$(e.target),t.tooltip("hide"),a.hasClass("active")?void 0:(t.removeClass("active"),a.addClass("active"),n=a.attr("data-target"),$.when($(".code-item").fadeOut(50)).then(function(){return $("."+n).fadeIn(450)}))})});
+$(document).ready(function(){return $(window).navMenu()});
