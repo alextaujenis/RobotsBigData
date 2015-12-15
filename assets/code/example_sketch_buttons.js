@@ -1,1 +1,1 @@
-$(document).ready(function(){return $(window).navMenu()});
+$(document).ready(function(){$(window).navMenu(),$(".nav-item").on("click",function(n){$(n.target).tooltip("hide")})});

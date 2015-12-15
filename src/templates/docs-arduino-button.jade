@@ -39,7 +39,7 @@ html(lang='en')
               .clearfix
             .clearfix
           .jumbotron
-            .stuck.click-through
+            .click-through
               .row.jumbotron-header.click-through
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
@@ -49,7 +49,7 @@ html(lang='en')
                 small(translate="yes") API DOCUMENTATION
               p
                 | Read and debounce buttons and switches.
-                small v2.0.0
+                small v2.0.1
               a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
@@ -75,7 +75,14 @@ html(lang='en')
           .h3
             #example-wiring.anchor
             | Example Wiring
-          ol
+            .example-sketch-buttons.nav-menu.pull-right(style="display:none;")
+              label SEE EXAMPLE:
+              .btn-group(role="group")
+                a.active.btn.btn-xs.btn-default.nav-item(href="#example-wiring", data-toggle="tooltip", data-placement="bottom", title="Basic Example: Debounce a button and use the internal pullup resistor.", data-target="basic-example") 1
+                a.btn.btn-xs.btn-default.nav-item(href="#example-wiring", data-toggle="tooltip", data-placement="bottom", title="Disable input_pullup: Debounce a button and use an external resistor.", data-target="disable-input-pullup-example") 2
+              .clearfix
+            .clearfix
+          ol.basic-example.nav-content
             li
               | Connect the Arduino&nbsp;
               span.ground-wire ground pin
@@ -90,8 +97,33 @@ html(lang='en')
               |  onto the Arduino
             li
               | Open a serial connection at 115200 baud and press the button
-          p
+          p.basic-example.nav-content
             img.img-responsive(src="assets/images/arduino-button-wiring-diagram.png", alt="A mechanical push button wired to an Arduino Micro pin 2 and ground.")
+
+          ol.disable-input-pullup-example.nav-content(style="display:none;")
+            li
+              | Connect the Arduino&nbsp;
+              span.ground-wire ground pin
+              |  to one of the button terminals
+            li
+              | Connect the Arduino&nbsp;
+              span.control-wire digital pin 2
+              |  to the other button terminal
+            li
+              | Bridge a&nbsp;
+              b 10K&#8486; pull up resistor
+              |  from the&nbsp;
+              span.hot-wire +5v pin
+              |  to&nbsp;
+              span.control-wire digital pin 2
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  onto the Arduino
+            li
+              | Open a serial connection at 115200 baud and press the button
+          p.disable-input-pullup-example.nav-content(style="display:none;")
+            img.img-responsive(src="assets/images/arduino-button-disable-input-pullup-wiring-diagram.png", alt="A mechanical push button wired to an Arduino Micro pin 2 and ground with a 10k ohm pull up resistor.")
 
           .h3
             #example-sketch.anchor
@@ -99,13 +131,36 @@ html(lang='en')
             span.label.label-info Arduino
             span.label.label-primary C++
 
-          div(translate="no")
+          .basic-example.nav-content(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 #include <RBD_Timer.h>
                 #include <RBD_Button.h>
 
                 RBD::Button button(2); // input_pullup by default
+
+                void setup() {
+                  Serial.begin(115200);
+                }
+
+                void loop() {
+                  if(button.onPressed()) {
+                    Serial.println("Button Pressed");
+                  }
+
+                  if(button.onReleased()) {
+                    Serial.println("Button Released");
+                  }
+                }
+
+          .disable-input-pullup-example.nav-content(translate="no", style="display: none;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Timer.h>
+                #include <RBD_Button.h>
+
+                // input_pullup disabled, circuit must include an external resistor
+                RBD::Button button(2, false); // pin number, input_pullup flag
 
                 void setup() {
                   Serial.begin(115200);
