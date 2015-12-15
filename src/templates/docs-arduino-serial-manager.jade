@@ -78,16 +78,6 @@ html(lang='en')
           .h3
             #example-setup.anchor
             | Example Setup
-            span.pull-right.example-sketch-buttons
-              .btn-group.btn-group-sm.other-examples(role='group')
-                button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='false')
-                  | All Examples&nbsp;
-                  span.caret
-                ul.dropdown-menu.dropdown-menu-right
-                  li.active(data-target="basic-example") Basic Example
-                  li(data-target="led-example") Light Control
-                  li(data-target="servo-example") Servo Control
-            .clearfix
           ol.basic-example.code-item
             li
               | Install this library and load the&nbsp;
@@ -129,7 +119,14 @@ html(lang='en')
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
-
+            .example-sketch-buttons.pull-right(style="display:none;")
+              label SEE EXAMPLE:
+              .btn-group(role="group")
+                a.active.btn.btn-xs.btn-default(href="#example-setup", data-toggle="tooltip", data-placement="bottom", title="Basic Example: Send, receive, and parse a serial command.", data-target="basic-example") 1
+                a.btn.btn-xs.btn-default(href="#example-setup", data-toggle="tooltip", data-placement="bottom", title="Light Control: Change an LED with serial commands.", data-target="led-example") 2
+                a.btn.btn-xs.btn-default(href="#example-setup", data-toggle="tooltip", data-placement="bottom", title="Servo Control: Move a servo with serial commands.", data-target="servo-example") 3
+              .clearfix
+            .clearfix
           .basic-example.code-item(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata

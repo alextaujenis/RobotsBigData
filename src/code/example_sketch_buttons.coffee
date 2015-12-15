@@ -2,15 +2,15 @@
 $(document).ready ->
   # memoize the drop-down menu & buttons
   menu = $(".example-sketch-buttons")
-  buttons = menu.find("li")
-  # set the button text
-  $(".dropdown-toggle").html(buttons.first().text() + '&nbsp;<span class="caret"></span>')
+  buttons = menu.find("a")
   # show the menu
   menu.show()
   # capture the button click event
   buttons.on "click", (e)->
     # grab the button
     button = $(e.target)
+    # hide the popovers
+    buttons.tooltip('hide')
     # make sure this button isn't selected
     if !button.hasClass("active")
       # remove active class from all buttons
@@ -22,5 +22,3 @@ $(document).ready ->
       $.when($('.code-item').fadeOut(50)).then ->
         # show the selected item
         $(".#{selected_item}").fadeIn(450)
-        # change the name of the button
-        $(".dropdown-toggle").html(button.text() + '&nbsp;<span class="caret"></span>')
