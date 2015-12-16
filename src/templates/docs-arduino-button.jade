@@ -76,10 +76,10 @@ html(lang='en')
             #example-wiring.anchor
             | Example Wiring
             .example-sketch-buttons.nav-menu.pull-right(style="display:none;")
-              label SEE EXAMPLE:
+              label OTHER EXAMPLES:
               .btn-group(role="group")
-                a.active.btn.btn-xs.btn-default.nav-item(href="#example-wiring", data-toggle="tooltip", data-placement="bottom", title="Basic Example: Debounce a button and use the internal pullup resistor.", data-target="basic-example") 1
-                a.btn.btn-xs.btn-default.nav-item(href="#example-wiring", data-toggle="tooltip", data-placement="bottom", title="Disable input_pullup: Debounce a button and use an external resistor.", data-target="disable-input-pullup-example") 2
+                a.btn.btn-sm.btn-inverse.nav-item(href="#example-wiring", data-toggle="tooltip", data-placement="bottom", title="input_pullup enabled (recommended)", data-target="basic-example") 1
+                a.btn.btn-sm.btn-inverse.nav-item(href="#example-wiring", data-toggle="tooltip", data-placement="bottom", title="input_pullup disabled", data-target="disable-input-pullup-example") 2
               .clearfix
             .clearfix
           ol.basic-example.nav-content

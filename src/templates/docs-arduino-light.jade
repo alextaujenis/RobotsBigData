@@ -39,7 +39,7 @@ html(lang='en')
               .clearfix
             .clearfix
           .jumbotron
-            .stuck.click-through
+            .click-through
               .row.jumbotron-header.click-through
                 .col-xs-12.text-right.click-through
                   span.label.label-info.title-label Arduino
@@ -73,7 +73,15 @@ html(lang='en')
           .h3
             #example-wiring.anchor
             | Example Wiring
-          ol
+            .example-sketch-buttons.nav-menu.pull-right(style="display:none;")
+              label OTHER EXAMPLES:
+              .btn-group(role="group")
+                a.btn.btn-sm.btn-inverse.nav-item(href="#example-wiring", data-toggle="tooltip", data-placement="bottom", title="Blink", data-target="blink-example") 1
+                a.btn.btn-sm.btn-inverse.nav-item(href="#example-wiring", data-toggle="tooltip", data-placement="bottom", title="Fade", data-target="fade-example") 2
+              .clearfix
+            .clearfix
+
+          ol.blink-example.nav-content
             li
               | Connect the Arduino&nbsp;
               span.ground-wire ground pin
@@ -90,6 +98,24 @@ html(lang='en')
               |  onto the Arduino
             li
               | Watch the LED blink without delay
+
+          ol.fade-example.nav-content(style="display: none;")
+            li
+              | Connect the Arduino&nbsp;
+              span.ground-wire ground pin
+              |  to a resistor calculated for your LED
+            li
+              | Connect the resistor to the short (negative) LED leg
+            li
+              | Connect the Arduino&nbsp;
+              span.control-wire PWM pin 3
+              |  to the long (positive) LED leg
+            li
+              | Load the&nbsp;
+              a(href="#example-sketch") Example Sketch
+              |  onto the Arduino
+            li
+              | Watch the LED fade without delay
           p
             img.img-responsive(src="assets/images/arduino-light-wiring-diagram.png", alt="A LED and resistor wired to an Arduino Micro PWM 3 and ground.")
 
@@ -98,7 +124,7 @@ html(lang='en')
             | Example Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
-          div(translate="no")
+          .blink-example.nav-content(translate="no")
             script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
               :cdata
                 #include <RBD_Timer.h>
@@ -108,6 +134,22 @@ html(lang='en')
 
                 void setup() {
                   light.blink(250,250);
+                }
+
+                void loop() {
+                  light.update();
+                }
+
+          .fade-example.nav-content(translate="no", style="display:none;")
+            script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+              :cdata
+                #include <RBD_Timer.h>
+                #include <RBD_Light.h>
+
+                RBD::Light light(3); // PWM pin 3
+
+                void setup() {
+                  light.fade(500,250,500,250);
                 }
 
                 void loop() {
