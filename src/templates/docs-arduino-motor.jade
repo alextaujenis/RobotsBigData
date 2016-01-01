@@ -444,7 +444,9 @@ html(lang='en')
                   }
 
                   void loop() {
-                    Serial.println(motor.isOn());
+                    if(motor.isOn()) {
+                      ...
+                    }
                   }
 
           .section
@@ -465,7 +467,9 @@ html(lang='en')
                   }
 
                   void loop() {
-                    Serial.println(motor.isOff());
+                    if(motor.isOff()) {
+                      ...
+                    }
                   }
 
           .section
@@ -489,7 +493,10 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   void loop() {
-                    Serial.println(motor.isForward());
+                    // motor set forward by default
+                    if(motor.isForward()) {
+                      ...
+                    }
                   }
 
           .section
@@ -512,8 +519,14 @@ html(lang='en')
             div(translate="no")
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
+                  void setup() {
+                    motor.reverse();
+                  }
+
                   void loop() {
-                    Serial.println(motor.isReverse());
+                    if(motor.isReverse()) {
+                      ...
+                    }
                   }
 
           .section

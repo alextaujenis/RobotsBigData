@@ -56,20 +56,33 @@ void setup() {
 }
 
 void loop() {
-  Serial.println(motor.isOn());
+  if(motor.isOn()) {
+    ...
+  }
 }
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isoff" class="anchor"></div><div class="light">motor</div>.isOff()</div><p>Returns true if the motor is running at 0% speed.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void setup() {
   motor.off();
 }
 
 void loop() {
-  Serial.println(motor.isOff());
+  if(motor.isOff()) {
+    ...
+  }
 }
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isforward" class="anchor"></div><div class="light">motor</div>.isForward()</div><p>Returns true if the motor is set in the&nbsp;<a href="#forward" translate="no" class="click-flash">forward()</a> state.</p><p>You must provide the optional forward and reverse pins in the&nbsp;<a href="#constructor" translate="no" class="click-flash">constructor()</a> and correctly wire the motor to use this method.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
-  Serial.println(motor.isForward());
+  // motor set forward by default
+  if(motor.isForward()) {
+    ...
+  }
 }
-]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isreverse" class="anchor"></div><div class="light">motor</div>.isReverse()</div><p>Returns true if the motor is set in the&nbsp;<a href="#reverse" translate="no" class="click-flash">reverse()</a> state.</p><p>You must provide the optional forward and reverse pins in the&nbsp;<a href="#constructor" translate="no" class="click-flash">constructor()</a> and correctly wire the motor to use this method.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void loop() {
-  Serial.println(motor.isReverse());
+]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="isreverse" class="anchor"></div><div class="light">motor</div>.isReverse()</div><p>Returns true if the motor is set in the&nbsp;<a href="#reverse" translate="no" class="click-flash">reverse()</a> state.</p><p>You must provide the optional forward and reverse pins in the&nbsp;<a href="#constructor" translate="no" class="click-flash">constructor()</a> and correctly wire the motor to use this method.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void setup() {
+  motor.reverse();
+}
+
+void loop() {
+  if(motor.isReverse()) {
+    ...
+  }
 }
 ]]></script></div></div><div class="section"><div translate="no" class="method-name"><div id="getspeed" class="anchor"></div><div class="light">motor</div>.getSpeed()</div><p>Returns an integer from 0 - 255 for the current motor speed.</p><h5>EXAMPLE&nbsp;<span translate="no">SKETCH</span></h5><div translate="no"><script type="syntaxhighlighter" class="brush: arduino; gutter: false;"><![CDATA[void setup() {
   motor.setSpeed(123);
