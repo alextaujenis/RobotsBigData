@@ -659,7 +659,16 @@ html(lang='en')
               .light motor
               | .ramp(value, timeout)
               include ./global/labels/real-time.jade
-            p Pass in a value from 0 - 255 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition.
+            p
+              | Pass in a value from 0 - 255 to set the&nbsp;
+              b target speed
+              |  of the motor, and a timeout in milliseconds for how long it will take to ramp from the&nbsp;
+              b current speed
+              |  to the&nbsp;
+              b target speed
+              |  with a&nbsp;
+              i linear
+              |  transition.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
@@ -681,7 +690,15 @@ html(lang='en')
               | .rampPercent(value, timeout)
               include ./global/labels/real-time.jade
             p
-              | Pass in a value from 0 - 100 to control the target speed of the motor, and a timeout in milliseconds for how long it will take to ramp to that target speed from the current speed with a linear transition. This is essentially the same as&nbsp;
+              | Pass in a value from 0 - 100 to set the&nbsp;
+              b target speed
+              |  percent of the motor, and a timeout in milliseconds for how long it will take to ramp from the&nbsp;
+              b current speed
+              |  to the&nbsp;
+              b target speed
+              |  percent with a&nbsp;
+              i linear
+              |  transition. This is essentially the same as&nbsp;
               a.click-flash(href="#ramp", translate="no") ramp()
               |  but with a smaller input scale.
             h5
@@ -775,7 +792,7 @@ html(lang='en')
               include ./global/labels/real-time.jade
               include ./global/labels/event.jade
             p
-              | This method will return true once the motor hits the target speed set in any of the real-time methods. This method will then return false until a new target speed is set (with a real-time method) and then achieved by the motor.
+              | This method will return true once the motor hits the target speed set in any of the real-time methods. This method will then return false until a new target speed is set (with a real-time method) and then achieved again by the motor.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
