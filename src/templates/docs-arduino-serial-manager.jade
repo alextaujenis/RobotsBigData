@@ -35,7 +35,7 @@ html(lang='en')
                       img(src='assets/images/zip-icon.png', alt=".zip icon")
                     .text-container
                       .name RBD_SerialManager.zip
-                      .subtitle 10KB Download
+                      .subtitle 9KB Download
               .clearfix
             .clearfix
           .jumbotron
@@ -49,7 +49,7 @@ html(lang='en')
                 small(translate="no")  API DOCUMENTATION
               p
                 | A simple interface for serial communication.
-                small v1.0.0-alpha.1
+                small v1.0.0-alpha.2
               a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
@@ -91,7 +91,8 @@ html(lang='en')
               |  onto an Arduino
             li Open a serial connection at 115200 baud
             li Type something into the serial console followed by a semicolon ; then hit enter
-            li Watch the text get parsed and echoed back into the serial console
+            li Example commands: on; pwm,123;
+            li Watch for a response printed to the serial console
 
           ol.led-example.nav-content(style="display: none;")
             li
@@ -138,8 +139,15 @@ html(lang='en')
 
                 void loop() {
                   if(serial_manager.onReceive()) {
-                    // example serial command: hello world;
-                    serial_manager.getValue(); // returns: hello world
+                    if(serial_manager.isCmd("on")) {
+                      serial_manager.println("IT'S ON!");
+                    }
+
+                    if(serial_manager.isCmd("pwm")) {
+                      int value = serial_manager.getParam().toInt();
+                      serial_manager.print("SET PWM ");
+                      serial_manager.println(value);
+                    }
                   }
                 }
 
@@ -251,6 +259,12 @@ html(lang='en')
             li
               a.click-flash(href="#isparam") .isParam(value)
               include ./global/labels/real-time-onreceive.jade
+            li.divider
+            li
+              a.click-flash(href="#print") .print(value)
+            li
+              a.click-flash(href="#println") .println(value)
+
 
           .section
             .method-name(translate="no")
@@ -354,7 +368,7 @@ html(lang='en')
                   void loop() {
                     if(serial_manager.onReceive()) {
                       // example serial command: hello world;
-                      Serial.println(serial_manager.getValue());
+                      serial_manager.getValue(); // returns: hello world
                     }
                   }
 
@@ -383,7 +397,7 @@ html(lang='en')
                   void loop() {
                     if(serial_manager.onReceive()) {
                       // example serial command: hello world;
-                      Serial.println(serial_manager.getValue());
+                      serial_manager.getValue(); // returns: hello world
                     }
                   }
 
@@ -512,6 +526,58 @@ html(lang='en')
                           // servo.moveToDegrees(180);
                         }
                       }
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #print.anchor
+              .light serial_manager
+              | .print(value)
+            p
+              | Provide any value to print to serial output. This is identical to the documented Arduino&nbsp;
+              b Serial.print()
+              |  function.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    serial_manager.start();
+                  }
+
+                  void loop() {
+                    if(serial_manager.onReceive()) {
+                      // echo command to serial
+                      serial_manager.print(serial_manager.getValue());
+                    }
+                  }
+
+          .section
+            .method-name(translate="no")
+              #println.anchor
+              .light serial_manager
+              | .println(value)
+            p
+              | Provide any value to print to serial output, then a carriage return and newline character will be appended. This is identical to the documented Arduino&nbsp;
+              b Serial.println()
+              |  function.
+            h5
+              | EXAMPLE&nbsp;
+              span(translate="no") SKETCH
+            div(translate="no")
+              script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
+                :cdata
+                  void setup() {
+                    serial_manager.start();
+                  }
+
+                  void loop() {
+                    if(serial_manager.onReceive()) {
+                      // echo command to serial with new line
+                      serial_manager.println(serial_manager.getValue());
                     }
                   }
 
