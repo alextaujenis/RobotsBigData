@@ -1,1 +1,1 @@
-$(document).ready(function(){return SyntaxHighlighter.defaults.toolbar=!1,SyntaxHighlighter.all(),$(window).clickFlash()});
+$(document).ready(function(){return SyntaxHighlighter.defaults.toolbar=!1,SyntaxHighlighter.defaults["quick-code"]=!1,SyntaxHighlighter.all(),$(window).clickFlash()});
