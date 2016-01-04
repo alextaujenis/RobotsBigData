@@ -153,7 +153,25 @@ html(lang='en')
             .method-name(translate="no")
               #constructor.anchor
               | RBD::Timer constructor()
-            p Create a new timer instance.
+            p
+              | Create a new timer instance. The timer has three states: active, expired, and stopped. The timer will begin in the&nbsp;
+              b expired
+              |  state. You must call&nbsp;
+              a.click-flash(href="#settimeout") setTimeout()
+              | , then&nbsp;
+              a.click-flash(href="#restart") restart()
+              |  or&nbsp;
+              a.click-flash(href="#onrestart") onRestart()
+              |  to start using it.
+            p
+              | The timer is not initialized in the&nbsp;
+              i stopped
+              |  state because this will disable the use of&nbsp;
+              a.click-flash(href="#onrestart") onRestart()
+              | , and also limits your ability to fire an event immediately (you would have to wait for the first&nbsp;
+              a.click-flash(href="#settimeout") setTimeout()
+              |  to pass).
+
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
