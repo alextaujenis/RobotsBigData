@@ -49,7 +49,7 @@ html(lang='en')
                 small(translate="no")  API DOCUMENTATION
               p
                 | Manage many timed events.
-                small v1.1.2
+                small v1.2.0
               a.btn.btn-primary(href="#example-setup") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
@@ -112,7 +112,7 @@ html(lang='en')
 
           ul.public-methods(translate="no")
             li
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor") constructor([timeout_value])
             li.divider
             li
               a.click-flash(href="#settimeout") .setTimeout(value)
@@ -152,25 +152,23 @@ html(lang='en')
           .section
             .method-name(translate="no")
               #constructor.anchor
-              | RBD::Timer constructor()
+              | RBD::Timer constructor([timeout_value])
             p
-              | Create a new timer instance. The timer has three states: active, expired, and stopped. The timer will begin in the&nbsp;
-              b expired
-              |  state. You must call&nbsp;
+              | Create a new timer and pass in the [optional] timeout value (in milliseconds), which is the same as providing a value to&nbsp;
               a.click-flash(href="#settimeout") setTimeout()
-              | , then&nbsp;
+              | .
+            p
+              | The timer has three states: active, expired, and stopped. The timer will begin in the&nbsp;
+              b expired
+              |  state. Call&nbsp;
               a.click-flash(href="#restart") restart()
               |  or&nbsp;
               a.click-flash(href="#onrestart") onRestart()
-              |  to start using it.
-            p
-              | The timer is not initialized in the&nbsp;
+              |  to start using it. The timer is not constructed in the&nbsp;
               i stopped
-              |  state because this will disable the use of&nbsp;
+              |  state because this disables the event-based methods of this library, such as starting a loop with&nbsp;
               a.click-flash(href="#onrestart") onRestart()
-              | , and also limits your ability to fire an event immediately (you would have to wait for the first&nbsp;
-              a.click-flash(href="#settimeout") setTimeout()
-              |  to pass).
+              | .
 
             h5
               | EXAMPLE&nbsp;
@@ -179,9 +177,11 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   RBD::Timer timer;
+                  RBD::Timer timer2(200);
 
                   void setup() {
-                    ...
+                    timer.setTimeout(123);     // decide timeout at runtime
+                    // timer2.setTimeout(200); // already set
                   }
 
           .section
@@ -190,7 +190,9 @@ html(lang='en')
               .light timer
               | .setTimeout(value)
             p
-              | Provide an unsigned long greater than zero to change how long the timer will run (in milliseconds). This can be done inside of setup() or also inside of loop() to change the value at runtime.
+              | Provide an unsigned long greater than zero to change how long the timer will run (in milliseconds). This can be done in the&nbsp;
+              a.click-flash(href="#constructor") constructor()
+              | , at setup(), or inside of the loop() to change the value at runtime.
               | This will override any value given to&nbsp;
               a.click-flash(href="#sethertz", translate="no") setHertz()
               | .
