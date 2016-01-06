@@ -1,0 +1,1 @@
+$(document).ready(function(){return $(".ga-events").each(function(e,n){return $(n).click(function(){return ga("send",{hitType:"event",eventCategory:"Software",eventAction:"download",eventLabel:$(n).attr("data-name")})})})});
