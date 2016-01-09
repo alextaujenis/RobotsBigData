@@ -49,7 +49,7 @@ html(lang='en')
                 small(translate="no")  API DOCUMENTATION
               p
                 | A simple interface for serial communication.
-                small v1.0.0-alpha.2
+                small v1.0.0-alpha.3
               a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
@@ -64,7 +64,11 @@ html(lang='en')
             | This is an alpha release, which means this library is functional but likely to change. Please post feedback, questions, and issues to this&nbsp;
             a(href="https://github.com/alextaujenis/RBD_SerialManager/issues") GitHub issues page
             | .
-
+          p
+            b Note: this library will look for a newline \n character at the end of each command.
+            |  You must configure the Arduino Serial Monitor to include a \n newline (next to baud rate), or call&nbsp;
+            a.click-flash(href="#setflag") setFlag()
+            |  to change the default value.
           .h3
             #example-wiring.anchor
             | Example Wiring
@@ -90,8 +94,12 @@ html(lang='en')
               a(href="#example-sketch") Example Sketch
               |  onto an Arduino
             li Open a serial connection at 115200 baud
-            li Type something into the serial console followed by a semicolon ; then hit enter
-            li Example commands: on; pwm,123;
+            li
+              | Set the Arduino Serial Monitor to include a&nbsp;
+              b \n newline
+              |  (next to baud rate)
+            li Type something into the serial console then hit enter
+            li Example command: pwm,123
             li Watch for a response printed to the serial console
 
           ol.led-example.nav-content(style="display: none;")
@@ -103,7 +111,11 @@ html(lang='en')
               a(href="#example-sketch") Example Sketch
               |  onto an Arduino
             li Open a serial connection at 115200 baud
-            li Type a command into the serial console followed by a semicolon ; then hit enter
+            li
+              | Set the Arduino Serial Monitor to include a&nbsp;
+              b \n newline
+              |  (next to baud rate)
+            li Type a command into the serial console then hit enter
             li Watch the built-in Arduino LED respond to serial commands
 
           ol.servo-example.nav-content(style="display: none;")
@@ -118,7 +130,11 @@ html(lang='en')
               a(href="#example-sketch") Example Sketch
               |  onto an Arduino
             li Open a serial connection at 115200 baud
-            li Type a command into the serial console followed by a semicolon ; then hit enter
+            li
+              | Set the Arduino Serial Monitor to include a&nbsp;
+              b \n newline
+              |  (next to baud rate)
+            li Type a command into the serial console then hit enter
             li Watch the servo respond to serial commands
 
           .h3
@@ -167,17 +183,17 @@ html(lang='en')
 
                 void loop() {
                   if(usb.onReceive()) {
-                    // example serial command: on;
+                    // example serial command: on
                     if(usb.isCmd("on")) {
                       light.on();
                     }
 
-                    // example serial command: off;
+                    // example serial command: off
                     if(usb.isCmd("off")) {
                       light.off();
                     }
 
-                    // example serial command: pwm,123;
+                    // example serial command: pwm,123
                     if(usb.isCmd("pwm")) {
                       int pwm = usb.getParam().toInt();
                       light.setBrightness(pwm);
@@ -202,17 +218,17 @@ html(lang='en')
                   servo.update();
 
                   if(usb.onReceive()) {
-                    // example serial command: up;
+                    // example serial command: up
                     if(usb.isCmd("up")) {
                       servo.moveToDegrees(180);
                     }
 
-                    // example serial command: down;
+                    // example serial command: down
                     else if(usb.isCmd("down")) {
                       servo.moveToDegrees(0);
                     }
 
-                    // example serial command: move,90;
+                    // example serial command: move,90
                     else if(usb.isCmd("move")) {
                       int _position = usb.getParam().toInt();
                       servo.moveToDegrees(_position);
@@ -308,7 +324,9 @@ html(lang='en')
             p
               | Provide a char to change the&nbsp;
               b identifier that denotes the end of each serial command
-              | . This library defaults to having a terminating flag of ; semicolon.
+              | . This library defaults to having a terminating flag of&nbsp;
+              b \n
+              |  newline character. You must configure the Arduino Serial Monitor to include a newline (next to baud rate) for this library to work by default.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
@@ -316,8 +334,7 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   void setup() {
-                    // example serial commands: on; off; pwm,123;
-                    serial_manager.setFlag(";");  // default flag
+                    serial_manager.setFlag(";"); // default flag \n newline
                   }
 
           .section
@@ -336,7 +353,7 @@ html(lang='en')
               script(type="syntaxhighlighter", class="brush: arduino; gutter: false;")
                 :cdata
                   void setup() {
-                    // example serial commands: on; off; pwm,123;
+                    // example serial command: pwm,123
                     serial_manager.setDelimiter(","); // default delimiter
                   }
 
@@ -367,7 +384,7 @@ html(lang='en')
 
                   void loop() {
                     if(serial_manager.onReceive()) {
-                      // example serial command: hello world;
+                      // example serial command: hello world
                       serial_manager.getValue(); // returns: hello world
                     }
                   }
@@ -396,7 +413,7 @@ html(lang='en')
 
                   void loop() {
                     if(serial_manager.onReceive()) {
-                      // example serial command: hello world;
+                      // example serial command: hello world
                       serial_manager.getValue(); // returns: hello world
                     }
                   }
@@ -410,7 +427,7 @@ html(lang='en')
             p
               | Returns a String of data that is the first (or only) parameter parsed from&nbsp;
               a.click-flash(href="#getvalue", translate="no") getValue()
-              | . This enables a serial command structure that follows a cmd; or cmd,param; template. This method must be used in conjunction with&nbsp;
+              | . This enables a serial command structure that follows a cmd or cmd,param template. This method must be used in conjunction with&nbsp;
               a.click-flash(href="#onreceive", translate="no") onReceive()
               |  for this library to behave correctly (as shown below).
             h5
@@ -425,7 +442,7 @@ html(lang='en')
 
                   void loop() {
                     if(serial_manager.onReceive()) {
-                      // example serial command: pwm,123;
+                      // example serial command: pwm,123
                       serial_manager.getCmd(); // returns: pwm
                     }
                   }
@@ -439,7 +456,7 @@ html(lang='en')
             p
               | Returns a String of data that is the second parameter parsed from&nbsp;
               a.click-flash(href="#getvalue", translate="no") getValue()
-              | . This enables a serial command structure that follows a cmd; or cmd,param; template. This method must be used in conjunction with&nbsp;
+              | . This enables a serial command structure that follows a cmd or cmd,param template. This method must be used in conjunction with&nbsp;
               a.click-flash(href="#onreceive", translate="no") onReceive()
               |  for this library to behave correctly (as shown below).
             h5
@@ -454,7 +471,7 @@ html(lang='en')
 
                   void loop() {
                     if(serial_manager.onReceive()) {
-                      // example serial command: pwm,123;
+                      // example serial command: pwm,123
                       serial_manager.getParam().toInt(); // returns: 123
                     }
                   }
@@ -484,12 +501,12 @@ html(lang='en')
                   void loop() {
                     if(serial_manager.onReceive()) {
 
-                      // example serial command: on;
+                      // example serial command: on
                       if(serial_manager.isCmd("on")) {
                         // something.on();
                       }
 
-                      // example serial command: off;
+                      // example serial command: off
                       if(serial_manager.isCmd("off")) {
                         // something.off();
                       }
@@ -520,7 +537,7 @@ html(lang='en')
 
                   void loop() {
                     if(serial_manager.onReceive()) {
-                      // example serial command: servo,up;
+                      // example serial command: servo,up
                       if(serial_manager.isCmd("servo")) {
                         if(serial_manager.isParam("up")) {
                           // servo.moveToDegrees(180);
