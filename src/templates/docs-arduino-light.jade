@@ -49,7 +49,7 @@ html(lang='en')
                 small(translate="yes") API DOCUMENTATION
               p
                 | Control many lights.
-                small v2.1.3
+                small v2.1.4
               a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
@@ -68,7 +68,15 @@ html(lang='en')
             a.click-flash(href="#blink", translate="no") blink()
             | , and&nbsp;
             a.click-flash(href="#fade", translate="no") fade()
-            | . Lights must be connected to PWM enabled Arduino pins to work with this library.
+            | . Lights can be connected to PWM or Digital Arduino pins to work with this library.
+          p.lead
+            b PWM pins
+            |  are necessary to enable all library features.&nbsp;
+            b Digital pins
+            |  are supported by this library with special conditions documented in&nbsp;
+            a.click-flash(href="#setbrightness", translate="no") setBrightness()
+            |  and&nbsp;
+            a.click-flash(href="#fade", translate="no") fade().
 
           .h3
             #example-wiring.anchor
@@ -261,7 +269,12 @@ html(lang='en')
               #setbrightness.anchor
               .light light
               | .setBrightness(value)
-            p Pass in an integer between 0 - 255 to set the raw brightness of the light.
+            p
+              b PWM pins:
+              |  pass in an integer between 0 - 255 to set the raw brightness of the light.
+            p
+              b Digital pins:
+              |  pass in an integer less than or equal to 127 to turn off the light. Pass in an integer greater than or equal to 128 to turn on the light.
             h5
               | EXAMPLE&nbsp;
               span(translate="no") SKETCH
@@ -417,7 +430,11 @@ html(lang='en')
               | .fade(up_time, on_time, down_time, off_time, [times])
               include ./global/labels/real-time.jade
             p
-              | Pass in unsigned longs for the up, on, down, and off time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should fade, which is [optional] and can be left out to make the light repeat the fade cycle forever.
+              b PWM pins:
+              |  need unsigned longs passed in for the up, on, down, and off time values in milliseconds. Pass in an integer for the last parameter for the number of times the light should fade, which is [optional] and can be left out to make the light repeat the fade cycle forever.
+            p
+              b Digital pins:
+              |  behave the same as PWM pins except they will blink the light (when increasing past 50% brightness) instead of appearing as a linear fade.
             ul
               li Light performs a linear fade UP according to the up_time
               li Stays ON for the on_time
