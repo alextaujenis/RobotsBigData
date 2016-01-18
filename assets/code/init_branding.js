@@ -1,1 +1,1 @@
-var scrollToLink;$(document).ready(function(){var r,e;return e=$('a[href$="hardware-overview"]'),r=$('a[name="hardware-overview"]'),scrollToLink(e,r,1e3),new Branding({el:".branding"})}),scrollToLink=function(r,e,n){return r.click(function(r){return r.preventDefault(),$("html, body").animate({scrollTop:e.offset().top-70},n)})};
+$(document).ready(function(){return new Branding({el:".branding"})});
