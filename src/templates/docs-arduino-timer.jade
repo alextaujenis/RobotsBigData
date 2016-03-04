@@ -155,19 +155,19 @@ html(lang='en')
               | RBD::Timer constructor([timeout_value])
             p
               | Create a new timer and pass in the [optional] timeout value (in milliseconds), which is the same as providing a value to&nbsp;
-              a.click-flash(href="#settimeout") setTimeout()
+              a.click-flash(href="#settimeout", translate="no") setTimeout()
               | .
             p
               | The timer has three states: active, expired, and stopped. The timer will begin in the&nbsp;
               b expired
               |  state. Call&nbsp;
-              a.click-flash(href="#restart") restart()
+              a.click-flash(href="#restart", translate="no") restart()
               |  or&nbsp;
-              a.click-flash(href="#onrestart") onRestart()
+              a.click-flash(href="#onrestart", translate="no") onRestart()
               |  to start using it. The timer is not constructed in the&nbsp;
               i stopped
               |  state because this disables the event-based methods of this library, such as starting a loop with&nbsp;
-              a.click-flash(href="#onrestart") onRestart()
+              a.click-flash(href="#onrestart", translate="no") onRestart()
               | .
 
             h5
@@ -191,7 +191,7 @@ html(lang='en')
               | .setTimeout(value)
             p
               | Provide an unsigned long greater than zero to change how long the timer will run (in milliseconds). This can be done in the&nbsp;
-              a.click-flash(href="#constructor") constructor()
+              a.click-flash(href="#constructor", translate="no") constructor()
               | , at setup(), or inside of the loop() to change the value at runtime.
               | This will override any value given to&nbsp;
               a.click-flash(href="#sethertz", translate="no") setHertz()
