@@ -85,7 +85,7 @@
             'LightSensor getValue getRawValue getInverseValue getPercentValue getInversePercentValue setFloor setCeiling resetFloor resetCeiling ' +
             'Motor on off forward reverse toggleDirection update timedOn isOn isOff isForward isReverse getSpeed getSpeedPercent setSpeed setSpeedPercent rampUp rampDown ramp rampPercent onForward onReverse onTargetSpeed ' +
             'Threshold setLevel getLevel setMaxLevel getMaxLevel computeLevel	' +
-            'Timer setTimeout setHertz restart stop isActive isExpired isStopped onRestart onActive onExpired getValue getInverseValue getPercentValue getInversePercentValue ' +
+            'Timer setTimeout setHertz restart stop isActive isExpired isStopped onRestart onActive onExpired getTimeout getHertz getValue getInverseValue getPercentValue getInversePercentValue ' +
             'WaterSensor update setSampleSize setLevel setMaxLevel setModifier resetModifier getValue getRawValue getActiveLevel onValueChange onRawValueChange onActiveLevelChange ' +
             'Button setDebounceTimeout inputPullup disableInputPullup invertReading resetReading isPressed isReleased onPressed onReleased ' +
             'Servo setPulseInterval setDegreesOfRotation moveToDegrees update ' +
