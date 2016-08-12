@@ -35,10 +35,10 @@ html(lang='en')
             .software2 that play nice together
           .row
             .col-xs-12.index-libraries
-              a(href="docs-arduino-timer.html")
+              a#RBD_Timer(href="docs-arduino-timer.html")
                 .library
                   .title RBD_Timer
-                  .version v1.3.0
+                  .version
                   .testing
                     span.label.label-default Build
                     span.label.label-success Passing
@@ -46,11 +46,10 @@ html(lang='en')
                   .description Arduino Timer Library - Manage many timed events.
                   .updated
                     | Updated&nbsp;
-                    time.timeago(datetime="2016-08-10T06:13:10Z") August 10, 2016
-              a(href="docs-arduino-button.html")
+              a#RBD_Button(href="docs-arduino-button.html")
                 .library
                   .title RBD_Button
-                  .version v2.1.0
+                  .version
                   .testing
                     span.label.label-default Build
                     span.label.label-success Passing
@@ -58,20 +57,18 @@ html(lang='en')
                   .description Arduino Button Library - Read and debounce buttons and switches.
                   .updated
                     | Updated&nbsp;
-                    time.timeago(datetime="2016-01-02T09:45:22Z") January 2, 2016
-              a(href="docs-arduino-serial-manager.html")
+              a#RBD_SerialManager(href="docs-arduino-serial-manager.html")
                 .library
                   .title RBD_SerialManager
-                  .version v1.0.0-alpha.3
+                  .version
                   .language.pull-right C++
                   .description Arduino Serial Manager Library - A simple interface for serial communication.
                   .updated
                     | Updated&nbsp;
-                    time.timeago(datetime="2016-01-09T04:49:17Z") January 9, 2016
-              a(href="docs-arduino-motor.html")
+              a#RBD_Motor(href="docs-arduino-motor.html")
                 .library
                   .title RBD_Motor
-                  .version v2.1.1
+                  .version
                   .testing
                     span.label.label-default Build
                     span.label.label-success Passing
@@ -79,11 +76,10 @@ html(lang='en')
                   .description Arduino Motor Library - Control many motors.
                   .updated
                     | Updated&nbsp;
-                    time.timeago(datetime="2016-01-07T04:41:00Z") January 7, 2016
-              a(href="docs-arduino-light.html")
+              a#RBD_Light(href="docs-arduino-light.html")
                 .library
                   .title RBD_Light
-                  .version v2.1.7
+                  .version
                   .testing
                     span.label.label-default Build
                     span.label.label-success Passing
@@ -91,16 +87,14 @@ html(lang='en')
                   .description Arduino Light Library - Control many lights.
                   .updated
                     | Updated&nbsp;
-                    time.timeago(datetime="2016-03-07T18:43:28Z") March 7, 2016
-              a(href="docs-arduino-servo.html")
+              a#RBD_Servo(href="docs-arduino-servo.html")
                 .library
                   .title RBD_Servo
-                  .version v1.0.1
+                  .version
                   .language.pull-right C++
                   .description Arduino Servo Library - Control many servos without delay or interrupts.
                   .updated
                     | Updated&nbsp;
-                    time.timeago(datetime="2015-11-09T01:44:52Z") November 14, 2015
               .software-footer.text-center Control your sensors with high-level C++ libraries
       .row.getting-started-spacer
       .branding
@@ -120,4 +114,4 @@ html(lang='en')
     script(src='assets/code/branding.js')
     script(src='assets/code/init_branding.js')
     script(src='assets/code/jquery.timeago.js')
-    script(src='assets/code/init_timeago.js')
+    script(src='assets/code/github_stats.js')
