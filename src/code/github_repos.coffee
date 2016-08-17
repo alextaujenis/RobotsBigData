@@ -11,18 +11,10 @@ $(document).ready ->
   ]
 
   $.each repos, (i, repo)->
-    api = new GithubApi
+    repo = new GithubRepo
       user: user
       repo: repo
 
-    api.version (attributes)->
-      # convert the pushed_at value to timeago
-      time = jQuery.timeago(attributes.published_at)
-
-      # display version on page
-      $("##{repo} .version").text("v#{attributes.name}")
-
-      # display published_at value on page
-      $("##{repo} .updated").text("Updated #{time}")
-      return
+    repo.render()
     return
+  return

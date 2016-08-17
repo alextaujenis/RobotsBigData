@@ -27,17 +27,16 @@ html(lang='en')
                 .image.pull-left
                   a.ga-events(href="assets/downloads/RBD_Libraries.zip", data-name="RBD_Libraries.zip")
                     img(src="assets/images/zip-lg.png", alt=".zip file")
-                .content.pull-left
+                #RobotsBigData.content.pull-left
                   a.ga-events(href="assets/downloads/RBD_Libraries.zip", data-name="RBD_Libraries.zip")
                     .title
                       | RBD_Libraries.zip
                     .details
                       | 100KB Download -&nbsp;
-                      span
-                        | Updated&nbsp;
-                        time.timeago(datetime="2016-08-10T06:13:10Z") August 10, 2016
+                      span.updated
                   a.release-notes(href="https://github.com/alextaujenis/RobotsBigData/releases")
-                    | v3.16 - Release Notes
+                    span.version
+                    | &nbsp;- Release Notes
                 .clearfix
           .small-spacer &nbsp;
           p.lead.no-margin
@@ -86,5 +85,10 @@ html(lang='en')
     include ./global/footer.jade
     include ./global/foot-content.jade
     include ./global/docs-foot-content.jade
-    script(src='assets/code/jquery.timeago.js')
-    script(src='assets/code/init_timeago.js')
+    script.
+      $(document).ready(function(){
+        (new GithubRepo({
+          user: "alextaujenis",
+          repo: "RobotsBigData"
+        })).render();
+      });
