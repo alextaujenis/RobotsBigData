@@ -47,9 +47,9 @@ html(lang='en')
               h2(translate="no")
                 | Light
                 small(translate="yes") API DOCUMENTATION
-              p
+              p#RBD_Light
                 | Control many lights.
-                small v2.1.7
+                small.version
               a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
@@ -508,3 +508,10 @@ html(lang='en')
     include ./global/footer.jade
     include ./global/foot-content.jade
     include ./global/docs-foot-content.jade
+    script.
+      $(document).ready(function(){
+        (new GithubRepo({
+          user: "alextaujenis",
+          repo: "RBD_Light"
+        })).render();
+      });

@@ -47,9 +47,9 @@ html(lang='en')
               h2(translate="no")
                 | Serial Manager
                 small(translate="no")  API DOCUMENTATION
-              p
+              p#RBD_SerialManager
                 | A simple interface for serial communication.
-                small v1.0.0-alpha.3
+                small.version
               a.btn.btn-primary(href="#example-wiring") See Example
               | &nbsp;&nbsp;
               a.btn.btn-default(href="#public-methods") Public Methods
@@ -649,3 +649,10 @@ html(lang='en')
     include ./global/footer.jade
     include ./global/foot-content.jade
     include ./global/docs-foot-content.jade
+    script.
+      $(document).ready(function(){
+        (new GithubRepo({
+          user: "alextaujenis",
+          repo: "RBD_SerialManager"
+        })).render();
+      });

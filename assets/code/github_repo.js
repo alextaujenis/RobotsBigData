@@ -1,0 +1,1 @@
+var GithubRepo;GithubRepo=function(){function n(n){null==n&&(n={}),this.api=new GithubApi({user:n.user,repo:n.repo})}return n.prototype.render=function(){this.api.version(function(n){return function(e){$("#"+n.api.repo+" .version").text("v"+e.name)}}(this))},n}();

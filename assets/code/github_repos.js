@@ -1,0 +1,1 @@
+$(document).ready(function(){var e,t;return t="alextaujenis",e=["RBD_Timer","RBD_Button","RBD_SerialManager","RBD_Motor","RBD_Light","RBD_Servo"],$.each(e,function(e,r){var a;a=new GithubApi({user:t,repo:r}),a.version(function(e){var t;t=jQuery.timeago(e.published_at),$("#"+r+" .version").text("v"+e.name),$("#"+r+" .updated").text("Updated "+t)})})});
