@@ -98,7 +98,9 @@ html(lang='en')
               | Cover the conductive material with non-conductive material (tape)
             li
               | Load the&nbsp;
-              a(href="#example-sketch") Example Sketch
+              a(href="#example-sketch")
+                | Example&nbsp;
+                span(translate="no") Sketch
               |  onto the Arduino
             li Open a serial connection at 115200 baud to see the reported values
             li
@@ -109,7 +111,8 @@ html(lang='en')
 
           .h3
             #example-sketch.anchor
-            | Example Sketch
+            | Example&nbsp;
+            span(translate="no") Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
           div(translate="no")
@@ -151,7 +154,9 @@ html(lang='en')
 
           .h3
             #example-sketch-calibration.anchor
-            | Example Sketch Calibration
+            | Example&nbsp;
+            span(translate="no") Sketch
+            |  Calibration
           p
             | Follow these steps to calibrate each human sensor before use:
           ol
@@ -165,7 +170,9 @@ html(lang='en')
               |  to the Raw Value&nbsp;
               i
                 | - in the&nbsp;
-                a(href="#example-sketch") example sketch
+                a(href="#example-sketch")
+                  | example&nbsp;
+                  span(translate="no") sketch
                 |  setup()
             li Touch the sensor to see the Raw Value change
             li
@@ -177,7 +184,10 @@ html(lang='en')
               | Change the&nbsp;
               a.click-flash(href="#setpickupvalue", translate="no") setPickupValue()
               |  to the new Raw Value
-            li Load the calibrated sketch back into the Arduino
+            li
+              | Load the calibrated&nbsp;
+              span(translate="no") sketch
+              |  back into the Arduino
             li The human sensor is calibrated and ready to use
 
           .h3
@@ -947,7 +957,9 @@ html(lang='en')
                 | Upgrade to&nbsp;
                 a(href="https://www.arduino.cc/en/Main/Software") Arduino IDE v1.5 or greater
                 |  and load the&nbsp;
-                a.close-modal(href="#example-sketch") Example Sketch
+                a.close-modal(href="#example-sketch")
+                  | Example&nbsp;
+                  span(translate="no") Sketch
                 |  to get started.
           .modal-footer
             button.btn.btn-default(type='button', data-dismiss='modal') Close

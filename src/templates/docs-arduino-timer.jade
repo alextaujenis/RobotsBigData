@@ -59,7 +59,9 @@ html(lang='en')
             #overview.anchor
             | Overview
           p.lead
-            | The Arduino real-time loop stops advancing when you write delay() or use interrupts in your sketch. You can keep the real-time loop moving by using millis() to track time and create delay, but it's more complicated and soon becomes messy to manage.
+            | The Arduino real-time loop stops advancing when you write delay() or use interrupts in your&nbsp;
+            span(translate="no") sketch
+            | . You can keep the real-time loop moving by using millis() to track time and create delay, but it's more complicated and soon becomes messy to manage.
           p.lead
             | This lightweight library manages time the same way you would by setting a waypoint and calculating elapsed millis(). It is a simple replacement to manage your timed events with english instead of math.
 
@@ -75,12 +77,16 @@ html(lang='en')
             #example-setup.anchor
             | Example Setup
           ol
-            li Install this library and load the example sketch onto an Arduino
+            li
+              | Install this library and load the example&nbsp;
+              span(translate="no") sketch
+              |  onto an Arduino
             li Open a serial connection at 115200 baud
             li Watch a timer print to serial every three seconds
           .h3
             #example-sketch.anchor
-            | Example Sketch
+            | Example&nbsp;
+            span(translate="no") Sketch
             span.label.label-info Arduino
             span.label.label-primary C++
           div(translate="no")
@@ -605,7 +611,9 @@ html(lang='en')
                 | Upgrade to&nbsp;
                 a(href="https://www.arduino.cc/en/Main/Software") Arduino IDE v1.5 or greater
                 |  and load the&nbsp;
-                a.close-modal(href="#example-sketch") Example Sketch
+                a.close-modal(href="#example-sketch")
+                  | Example&nbsp;
+                  span(translate="no") Sketch
                 |  to get started.
           .modal-footer
             button.btn.btn-default(type='button', data-dismiss='modal') Close
