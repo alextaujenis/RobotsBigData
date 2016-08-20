@@ -1,1 +1,1 @@
-$(document).ready(function(){var e,r;r="alextaujenis",e=["RBD_Timer","RBD_Button","RBD_SerialManager","RBD_Motor","RBD_Light","RBD_Servo"],$.each(e,function(e,n){n=new GithubRepo({user:r,repo:n}),n.render()})});
+$(document).ready(function(){var e,r;r="alextaujenis",e=["RBD_Timer","RBD_Button","RBD_SerialManager","RBD_Motor","RBD_Light","RBD_Servo"],$.each(e,function(e,n){var a;a=new GithubRepo({user:r,repo:n}),a.render()})});

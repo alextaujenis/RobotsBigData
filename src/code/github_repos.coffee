@@ -10,10 +10,10 @@ $(document).ready ->
     "RBD_Servo"
   ]
 
-  $.each repos, (i, repo)->
+  $.each repos, (i, name)->
     repo = new GithubRepo
       user: user
-      repo: repo
+      repo: name
 
     repo.render()
     return
