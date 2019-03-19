@@ -42,7 +42,7 @@ template_subdirectory_src = './src/templates/**/*.jade'
 root_dest = './'
 
 # image files
-image_src = './src/images/*.png'
+image_src = './assets/images/*.png'
 
 # image destination
 image_dest = './assets/images/'
