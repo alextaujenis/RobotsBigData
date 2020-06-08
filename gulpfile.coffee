@@ -42,7 +42,7 @@ template_subdirectory_src = './src/templates/**/*.jade'
 root_dest = './'
 
 # image files
-image_src = './assets/images/*.png'
+image_src = './src/images/*.png'
 
 # image destination
 image_dest = './assets/images/'
@@ -149,7 +149,6 @@ gulp.task 'compile', ->
     'copy-images'
     'copy-bower-js'
     'copy-bower-css'
-    'downloads'
   )
 
 # only compile when source files change
@@ -164,111 +163,3 @@ gulp.task 'watch-files', ->
 
 # run this command to start developing
 gulp.task 'develop', ['compile', 'watch-files']
-
-
-# REBUILD ALL ZIP DOWNLOADS
-zip        = require('gulp-zip')
-dest       = './src/downloads/'
-final_dest = './assets/downloads/'
-
-source = (src)->
-  return [
-    "!/libraries/#{src}/extras/**/*",
-    "!/libraries/#{src}/extras",
-    "/libraries/#{src}/**/*"
-  ]
-
-gulp.task 'downloads', ->
-  sequence('clean-downloads', "build-downloads", "copy-downloads")
-
-# delete all zip files in the downloads folder
-gulp.task 'clean-downloads', ->
-  gulp.src(dest, read: false)
-    .pipe(clean())
-  gulp.src(final_dest, read: false)
-    .pipe(clean())
-
-# run this task to rebuild the download zip files
-gulp.task 'build-downloads', ->
-  gulp.src(source("RBD_Capacitance"))
-    .pipe(zip("RBD_Capacitance.zip"))
-    .pipe(gulp.dest(dest))
-
-  gulp.src(source("RBD_LightSensor"))
-    .pipe(zip("RBD_LightSensor.zip"))
-    .pipe(gulp.dest(dest))
-
-  gulp.src(source("RBD_SerialManager"))
-    .pipe(zip("RBD_SerialManager.zip"))
-    .pipe(gulp.dest(dest))
-
-  gulp.src(source("RBD_Servo"))
-    .pipe(zip("RBD_Servo.zip"))
-    .pipe(gulp.dest(dest))
-
-  gulp.src(source("RBD_Threshold"))
-    .pipe(zip("RBD_Threshold.zip"))
-    .pipe(gulp.dest(dest))
-
-  gulp.src(source("RBD_Timer"))
-    .pipe(zip("RBD_Timer.zip"))
-    .pipe(gulp.dest(dest))
-
-  # Button.zip: RBD_Button, RBD_Timer
-  button_src = source("RBD_Button")
-    .concat(source("RBD_Timer"))
-
-  gulp.src(button_src, {base: "/libraries"})
-    .pipe(zip("Button.zip"))
-    .pipe(gulp.dest(dest))
-
-  # HumanSensor.zip: RBD_HumanSensor, RBD_Capacitance, RBD_Threshold
-  human_sensor_src = source("RBD_HumanSensor")
-    .concat(source("RBD_Capacitance"))
-    .concat(source("RBD_Threshold"))
-
-  gulp.src(human_sensor_src, {base: "/libraries"})
-    .pipe(zip("HumanSensor.zip"))
-    .pipe(gulp.dest(dest))
-
-  # Light.zip: RBD_Light, RBD_Timer
-  light_src = source("RBD_Light")
-    .concat(source("RBD_Timer"))
-
-  gulp.src(light_src, {base: "/libraries"})
-    .pipe(zip("Light.zip"))
-    .pipe(gulp.dest(dest))
-
-  # Motor.zip: RBD_Motor, RBD_Timer
-  motor_src = source("RBD_Motor")
-    .concat(source("RBD_Timer"))
-
-  gulp.src(motor_src, {base: "/libraries"})
-    .pipe(zip("Motor.zip"))
-    .pipe(gulp.dest(dest))
-
-  # WaterSensor.zip: RBD_WaterSensor, RBD_Capacitance, RBD_Threshold
-  water_sensor_src = source("RBD_WaterSensor")
-    .concat(source("RBD_Capacitance"))
-    .concat(source("RBD_Threshold"))
-
-  gulp.src(water_sensor_src, {base: "/libraries"})
-    .pipe(zip("WaterSensor.zip"))
-    .pipe(gulp.dest(dest))
-
-  # RBD_Libraries.zip: All Libraries
-  libraries_src = source("RBD_Button")
-    .concat(source("RBD_Capacitance"))
-    .concat(source("RBD_HumanSensor"))
-    .concat(source("RBD_Light"))
-    .concat(source("RBD_LightSensor"))
-    .concat(source("RBD_Motor"))
-    .concat(source("RBD_SerialManager"))
-    .concat(source("RBD_Servo"))
-    .concat(source("RBD_Threshold"))
-    .concat(source("RBD_Timer"))
-    .concat(source("RBD_WaterSensor"))
-
-  gulp.src(libraries_src, {base: "/libraries"})
-    .pipe(zip("RBD_Libraries.zip"))
-    .pipe(gulp.dest(dest))
