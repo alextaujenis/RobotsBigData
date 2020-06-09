@@ -46,7 +46,7 @@ html(lang='en')
               img.img-responsive(src="assets/images/library-manager-rbd-libraries.png", alt="Arduino Library Manager: Searching for RBD Libraries")
         .spacer &nbsp;
         .col-xs-12
-          #step-3
+          #step-4
           h1
             | Step 4&nbsp;
             small.text-muted (only for some libraries)
@@ -55,16 +55,18 @@ html(lang='en')
             b Install All
             |  to install these dependencies and avoid compile-time errors.
             .image
-              img.img-responsive(src="assets/images/library-manager-rbd-button-dependencies.png", alt="Arduino Library Manager: RBD_Button")
+              img.img-responsive(src="assets/images/library-manager-rbd-button-dependencies.png", alt="Arduino Library Manager: RBD_Button Dependencies Confirmation")
         .spacer &nbsp;
         .col-xs-12
-          #next-step
+          #step-5
           h1 Next Step
           p.lead
-            | Read&nbsp;
+            | Open an example to get started and read&nbsp;
             a(href="docs-arduino.html") the docs
             |  to learn how to use the libraries.
-
+            .image
+              a(href="docs-arduino-light.html")
+                img.img-responsive(src="assets/images/arduino-ide.png", alt="Arduino IDE: RBD_Light Example Blink Without Delay")
     include ./global/footer.jade
     include ./global/foot-content.jade
     include ./global/docs-foot-content.jade
