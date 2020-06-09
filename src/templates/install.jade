@@ -18,61 +18,44 @@ html(lang='en')
           #step-1
           h1 Install Step 1
           p.lead
-            | Click below to download all&nbsp;
-            span(translate="no") Robots + Big Data
-            |  Arduino libraries:
-          .row
-            .col-xs-12
-              .library-download
-                .image.pull-left
-                  a.ga-events(href="assets/downloads/RBD_Libraries.zip", data-name="RBD_Libraries.zip")
-                    img(src="assets/images/zip-lg.png", alt=".zip file")
-                #RobotsBigData.content.pull-left
-                  a.ga-events(href="assets/downloads/RBD_Libraries.zip", data-name="RBD_Libraries.zip")
-                    .title
-                      | RBD_Libraries.zip
-                    .details
-                      | 47KB Download -&nbsp;
-                      span.updated
-                  a.release-notes(href="https://github.com/alextaujenis/RobotsBigData/releases")
-                    span.version
-                    | &nbsp;- Release Notes
-                .clearfix
-          .small-spacer &nbsp;
-          p.lead.no-margin
-            | Then check your downloads folder and double-click the&nbsp;
-            img(src="assets/images/zip-icon.png", alt="folder icon")
-            |  RBD_Libraries.zip file.
+            | Download and install the latest version of the&nbsp;
+            a(href="https://www.arduino.cc/en/main/software#download", target="_blank")
+              img(src="assets/images/arduino-library-icon.png", alt="Arduino IDE Logo")
+              |  Arduino IDE
+            | .
         .spacer &nbsp;
         .col-xs-12
           #step-2
           h1 Step 2
           p.lead
-            | Move the un-zipped contents of the&nbsp;
-            img(src="assets/images/folder-icon.png", alt="folder icon")
-            |  RBD_Libraries folder to your Arduino&nbsp;
-            img(src="assets/images/folder-icon.png", alt="folder icon")
-            |  libraries folder:
-          h5 INSTALL PATH
-          div(translate="no")
-            script(type="syntaxhighlighter", class="brush: shell; gutter: false;")
-              :cdata
-                Windows:       My Documents\Arduino\libraries
-                Mac & Linux:   Documents/Arduino/libraries
-
-          h5 FOLDER STRUCTURE
-          img(src="assets/images/install-folder-structure.png", alt="Installation folder structure")
+            | Open the Arduino IDE and click&nbsp;
+            b Tools &rArr; Manage Libraries...
+            .image
+              img.img-responsive(src="assets/images/arduino-ide-tools-manage-libraries.png", alt="Arduino Library Manager Menu: Tools -> Manage Libraries...")
         .spacer &nbsp;
         .col-xs-12
           #step-3
           h1 Step 3
           p.lead
-            | Upgrade to&nbsp;
-            i
-              a(href="https://www.arduino.cc/en/Main/Software") Arduino IDE v1.5 or greater
-            |  and open an example to get started:
-          a(href="docs-arduino-light.html")
-            img.img-responsive(src="assets/images/arduino-ide.png", alt="Arduino IDE Light Example")
+            | Search for&nbsp;
+            b(translate="no") RBD_
+            |  in the Arduino Library Manager then click&nbsp;
+            b Install
+            |  on a specific library.
+            .image
+              img.img-responsive(src="assets/images/library-manager-rbd-libraries.png", alt="Arduino Library Manager: Searching for RBD Libraries")
+        .spacer &nbsp;
+        .col-xs-12
+          #step-3
+          h1
+            | Step 4&nbsp;
+            small.text-muted (only for some libraries)
+          p.lead
+            | Some libraries are dependent upon others to work correctly. Click&nbsp;
+            b Install All
+            |  to install these dependencies and avoid compile-time errors.
+            .image
+              img.img-responsive(src="assets/images/library-manager-rbd-button-dependencies.png", alt="Arduino Library Manager: RBD_Button")
         .spacer &nbsp;
         .col-xs-12
           #next-step
