@@ -349,35 +349,40 @@ html(lang='en')
             .install-step
               h3 Step 1
               p.lead
-                | Check your downloads folder and double-click the&nbsp;
-                img(src="assets/images/zip-icon.png", alt=".zip icon")
-                |  RBD_LightSensor.zip file.
+                | Download and install the latest version of the&nbsp;
+                a(href="https://www.arduino.cc/en/main/software#download", target="_blank")
+                  img(src="assets/images/arduino-library-icon.png", alt="Arduino IDE Logo")
+                  |  Arduino IDE
+                | .
             .install-step
               h3 Step 2
               p.lead
-                | Move the&nbsp;
-                img(src="assets/images/folder-icon.png", alt="folder icon")
-                |   RBD_LightSensor folder to the Arduino&nbsp;
-                img(src="assets/images/folder-icon.png", alt="folder icon")
-                |  libraries folder:
-              h5 INSTALL PATH
-              div(translate="no")
-                script(type="syntaxhighlighter", class="brush: shell; gutter: false;")
-                  :cdata
-                    Windows:       My Documents\Arduino\libraries
-                    Mac & Linux:   Documents/Arduino/libraries
-
-                h5 FOLDER STRUCTURE
+                | Open the Arduino IDE and click&nbsp;
+                b Tools &rArr; Manage Libraries...
                 .image
-                  img(src="assets/images/install-folder-structure-documents.png", alt="Documents/Arduino/Libraries")
-                .image
-                  img(src="assets/images/install-folder-structure-light-sensor.png", alt="RBD_LightSensor")
+                  img.img-responsive(src="assets/images/arduino-ide-tools-manage-libraries.png", alt="Arduino Library Manager Menu: Tools -> Manage Libraries...")
             .install-step
               h3 Step 3
               p.lead
-                | Upgrade to&nbsp;
-                a(href="https://www.arduino.cc/en/Main/Software") Arduino IDE v1.5 or greater
-                |  and load the&nbsp;
+                | Search for&nbsp;
+                b(translate="no") RBD_LightSensor
+                |  in the Arduino Library Manager and click&nbsp;
+                b Install
+                | , then click Close.
+                .image
+                  img.img-responsive(src="assets/images/library-manager-rbd-light-sensor.png", alt="Arduino Library Manager: Searching for RBD_LightSensor")
+            .install-step
+              h3 Next Step
+              p.lead
+                | Click on&nbsp;
+                b File &rArr; Examples &rArr;&nbsp;
+                b
+                  span(translate="no") RBD_LightSensor
+                b  &rArr;
+                  i  example_name
+                |  in the Arduino IDE to see code examples for this library, or create a new&nbsp;
+                span(translate="no") sketch
+                |  in the Arduino IDE and copy the&nbsp;
                 a.close-modal(href="#example-sketch")
                   | Example&nbsp;
                   span(translate="no") Sketch
