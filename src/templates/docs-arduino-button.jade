@@ -28,14 +28,13 @@ html(lang='en')
                     .text-container
                       .name View Source on GitHub
                       .subtitle With MIT License
-              .icon-container.pull-right.download-button(data-toggle="tooltip", data-placement="bottom", title="Click to download the Button library with the Timer dependency")
-                a.ga-events(href="assets/downloads/Button.zip", data-name="Button.zip")
-                  .icon
-                    .image
-                      img(src='assets/images/zip-icon.png', alt=".zip icon")
-                    .text-container
-                      .name Button.zip
-                      .subtitle 8KB Download
+              .icon-container.pull-right.download-button(data-toggle="tooltip", data-placement="bottom", title="Click here to see how to install this library")
+                .icon
+                  .image
+                    img(src='assets/images/arduino-library-icon.png', alt=".ino icon")
+                  .text-container
+                    .name How To Install
+                    .subtitle With Arduino IDE
               .clearfix
             .clearfix
           .jumbotron
@@ -374,37 +373,48 @@ html(lang='en')
             .install-step
               h3 Step 1
               p.lead
-                | Check your downloads folder and double-click the&nbsp;
-                img(src="assets/images/zip-icon.png", alt=".zip icon")
-                |  Button.zip file.
+                | Download and install the latest version of the&nbsp;
+                a(href="https://www.arduino.cc/en/main/software#download", target="_blank")
+                  img(src="assets/images/arduino-library-icon.png", alt="Arduino IDE Logo")
+                  |  Arduino IDE
+                | .
             .install-step
               h3 Step 2
               p.lead
-                | Move the un-zipped contents of the&nbsp;
-                img(src="assets/images/folder-icon.png", alt="folder icon")
-                |  Button folder to the Arduino&nbsp;
-                img(src="assets/images/folder-icon.png", alt="folder icon")
-                |  libraries folder:
-              h5 INSTALL PATH
-              div(translate="no")
-                script(type="syntaxhighlighter", class="brush: shell; gutter: false;")
-                  :cdata
-                    Windows:       My Documents\Arduino\libraries
-                    Mac & Linux:   Documents/Arduino/libraries
-
-                h5 FOLDER STRUCTURE
+                | Open the Arduino IDE and click&nbsp;
+                b Tools &rArr; Manage Libraries...
                 .image
-                  img(src="assets/images/install-folder-structure-documents.png", alt="Documents/Arduino/Libraries")
-                .image
-                  img(src="assets/images/install-folder-structure-button.png", alt="RBD_Button")
-                .image
-                  img(src="assets/images/install-folder-structure-timer.png", alt="RBD_Timer")
+                  img.img-responsive(src="assets/images/arduino-ide-tools-manage-libraries.png", alt="Arduino Library Manager Menu: Tools -> Manage Libraries...")
             .install-step
               h3 Step 3
               p.lead
-                | Upgrade to&nbsp;
-                a(href="https://www.arduino.cc/en/Main/Software") Arduino IDE v1.5 or greater
-                |  and load the&nbsp;
+                | Search for&nbsp;
+                b(translate="no") RBD_Button
+                |  in the Arduino Library Manager and click&nbsp;
+                b Install
+                | .
+                .image
+                  img.img-responsive(src="assets/images/library-manager-rbd-button.png", alt="Arduino Library Manager: Searching for RBD_Button")
+            .install-step
+              h3 Step 4
+              p.lead
+                | Click&nbsp;
+                b Install All
+                |  to install additional dependencies for this library, then click&nbsp;
+                b Close
+                | .
+                .image
+                  img.img-responsive(src="assets/images/library-manager-rbd-button-dependencies.png", alt="Arduino Library Manager: RBD_Button")
+            .install-step
+              h3 Step 5
+              p.lead
+                | See all code examples for this library in the Arduino IDE by clicking on&nbsp;
+                b File &rArr; Examples &rArr;&nbsp;
+                b
+                  span(translate="no") RBD_Button
+                |  (near the bottom under Examples from Custom Libraries), or create a new&nbsp;
+                span(translate="no") sketch
+                |  in the Arduino IDE and copy the&nbsp;
                 a.close-modal(href="#example-sketch")
                   | Example&nbsp;
                   span(translate="no") Sketch

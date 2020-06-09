@@ -1,0 +1,1 @@
+$(document).ready(function(){return $("#copyright-year").text("- "+(new Date).getFullYear()+" ")});

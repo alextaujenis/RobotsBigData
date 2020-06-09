@@ -6,3 +6,4 @@ services:
       - .:/opt/service:cached
     environment:
       ENV: development
+    restart: always
